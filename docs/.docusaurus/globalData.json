@@ -1,0 +1,168 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/2025-T0012-EC05-G03/",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/2025-T0012-EC05-G03/",
+          "mainDocId": "intro",
+          "docs": [
+            {
+              "id": "intro",
+              "path": "/2025-T0012-EC05-G03/",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "sprint-1/entendimento-neg/analise-de-stakeholder",
+              "path": "/2025-T0012-EC05-G03/sprint-1/entendimento-neg/analise-de-stakeholder",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "sprint-1/entendimento-neg/analise-pestel",
+              "path": "/2025-T0012-EC05-G03/sprint-1/entendimento-neg/analise-pestel",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "sprint-1/entendimento-neg/canva-prop-val",
+              "path": "/2025-T0012-EC05-G03/sprint-1/entendimento-neg/canva-prop-val",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "sprint-1/entendimento-neg/matriz-risco",
+              "path": "/2025-T0012-EC05-G03/sprint-1/entendimento-neg/matriz-risco",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "sprint-1/proposta-arq",
+              "path": "/2025-T0012-EC05-G03/sprint-1/proposta-arq",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "sprint-1/ux-research/imersao-pre",
+              "path": "/2025-T0012-EC05-G03/sprint-1/ux-research/imersao-pre",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "sprint-1/ux-research/jornada-usu",
+              "path": "/2025-T0012-EC05-G03/sprint-1/ux-research/jornada-usu",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "sprint-1/ux-research/personas",
+              "path": "/2025-T0012-EC05-G03/sprint-1/ux-research/personas",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "sprint-2/Template",
+              "path": "/2025-T0012-EC05-G03/sprint-2/Template",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "sprint-2/template-pasta/template",
+              "path": "/2025-T0012-EC05-G03/sprint-2/template-pasta/template",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "sprint-3/Template",
+              "path": "/2025-T0012-EC05-G03/sprint-3/Template",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "sprint-3/template-pasta/template",
+              "path": "/2025-T0012-EC05-G03/sprint-3/template-pasta/template",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "sprint-4/Template",
+              "path": "/2025-T0012-EC05-G03/sprint-4/Template",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "sprint-4/template-pasta/template",
+              "path": "/2025-T0012-EC05-G03/sprint-4/template-pasta/template",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "sprint-5/Template",
+              "path": "/2025-T0012-EC05-G03/sprint-5/Template",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "sprint-5/template-pasta/template",
+              "path": "/2025-T0012-EC05-G03/sprint-5/template-pasta/template",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "/category/sprint-1",
+              "path": "/2025-T0012-EC05-G03/category/sprint-1",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "/category/entendimento-do-negócio",
+              "path": "/2025-T0012-EC05-G03/category/entendimento-do-negócio",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "/category/ux-research",
+              "path": "/2025-T0012-EC05-G03/category/ux-research",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "/category/sprint-2",
+              "path": "/2025-T0012-EC05-G03/category/sprint-2",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "/category/template-pasta",
+              "path": "/2025-T0012-EC05-G03/category/template-pasta",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "/category/sprint-3",
+              "path": "/2025-T0012-EC05-G03/category/sprint-3",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "/category/template-pasta-1",
+              "path": "/2025-T0012-EC05-G03/category/template-pasta-1",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "/category/sprint-4",
+              "path": "/2025-T0012-EC05-G03/category/sprint-4",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "/category/template-pasta-2",
+              "path": "/2025-T0012-EC05-G03/category/template-pasta-2",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "/category/sprint-5",
+              "path": "/2025-T0012-EC05-G03/category/sprint-5",
+              "sidebar": "docSidebar"
+            },
+            {
+              "id": "/category/template-pasta-3",
+              "path": "/2025-T0012-EC05-G03/category/template-pasta-3",
+              "sidebar": "docSidebar"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "docSidebar": {
+              "link": {
+                "path": "/2025-T0012-EC05-G03/",
+                "label": "intro"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "sprint-1/entendimento-neg/canva-prop-val",
+  "title": "Value Proposition Canva",
+  "description": "",
+  "source": "@site/docs/sprint-1/entendimento-neg/canva-prop-val.md",
+  "sourceDirName": "sprint-1/entendimento-neg",
+  "slug": "/sprint-1/entendimento-neg/canva-prop-val",
+  "permalink": "/2025-T0012-EC05-G03/sprint-1/entendimento-neg/canva-prop-val",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2,
+    "custom_edit_url": null
+  },
+  "sidebar": "docSidebar",
+  "previous": {
+    "title": "Análise Pestel",
+    "permalink": "/2025-T0012-EC05-G03/sprint-1/entendimento-neg/analise-pestel"
+  },
+  "next": {
+    "title": "Matriz de Risco",
+    "permalink": "/2025-T0012-EC05-G03/sprint-1/entendimento-neg/matriz-risco"
+  }
+}

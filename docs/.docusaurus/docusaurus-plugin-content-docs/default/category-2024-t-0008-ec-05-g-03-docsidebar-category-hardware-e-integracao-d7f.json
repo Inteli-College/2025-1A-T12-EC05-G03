@@ -1,0 +1,16 @@
+{
+  "title": "Hardware e integração",
+  "description": "Documentação dos dispostivos de hardware (e relacionados) da solução na 3ª sprint.",
+  "slug": "/category/hardware-e-integração",
+  "permalink": "/2025-T0012-EC05-G03/category/hardware-e-integração",
+  "navigation": {
+    "previous": {
+      "title": "Documentação da API em Flask",
+      "permalink": "/2025-T0012-EC05-G03/sprint-3/Backend/Flask"
+    },
+    "next": {
+      "title": "Periféricos",
+      "permalink": "/2025-T0012-EC05-G03/sprint-3/hardware_integracao/perifericos"
+    }
+  }
+}

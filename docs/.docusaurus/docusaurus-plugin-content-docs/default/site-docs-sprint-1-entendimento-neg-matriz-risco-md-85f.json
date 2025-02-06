@@ -1,0 +1,28 @@
+{
+  "id": "sprint-1/entendimento-neg/matriz-risco",
+  "title": "Matriz de Risco",
+  "description": "",
+  "source": "@site/docs/sprint-1/entendimento-neg/matriz-risco.md",
+  "sourceDirName": "sprint-1/entendimento-neg",
+  "slug": "/sprint-1/entendimento-neg/matriz-risco",
+  "permalink": "/2025-T0012-EC05-G03/sprint-1/entendimento-neg/matriz-risco",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2,
+    "custom_edit_url": null
+  },
+  "sidebar": "docSidebar",
+  "previous": {
+    "title": "Value Proposition Canva",
+    "permalink": "/2025-T0012-EC05-G03/sprint-1/entendimento-neg/canva-prop-val"
+  },
+  "next": {
+    "title": "Análise de stakeholder",
+    "permalink": "/2025-T0012-EC05-G03/sprint-1/entendimento-neg/analise-de-stakeholder"
+  }
+}

@@ -1,0 +1,336 @@
+{
+  "pluginId": "default",
+  "version": "current",
+  "label": "Next",
+  "banner": null,
+  "badge": false,
+  "noIndex": false,
+  "className": "docs-version-current",
+  "isLast": true,
+  "docsSidebars": {
+    "docSidebar": [
+      {
+        "type": "link",
+        "label": "Introdução",
+        "href": "/2025-T0012-EC05-G03/",
+        "docId": "intro",
+        "unlisted": false
+      },
+      {
+        "type": "category",
+        "label": "Sprint 1",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          {
+            "type": "category",
+            "label": "Entendimento do negócio",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              {
+                "type": "link",
+                "label": "Análise Pestel",
+                "href": "/2025-T0012-EC05-G03/sprint-1/entendimento-neg/analise-pestel",
+                "docId": "sprint-1/entendimento-neg/analise-pestel",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Value Proposition Canva",
+                "href": "/2025-T0012-EC05-G03/sprint-1/entendimento-neg/canva-prop-val",
+                "docId": "sprint-1/entendimento-neg/canva-prop-val",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Matriz de Risco",
+                "href": "/2025-T0012-EC05-G03/sprint-1/entendimento-neg/matriz-risco",
+                "docId": "sprint-1/entendimento-neg/matriz-risco",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Análise de stakeholder",
+                "href": "/2025-T0012-EC05-G03/sprint-1/entendimento-neg/analise-de-stakeholder",
+                "docId": "sprint-1/entendimento-neg/analise-de-stakeholder",
+                "unlisted": false
+              }
+            ],
+            "href": "/2025-T0012-EC05-G03/category/entendimento-do-negócio"
+          },
+          {
+            "type": "category",
+            "label": "UX Research",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              {
+                "type": "link",
+                "label": "Imersão preliminar",
+                "href": "/2025-T0012-EC05-G03/sprint-1/ux-research/imersao-pre",
+                "docId": "sprint-1/ux-research/imersao-pre",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Personas",
+                "href": "/2025-T0012-EC05-G03/sprint-1/ux-research/personas",
+                "docId": "sprint-1/ux-research/personas",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Jornada do usuário",
+                "href": "/2025-T0012-EC05-G03/sprint-1/ux-research/jornada-usu",
+                "docId": "sprint-1/ux-research/jornada-usu",
+                "unlisted": false
+              }
+            ],
+            "href": "/2025-T0012-EC05-G03/category/ux-research"
+          },
+          {
+            "type": "link",
+            "label": "Proposta de arquitetura",
+            "href": "/2025-T0012-EC05-G03/sprint-1/proposta-arq",
+            "docId": "sprint-1/proposta-arq",
+            "unlisted": false
+          }
+        ],
+        "href": "/2025-T0012-EC05-G03/category/sprint-1"
+      },
+      {
+        "type": "category",
+        "label": "Sprint 2",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          {
+            "type": "link",
+            "label": "Template",
+            "href": "/2025-T0012-EC05-G03/sprint-2/Template",
+            "docId": "sprint-2/Template",
+            "unlisted": false
+          },
+          {
+            "type": "category",
+            "label": "Template Pasta",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              {
+                "type": "link",
+                "label": "Template",
+                "href": "/2025-T0012-EC05-G03/sprint-2/template-pasta/template",
+                "docId": "sprint-2/template-pasta/template",
+                "unlisted": false
+              }
+            ],
+            "href": "/2025-T0012-EC05-G03/category/template-pasta"
+          }
+        ],
+        "href": "/2025-T0012-EC05-G03/category/sprint-2"
+      },
+      {
+        "type": "category",
+        "label": "Sprint 3",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          {
+            "type": "link",
+            "label": "Template",
+            "href": "/2025-T0012-EC05-G03/sprint-3/Template",
+            "docId": "sprint-3/Template",
+            "unlisted": false
+          },
+          {
+            "type": "category",
+            "label": "Template Pasta",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              {
+                "type": "link",
+                "label": "Template",
+                "href": "/2025-T0012-EC05-G03/sprint-3/template-pasta/template",
+                "docId": "sprint-3/template-pasta/template",
+                "unlisted": false
+              }
+            ],
+            "href": "/2025-T0012-EC05-G03/category/template-pasta-1"
+          }
+        ],
+        "href": "/2025-T0012-EC05-G03/category/sprint-3"
+      },
+      {
+        "type": "category",
+        "label": "Sprint 4",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          {
+            "type": "link",
+            "label": "Template",
+            "href": "/2025-T0012-EC05-G03/sprint-4/Template",
+            "docId": "sprint-4/Template",
+            "unlisted": false
+          },
+          {
+            "type": "category",
+            "label": "Template Pasta",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              {
+                "type": "link",
+                "label": "Template",
+                "href": "/2025-T0012-EC05-G03/sprint-4/template-pasta/template",
+                "docId": "sprint-4/template-pasta/template",
+                "unlisted": false
+              }
+            ],
+            "href": "/2025-T0012-EC05-G03/category/template-pasta-2"
+          }
+        ],
+        "href": "/2025-T0012-EC05-G03/category/sprint-4"
+      },
+      {
+        "type": "category",
+        "label": "Sprint 5",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          {
+            "type": "link",
+            "label": "Template",
+            "href": "/2025-T0012-EC05-G03/sprint-5/Template",
+            "docId": "sprint-5/Template",
+            "unlisted": false
+          },
+          {
+            "type": "category",
+            "label": "Template Pasta",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              {
+                "type": "link",
+                "label": "Template",
+                "href": "/2025-T0012-EC05-G03/sprint-5/template-pasta/template",
+                "docId": "sprint-5/template-pasta/template",
+                "unlisted": false
+              }
+            ],
+            "href": "/2025-T0012-EC05-G03/category/template-pasta-3"
+          }
+        ],
+        "href": "/2025-T0012-EC05-G03/category/sprint-5"
+      }
+    ]
+  },
+  "docs": {
+    "intro": {
+      "id": "intro",
+      "title": "Introdução",
+      "description": "Parceiro de projeto",
+      "sidebar": "docSidebar"
+    },
+    "sprint-1/entendimento-neg/analise-de-stakeholder": {
+      "id": "sprint-1/entendimento-neg/analise-de-stakeholder",
+      "title": "Análise de stakeholder",
+      "description": "",
+      "sidebar": "docSidebar"
+    },
+    "sprint-1/entendimento-neg/analise-pestel": {
+      "id": "sprint-1/entendimento-neg/analise-pestel",
+      "title": "Análise Pestel",
+      "description": "",
+      "sidebar": "docSidebar"
+    },
+    "sprint-1/entendimento-neg/canva-prop-val": {
+      "id": "sprint-1/entendimento-neg/canva-prop-val",
+      "title": "Value Proposition Canva",
+      "description": "",
+      "sidebar": "docSidebar"
+    },
+    "sprint-1/entendimento-neg/matriz-risco": {
+      "id": "sprint-1/entendimento-neg/matriz-risco",
+      "title": "Matriz de Risco",
+      "description": "",
+      "sidebar": "docSidebar"
+    },
+    "sprint-1/proposta-arq": {
+      "id": "sprint-1/proposta-arq",
+      "title": "Proposta de arquitetura",
+      "description": "",
+      "sidebar": "docSidebar"
+    },
+    "sprint-1/ux-research/imersao-pre": {
+      "id": "sprint-1/ux-research/imersao-pre",
+      "title": "Imersão preliminar",
+      "description": "",
+      "sidebar": "docSidebar"
+    },
+    "sprint-1/ux-research/jornada-usu": {
+      "id": "sprint-1/ux-research/jornada-usu",
+      "title": "Jornada do usuário",
+      "description": "",
+      "sidebar": "docSidebar"
+    },
+    "sprint-1/ux-research/personas": {
+      "id": "sprint-1/ux-research/personas",
+      "title": "Personas",
+      "description": "",
+      "sidebar": "docSidebar"
+    },
+    "sprint-2/Template": {
+      "id": "sprint-2/Template",
+      "title": "Template",
+      "description": "",
+      "sidebar": "docSidebar"
+    },
+    "sprint-2/template-pasta/template": {
+      "id": "sprint-2/template-pasta/template",
+      "title": "Template",
+      "description": "",
+      "sidebar": "docSidebar"
+    },
+    "sprint-3/Template": {
+      "id": "sprint-3/Template",
+      "title": "Template",
+      "description": "",
+      "sidebar": "docSidebar"
+    },
+    "sprint-3/template-pasta/template": {
+      "id": "sprint-3/template-pasta/template",
+      "title": "Template",
+      "description": "",
+      "sidebar": "docSidebar"
+    },
+    "sprint-4/Template": {
+      "id": "sprint-4/Template",
+      "title": "Template",
+      "description": "",
+      "sidebar": "docSidebar"
+    },
+    "sprint-4/template-pasta/template": {
+      "id": "sprint-4/template-pasta/template",
+      "title": "Template",
+      "description": "",
+      "sidebar": "docSidebar"
+    },
+    "sprint-5/Template": {
+      "id": "sprint-5/Template",
+      "title": "Template",
+      "description": "",
+      "sidebar": "docSidebar"
+    },
+    "sprint-5/template-pasta/template": {
+      "id": "sprint-5/template-pasta/template",
+      "title": "Template",
+      "description": "",
+      "sidebar": "docSidebar"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "sprint-1/entendimento-neg/matriz-oc-az",
+  "title": "Análise Pestel",
+  "description": "Matriz de oceano azul elaborada no processo de entendimento de negócio do projeto",
+  "source": "@site/docs/sprint-1/entendimento-neg/matriz-oc-az.md",
+  "sourceDirName": "sprint-1/entendimento-neg",
+  "slug": "/sprint-1/entendimento-neg/matriz-oc-az",
+  "permalink": "/2025-T0012-EC05-G03/sprint-1/entendimento-neg/matriz-oc-az",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "custom_edit_url": null
+  },
+  "sidebar": "docSidebar",
+  "previous": {
+    "title": "Entendimento do negócio",
+    "permalink": "/2025-T0012-EC05-G03/category/entendimento-do-negócio"
+  },
+  "next": {
+    "title": "Matriz de Risco",
+    "permalink": "/2025-T0012-EC05-G03/sprint-1/entendimento-neg/matriz-risco"
+  }
+}

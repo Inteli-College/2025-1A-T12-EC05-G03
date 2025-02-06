@@ -1,0 +1,28 @@
+{
+  "id": "sprint-1/entendimento-neg/analise-pestel",
+  "title": "Análise Pestel",
+  "description": "",
+  "source": "@site/docs/sprint-1/entendimento-neg/analise-pestel.md",
+  "sourceDirName": "sprint-1/entendimento-neg",
+  "slug": "/sprint-1/entendimento-neg/analise-pestel",
+  "permalink": "/2025-T0012-EC05-G03/sprint-1/entendimento-neg/analise-pestel",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "custom_edit_url": null
+  },
+  "sidebar": "docSidebar",
+  "previous": {
+    "title": "Entendimento do negócio",
+    "permalink": "/2025-T0012-EC05-G03/category/entendimento-do-negócio"
+  },
+  "next": {
+    "title": "Value Proposition Canva",
+    "permalink": "/2025-T0012-EC05-G03/sprint-1/entendimento-neg/canva-prop-val"
+  }
+}

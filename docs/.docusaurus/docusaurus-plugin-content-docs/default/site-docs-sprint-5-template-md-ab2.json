@@ -1,0 +1,28 @@
+{
+  "id": "sprint-5/Template",
+  "title": "Template",
+  "description": "",
+  "source": "@site/docs/sprint-5/Template.md",
+  "sourceDirName": "sprint-5",
+  "slug": "/sprint-5/Template",
+  "permalink": "/2025-T0012-EC05-G03/sprint-5/Template",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "custom_edit_url": null
+  },
+  "sidebar": "docSidebar",
+  "previous": {
+    "title": "Sprint 5",
+    "permalink": "/2025-T0012-EC05-G03/category/sprint-5"
+  },
+  "next": {
+    "title": "Template Pasta",
+    "permalink": "/2025-T0012-EC05-G03/category/template-pasta-3"
+  }
+}

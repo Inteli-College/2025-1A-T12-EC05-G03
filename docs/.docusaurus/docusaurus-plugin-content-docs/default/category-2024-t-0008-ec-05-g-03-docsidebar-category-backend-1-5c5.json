@@ -1,0 +1,16 @@
+{
+  "title": "Backend",
+  "description": "Documentação do backend da aplicação web envolvida na solução.",
+  "slug": "/category/backend-1",
+  "permalink": "/2025-T0012-EC05-G03/category/backend-1",
+  "navigation": {
+    "previous": {
+      "title": "Tecnologias utilizadas",
+      "permalink": "/2025-T0012-EC05-G03/sprint-4/tecnologias"
+    },
+    "next": {
+      "title": "Integração com o robô",
+      "permalink": "/2025-T0012-EC05-G03/sprint-4/backend/integracao"
+    }
+  }
+}

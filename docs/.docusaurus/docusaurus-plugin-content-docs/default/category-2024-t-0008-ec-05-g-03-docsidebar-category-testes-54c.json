@@ -1,0 +1,16 @@
+{
+  "title": "Testes",
+  "description": "Testes realizados com a solução e ajustes feitos de acordo com os testes",
+  "slug": "/category/testes",
+  "permalink": "/2025-T0012-EC05-G03/category/testes",
+  "navigation": {
+    "previous": {
+      "title": "Sistema completo",
+      "permalink": "/2025-T0012-EC05-G03/sprint-5/sistema/"
+    },
+    "next": {
+      "title": "Testes de usabilidade",
+      "permalink": "/2025-T0012-EC05-G03/sprint-5/testes/"
+    }
+  }
+}

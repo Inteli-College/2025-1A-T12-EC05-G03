@@ -1,0 +1,16 @@
+{
+  "title": "Entendimento do negócio",
+  "description": "Descrição sobre negócios",
+  "slug": "/category/entendimento-do-negócio",
+  "permalink": "/2025-T0012-EC05-G03/category/entendimento-do-negócio",
+  "navigation": {
+    "previous": {
+      "title": "Sprint 1",
+      "permalink": "/2025-T0012-EC05-G03/category/sprint-1"
+    },
+    "next": {
+      "title": "Análise Pestel",
+      "permalink": "/2025-T0012-EC05-G03/sprint-1/entendimento-neg/analise-pestel"
+    }
+  }
+}

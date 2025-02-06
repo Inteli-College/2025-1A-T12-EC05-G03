@@ -1,0 +1,16 @@
+{
+  "title": "Sprint 1",
+  "description": "Descrição Sprint 1",
+  "slug": "/category/sprint-1",
+  "permalink": "/2025-T0012-EC05-G03/category/sprint-1",
+  "navigation": {
+    "previous": {
+      "title": "Introdução",
+      "permalink": "/2025-T0012-EC05-G03/"
+    },
+    "next": {
+      "title": "Entendimento do negócio",
+      "permalink": "/2025-T0012-EC05-G03/category/entendimento-do-negócio"
+    }
+  }
+}

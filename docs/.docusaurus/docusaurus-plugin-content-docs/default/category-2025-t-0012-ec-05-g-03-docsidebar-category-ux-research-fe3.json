@@ -1,0 +1,16 @@
+{
+  "title": "UX Research",
+  "description": "Descrição sobre Ux",
+  "slug": "/category/ux-research",
+  "permalink": "/2025-T0012-EC05-G03/category/ux-research",
+  "navigation": {
+    "previous": {
+      "title": "Análise de stakeholder",
+      "permalink": "/2025-T0012-EC05-G03/sprint-1/entendimento-neg/analise-de-stakeholder"
+    },
+    "next": {
+      "title": "Imersão preliminar",
+      "permalink": "/2025-T0012-EC05-G03/sprint-1/ux-research/imersao-pre"
+    }
+  }
+}

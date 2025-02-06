@@ -1,0 +1,28 @@
+{
+  "id": "sprint-1/ux-research/personas",
+  "title": "Personas",
+  "description": "",
+  "source": "@site/docs/sprint-1/ux-research/personas.md",
+  "sourceDirName": "sprint-1/ux-research",
+  "slug": "/sprint-1/ux-research/personas",
+  "permalink": "/2025-T0012-EC05-G03/sprint-1/ux-research/personas",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": null,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2,
+    "custom_edit_url": null
+  },
+  "sidebar": "docSidebar",
+  "previous": {
+    "title": "Imersão preliminar",
+    "permalink": "/2025-T0012-EC05-G03/sprint-1/ux-research/imersao-pre"
+  },
+  "next": {
+    "title": "Jornada do usuário",
+    "permalink": "/2025-T0012-EC05-G03/sprint-1/ux-research/jornada-usu"
+  }
+}
