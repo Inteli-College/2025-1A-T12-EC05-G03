@@ -39,4 +39,4 @@ custom_edit_url: null
 | RNF08 | Implantar o sistema em um ambiente de teste hospitalar e medir sua capacidade de funcionamento sob diferentes condições físicas e elétricas. |
 | RNF09 | Executar testes de tempo de resposta medindo o intervalo entre a entrada de um comando do usuário e a resposta do sistema, garantindo que esteja abaixo do limite de 2 segundos. |
 
-
+&emsp;Portanto, os requisitos não funcionais são fundamentais para garantir que o sistema de automação da montagem da "Fita de Medicamentos" opere de maneira confiável, segura e eficiente no ambiente hospitalar. Através da definição de critérios como disponibilidade, desempenho, usabilidade, compatibilidade e segurança, assegura-se que o sistema não apenas cumpra suas funções, mas também ofereça uma experiência robusta e estável para os usuários. A validação desses requisitos por meio de testes rigorosos permitirá a identificação e mitigação de possíveis falhas, garantindo que a solução atenda aos padrões de qualidade exigidos no setor de saúde e contribua para a otimização dos processos farmacêuticos hospitalares.
