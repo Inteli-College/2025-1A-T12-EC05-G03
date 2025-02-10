@@ -23,4 +23,20 @@ custom_edit_url: null
 | RNF08 | O sistema deve operar corretamente em ambientes hospitalares, considerando restrições de espaço, temperatura e possíveis interferências eletrônicas. | Robustez |
 | RNF09 | O tempo de resposta do sistema ao usuário deve ser inferior a 2 segundos para operações críticas, como validação de medicamentos e exibição de status em tempo real. | Tempo de Resposta |
 
+&emsp;Além disso, para assegurar o cumprimento dos requisitos não funcionais, é fundamental conduzir testes específicos que analisem a qualidade e o desempenho do sistema em termos de eficiência, disponibilidade, usabilidade, segurança, compatibilidade e manutenibilidade. Esses testes reproduzem cenários reais e diferentes condições de uso, possibilitando a validação de cada critério por meio de métricas detalhadas, garantindo que o sistema funcione de forma confiável, intuitiva e com suporte adequado para manutenção contínua.
+
+### Tabela de Como Testar os Requisitos Não Funcionais 
+
+| RNF#  | Como Testar |
+|------|------------|
+| RNF01 | Realizar testes de estresse e carga para verificar a disponibilidade, simulando um grande volume de prescrições sendo processadas ao mesmo tempo e medindo possíveis tempos de inatividade. |
+| RNF02 | Medir o tempo médio de processamento de uma prescrição desde a sua entrada no sistema até a montagem completa do kit, garantindo que esteja dentro dos padrões estabelecidos. |
+| RNF03 | Conduzir testes de usabilidade com farmacêuticos e operadores, analisando a facilidade de navegação na interface, o tempo para realizar tarefas e coletando feedbacks qualitativos. |
+| RNF04 | Aplicar testes de penetração para verificar vulnerabilidades no sistema, além de validar criptografia de dados e autenticação de múltiplos fatores. |
+| RNF05 | Testar a interface do sistema em diferentes sistemas operacionais (Windows, MacOS, Linux) e navegadores (Chrome, Firefox, Safari, Edge) para identificar e corrigir possíveis incompatibilidades. |
+| RNF06 | Simular atualizações do software enquanto o sistema está em operação, garantindo que os processos não sejam interrompidos e que as atualizações sejam aplicadas corretamente. |
+| RNF07 | Realizar testes de integridade de dados ao longo do tempo, verificando se o armazenamento mantém a consistência dos registros sem perda ou corrupção de informações. |
+| RNF08 | Implantar o sistema em um ambiente de teste hospitalar e medir sua capacidade de funcionamento sob diferentes condições físicas e elétricas. |
+| RNF09 | Executar testes de tempo de resposta medindo o intervalo entre a entrada de um comando do usuário e a resposta do sistema, garantindo que esteja abaixo do limite de 2 segundos. |
+
 
