@@ -29,3 +29,11 @@ custom_edit_url: null
 | RF14 | O sistema deve gerar relatórios detalhados sobre eficiência e precisão do processo. | Os relatórios devem estar disponíveis para análise dos gestores e auxiliar na tomada de decisões. |
 
 &emsp;Os requisitos funcionais definidos para o sistema de automação da montagem da "Fita de Medicamentos" garantem que a solução atenda às necessidades operacionais e de segurança do ambiente hospitalar. A implementação dessas funcionalidades permitirá a otimização do tempo de separação dos medicamentos, a redução de erros humanos, o rastreamento eficiente do estoque e a integração com o sistema hospitalar, resultando em maior precisão e confiabilidade no processo. Além disso, a geração de relatórios e a interface interativa proporcionarão maior controle e transparência para os profissionais da área. Com isso, o sistema contribuirá significativamente para a melhoria da eficiência operacional, a segurança dos pacientes e a gestão hospitalar, tornando-se um avanço essencial na automação de processos farmacêuticos.
+
+---
+
+## Bibliografia
+
+FIGUEIREDO, Eduardo. Requisitos funcionais e requisitos não funcionais. Icex, Dcc/Ufmg, 2011. Acesso em: 10 de fevereiro de 2025
+
+GASTALDO, Denise Lazzeri; MIDORIKAWA, Edson Toshimi. Processo de Engenharia de Requisitos Aplicado a Requisitos Não-Funcionais de Desempenho–Um Estudo de Caso. In: Workshop em Engenharia de Requisitos. Piracicaba. 2003. p. 302-316.
