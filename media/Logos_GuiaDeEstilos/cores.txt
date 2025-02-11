@@ -1,0 +1,9 @@
+cor clara/neutra -> #F0F7F9
+
+cor base2 -> #79D7E2
+
+cor base1 -> #53B3BE
+
+cor escura/neutra -> #1F2832
+
+cor detalhes/destaques -> #3BF7CB
