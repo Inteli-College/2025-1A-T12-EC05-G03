@@ -1,36 +1,105 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
-
-/* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  /* Paleta de cores */
+  --color-clara:     #F0F7F9;   /* cor clara/neutra */
+  --color-base2:     #79D7E2;   /* cor base2 */
+  --color-base1:     #53B3BE;   /* cor base1 */
+  --color-escura:    #1F2832;   /* cor escura/neutra */
+  --color-destaque:  #3BF7CB;   /* cor detalhes/destaques */
+
+  /* Mapeamento para as variáveis existentes */
+  --ifm-color-primary:         var(--color-base1);    /* base1 */
+  --ifm-color-primary-dark:    var(--color-escura);     /* escura */
+  --ifm-color-primary-darker:  var(--color-escura);
+  --ifm-color-primary-darkest: var(--color-escura);
+  --ifm-color-primary-light:   var(--color-base2);    /* base2 */
+  --ifm-color-primary-lighter: var(--color-clara);    /* clara/neutra */
+  --ifm-color-primary-lightest:var(--color-clara);    /* clara/neutra */
+  --ifm-color-highlight:       var(--color-destaque); /* destaque */
+  
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.05);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  /* Inverte fundo e texto para o modo escuro */
+  --ifm-color-primary:         var(--color-base1);
+  --ifm-color-primary-dark:    var(--color-base2);
+  --ifm-color-primary-darker:  var(--color-base2);
+  --ifm-color-primary-darkest: var(--color-clara);    /* texto claro */
+  --ifm-color-primary-light:   var(--color-base1);
+  --ifm-color-primary-lighter: var(--color-destaque);
+  --ifm-color-primary-lightest:var(--color-escura);   /* fundo escuro */
+  --ifm-color-highlight:       var(--color-destaque);
+  
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.1);
 }
 
-table {
-  display: table;
-  width: initial;
-  margin: 0 auto;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body {
+  animation: fadeIn 1s ease-out;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: var(--ifm-color-primary-lightest);
+  color: var(--ifm-color-primary-darkest);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--ifm-color-highlight);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+a:hover {
+  color: var(--ifm-color-highlight);
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.img-animate {
+  transition: transform 0.5s ease;
+}
+
+.img-animate:hover {
+  transform: scale(1.05);
 }
