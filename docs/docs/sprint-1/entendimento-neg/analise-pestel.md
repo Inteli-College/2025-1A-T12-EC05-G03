@@ -5,11 +5,13 @@ custom_edit_url: null
 
 # Análise Pestel
 
+## Conceito
+
 &nbsp;&nbsp;&nbsp;&nbsp;A análise PESTEL é uma ferramenta de planejamento estratégico utilizada para avaliar os fatores externos que podem impactar um projeto ou organização. Ela considera seis dimensões fundamentais do ambiente externo: Político, Econômico, Sociocultural, Tecnológico, Ecológico e Legal, permitindo uma visão abrangente dos desafios e oportunidades envolvidos. **No contexto do projeto de automação da separação de medicamentos no Hospital de Clínicas da Unicamp, a aplicação dessa análise é essencial para compreender como políticas públicas, regulamentações sanitárias, avanços tecnológicos e tendências econômicas podem influenciar a viabilidade e o sucesso da iniciativa no Hospital das Clínicas.** Além disso, essa abordagem auxilia na mitigação de riscos, garantindo conformidade com normas de segurança hospitalar e otimizando a eficiência operacional. Assim, a análise PESTEL contribui para o alinhamento estratégico do projeto com o cenário externo, promovendo uma implementação mais assertiva e sustentável da automação no serviço de farmácia hospitalar.
 
 ## :necktie: Fatores Políticos
 
-&nbsp;&nbsp;&nbsp;&nbsp;Os fatores políticos analisam a influência de políticas públicas, investimentos governamentais e regulamentações sobre o HC da Unicamp. Como hospital público vinculado a uma universidade estadual, seu financiamento e estrutura dependem amplamente de decisões governamentais, impactando desde a disponibilidade de recursos até a implementação de novos programas de saúde. Abaixo, listamos alguns fatores e fatos recentemente encontrados.
+&nbsp;&nbsp;&nbsp;&nbsp;Os fatores políticos analisam a influência de políticas públicas, investimentos governamentais e regulamentações sobre o HC da Unicamp. Como hospital público vinculado a uma universidade estadual, seu financiamento e estrutura dependem amplamente de decisões governamentais, impactando desde a disponibilidade de recursos até a implementação de novos programas de saúde.
 
 &nbsp;&nbsp;&nbsp;&nbsp;O Hospital de Clínicas (HC) da Unicamp **está enfrentando uma redução nos repasses do Sistema Único de Saúde (SUS) devido a mudanças na política de financiamento implementadas pelo governo estadual.** Em janeiro de 2024, foi introduzida a Tabela SUS Paulista, que alterou a forma de remuneração dos serviços prestados. Anteriormente, o HC recebia um valor fixo, independentemente do número de procedimentos realizados. Com a nova tabela, os repasses passaram a ser baseados no volume efetivo de atendimentos, o que resultou em uma previsão de déficit de aproximadamente R$ 55 milhões para o HC em 2024 (Unicamp, 2024).
 
@@ -21,7 +23,7 @@ custom_edit_url: null
 
 ## :moneybag: Fatores Econômicos
 
-&nbsp;&nbsp;&nbsp;&nbsp;Os fatores econômicos consideram como aspectos financeiros impactam o HC, incluindo orçamento, fontes de financiamento e sustentabilidade econômica. Com os cortes de repasses e crises financeiras, é crucial entender como o hospital pode garantir seu funcionamento e continuar oferecendo atendimento de qualidade à população. Abaixo, listamos alguns fatores e fatos recentemente encontrados.
+&nbsp;&nbsp;&nbsp;&nbsp;Os fatores econômicos consideram como aspectos financeiros impactam o HC, incluindo orçamento, fontes de financiamento e sustentabilidade econômica. Com os cortes de repasses e crises financeiras, é importante entender como o hospital pode garantir seu funcionamento e continuar oferecendo atendimento de qualidade à população. 
 
 &nbsp;&nbsp;&nbsp;&nbsp;A crise enfrentada pelo Hospital de Clínicas (HC) da Unicamp pode ser analisada sob dois aspectos principais: **fatores externos e fatores internos.**
 
@@ -39,11 +41,11 @@ custom_edit_url: null
 
 2. Eficiência na gestão de recursos: Com a redução de financiamento, o hospital enfrenta o desafio de otimizar gastos sem comprometer a qualidade do atendimento.
 
-3. Capacidade de inovação: A modernização de processos administrativos e operacionais pode ajudar na sustentabilidade econômica, reduzindo desperdícios e melhorando a eficiência no atendimento.
+3. Capacidade de inovação: Como um indicativo de reinvenção de serviços, a modernização de processos administrativos e operacionais pode ajudar na sustentabilidade econômica, reduzindo desperdícios e melhorando a eficiência no atendimento.
 
 ### Conclusão do cenário econômico que tange o HC
 
-&nbsp;&nbsp;&nbsp;&nbsp;A crise do HC da Unicamp é, predominantemente, resultado da falta de incentivo e cortes nos repasses públicos, o que caracteriza um fator externo. O hospital é um centro de referência e já opera com alta demanda, mas sem o devido financiamento, enfrenta dificuldades para manter sua estrutura e qualidade no atendimento. Embora existam desafios internos na gestão e captação de recursos, a principal razão para o déficit atual está na mudança do modelo de financiamento do SUS paulista e no aumento da demanda causado pela crise econômica.
+&nbsp;&nbsp;&nbsp;&nbsp;A crise do HC da Unicamp é, predominantemente, resultado da falta de incentivo e cortes nos repasses públicos, o que caracteriza um fator externo. O hospital é um centro de referência e já opera com alta demanda, mas sem o devido financiamento, poder enfrentar dificuldades para manter sua estrutura e qualidade no atendimento. Embora existam desafios internos na gestão e captação de recursos, a principal razão para o déficit atual está na mudança do modelo de financiamento do SUS paulista e no aumento da demanda causado pela crise econômica.
 
 ## :raised_hands: Fatores Sociais
 
@@ -63,37 +65,35 @@ custom_edit_url: null
 
 2. Acolhimento e suporte social: A preocupação com o bem-estar dos pacientes vai além do tratamento médico, incluindo iniciativas como a oferta de refeições para pacientes em quimioterapia, reconhecendo que muitos podem estar em situação de insegurança alimentar (HC Unicamp, 2023).
 
-3. Voluntariado e suporte comunitário: O hospital conta com iniciativas de voluntariado que arrecadam recursos e insumos para pacientes em vulnerabilidade social, contribuindo para minimizar impactos da crise econômica no acesso à saúde (HC Unicamp, 2023).
+3. Voluntariado e suporte comunitário: O hospital conta com iniciativas de voluntariado que prestam assistência para pacientes, contribuindo para minimizar impactos negativos no acesso à saúde (HC Unicamp, 2023).
 
 ### Desafios e Necessidade de Desdobramentos Além do SUS no HC da Unicamp
 
-&nbsp;&nbsp;&nbsp;&nbsp;Apesar de ser um hospital público vinculado ao Sistema Único de Saúde (SUS), o Hospital de Câncer (HC) da Unicamp enfrenta uma série de desafios que exigem iniciativas próprias e externas para garantir o bem-estar social dos pacientes. Isso ocorre devido a diversas razões, que explicam por que o hospital precisa realizar desdobramentos além do que é coberto pelo SUS:
+&nbsp;&nbsp;&nbsp;&nbsp;Apesar de ser um hospital público vinculado ao Sistema Único de Saúde (SUS), o Hospital das Clínicas (HC) da Unicamp enfrenta uma série de desafios que exigem iniciativas próprias e externas para garantir o bem-estar social dos pacientes. Isso ocorre devido a diversas razões, que explicam por que o hospital precisa realizar desdobramentos além do que é coberto pelo SUS:
 
 1. Subfinanciamento do SUS: Embora o SUS seja a principal fonte de financiamento para hospitais públicos, a alocação de recursos nem sempre é suficiente para cobrir a totalidade das necessidades, especialmente em tempos de crise econômica. O corte de repasses e a falta de reajustes adequados no orçamento exigem que o HC busque fontes alternativas, como parcerias com o setor privado, doações e iniciativas de voluntariado, para garantir o funcionamento pleno de seus serviços.
 
-2. Atenção Integral ao Paciente: O SUS oferece uma cobertura essencial para o atendimento médico, mas a saúde de um paciente vai além do tratamento clínico. A necessidade de suporte social – incluindo alimentação, transporte e apoio psicológico – nem sempre está totalmente garantida no sistema público de saúde. O HC, ciente dessa realidade, investe em programas que visam promover uma atenção integral ao paciente, garantindo que aspectos como o acolhimento e o conforto também sejam atendidos.
+2. Atenção Integral ao Paciente: O SUS oferece uma cobertura essencial para o atendimento médico, mas a saúde de um paciente vai além do tratamento clínico. A necessidade de suporte social – incluindo alimentação, transporte e apoio psicológico – nem sempre está totalmente garantida no sistema público de saúde. 
 
-3. Aumento da Demanda: O HC da Unicamp atende pacientes de diversas regiões e, com o aumento da vulnerabilidade social, a demanda por seus serviços tem crescido substancialmente. O aumento da procura por atendimento especializado, como no caso do tratamento de câncer, ultrapassa a capacidade originalmente planejada para o hospital. Isso exige que o HC busque alternativas para atender a todos com a qualidade necessária.
-
-4. Projetos de Humanização: Para garantir um atendimento de qualidade, que vá além da simples prestação de serviços médicos, o HC tem implementado programas de humanização. Estes programas, voltados para o acolhimento e qualidade de vida dos pacientes, demandam recursos adicionais que não estão completamente cobertos pelo orçamento do SUS. Por exemplo, iniciativas de alimentação para pacientes em tratamento, suporte emocional e psicológico, e melhoria no ambiente hospitalar são fundamentais para promover a dignidade no atendimento e são mantidas por meio de parcerias e doações.
+3. Aumento da Demanda: O HC da Unicamp atende pacientes de diversas regiões e, com o aumento da vulnerabilidade social, a demanda por seus serviços tem crescido substancialmente, conforme já supramencionado ao longo desta análise. Isso exige que o HC busque alternativas para atender a todos com a qualidade necessária.
 
 &nbsp;&nbsp;&nbsp;&nbsp;Portanto, mesmo sendo parte do SUS, o HC da Unicamp precisa realizar esforços complementares para oferecer um atendimento atenda às necessidades médicas dos pacientes e promova dignidade, bem-estar social e conforto durante o tratamento. Esses desdobramentos são essenciais para garantir que todos os pacientes recebam cuidados de qualidade, independentemente das limitações orçamentárias e estruturais do sistema público de saúde.
 
 ## :computer: Fatores Tecnológicos
 
-&nbsp;&nbsp;&nbsp;&nbsp;A inovação tecnológica é um pilar fundamental para a evolução dos serviços hospitalares, promovendo eficiência no atendimento e aprimoramento contínuo dos processos de cuidado. O Hospital de Câncer (HC) da Unicamp tem se empenhado em integrar tecnologias avançadas para oferecer um atendimento de excelência aos pacientes.
+&nbsp;&nbsp;&nbsp;&nbsp;A inovação tecnológica é um pilar fundamental para a evolução dos serviços hospitalares, promovendo eficiência no atendimento e aprimoramento contínuo dos processos de cuidado. O Hospital das Clínicas da Unicamp tem se empenhado em integrar tecnologias digitais para oferecer um atendimento de excelência aos pacientes.
 
 ### Iniciativas Recentes
 
-1. Inteligência Artificial (IA): Em dezembro de 2024, o HC, em colaboração com a área da saúde da Unicamp, lançou projetos que utilizam IA generativa para aprimorar processos hospitalares. Os projetos "ConsoLida" e "GedAi" visam otimizar a gestão de dados e a comunicação entre equipes médicas, contribuindo para decisões clínicas mais precisas e eficientes (HC Unicamp, 2024).
+1. Inteligência Artificial (IA): Em dezembro de 2024, o HC, em colaboração com a área da saúde da Unicamp, lançou os projetos "ConsoLida" e "GedAi", que utilizam IA para aprimorar processos hospitalares. O "ConsoLida" reúne informações clínicas de pacientes atendidos no complexo Unicamp, integrando diversos sistemas de informação, como AGHUse, Intranet Caism e Hemocentro, disponibilizando-as em tempo real para os profissionais de saúde durante o atendimento. Já o "GedAi" usa IA para facilitar o acesso a informações processadas de arquivos e documentos, inicialmente aplicando-se aos tutoriais do sistema AGHUse, com planos de expandir para documentos oficiais do hospital, como Procedimentos Operacionais Padrão (POPs) (Unicamp, 2024). 
 
-2. Cirurgia Robótica: Em agosto de 2024, o HC e a Faculdade de Ciências Médicas (FCM) promoveram um evento sobre cirurgia robótica, destacando a importância dessa tecnologia para o treinamento de cirurgiões e a melhoria do atendimento aos pacientes. A superintendente do HC, Elaine Ataíde, enfatizou que a cirurgia robótica é um investimento em inovação para aprimorar o treinamento dos profissionais e oferecer atendimento de ponta aos pacientes (HC Unicamp, 2024).
+2. Cirurgia Robótica: Em agosto de 2024, o HC e a Faculdade de Ciências Médicas (FCM) promoveram um evento sobre cirurgia robótica, destacando a importância dessa tecnologia para o treinamento de cirurgiões e a melhoria do atendimento aos pacientes. Durante o evento, especialistas discutiram a aplicação da robótica em diversas áreas cirúrgicas, enfatizando os benefícios de procedimentos menos invasivos e com recuperação mais rápida para os pacientes (Unicamp, 2024). 
 
-3. Hub de Inovação: O HC tem se integrado ao ecossistema de inovação da Unicamp, participando de eventos e workshops promovidos pela Agência de Inovação da Unicamp (Inova Unicamp). Essas iniciativas visam fomentar a colaboração entre startups, pesquisadores e profissionais de saúde, promovendo o desenvolvimento de soluções inovadoras para o setor hospitalar (Inova Unicamp, 2024).
+3. Parcerias para Cirurgia Robótica: Em julho de 2024, a superintendência do HC da Unicamp recebeu representantes da empresa Strattner, que representa no Brasil os sistemas de cirurgia robótica da Vinci. A visita teve como objetivo discutir futuras parcerias para a incorporação da quarta geração do sistema de cirurgia robótica da Vinci no HC, visando o aprimoramento científico e tecnológico, além do treinamento de ponta para médicos, residentes e alunos, com o intuito de oferecer aos pacientes do Sistema Único de Saúde a melhor tecnologia cirúrgica disponível (Unicamp, 2024). 
 
-### Desafios Financeiros
+4. Automação na Farmácia Hospitalar: O HC da Unicamp, em parceria com o Inteli e alunos de Engenharia da Computação, está desenvolvendo uma solução de automação de código aberto para agilizar os processos da farmácia hospitalar.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Apesar dessas iniciativas, o HC enfrenta desafios financeiros que limitam a expansão de inovações tecnológicas. A escassez de recursos impede a adoção de tecnologias mais avançadas que poderiam otimizar ainda mais os serviços prestados e aprimorar a experiência do paciente. Assim, embora a digitalização seja uma prioridade, ela ocorre de maneira gradual, com foco em iniciativas que podem ser sustentadas dentro das limitações financeiras existentes.
+&nbsp;&nbsp;&nbsp;&nbsp;Essas iniciativas demonstram o compromisso do HC da Unicamp em integrar tecnologias avançadas para aprimorar o atendimento e os processos hospitalares, beneficiando tanto os profissionais de saúde quanto os pacientes.
 
 ## :seedling: Fatores Ambientais
 
@@ -141,3 +141,29 @@ Hospitais de grande porte no Brasil já adotam práticas inovadoras nesse campo.
 &nbsp;&nbsp;&nbsp;&nbsp;Embora o financiamento público seja desafiador e as possibilidades de novas fontes de recurso sejam limitadas, o HC continua a se dedicar a uma gestão cuidadosa, utilizando seus recursos da maneira mais eficiente possível. A regulação rigorosa e as aprovações éticas, embora mais lentas, garantem que todas as mudanças sejam feitas com base em evidências, assegurando a qualidade e a segurança do atendimento.
 
 &nbsp;&nbsp;&nbsp;&nbsp;Com a continuidade do esforço coletivo para enfrentar os desafios financeiros e uma gestão cada vez mais inovadora dentro das limitações existentes, o HC da Unicamp tem grandes chances de continuar sendo um pilar essencial no atendimento à saúde pública da região. O futuro, embora desafiador, revela um grande potencial de superação, trazendo esperança para o bem-estar da sociedade.
+
+## Bibliografia
+
+HOSPITAL DE CLÍNICAS DA UNICAMP. HC terá sistema para realização de cirurgia robótica. 12 jul. 2024. Disponível em: https://hc.unicamp.br/noticia/2024/07/12/newsite_noticia_646_hc-tera-sistema-para-realizacao-de-cirurgia-robotica/. Acesso em: 06 fev. 2025.
+
+HOSPITAL DE CLÍNICAS DA UNICAMP. HC e FCM promovem evento sobre cirurgia robótica. 29 ago. 2024. Disponível em: https://hc.unicamp.br/noticia/2024/08/29/newsite_noticia_671_hc-e-fcm-promovem-evento-sobre-cirurgia-robotica/. Acesso em: 06 fev. 2025.
+
+HOSPITAL DE CLÍNICAS DA UNICAMP. HC e área da saúde criam projetos que utilizam inteligência artificial. 4 dez. 2024. Disponível em: https://hc.unicamp.br/noticia/2024/12/04/newsite_noticia_719_hc-e-area-da-saude-criam-projetos-que-utilizam-inteligencia-artificial/. Acesso em: 07 fev. 2025.
+
+FACULDADE DE MEDICINA DA USP. Plano de gerenciamento de resíduos de serviços de saúde – PGRSS FMUSP. Disponível em: https://www.fm.usp.br/pgrss/conteudo/pgrss_27_plano_de_gerenciamento_-_pgrss_fmusp.pdf. Acesso em: 08 fev. 2025.
+
+HOSPITAL ISRAELITA ALBERT EINSTEIN. ESG no Einstein. Disponível em: https://www.einstein.br/n/o-einstein/esg. Acesso em: 07 fev. 2025.
+
+HOSPITAL SÍRIO-LIBANÊS. Sustentabilidade ambiental. Disponível em: https://hospitalsiriolibanes.org.br/quem-somos/sustentabilidade-ambiental/. Acesso em: 08 fev. 2025.
+
+INOVA UNICAMP. Perfil oficial no Instagram. Disponível em: https://www.instagram.com/inovaunicamp/?hl=en. Acesso em: 11 fev. 2025.
+
+A CIDADE ON. HC da Unicamp apresenta projeto de instituto de oncologia à ministra da Saúde. Disponível em: https://www.acidadeon.com/campinas/cotidiano/hc-da-unicamp-apresenta-projeto-de-instituto-de-oncologia-a-ministra-da-saude/. Acesso em: 11 fev. 2025.
+
+HOSPITAL DE CLÍNICAS DA UNICAMP. Pandemia de Covid-19 fez aumentar os atendimentos da ouvidoria do HC. 20 dez. 2021. Disponível em: https://hc.unicamp.br/noticia/2021/12/20/newsite_noticia_278_pandemia-de-covid-19-fez-aumentar-os-atendimentos-da-ouvidoria-do-hc/. Acesso em: 10 fev. 2025.
+
+UNICAMP. Mudança na forma de remuneração do SUS pode causar déficit de R$ 55 milhões para HC. 10 abr. 2024. Disponível em: https://unicamp.br/noticias/2024/04/10/mudanca-na-forma-de-remuneracao-do-sus-pode-causar-deficit-de-r-55-milhoes-para-hc/. Acesso em: 11 fev. 2025.
+
+G1 CAMPINAS. Entenda o porquê o SUS Paulista pode causar déficit de R$ 55 milhões para o HC da Unicamp. 17 abr. 2024. Disponível em: https://g1.globo.com/sp/campinas-regiao/noticia/2024/04/17/entenda-o-porque-o-sus-paulista-pode-causar-deficit-de-r-55-milhoes-para-o-hc-da-unicamp.ghtml. Acesso em: 11 fev. 2025.
+
+GOVERNO DO ESTADO DE SÃO PAULO. Após um ano de vigência, Tabela SUS Paulista é reajustada com acréscimo de R$ 134 milhões para 158 procedimentos. 31 jan. 2025. Disponível em: https://www.saude.sp.gov.br/coordenadoria-de-controle-de-doencas/noticias/31012025-apos-um-ano-de-vigencia-tabela-sus-paulista-e-reajustada-com-acrescimo-de-r-134-milhoes-para-158-procedimentos. Acesso em: 11 fev. 2025.
