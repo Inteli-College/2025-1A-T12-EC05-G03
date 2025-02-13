@@ -9,12 +9,11 @@ class Remedio(db.Model):
     id = db.Column(db.Integer, nullable = False, primary_key=True)
     nome = db.Column(db.String(255), nullable=False)
     principio = db.Column(db.String(255), nullable=False)
-    lote = db.Column(db.String(255), nullable=False)
-    bin = db.Column(db.Int, nullable=False)
+    lote = db.Column(db.String(255), db.ForeignKey('lote.lote'), nullable=False)
+    bin = db.Column(db.Integer, nullable=False)
     fabricante = db.Column(db.String(255), nullable=False)
 
-    lote = db.relationship('Lote', backref=db.backref('remedios', lazy=True))
-
+    lote_obj = db.relationship('Lote', backref=db.backref('remedios', lazy=True))
 
     def as_dict(self):
         return{

@@ -3,11 +3,11 @@ from flask_sqlalchemy import SQLAlchemy
 from backend.models.paciente import Paciente
 from backend.models.farmaceutico import Farmaceutico
 from backend.models.prescricao import Prescricao
+from backend.models.lote import Lote
+from backend.models.remedio import Remedio
 from backend.routes.prescricoes import prescricoes_bp  
 import os
 from backend.models.database import db  # Importa o SQLAlchemy
-
-
 
 app = Flask(__name__)
 

@@ -12,7 +12,6 @@ class Lote(db.Model):
 
     def as_dict(self):
         return{
-            'id': self.id,
             'lote': self.lote,
             'data_validade': self.data_validade,
             'fabricante': self.fabricante
