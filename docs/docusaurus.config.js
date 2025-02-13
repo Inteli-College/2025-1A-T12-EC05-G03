@@ -13,10 +13,10 @@ const config = {
   favicon: 'img/logo_simplificada.png',
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://inteli-college.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/2025-T0012-EC05-G03/',
+  baseUrl: '/2025-T0012-EC05-G03/docs/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
