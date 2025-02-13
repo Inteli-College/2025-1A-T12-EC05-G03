@@ -29,7 +29,7 @@ custom_edit_url: null
 
 
 ### **Os custos para implementar o robô serem excessivamente altos:** 
-- **Descrição:** O alto custo de aquisição, instalação e manutenção do manipulador robótico pode tornar o projeto inviável financeiramente, especialmente para hospitais públicos e instituições com orçamento restrito. Além do hardware, existem despesas adicionais como adaptação da infraestrutura, treinamento da equipe, serviço de nuvem e suporte técnico contínuo podem aumentar os gastos inesperadamente.
+- **Descrição:** O alto custo de aquisição, instalação e manutenção do manipulador robótico pode tornar o projeto inviável financeiramente, especialmente para hospitais públicos e instituições com orçamento restrito. Além do hardware, existem despesas adicionais, como adaptação da infraestrutura, treinamento da equipe, serviço de nuvem e suporte técnico contínuo, que podem aumentar os gastos inesperadamente.
 
 - **Impacto:** Moderado – Pode dificultar a adoção da solução e limitar sua escalabilidade no mercado.   
 
@@ -144,7 +144,7 @@ custom_edit_url: null
 
 - **Probabilidade:** Baixa a média (~30%) – Depende da aceitação do mercado, regulamentações e comprovação dos benefícios da solução.
 
-### **Desenvolvimento de novas parcerias com o Hospital das Clinicas:** 
+### **Desenvolvimento de novas parcerias com o Hospital das Clínicas:** 
 - **Descrição:** Caso a parceria seja bem-sucedida, novas oportunidades de colaboração entre o Inteli e o Hospital das Clínicas da Unicamp podem surgir, resultando em projetos conjuntos adicionais que ampliem o impacto e a inovação no setor de saúde.
 
 
@@ -169,9 +169,12 @@ custom_edit_url: null
 &nbsp;&nbsp;&nbsp;&nbsp;A automação do processo de montagem das fitas de medicamentos pode estabelecer um novo padrão na área hospitalar, reduzindo erros humanos, aumentando a eficiência e melhorando a rastreabilidade dos medicamentos. Se bem-sucedida, a solução pode influenciar o modelo a ser seguido por outras instituições de saúde no Brasil, revolucionando a logística hospitalar e a segurança do paciente. <br />
 &nbsp;&nbsp;&nbsp;&nbsp;Os riscos são fundamentais para evidenciar as limitações do projeto, mas identificá-los é o passo mais importante do processo. Ao reconhecê-los com antecedência, torna-se possível mitigar seus impactos e otimizar o tempo e os recursos do projeto.
 
+## **Bibliografia:** 
+ 
+1. **SILVA, J. P.** *Introdução à Automação Farmacêutica*. 2. ed. São Paulo: Editora Acadêmica, 2020.
 
+2. **COSTA, A. R.** "Automação na Dispensação de Medicamentos: Benefícios e Desafios." *Revista Brasileira de Farmácia Hospitalar*, São Paulo, v. 35, n. 2, p. 123-130, abr./jun. 2022.
 
+3. **MENDES, L. F.** *Automação de Processos Farmacêuticos no Ambiente Hospitalar*. 2023. 150 f. Dissertação (Mestrado em Engenharia Biomédica) – Universidade Estadual de Campinas, Campinas, 2023.
 
-
-
-
+4. **ALVES, R.** "Inovações Tecnológicas na Saúde." *Jornal da Ciência*, Brasília, 15 mar. 2024. Seção Tecnologia, p. B3. Disponível em: [https://www.jornaldaciencia.org.br/inovacoes-tecnologicas-na-saude](https://www.jornaldaciencia.org.br/inovacoes-tecnologicas-na-saude). Acesso em: 20 mar. 2024.
