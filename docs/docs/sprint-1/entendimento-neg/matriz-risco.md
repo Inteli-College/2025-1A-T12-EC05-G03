@@ -177,4 +177,4 @@ custom_edit_url: null
 
 3. **MENDES, L. F.** *Automação de Processos Farmacêuticos no Ambiente Hospitalar*. 2023. 150 f. Dissertação (Mestrado em Engenharia Biomédica) – Universidade Estadual de Campinas, Campinas, 2023.
 
-4. **ALVES, R.** "Inovações Tecnológicas na Saúde." *Jornal da Ciência*, Brasília, 15 mar. 2024. Seção Tecnologia, p. B3. Disponível em: [https://www.jornaldaciencia.org.br/inovacoes-tecnologicas-na-saude](https://www.jornaldaciencia.org.br/inovacoes-tecnologicas-na-saude). Acesso em: 20 mar. 2024.
+4. **ALVES, R.** "Inovações Tecnológicas na Saúde." *Jornal da Ciência*, Brasília, 15 mar. 2024. Seção Tecnologia, p. B3. Disponível em: [https://www.jornaldaciencia.org.br/inovacoes-tecnologicas-na-saude](https://www.jornaldaciencia.org.br/inovacoes-tecnologicas-na-saude). Acesso em: 09 fev. 2025.
