@@ -106,3 +106,7 @@ custom_edit_url: null
 ## Conclusão
 
 A análise das jornadas de diferentes usuários permite identificar pontos críticos nos processos, destacando desafios, necessidades e oportunidades de melhoria. Compreender essas etapas facilita o desenvolvimento de soluções mais eficientes, garantindo uma experiência mais segura, ágil e otimizada para todas as envolvidas.
+
+## Bibliografia
+
+Gibbons, S. (2018, 9 de dezembro). Journey Mapping 101. Nielsen Norman Group. Disponível em: https://www.nngroup.com/articles/journey-mapping-101/. Acesso em: 12 de fevereiro de 2025.
