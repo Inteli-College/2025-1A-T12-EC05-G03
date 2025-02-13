@@ -11,11 +11,12 @@ permissions:
 jobs:
   build:
     name: Build and upload artifact
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest    
     defaults:
       run:
         shell: bash
-        working-directory: ./webpage
+        working-directory: ./docs
+    
     steps:
       - uses: actions/checkout@v4
         with:
@@ -33,7 +34,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./webpage/build
+          path: ./build
 
   deploy:
     name: Deploy to GitHub Pages
