@@ -15,7 +15,7 @@ custom_edit_url: null
 
 ---
 
-## Informações Gerais
+## Informações Gerais de Ismael
 
 <p style={{textAlign: 'center'}}>Figura X: Jornada do usuário de Ismael Gonçalves - Enfermeiro</p>
 <div style={{margin: 25}}>
@@ -32,7 +32,7 @@ custom_edit_url: null
 
 ---
 
-## A etapas da Jornada do Usuário
+## A etapas da Jornada do Usuário de Ismael
 
 | **Fase**                                 | **Ações**                                                                                                                                                                  | **Observações**                                                                                                              |
 |-----------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
@@ -44,7 +44,7 @@ custom_edit_url: null
 
 ---
 
-## Oportunidades
+## Oportunidades de Ismael
 
 - **Processo automatizado e intuitivo** de ponta a ponta.  
 - **Maior velocidade** na separação dos medicamentos.  
@@ -52,7 +52,57 @@ custom_edit_url: null
 
 ---
 
-## Responsabilidades
+## Responsabilidades de Ismael
 
 - Ismael deve certificar-se de que a contagem e o medicamento estejam **corretamente separados**.  
 - Ismael deve garantir a **segurança dos medicamentos psicotrópicos**, de modo que não sejam roubados.  
+
+## Informações Gerais de Clara
+
+<p style={{textAlign: 'center'}}>Figura X: Jornada do usuário de Ismael Gonçalves - Enfermeiro</p>
+<div style={{margin: 25}}>
+    <div style={{textAlign: 'center'}}>
+        <img src={require("../../../../media/personas/ClaraBoia_Jornada.png").default} style={{width: 800}} alt="Imagem informativa de Clara e suas informações dispostas nas colunas." />
+        <br />
+    </div>
+</div>
+<p style={{textAlign: 'center'}}>Fonte: Produzida pelos Autores (2025). </p>
+
+| Nome              | Cenário                                                                                                                                                                                     | Expectativas                                                                                                                                       |
+|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| Clara Boia  | Clara é responsável pela administração de medicamentos aos pacientes internados e precisa garantir que as medicações estejam corretas, seguras e disponíveis no momento certo. | Clara espera mais segurança na separação de medicamentos e agilidade no processo, permitindo maior foco no atendimento aos pacientes.                          |
+
+---
+
+## A etapas da Jornada do Usuário de Clara
+
+| **Fase**                                 | **Ações**                                                                                                                                                                  | **Observações**                                                                                                              |
+|-----------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
+| **Fase** | **Descrição** | **Emoção de Clara** |
+| **Fase 1 - Exploração inicial** | Clara acessa o sistema para visualizar prescrições médicas, confere histórico de medicamentos e possíveis alterações. | Preocupada com a necessidade de administração correta e prescrição completa. |
+| **Fase 2 - Implementação técnica** | O sistema automatizado separa os medicamentos conforme a prescrição médica. Clara confere se a fita contém os medicamentos corretos e se está lacrada. | Mais confiante, pois a separação automatizada minimiza erros manuais. |
+| **Fase 3 - Utilização e análise** | Clara confere as informações no sistema antes de administrar os medicamentos, garantindo que está dando os remédios corretos. | Percebe que o sistema agiliza seu trabalho e reduz o risco de erros. |
+| **Fase 4 - Avaliação e feedback** | Clara registra no sistema a administração dos medicamentos e reporta qualquer inconsistência. | Menos retrabalho e menos erros no controle dos medicamentos. |
+| **Fase 5 - Otimização e reconhecimento** | Clara percebe que o sistema facilita o fluxo de trabalho da enfermagem e melhora a segurança no controle de medicamentos críticos. | Com um sistema mais preciso, pode focar mais no atendimento ao paciente. |                                                         |
+
+---
+
+## Oportunidades de Clara
+
+- **Redução do tempo** gasto na separação manual de medicamentos.
+- **Diminuição do risco** de erros e retrabalho na enfermagem.
+- **Integração do sistema** com registros de pacientes para rastreabilidade total.
+
+---
+
+
+## Responsabilidades de Clara
+
+- Garantir que os medicamentos sejam **administrados corretamente**.
+- Monitorar os **pacientes** após a **administração dos remédios**.
+- Reportar **falhas** no sistema ou **inconsistências** nas fitas de medicamentos.
+
+
+## Conclusão
+
+A análise das jornadas de diferentes usuários permite identificar pontos críticos nos processos, destacando desafios, necessidades e oportunidades de melhoria. Compreender essas etapas facilita o desenvolvimento de soluções mais eficientes, garantindo uma experiência mais segura, ágil e otimizada para todas as envolvidas.
