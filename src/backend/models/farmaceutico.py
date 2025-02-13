@@ -6,11 +6,11 @@ from .database import db  # Importação relativa
 class Farmaceutico(db.Model):
     __tablename__ = 'farmaceutico'
 
-    id = db.Column(db.Integer, nullable = False, primary_key=True)
+    crf = db.Column(db.Integer, nullable = False, primary_key=True)
     nome_farmaceutico = db.Column(db.String(255), nullable = False)
 
     def as_dict(self):
         return{
-            'id': self.id,
+            'crf': self.crf,
             'nome_farmaceutico': self.nome_farmaceutico,
         }
