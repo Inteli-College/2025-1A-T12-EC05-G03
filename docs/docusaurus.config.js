@@ -13,7 +13,7 @@ const config = {
   favicon: 'img/logo_simplificada.png',
 
   // Set the production url of your site here
-  url: 'https://github.com',
+  url: 'inteli-college.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/2025-T0012-EC05-G03/',
@@ -41,7 +41,7 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
-          routeBasePath: 'https://github.com/Inteli-College/2025-1A-T12-EC05-G03/',
+          routeBasePath: 'https://github.com/Inteli-College/2025-1A-T12-EC05-G03/docs',
         },
         blog: false,
         //  {
