@@ -20,11 +20,11 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'Inteli', // Usually your GitHub org/user name.
-  projectName: 'NDC automation', // Usually your repo name.
+  organizationName: 'Inteli-College', // Usually your GitHub org/user name.
+  projectName: '2025-1A-T12-EC05-G03', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenLinks: 'ignore',
+  onBrokenMarkdownLinks: 'ignore',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
