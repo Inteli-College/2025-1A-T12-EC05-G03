@@ -41,7 +41,7 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
-          routeBasePath: 'https://github.com/Inteli-College/2025-1A-T12-EC05-G03/docs',
+          routeBasePath: 'docs',
         },
         blog: false,
         //  {
