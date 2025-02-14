@@ -100,7 +100,7 @@ custom_edit_url: null
 
 ---
 
-## 4. Próximos Passos  
+## 3. Próximos Passos  
 
 &emsp;Com base nessa imersão, os próximos passos do projeto incluem:  
 
@@ -111,7 +111,7 @@ custom_edit_url: null
 
 ---
 
-##  3. Conclusão da Pesquisa Desk  
+##  4. Conclusão da Pesquisa Desk  
 
 &emsp;A partir das informações coletadas, foi possível confirmar que a automação da Fita de Medicamentos pode trazer benefícios significativos tanto para a segurança do paciente quanto para a eficiência operacional do hospital. Os principais aprendizados desta etapa foram:  
 
