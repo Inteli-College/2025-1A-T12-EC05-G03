@@ -99,6 +99,33 @@ custom_edit_url: null
 📌 Fonte: *Pesquisa da American Society of Health-System Pharmacists confirma ganhos de eficiência e segurança com automação.* ([ASHP, 2021](https://www.ashp.org/pharmacy-practice/resource-centers/informatics/automation-and-medication-management-technologies))  
 
 ---
+### 2.4 O que fazer quando erros forem cometidos?  
+
+#### Quais são os protocolos oficiais para reportar um erro de medicação?  
+✅ Resposta: A ANVISA disponibiliza um formulário oficial para notificação de erros de medicação, que deve ser preenchido por profissionais da saúde sempre que houver um incidente. O documento permite que os hospitais registrem ocorrências, causas prováveis e medidas corretivas, auxiliando na construção de um banco de dados nacional para prevenção de novos erros.  
+📌 Fonte: *ANVISA criou formulário de preenchimento para caso esses erros aconteçam.* ([ANVISA, 2022](https://www.cofen.gov.br/anvisa-disponibiliza-formulario-de-erro-de-medicaao-aos-profissionais-da-saude/))  
+
+#### Quais são as implicações éticas e legais quando um erro de medicação ocorre?  
+✅ Resposta: Caso um erro de medicação ocorra, o profissional responsável deve notificar imediatamente a equipe médica e seguir o protocolo interno da instituição hospitalar. Dependendo da gravidade do erro, o caso pode ser analisado pelo Conselho de Ética Profissional, que avaliará se houve negligência, imprudência ou imperícia. Se o erro causar danos ao paciente, o hospital pode responder legalmente, e o profissional pode sofrer sanções éticas.  
+📌 Fonte: *Conselho de ética profissional de saúde estabelece diretrizes sobre erro médico na aplicação de medicação.* ([Jusbrasil, 2021](https://www.jusbrasil.com.br/artigos/erro-medico-na-aplicacao-de-medicacao/886496931))  
+
+#### Quais estratégias podem ser adotadas para evitar que os erros se repitam?  
+✅ Resposta: Algumas estratégias recomendadas pela ANVISA para evitar a repetição de erros incluem:  
+- Implementação de checklists duplos na administração de medicamentos.  
+- Treinamento contínuo dos profissionais para aprimoramento das boas práticas de medicação.  
+- Uso de barreiras tecnológicas, como sistemas de rastreamento digital e validação dupla por leitura de código de barras.  
+- Criação de comitês internos de segurança do paciente para revisão de incidentes e formulação de planos de melhoria contínua.  
+📌 Fonte: *Página 10: Estratégias para evitar o erro de medicação.* ([ANVISA, 2022](https://www.gov.br/anvisa/pt-br/centraisdeconteudo/publicacoes/monitoramento/farmacovigilancia/boletins-de-farmacovigilancia/boletim-de-farmacovigilancia-no-08.pdf))  
+
+#### Como o sistema de automação pode contribuir para a detecção e correção de erros?  
+✅ Resposta: Um sistema automatizado pode minimizar falhas ao:  
+- Registrar e rastrear cada etapa do processo, permitindo auditoria em tempo real.  
+- Emitir alertas automáticos para possíveis inconsistências na separação dos medicamentos.  
+- Integrar-se ao sistema hospitalar para comparação automática entre a prescrição médica e os medicamentos selecionados.  
+- Gerar relatórios de incidentes automaticamente, facilitando o preenchimento das notificações exigidas pela ANVISA.  
+📌 Fonte: *Padrões internacionais de rastreabilidade de medicamentos recomendam automação para garantir segurança e reduzir erros.* ([ANVISA, 2022](https://www.gov.br/anvisa/pt-br/centraisdeconteudo/publicacoes/monitoramento/farmacovigilancia/boletins-de-farmacovigilancia/boletim-de-farmacovigilancia-no-08.pdf)) 
+
+---
 
 ## 3. Próximos Passos  
 
