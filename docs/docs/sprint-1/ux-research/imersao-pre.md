@@ -98,3 +98,15 @@ custom_edit_url: null
 - Rastreamento aprimorado, permitindo que cada dose administrada seja monitorada digitalmente, garantindo maior controle sobre o estoque e segurança na dispensação.  
 📌 Fonte: *Pesquisa da American Society of Health-System Pharmacists confirma ganhos de eficiência e segurança com automação.* ([ASHP, 2021](https://www.ashp.org/pharmacy-practice/resource-centers/informatics/automation-and-medication-management-technologies))  
 
+---
+
+## 4. Próximos Passos  
+
+&emsp;Com base nessa imersão, os próximos passos do projeto incluem:  
+
+✔️ Criação de personas representando farmacêuticos, enfermeiros e gestores hospitalares.  
+✔️ Mapeamento da jornada do usuário para entender como a automação se encaixa no fluxo hospitalar.  
+✔️ Validação de hipóteses com farmacêuticos do HC/Unicamp para ajustar os requisitos da solução.  
+✔️ Definição dos requisitos técnicos para a interface do sistema e integração com o ambiente hospitalar.
+
+
