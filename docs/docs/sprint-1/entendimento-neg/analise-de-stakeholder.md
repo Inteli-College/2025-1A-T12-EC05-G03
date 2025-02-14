@@ -8,7 +8,7 @@ custom_edit_url: null
 
 ## Conceito
 
-&nbsp;&nbsp;&nbsp;&nbsp;Os stakeholders podem ser traduzidos como "Parte Interessada" e fazer o mapeamento dessas partes é essencial para que se possa compreender tanto seu impacto como a forma como são impactados pelo projeto como um todo e em suas diferentes fases. Existe uma variedade de pessoas interessadas, em diferentes níveis, no projeto e nos resultados do desenvolvimento. Conseguir mapeá-las e identificar seus interesses permite facilitar o alcance dos objetivos do projeto. Essa análise visa classificar os stakeholders com base em sua influência e interesse no projeto.
+&nbsp;&nbsp;&nbsp;&nbsp;Os stakeholders podem ser traduzidos como "Partes Interessadas" e fazer o mapeamento dessas partes é essencial para que se possa compreender tanto seu impacto como a forma que são impactados pelo projeto como um todo e em suas diferentes fases. Existe uma variedade de pessoas interessadas, em diferentes níveis, no projeto e nos resultados do desenvolvimento. Conseguir mapeá-las e identificar seus interesses permite facilitar o alcance dos objetivos do projeto. Essa análise visa classificar os stakeholders com base em sua influência e interesse no projeto.
 
 <p style={{textAlign: 'center'}}>Figura - Análise de stakeholder</p>
 <div style={{margin: 25}}>
@@ -64,7 +64,7 @@ Stakeholders com grande poder de influência, mas que possuem menor envolvimento
 
 **3. Manter Informado (Baixa Influência / Alto Interesse)**
 
-Possuem um alto interesse no projeto, pois serão impactados diretamente, mas com menor influência na tomada de decisão. Devem ser informados regularmente e engajados nas fases de implementação e treinamento. São eles: Equipe de TI, Equipe de treinamento e capacitação, Equipe de enfermagem.
+Possuem alto interesse no projeto, pois serão diretamente impactados pela automação, mas têm menor influência nas decisões estratégicas. Devem ser informados regularmente e engajados ativamente nas fases de implementação e treinamento para garantir uma adaptação eficiente. Esse grupo inclui a Equipe de TI, responsável pela integração do sistema; a Equipe de Treinamento e Capacitação, encarregada da qualificação dos usuários; e a Equipe de Enfermagem, que utilizará a nova solução no fluxo de trabalho diário.
 
 **4. Monitorar (Baixa Influência / Baixo Interesse)**
 
