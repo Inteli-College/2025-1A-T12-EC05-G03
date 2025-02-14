@@ -109,4 +109,15 @@ custom_edit_url: null
 ✔️ Validação de hipóteses com farmacêuticos do HC/Unicamp para ajustar os requisitos da solução.  
 ✔️ Definição dos requisitos técnicos para a interface do sistema e integração com o ambiente hospitalar.
 
+---
 
+##  3. Conclusão da Pesquisa Desk  
+
+&emsp;A partir das informações coletadas, foi possível confirmar que a automação da Fita de Medicamentos pode trazer benefícios significativos tanto para a segurança do paciente quanto para a eficiência operacional do hospital. Os principais aprendizados desta etapa foram:  
+
+📌 Erros na separação manual de medicamentos são comuns e representam um risco real à segurança do paciente. A automação pode reduzir drasticamente esse problema.  
+📌 O tempo gasto com a montagem manual é um fator crítico, impactando a carga de trabalho da equipe farmacêutica e reduzindo a eficiência hospitalar.  
+📌 Hospitais que implementaram automação relataram ganhos expressivos, tanto na redução de erros quanto na gestão do estoque e rastreamento de medicamentos.  
+📌 A aceitação da automação pelos profissionais será essencial para o sucesso do projeto, exigindo um planejamento adequado de treinamento e adaptação.  
+
+&emsp;Logo, essa imersão preliminar garantiu um entendimento aprofundado do problema e das necessidades do hospital, fundamentando a construção de uma solução eficaz, segura e de alto impacto na eficiência hospitalar.
