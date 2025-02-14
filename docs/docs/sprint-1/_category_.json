@@ -1,8 +1,8 @@
 {
-    "label": "Sprint 1",
-    "position": 2,
-    "link": {
-      "type": "generated-index",
-      "description": "Descrição Sprint 1"
-    }
+  "label": "Sprint 1",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Durante a sprint 1 focamos no entendimento do projeto em três frentes: Entendimento do Usuário, Entendimento do Negócio e Proposta de Solução."
   }
+}
