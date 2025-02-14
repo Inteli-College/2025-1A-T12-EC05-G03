@@ -4,6 +4,8 @@ custom_edit_url: null
 slug: /
 ---
 
+# Apresentação
+
 ## O Projeto
 Automação da separação de medicamentos para melhorar eficiência e segurança no processo de
 Farmácia.
@@ -22,6 +24,14 @@ Desenvolver e implementar um sistema automatizado de separação e montagem da �
 
 ## A Solução
 Um sistema funcional que automatize a separação de medicamentos de um protocolo pré-definido, com validação por sensores e montagem de kits básicos para a UTI, apresentando rastreamento dos medicamentos e relatório de atividades.
+
+## Apresentações da Sprint Review
+
+- Sprint 1: [Link da Apresentação](https://www.canva.com/design/DAGfBLmC1Kk/Fw1trz96Eyfk2vsC-Rpz-w/view?utm_content=DAGfBLmC1Kk&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h8c657ef852)
+- Sprint 2:
+- Sprint 3:
+- Sprint 4:
+- Sprint 5:
 
 ## Integrantes da equipe
 
