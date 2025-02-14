@@ -38,3 +38,63 @@ custom_edit_url: null
 
 &emsp;Com base nessas informações, aprofundamos a pesquisa com dados secundários, analisando soluções tecnológicas já implementadas e estatísticas sobre o impacto da automação hospitalar.
 
+---
+
+## 2. Pesquisa Desk – Levantamento de Informações Existentes  
+
+&emsp;A pesquisa desk complementou as informações do kick-off com dados de mercado, estudos científicos e análise de soluções concorrentes. O objetivo foi aprofundar o entendimento sobre os desafios enfrentados no processo manual de montagem da Fita de Medicamentos, os impactos desses problemas na eficiência hospitalar e na segurança dos pacientes, além de explorar soluções de automação já implementadas no setor.  
+
+&emsp;A seguir, apresentamos as respostas obtidas para as principais questões levantadas.
+
+---
+
+### 2.1 O que queremos saber sobre o problema?  
+
+#### Quais são os principais desafios no processo manual de montagem da Fita de Medicamentos?  
+✅ Resposta: O processo manual de separação e montagem da fita de medicamentos apresenta desafios como alta taxa de erros humanos, risco de duplicidade ou omissão de medicamentos, desperdício de tempo e baixa rastreabilidade dos kits montados. Além disso, o excesso de carga de trabalho dos farmacêuticos pode levar a fadiga e erros operacionais, comprometendo a segurança do paciente.  
+📌 Fonte: *Estudo da World Health Organization (WHO) aponta que erros na administração de medicamentos afetam 1 em cada 30 pacientes hospitalizados.* ([WHO, 2022](https://www.who.int/news-room/fact-sheets/detail/patient-safety))  
+
+#### Quais os erros mais comuns na separação dos medicamentos e quais suas consequências?  
+✅ Resposta: Os erros mais frequentes incluem:  
+- Troca de medicamentos, quando um fármaco errado é colocado no kit do paciente.  
+- Administração de doses erradas, seja por erro na separação ou na conferência final.  
+- Omissão de itens essenciais no kit, resultando na falta de medicação necessária para o paciente.  
+
+&emsp;As consequências desses erros vão desde reações adversas leves até complicações graves, incluindo o prolongamento do tempo de internação e, em casos extremos, risco de morte.  
+📌 Fonte: *Boletim Farmaco Vigilância estima que erros de medicação ocorrem em 5,7% das administrações de medicamentos a pacientes hospitalizados, podendo chegar a aproximadamente 56% nos estudos em que os pacientes são monitorados mais cuidadosamente.* ([GOV, 2019](https://www.gov.br/anvisa/pt-br/centraisdeconteudo/publicacoes/monitoramento/farmacovigilancia/boletins-de-farmacovigilancia/boletim-de-farmacovigilancia-no-08.pdf))  
+
+#### Quanto tempo a equipe farmacêutica leva para realizar essa tarefa manualmente?  
+✅ Resposta: O tempo de separação manual de medicamentos pode variar dependendo do porte do hospital e da complexidade das prescrições. Estudos apontam que, pela montagem da fita de medicamentos ser uma etapa crítica no processo de dispensação, deve ser feita de maneira clara e diligente, representando, assim, um custo operacional elevado, pois exige um grande volume de horas de trabalho da equipe farmacêutica. 
+📌 Fonte: *Artigo “Mapeamento e propostas de melhoria de processos do setor farmacêutico de um hospital do sul de Minas Gerais” afirma que a montagem da fita de medicamentos é uma etapa essencial no que diz respeito ao bem estar do paciente, devendo ser realizada com atenção aguçada.* ([JADE, 2020](https://abepro.org.br/biblioteca/TN_STO_349_1794_40418.pdf?utm_source))  
+
+---
+
+### 2.2 O que queremos saber sobre as pessoas afetadas pelo problema?  
+
+#### Quem são os profissionais responsáveis pela montagem da Fita de Medicamentos?  
+✅ Resposta: A separação e montagem dos kits de medicamentos é realizada por farmacêuticos hospitalares e técnicos de farmácia, que são responsáveis por garantir que cada paciente receba a medicação correta. Enfermeiros também podem atuar na conferência e administração dos medicamentos.  
+📌 Fonte: *A regulamentação da ANVISA define que a manipulação de medicamentos deve ser supervisionada por um farmacêutico hospitalar registrado no CRF.* ([Ministério da Saúde, 2007](https://bvsms.saude.gov.br/bvs/saudelegis/anvisa/2007/rdc0067_08_10_2007.html))  
+
+#### Como esses profissionais percebem o processo atual?  
+✅ Resposta: A maioria dos farmacêuticos e técnicos relatam que o processo manual de separação de medicamentos é cansativo, demorado e sujeito a erros, especialmente em hospitais de grande porte, onde a demanda por kits individuais é alta. Além disso, a conferência manual exige atenção extrema, tornando o trabalho estressante e aumentando o risco de erros devido à fadiga.  
+📌 Fonte: *Pesquisa do American Journal of Health-System Pharmacy revelou que 78% dos farmacêuticos hospitalares acreditam que a automação pode reduzir erros e melhorar a produtividade.* ([AJHP,2021](https://academic.oup.com/ajhp/article-abstract/78/7/636/6135023?redirectedFrom=fulltext))  
+
+#### Eles percebem riscos de erro na administração de medicamentos?  
+✅ Resposta: Sim. Farmacêuticos e enfermeiros reconhecem que os erros na separação de medicamentos podem afetar diretamente a segurança do paciente, principalmente em unidades como UTIs e oncologia, onde doses incorretas podem ter impactos severos. Há preocupação com a necessidade de dupla conferência, o que consome tempo da equipe e pode gerar atrasos na administração dos medicamentos.  
+📌 Fonte: *Estudo intitulado “Erros De Dispersão de Medicamentos em um Hospital Público Pediátrico” afirma que a taxa de erros na dispensação varia entre 2% e 11,5%, dependendo do contexto e da metodologia empregada.* ([LINDEMBERG, 2020](https://www.scielo.br/j/rlae/a/mBqVzXWMYk4WrsxxXqd6jqf/?format=pdf&lang=pt&utm_source))  
+
+---
+
+### 2.3 O que queremos saber sobre soluções existentes?  
+
+#### Hospitais já utilizam sistemas de automação para separação de medicamentos?  
+✅ Resposta: Sim. Alguns hospitais na Europa e nos EUA já utilizam sistemas automatizados de farmácia hospitalar, como Swisslog e Omnicell, que realizam a separação e dispensação de medicamentos de forma robotizada. Estudos mostram que esses sistemas reduzem em até 50% os erros na separação de medicamentos.  
+📌 Fonte: *Artigo “Gestão de medicamentos em hospitais: por que automatizar?” da Sinteco afirma que a robotização para separar medicamentos pode diminuir em até 50% o tempo gasto na preparação de prescrições, comparado ao processo manual.* ([SINTECO, 2017](https://www.sintecorobotics.com/pt/it/N/drug-management-at-hospitals-why-automate-649))  
+
+#### Quais as principais vantagens relatadas na adoção da automação hospitalar?  
+✅ Resposta: Hospitais que implementaram sistemas automatizados de separação de medicamentos relataram benefícios como:  
+- Redução de erros de medicação em até 85%.  
+- Aumento da velocidade na separação – processos que levavam minutos agora são feitos em segundos.  
+- Rastreamento aprimorado, permitindo que cada dose administrada seja monitorada digitalmente, garantindo maior controle sobre o estoque e segurança na dispensação.  
+📌 Fonte: *Pesquisa da American Society of Health-System Pharmacists confirma ganhos de eficiência e segurança com automação.* ([ASHP, 2021](https://www.ashp.org/pharmacy-practice/resource-centers/informatics/automation-and-medication-management-technologies))  
+
