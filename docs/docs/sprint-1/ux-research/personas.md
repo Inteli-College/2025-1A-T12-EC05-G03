@@ -11,9 +11,9 @@ custom_edit_url: null
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Têm-se como principais personas Clara Boia e Isamel Gonçalves, a principal procupação foi selecionar pessoas que estão no contexto de farmácia e principalmente que participam da cadeia de separação de medicamentos e seleção de receitas, posteriormente serão descritas as atividades destes usuários para a produção de seu ofício e então os aspectos pensados para o sistema de automação.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Abaixo está descrita a persona que representa os enfermeiros no nosso contexto de projeto:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Abaixo está descrita a persona que representa os farmacêuticos no nosso contexto de projeto:
 
-<p style={{textAlign: 'center'}}>Figura X: Persona Ismael Gonçalves - Enfermeiro</p>
+<p style={{textAlign: 'center'}}>Figura X: Persona Ismael Gonçalves - Farmacêutico</p>
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
         <img src={require("../../../../media/personas/ismaelgoncalves_persona.png").default} style={{width: 800}} alt="Imagem informativa de Ismael e suas informações dispostas nas colunas." />
@@ -30,7 +30,7 @@ custom_edit_url: null
 
 Esta tabela resume os principais pontos relacionados às atividades, necessidades e desafios enfrentados.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Abaixo está descrita a persona que representa a técnica de enfermagem. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Abaixo está descrita a persona que representa a técnica de farmácia. 
 
 <p style={{textAlign: 'center'}}>Figura X: Persona Clara Boia - Ténica</p>
 <div style={{margin: 25}}>

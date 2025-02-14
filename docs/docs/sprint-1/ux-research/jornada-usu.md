@@ -17,7 +17,7 @@ custom_edit_url: null
 
 ## Informações Gerais de Ismael
 
-<p style={{textAlign: 'center'}}>Figura X: Jornada do usuário de Ismael Gonçalves - Enfermeiro</p>
+<p style={{textAlign: 'center'}}>Figura X: Jornada do usuário de Ismael Gonçalves - Farmacêutico</p>
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
         <img src={require("../../../../media/personas/IsmaelGoncalves_Jornada.png").default} style={{width: 800}} alt="Imagem informativa de Ismael e suas informações dispostas nas colunas." />
@@ -59,7 +59,7 @@ custom_edit_url: null
 
 ## Informações Gerais de Clara
 
-<p style={{textAlign: 'center'}}>Figura X: Jornada do usuário de Ismael Gonçalves - Enfermeiro</p>
+<p style={{textAlign: 'center'}}>Figura X: Jornada do usuário de Ismael Gonçalves - Farmacêutico</p>
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
         <img src={require("../../../../media/personas/ClaraBoia_Jornada.png").default} style={{width: 800}} alt="Imagem informativa de Clara e suas informações dispostas nas colunas." />
@@ -83,14 +83,14 @@ custom_edit_url: null
 | **Fase 2 - Implementação técnica** | O sistema automatizado separa os medicamentos conforme a prescrição médica. Clara confere se a fita contém os medicamentos corretos e se está lacrada. | Mais confiante, pois a separação automatizada minimiza erros manuais. |
 | **Fase 3 - Utilização e análise** | Clara confere as informações no sistema antes de administrar os medicamentos, garantindo que está dando os remédios corretos. | Percebe que o sistema agiliza seu trabalho e reduz o risco de erros. |
 | **Fase 4 - Avaliação e feedback** | Clara registra no sistema a administração dos medicamentos e reporta qualquer inconsistência. | Menos retrabalho e menos erros no controle dos medicamentos. |
-| **Fase 5 - Otimização e reconhecimento** | Clara percebe que o sistema facilita o fluxo de trabalho da enfermagem e melhora a segurança no controle de medicamentos críticos. | Com um sistema mais preciso, pode focar mais no atendimento ao paciente. |                                                         |
+| **Fase 5 - Otimização e reconhecimento** | Clara percebe que o sistema facilita o fluxo de trabalho da farmácia e melhora a segurança no controle de medicamentos críticos. | Com um sistema mais preciso, pode focar mais no atendimento ao paciente. |                                                         |
 
 ---
 
 ## Oportunidades de Clara
 
 - **Redução do tempo** gasto na separação manual de medicamentos.
-- **Diminuição do risco** de erros e retrabalho na enfermagem.
+- **Diminuição do risco** de erros e retrabalho na farmácia.
 - **Integração do sistema** com registros de pacientes para rastreabilidade total.
 
 ---
