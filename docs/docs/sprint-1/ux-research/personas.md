@@ -48,3 +48,10 @@ Esta tabela resume os principais pontos relacionados às atividades, necessidade
 | Preza pela organização dos insumos médicos para facilitar o atendimento.                                     | Alertas automáticos para evitar atrasos ou erros na administração dos medicamentos.                      | Precisa de um sistema ágil e confiável para evitar erros na administração dos medicamentos.                                       |
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Com base nessas personas nosso projeto será estruturado tendo em vista as necessidades e dores de cada persona.
+
+## Bibliografia
+
+Harley, A. (2015, fevereiro 16). Personas make users memorable for product team members. Nielsen Norman Group. https://www.nngroup.com/articles/persona/
+
+
+Kaplan, K. (2022, outubro 9). Personas: Study guide. Nielsen Norman Group. https://www.nngroup.com/articles/personas-study-guide/
