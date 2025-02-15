@@ -1,12 +1,10 @@
-from sqlalchemy.dialects.postgresql import  UUID, TEXT, ENUM, ARRAY
-from sqlalchemy import func, null
 from .database import db  # Importação relativa
 
 #Criando a tabela de prescrição
 class Prescricao(db.Model):
     __tablename__ = 'prescricao'
 
-    id = db.Column(db.Integer, nullable = False, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
     hc_paciente = db.Column(db.String(255), db.ForeignKey('paciente.hc'), nullable=False)
     lista_remedios = db.Column(db.Text, nullable=False)  
     aprovacao_farmaceutico = db.Column(db.Boolean, default=False)

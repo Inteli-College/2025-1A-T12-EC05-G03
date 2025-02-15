@@ -1,6 +1,8 @@
 from flask import Blueprint, jsonify, request
 from backend.models.prescricao import Prescricao
 from backend.models.database import db
+from datetime import datetime
+
 # criando a rota base
 prescricoes_bp = Blueprint('prescricoes', __name__, url_prefix='/prescricoes')
 
@@ -16,14 +18,13 @@ def listar_prescricoes():
 def add_prescricao():
     data = request.get_json()
 
-    # Verificar se lista_remedios é uma lista e, caso contrário, converter para uma lista
     lista_remedios = data['lista_remedios'] if isinstance(data['lista_remedios'], list) else []
 
     newPrescricao = Prescricao(
-        hc=data['hc'],
-        lista_remedios=lista_remedios,
-        aprovacao=data['aprovacao'],
-        id_farmaceutico=data['id_farmaceutico']
+        hc_paciente=data['hc_paciente'],
+        lista_remedios=str(lista_remedios),
+        crf_farmaceutico=data['crf_farmaceutico'],
+        datatime= datetime.now(),
     )
 
     db.session.add(newPrescricao)
@@ -43,7 +44,7 @@ def get_book(prescricao_id):
 @prescricoes_bp.route('/aprovar/<prescricao_id>', methods=['PATCH'])
 def aprovar_prescricao(prescricao_id):
     prescricao = Prescricao.query.get_or_404(prescricao_id)
-    prescricao.aprovacao = True
+    prescricao.aprovacao_farmaceutico = True
 
     db.session.commit()
     return jsonify({'Message': 'Prescricao aprovada com sucesso'}), 200

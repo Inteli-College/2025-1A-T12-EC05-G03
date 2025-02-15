@@ -23,9 +23,10 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
 
 # Criando o banco de dados e tabelas
+
 with app.app_context():
     db.create_all()
-
+    
 # Chamadnas as rotas que foram criadas no outro arquivo
 app.register_blueprint(prescricoes_bp)
 
