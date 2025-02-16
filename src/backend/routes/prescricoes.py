@@ -23,7 +23,6 @@ def add_prescricao():
     newPrescricao = Prescricao(
         hc_paciente=data['hc_paciente'],
         lista_remedios=str(lista_remedios),
-        crf_farmaceutico=data['crf_farmaceutico'],
         datatime= datetime.now(),
     )
 
@@ -36,7 +35,7 @@ def add_prescricao():
 
 # Buscar prescrições por Id
 @prescricoes_bp.route('/<prescricao_id>', methods=['GET'])
-def get_book(prescricao_id):
+def listar_por_id(prescricao_id):
     prescricao = Prescricao.query.get_or_404(prescricao_id)
     return jsonify(prescricao.as_dict()), 200
 
@@ -44,6 +43,8 @@ def get_book(prescricao_id):
 @prescricoes_bp.route('/aprovar/<prescricao_id>', methods=['PATCH'])
 def aprovar_prescricao(prescricao_id):
     prescricao = Prescricao.query.get_or_404(prescricao_id)
+    data = request.get_json()
+    prescricao.crf_farmaceutico = data['crf_farmaceutico']
     prescricao.aprovacao_farmaceutico = True
 
     db.session.commit()
@@ -51,7 +52,7 @@ def aprovar_prescricao(prescricao_id):
 
 # Deletar a prescrição
 @prescricoes_bp.route('/deletar/<prescricao_id>', methods=['DELETE'])
-def delete_book(prescricao_id):
+def deletar_prescricao(prescricao_id):
     prescricao = Prescricao.query.get_or_404(prescricao_id)
     db.session.delete(prescricao)
     db.session.commit()

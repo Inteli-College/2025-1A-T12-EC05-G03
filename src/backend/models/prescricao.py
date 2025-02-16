@@ -8,7 +8,7 @@ class Prescricao(db.Model):
     hc_paciente = db.Column(db.String(255), db.ForeignKey('paciente.hc'), nullable=False)
     lista_remedios = db.Column(db.Text, nullable=False)  
     aprovacao_farmaceutico = db.Column(db.Boolean, default=False)
-    crf_farmaceutico = db.Column(db.Integer, db.ForeignKey('farmaceutico.crf'), nullable=False)
+    crf_farmaceutico = db.Column(db.Integer, db.ForeignKey('farmaceutico.crf'), nullable=True)
     datatime = db.Column(db.DateTime, nullable=True)
 
     # Fazendo a conexão com as outras tabelas
