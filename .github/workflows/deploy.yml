@@ -34,8 +34,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config --global user.email "ian.simao@sou.inteli.edu.br
-          git config --global user.name "ianpsa
+          git config --global user.email "ian.simao@sou.inteli.edu.br"
+          git config --global user.name "ianpsa"
           git config --global url."https://${{ github.actor }}:${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"
 
       # 6. Deploy do site usando o comando do Docusaurus
