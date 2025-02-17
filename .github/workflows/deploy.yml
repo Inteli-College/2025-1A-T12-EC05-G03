@@ -32,6 +32,6 @@ jobs:
         working-directory: docs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GIT_EMAIL: "ian.simao@sou.inteli.edu.br"
           GIT_USER: x-access-token
-        run: npx docusaurus deploy --remote-url "https://x-access-token:${GITHUB_TOKEN}@github.com/Inteli-College/2025-1A-T12-EC05-G03.git"
+          GIT_EMAIL: "ian.simao@sou.inteli.edu.br"
+        run: npm run deploy
