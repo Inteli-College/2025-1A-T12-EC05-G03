@@ -26,11 +26,7 @@ jobs:
 
       - name: Copy build to github folder
         run: |
-          rm -rf github/*
-          # Assumindo que a build é gerada em docs/build
           cp -R docs/build/* github/
-          # Cria o arquivo .nojekyll para desabilitar o processamento do Jekyll
-          touch github/.nojekyll
 
       - name: Deploy to GitHub Pages
         env:
