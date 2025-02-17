@@ -9,35 +9,29 @@ jobs:
   build-deploy:
     runs-on: ubuntu-latest
     steps:
-      # 1. Checkout do código
       - uses: actions/checkout@v2
 
-      # 2. Configuração do Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
 
-      # 3. Instalação das dependências (no diretório docs)
       - name: Install dependencies
         working-directory: docs
-        run: yarn install
+        run: npm install
 
-      # 4. Build do site Docusaurus (no diretório docs)
       - name: Build Docusaurus site
         working-directory: docs
-        run: yarn build
+        run: npm run build
 
-      # 5. Copiar arquivos gerados para a pasta "github"
       - name: Copy build to github folder
         run: |
           rm -rf github/*
-          # Aqui, assumimos que a build foi gerada em docs/build
+          # Assumindo que a build é gerada em docs/build
           cp -R docs/build/* github/
           # Cria o arquivo .nojekyll para desabilitar o processamento do Jekyll
           touch github/.nojekyll
 
-      # 6. Deploy para a branch gh-pages via SSH
       - name: Deploy to GitHub Pages
         env:
           USE_SSH: true
@@ -45,7 +39,7 @@ jobs:
           cd github
           git init
           git config user.name "ianpsa"
-          git config user.email "ian.simao@sou.inteli.edu.br"
+          git config user.email "ian.simao@sou.inteli.br"
           git remote add origin git@github.com:Inteli-College/2025-1A-T12-EC05-G03.git
           git checkout -b gh-pages
           git add --all
