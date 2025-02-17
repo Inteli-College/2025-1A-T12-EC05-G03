@@ -28,15 +28,17 @@ jobs:
         working-directory: docs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_USER: ${{ github.actor }}
         run: |
-          git config --global user.email "ian.simao@sou.inteli.edu.br"
-          git config --global user.name "ianpsa"
-          git config --global url."https://x-access-token:${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"
+          git config --global user.email "seu-email@exemplo.com"
+          git config --global user.name "Seu Nome"
+          # Substitui qualquer URL que comece com "https://github.com/" por uma que inclui usuário e token
+          git config --global url."https://${GIT_USER}:${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"
 
       - name: Deploy Docusaurus site
         working-directory: docs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GIT_USER: x-access-token
+          GIT_USER: ${{ github.actor }}
           GIT_EMAIL: ${{ github.actor }}@users.noreply.github.com
         run: npm run deploy
