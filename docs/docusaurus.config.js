@@ -8,7 +8,7 @@ export default {
   "tagline": "Site de documentação do grupo 3",
   "favicon": "img/logo_simplificada.png",
   "url": "https://inteli-college.github.io",
-  "baseUrl": "/2025-T0012-EC05-G03/",
+  "baseUrl": "/2025-1A-T12-EC05-G03/",
   "organizationName": "Inteli-College",
   "projectName": "2025-1A-T12-EC05-G03",
   "onBrokenLinks": "ignore",
