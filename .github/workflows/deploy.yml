@@ -9,25 +9,35 @@ jobs:
   build-deploy:
     runs-on: ubuntu-latest
     steps:
+      # 1. Checkout do código
       - uses: actions/checkout@v2
 
+      # 2. Configuração do Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '16'
 
+      # 3. Instalação das dependências (no diretório docs)
       - name: Install dependencies
+        working-directory: docs
         run: yarn install
 
+      # 4. Build do site Docusaurus (no diretório docs)
       - name: Build Docusaurus site
+        working-directory: docs
         run: yarn build
 
+      # 5. Copiar arquivos gerados para a pasta "github"
       - name: Copy build to github folder
         run: |
           rm -rf github/*
-          cp -R build/* github/
+          # Aqui, assumimos que a build foi gerada em docs/build
+          cp -R docs/build/* github/
+          # Cria o arquivo .nojekyll para desabilitar o processamento do Jekyll
           touch github/.nojekyll
 
+      # 6. Deploy para a branch gh-pages via SSH
       - name: Deploy to GitHub Pages
         env:
           USE_SSH: true
