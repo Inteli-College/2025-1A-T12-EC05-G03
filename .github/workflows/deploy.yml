@@ -9,34 +9,40 @@ jobs:
   build-deploy:
     runs-on: ubuntu-latest
     steps:
+      # 1. Checkout do código
       - uses: actions/checkout@v2
 
+      # 2. Setup Node.js (versão 18)
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
+      # 3. Instalar dependências (no diretório docs)
       - name: Install dependencies
         working-directory: docs
         run: npm install
 
+      # 4. Build do site Docusaurus
       - name: Build Docusaurus site
         working-directory: docs
         run: npm run build
 
+      # 5. Configurar Git para o deploy (com token)
       - name: Configure Git for deploy
         working-directory: docs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config --global user.email "ian.simao@sou.inteli.edu.br"
-          git config --global user.name "ianpsa"
-          git config --global url."https://x-access-token:${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"
+          git config --global user.email "ian.simao@sou.inteli.edu.br
+          git config --global user.name "ianpsa
+          git config --global url."https://${{ github.actor }}:${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"
 
+      # 6. Deploy do site usando o comando do Docusaurus
       - name: Deploy Docusaurus site
         working-directory: docs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_USER: x-access-token
-          GIT_EMAIL: "ian.simao@sou.inteli.edu.br
+          GIT_EMAIL: "ian.simao@sou.inteli.edu.br"
         run: npm run deploy
