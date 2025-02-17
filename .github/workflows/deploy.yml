@@ -20,27 +20,10 @@ jobs:
         working-directory: docs
         run: npm install
 
-      - name: Build Docusaurus site
+      - name: Build and Deploy Docusaurus site
         working-directory: docs
-        run: npm run build
-
-      - name: Copy build to github folder
-        run: |
-          mkdir -p github
-          rm -rf github/*
-          cp -R docs/build/* github/
-          touch github/.nojekyll
-
-      - name: Deploy to GitHub Pages
         env:
-          USE_SSH: true
-        run: |
-          cd github
-          git init
-          git config user.name "ianpsa"
-          git config user.email "ian.simao@sou.inteli.br"
-          git remote add origin git@github.com:Inteli-College/2025-1A-T12-EC05-G03.git
-          git checkout -b gh-pages
-          git add --all
-          git commit -m "Deploy site"
-          git push --force origin gh-pages
+          GIT_USER: ${{ github.actor }}
+          GIT_EMAIL: ${{ github.actor }}@users.noreply.github.com
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run deploy
