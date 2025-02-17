@@ -1,0 +1,12 @@
+title: "Meu Site Docusaurus"
+description: "Deploy do Docusaurus no GitHub Pages via Yarn e SSH"
+baseurl: ""       # Se o site não estiver em um subcaminho, deixe em branco
+url: "https://Inteli-College.github.io/2025-1A-T12-EC05-G03"
+
+plugins: []
+sass:
+  sass_dir: assets/css  
+  
+exclude:
+  - node_modules
+  - build
