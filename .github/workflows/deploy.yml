@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - feat/Alteracoes-Necessarias-para-deploy-da-documentacao-Docusaurus
+      - main
 permissions:
   contents: write
 jobs:
