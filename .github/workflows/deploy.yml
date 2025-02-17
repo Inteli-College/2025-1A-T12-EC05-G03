@@ -24,7 +24,7 @@ jobs:
       - name: Copy build to github folder
         run: |
           rm -rf github/*
-          cp -R build/* github/
+          cp -R docs/* github/
           # Adiciona o .nojekyll para desabilitar o processamento do Jekyll
           touch github/.nojekyll
 
