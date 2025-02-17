@@ -4,8 +4,9 @@ from .database import db  # Importação relativa
 
 # criando a tabela de paciente
 class Remedio(db.Model):
-    __tablename__ = 'remedio'
+    __tablename__ = 'remedio' # Define o nome da tabela
 
+    # Definindo as colunas
     id = db.Column(db.Integer, nullable = False, primary_key=True)
     nome = db.Column(db.String(255), nullable=False)
     principio = db.Column(db.String(255), nullable=False)
@@ -13,8 +14,10 @@ class Remedio(db.Model):
     bin = db.Column(db.Integer, nullable=False)
     fabricante = db.Column(db.String(255), nullable=False)
 
+    # Fazendo a conexão com as outras tabelas
     lote_obj = db.relationship('Lote', backref=db.backref('remedios', lazy=True))
 
+    # Função para transformar em json
     def as_dict(self):
         return{
             'id': self.id,

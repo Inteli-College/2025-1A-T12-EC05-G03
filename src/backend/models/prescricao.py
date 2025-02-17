@@ -2,8 +2,9 @@ from .database import db  # Importação relativa
 
 #Criando a tabela de prescrição
 class Prescricao(db.Model):
-    __tablename__ = 'prescricao'
+    __tablename__ = 'prescricao' # Define o nome da tabela
 
+    # Definindo as colunas
     id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
     hc_paciente = db.Column(db.String(255), db.ForeignKey('paciente.hc'), nullable=False)
     lista_remedios = db.Column(db.Text, nullable=False)  
@@ -16,7 +17,7 @@ class Prescricao(db.Model):
     farmaceutico = db.relationship('Farmaceutico', backref=db.backref('prescricoes', lazy=True))
 
 
-
+    # Função para transformar em json
     def as_dict(self):
         return{
             'id': self.id,

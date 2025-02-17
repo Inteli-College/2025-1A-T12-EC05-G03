@@ -4,8 +4,9 @@ from .database import db  # Importação relativa
 
 # criando a tabela de paciente
 class Paciente(db.Model):
-    __tablename__ = 'paciente'
+    __tablename__ = 'paciente' # Define o nome da tabela
 
+    # Definindo as colunas
     hc = db.Column(db.String(255), primary_key=True, nullable=False) 
     nome = db.Column(db.String(255), nullable=False)
     idade = db.Column(db.Integer, nullable=False)
@@ -15,7 +16,7 @@ class Paciente(db.Model):
     CRM_medico = db.Column(db.String(100), nullable=False)
     leito = db.Column(db.Integer, nullable = False)
 
-
+    # Função para transformar em json
     def as_dict(self):
         return{
             'HC': self.hc,
