@@ -1,6 +1,6 @@
 title: "Meu Site Docusaurus"
 description: "Deploy do Docusaurus no GitHub Pages via Yarn e SSH"
-baseurl: "/2025-1A-T12-EC05-G03/"
+baseurl: ""
 url: "https://Inteli-College.github.io/2025-1A-T12-EC05-G03"
 
 plugins: []
