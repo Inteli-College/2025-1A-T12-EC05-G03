@@ -1,37 +1,46 @@
-name: Deploy Docusaurus Site
-
+name: Deploy to GitHub Pages
 on:
   push:
     branches:
       - feat/Alteracoes-Necessarias-para-deploy-da-documentacao-Docusaurus
-
+permissions:
+  contents: write
 jobs:
-  build-deploy:
+  build:
+    name: Build and upload artifact
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./docs
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 21.4.0
+      - name: Install dependencies
+        run: yarn install
+      - name: Build website
+        run: yarn build
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./docs/build
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      # 1. Checkout do código
-      - uses: actions/checkout@v2
-
-      # 2. Setup Node.js (versão 18)
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-
-      # 3. Instalar dependências (no diretório docs)
-      - name: Install dependencies
-        working-directory: docs
-        run: npm install
-
-      # 4. Build do site Docusaurus
-      - name: Build Docusaurus site
-        working-directory: docs
-        run: npm run build
-
-      - name: Deploy Docusaurus site
-        working-directory: docs
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GIT_USER: x-access-token
-          GIT_EMAIL: "ian.simao@sou.inteli.edu.br"
-        run: npm run deploy
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
