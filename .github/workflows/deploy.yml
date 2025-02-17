@@ -26,7 +26,10 @@ jobs:
 
       - name: Copy build to github folder
         run: |
+          mkdir -p github
+          rm -rf github/*
           cp -R docs/build/* github/
+          touch github/.nojekyll
 
       - name: Deploy to GitHub Pages
         env:
