@@ -2,7 +2,8 @@ name: Deploy Docusaurus Site
 
 on:
   push:
-    branches: [main]  # ou a branch de deploy
+    branches:
+      - feat/Alteracoes-Necessarias-para-deploy-da-documentacao-Docusaurus
 
 jobs:
   build-deploy:
@@ -13,7 +14,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # ou a versão que seu projeto usa
+          node-version: '16'
 
       - name: Install dependencies
         run: yarn install
@@ -24,8 +25,7 @@ jobs:
       - name: Copy build to github folder
         run: |
           rm -rf github/*
-          cp -R docs/* github/
-          # Adiciona o .nojekyll para desabilitar o processamento do Jekyll
+          cp -R build/* github/
           touch github/.nojekyll
 
       - name: Deploy to GitHub Pages
@@ -34,6 +34,8 @@ jobs:
         run: |
           cd github
           git init
+          git config user.name "ianpsa"
+          git config user.email "ian.simao@sou.inteli.edu.br"
           git remote add origin git@github.com:Inteli-College/2025-1A-T12-EC05-G03.git
           git checkout -b gh-pages
           git add --all
