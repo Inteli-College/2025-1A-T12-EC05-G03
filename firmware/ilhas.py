@@ -3,6 +3,7 @@ import pydobot
 import time
 import sys
 import pandas as pd
+from collections import deque
 
 # Classe estendida para o Dobot
 class InteliDobot(pydobot.Dobot):
@@ -28,7 +29,6 @@ class InteliDobot(pydobot.Dobot):
 def main():
     # pega localizações através dos arquivos json
     ilhas = pd.read_json("posicoes_ilhas.json")
-    fita = pd.read_json("fita.json")
  
     #define função para chamar determinado local
     def locais(i):
@@ -36,10 +36,6 @@ def main():
         ilha_1 = ilhas[(ilhas['ilha'] == 1) & (ilhas['etapa'] == i)]
         
         return ilha_0['position'].tolist() + ilha_1['position'].tolist()
-
-    def fita_pos(i):
-        pos_fita = fita[fita['ilha'] == i]
-        return pos_fita['position'].tolist()
 
 
 
@@ -74,53 +70,52 @@ def main():
         return
 
 
+    def safe_move(ilha):
+        # Move para a posição de segurança (posição de leitura + 80 no eixo Z)
+        device.movel_to(ilha[1]["x"], ilha[1]["y"], ilha[1]["z"] + 80, ilha[1]["r"], wait=True)
 
-
-        
-
-    try:
-        ilha_num = int(input("Indique o número da ilha desejada (0 a 4): "))
+    def processa_ilha(ilha_num):
         ilha = locais(ilha_num)
-    except ValueError:
-        print("Entrada inválida. Encerrando o script.")
-        device.close()
-        return
-    # Movimento para a posição de leitura
-    print(f"Movendo para a posição de leitura da ilha {ilha_num}...")
-    
-    # posicao de segurança
-    device.movel_to(ilha[1]["x"], ilha[1]["y"], ilha[1]["z"] + 80, ilha[1]["r"], wait=True)
+        
+        print(f"Movendo para a posição de leitura da ilha {ilha_num}...")
+        safe_move(ilha)
+        
+        # Movimento para pegar o medicamento
+        device.movej_to(ilha[0]["x"], ilha[0]["y"], ilha[0]["z"], ilha[0]["r"], wait=True)
+        safe_move(ilha)
+        
+        time.sleep(1)
+        
+        print(f"Ativando sucção e movendo para a posição da ilha {ilha_num}...")
+        device.suck(True)
+        time.sleep(1)
+        device.movel_to(ilha[1]["x"], ilha[1]["y"], ilha[1]["z"], ilha[1]["r"], wait=True)
+        time.sleep(1)
+        safe_move(ilha)
+        
+        # Movimento para depositar o medicamento
+        device.movej_to(-132.88974, 271.68582, (-19.19559 + 80), 115.23366)
+        device.movej_to(-132.88974, 271.68582, -19.19559, 115.23366)
+        device.suck(False)
+        device.movej_to(-132.88974, 271.68582, (-19.19559 + 100), 115.23366)
+        
+        print("Movendo para uma posição à direita da ilha...")
+        time.sleep(1)
+        
+        # Retorna à posição inicial (Home)
+        print("Retornando à posição Home...")
+        device.GoHomeInteli()
+        time.sleep(1)
 
-    device.movej_to(ilha[0]["x"], ilha[0]["y"], ilha[0]["z"], ilha[0]["r"], wait=True)
-    
-    # posicao de segurança
-    device.movel_to(ilha[1]["x"], ilha[1]["y"], ilha[1]["z"] + 80, ilha[1]["r"], wait=True)
+    # Solicita ao usuário os números das ilhas separados por vírgula
+    ilhas_input = input("Digite os números das ilhas separados por vírgula: ")
+    # Cria uma fila (queue) para organizar as ilhas em ordem (one in one out)
+    fila_ilhas = deque(map(int, ilhas_input.split(',')))
 
-    time.sleep(1)
-
-    # Ativa sucção e move para a posição da ilha
-    print(f"Ativando sucção e movendo para a posição da ilha {ilha_num}...")
-    device.suck(True)
-    time.sleep(1)
-    device.movel_to(ilha[1]["x"], ilha[1]["y"], ilha[1]["z"], ilha[1]["r"], wait=True)
-    time.sleep(1)
-    # posicao de segurança
-    device.movel_to(ilha[1]["x"], ilha[1]["y"], ilha[1]["z"] + 80, ilha[1]["r"], wait=True)
-
-    device.movej_to(-132.88973999023438, 271.6858215332031, -19.19559097290039 + 80, 115.23365783691406)   
-    device.movej_to(-132.88973999023438, 271.6858215332031, -19.19559097290039, 115.23365783691406)
-    device.suck(False)
-    device.movej_to(-132.88973999023438, 271.6858215332031, -19.19559097290039 + 100, 115.23365783691406)   
-    print("Movendo para uma posição à direita da ilha...")
-    time.sleep(1)
-
-
-
-    # Retorna à posição inicial (Home)
-    print("Retornando à posição Home...")
-    device.GoHomeInteli()
-
-    time.sleep(1)
+    # Processa cada ilha na ordem em que foram inseridas
+    while fila_ilhas:
+        ilha_num = fila_ilhas.popleft()
+        processa_ilha(ilha_num)
 
     device.close()
     print("Operação finalizada.")
