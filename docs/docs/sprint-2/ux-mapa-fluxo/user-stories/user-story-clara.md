@@ -80,5 +80,44 @@ Critério de aceite 1 | CR1: Clara deve poder acessar uma aba de histórico e vi
 Critério de aceite 2 | CR2: O sistema deve exibir detalhes como data, medicamentos incluídos e status final do pedido.   
 
 
+## **Acompanhamento de Status na Home**  
+
+### **Ver status dos pedidos em tempo real**  
+Identificação | 08  
+--- | ---  
+Persona | Clara Boia - Técnica em Farmácia  
+User Story | "Como técnica em farmácia, preciso acompanhar o status dos pedidos em tempo real para saber quais medicamentos estão sendo separados e quais já estão prontos para entrega."  
+Critério de aceite 1 | CR1: Clara deve poder visualizar na tela home uma lista de pedidos em andamento com seu status atualizado.  
+Critério de aceite 2 | CR2: O sistema deve permitir a filtragem por status como 'Aguardando Separação', 'Em Separação' , 'Em Revisão', 'Finalizado e Enviado' ou 'Finalizado com Erro'.  
+
+---
+### **Corrigir ou descartar pedidos finalizados com erro**
+Identificação | 09
+--- | ---
+Persona | Clara Boia - Técnica em Farmácia
+User Story | "Como técnica em farmácia, quero corrigir manualmente pedidos finalizados com erro ou descartá-los, garantindo que os pacientes recebam apenas os medicamentos corretos."
+Critério de aceite 1 | CR1: Clara deve poder visualizar em 'Finalizado com Erro' uma lista de pedidos que foram finalizados com algum problema, não sendo enviados ao paciente.
+Critério de aceite 2 | CR2: O sistema deve permitir que ela edite e corrija os pedidos errados, enviando-os novamente para o paciente.
+Critério de aceite 3 | CR3: Caso o erro não possa ser corrigido, Clara deve poder descartar o pedido, justificando a ação.
+---
+
+### **Receber notificações sobre medicamentos perto do vencimento**  
+Identificação | 10  
+--- | ---  
+Persona | Clara Boia - Técnica em Farmácia  
+User Story | "Como técnica em farmácia, preciso ser notificada quando um medicamento estiver perto de vencer para que eu possa tomar providências antes que falte para os pacientes."  
+Critério de aceite 1 | CR1: O sistema deve gerar notificações automáticas quando um medicamento estiver com a validade próxima.  
+Critério de aceite 2 | CR2: A notificação deve conter o nome do medicamento, a quantidade restante e a data de vencimento.  
+
+---
+
+### **Receber alertas sobre medicamentos com estoque baixo**  
+Identificação | 11  
+--- | ---  
+Persona | Clara Boia - Técnica em Farmácia  
+User Story | "Como técnica em farmácia, preciso ser avisada quando um medicamento estiver com estoque baixo para que eu possa solicitar reposição antes que ele acabe."  
+Critério de aceite 1 | CR1: O sistema deve definir um limite mínimo para cada medicamento no estoque.  
+Critério de aceite 2 | CR2: Clara deve receber uma notificação quando um medicamento atingir esse limite.  
+
 
 
