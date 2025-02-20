@@ -26,6 +26,24 @@ class InteliDobot(pydobot.Dobot):
         super().speed(speed, acceleration)
 
 def main():
+    # pega localizações através dos arquivos json
+    ilhas = pd.read_json("posicoes_ilhas.json")
+    fita = pd.read_json("fita.json")
+ 
+    #define função para chamar determinado local
+    def locais(i):
+        ilha_0 = ilhas[(ilhas['ilha'] == 0) & (ilhas['etapa'] == i)]
+        ilha_1 = ilhas[(ilhas['ilha'] == 1) & (ilhas['etapa'] == i)]
+        
+        return ilha_0['position'].tolist() + ilha_1['position'].tolist()
+
+    def fita_pos(i):
+        pos_fita = fita[fita['ilha'] == i]
+        return pos_fita['position'].tolist()
+
+
+
+
     # Obtém as portas disponíveis e tenta conectar em cada uma
     available_ports = list_ports.comports()
     if not available_ports:
@@ -55,19 +73,11 @@ def main():
         print("Nenhuma porta válida foi encontrada. Encerrando...")
         return
 
-    ilhas = pd.read_json("posicoes_ilhas.json")
-    fita = pd.read_json("fita.json")
 
-    def locais(i):
-        ilha_0 = ilhas[(ilhas['ilha'] == 0) & (ilhas['etapa'] == i)]
-        ilha_1 = ilhas[(ilhas['ilha'] == 1) & (ilhas['etapa'] == i)]
+
+
         
-        return ilha_0['position'].tolist() + ilha_1['position'].tolist()
-    
-    def fita_pos(i):
-        pos_fita = fita[fita['ilha'] == i]
-        return pos_fita['position'].tolist()
- 
+
     try:
         ilha_num = int(input("Indique o número da ilha desejada (0 a 4): "))
         ilha = locais(ilha_num)
@@ -81,7 +91,7 @@ def main():
     # posicao de segurança
     device.movel_to(ilha[1]["x"], ilha[1]["y"], ilha[1]["z"] + 80, ilha[1]["r"], wait=True)
 
-    device.movej_to(ilha[0]["x"], ilha[0]["y"], ilha[0]["z"] - 10, ilha[0]["r"], wait=True)
+    device.movej_to(ilha[0]["x"], ilha[0]["y"], ilha[0]["z"], ilha[0]["r"], wait=True)
     
     # posicao de segurança
     device.movel_to(ilha[1]["x"], ilha[1]["y"], ilha[1]["z"] + 80, ilha[1]["r"], wait=True)
@@ -92,7 +102,7 @@ def main():
     print(f"Ativando sucção e movendo para a posição da ilha {ilha_num}...")
     device.suck(True)
     time.sleep(1)
-    device.movel_to(ilha[1]["x"], ilha[1]["y"], ilha[1]["z"] - 10, ilha[1]["r"], wait=True)
+    device.movel_to(ilha[1]["x"], ilha[1]["y"], ilha[1]["z"], ilha[1]["r"], wait=True)
     time.sleep(1)
     # posicao de segurança
     device.movel_to(ilha[1]["x"], ilha[1]["y"], ilha[1]["z"] + 80, ilha[1]["r"], wait=True)
