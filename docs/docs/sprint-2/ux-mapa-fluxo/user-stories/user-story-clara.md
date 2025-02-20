@@ -121,5 +121,9 @@ Critério de aceite 2 | CR2: Clara deve receber uma notificação quando um medi
 
 &emsp; Logo, as User Stories apresentadas servem como um guia fundamental para o desenvolvimento do sistema, garantindo que as funcionalidades implementadas estejam alinhadas com as necessidades reais da técnica em farmácia Clara Boia. Ao traduzir suas demandas diárias em requisitos claros e acionáveis, o projeto se torna mais intuitivo, eficiente e adaptado ao fluxo de trabalho hospitalar. Além disso, essa abordagem facilita a priorização de entregas e a validação contínua da plataforma, assegurando que a automação da Fita de Medicamentos realmente otimize processos, reduza erros e melhore a gestão de estoque. Com isso, o sistema não apenas melhora a eficiência operacional, mas também contribui para a segurança e qualidade no atendimento aos pacientes.
 
+---
 
+## Bibliografia
+
+ZACHARIAS, Isabela Cristina Simões; CUNHA, Lorena Pereira da; COSTA, Janaina Mascarenhas Hornos da. User stories: quem, quando e como deve ser usado?. Anais, 2017.
 
