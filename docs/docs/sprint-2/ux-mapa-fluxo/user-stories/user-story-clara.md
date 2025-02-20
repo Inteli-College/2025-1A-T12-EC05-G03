@@ -59,4 +59,26 @@ User Story | "Como técnica em farmácia, preciso remover medicamentos vencidos 
 Critério de aceite 1 | CR1: Clara deve poder identificar facilmente os medicamentos vencidos na tela de estoque.  
 Critério de aceite 2 | CR2: O sistema deve permitir que ela remova medicamentos, exigindo uma justificativa antes da exclusão.  
 
+## **Histórico de Prescrições e Pedidos**  
+
+### **Consultar histórico de prescrições**  
+Identificação | 06  
+--- | ---  
+Persona | Clara Boia - Técnica em Farmácia  
+User Story | "Como técnica em farmácia, quero acessar o histórico de prescrições para verificar quais medicamentos foram aprovados e quais foram recusados, garantindo que tudo esteja correto para os pacientes."  
+Critério de aceite 1 | CR1: Clara deve poder acessar uma aba de histórico e visualizar todas as prescrições anteriores.  
+Critério de aceite 2 | CR2: O sistema deve permitir a filtragem por status (aprovado, reprovado, aprovado parcialmente).  
+
+---
+
+### **Visualizar histórico de pedidos de medicamentos**  
+Identificação | 07  
+--- | ---  
+Persona | Clara Boia - Técnica em Farmácia  
+User Story | "Como técnica em farmácia, quero acessar o histórico de pedidos finalizados para verificar se todos os medicamentos foram entregues corretamente."  
+Critério de aceite 1 | CR1: Clara deve poder acessar uma aba de histórico e visualizar os pedidos já finalizados.  
+Critério de aceite 2 | CR2: O sistema deve exibir detalhes como data, medicamentos incluídos e status final do pedido.   
+
+
+
 
