@@ -29,5 +29,34 @@ User Story | "Como técnica em farmácia, quero fazer login na plataforma de man
 Critério de aceite 1 | CR1: Clara deve poder inserir suas credenciais (e-mail e senha) e acessar o sistema.  
 Critério de aceite 2 | CR2: Caso insira a senha errada, o sistema deve exibir uma mensagem de erro e permitir recuperação de senha via e-mail.  
 
+## **Gestão de Estoque**  
+
+### **Visualizar estoque de medicamentos**  
+Identificação | 03  
+--- | ---  
+Persona | Clara Boia - Técnica em Farmácia  
+User Story | "Como técnica em farmácia, preciso visualizar rapidamente os medicamentos disponíveis no estoque, pois frequentemente preciso conferir se há medicamentos suficientes para as prescrições."  
+Critério de aceite 1 | CR1: Clara deve poder acessar a aba de estoque e visualizar uma lista de medicamentos disponíveis.  
+Critério de aceite 2 | CR2: A lista deve exibir informações como nome do medicamento, quantidade disponível, lote e validade.  
+
+---
+
+### **Atualizar informações dos medicamentos no estoque**  
+Identificação | 04  
+--- | ---  
+Persona | Clara Boia - Técnica em Farmácia  
+User Story | "Como técnica em farmácia, quero atualizar as quantidades dos medicamentos no estoque conforme recebo novos lotes, para manter as informações sempre corretas e evitar problemas de abastecimento."  
+Critério de aceite 1 | CR1: Clara deve poder selecionar um medicamento e editar sua quantidade, lote e data de validade.  
+Critério de aceite 2 | CR2: O sistema deve exigir confirmação antes de salvar as alterações feitas.  
+
+---
+
+### **Remover medicamentos vencidos ou não disponíveis**  
+Identificação | 05  
+--- | ---  
+Persona | Clara Boia - Técnica em Farmácia  
+User Story | "Como técnica em farmácia, preciso remover medicamentos vencidos do sistema para que eles não sejam utilizados acidentalmente."  
+Critério de aceite 1 | CR1: Clara deve poder identificar facilmente os medicamentos vencidos na tela de estoque.  
+Critério de aceite 2 | CR2: O sistema deve permitir que ela remova medicamentos, exigindo uma justificativa antes da exclusão.  
 
 
