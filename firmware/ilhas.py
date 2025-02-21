@@ -119,11 +119,11 @@ def main():
         
         print(f"Depositando medicamento na fita, etapa {fita_etapa}...")
         # Move para a posição de segurança (posição de leitura + 80 no eixo Z)
-        device.movel_to(posicoes_fita[1]["x"], posicoes_fita[1]["y"], posicoes_fita[1]["z"] + 80, posicoes_fita[1]["r"], wait=True)
+        device.movel_to(posicoes_fita[1]["x"], posicoes_fita[1]["y"], posicoes_fita[1]["z"] + 80, wait=True)
         time.sleep(1)
         
         # Movimento para a posição de leitura da fita
-        device.movej_to(posicoes_fita[0]["x"], posicoes_fita[0]["y"], posicoes_fita[0]["z"], posicoes_fita[0]["r"], wait=True)
+        device.movej_to(posicoes_fita[0]["x"], posicoes_fita[0]["y"], posicoes_fita[0]["z"], wait=True)
         time.sleep(1)
         
         # Desativa a sucção para depositar o medicamento
@@ -131,11 +131,11 @@ def main():
         time.sleep(1)
         
         # Movimento para a posição final da fita (de depósito)
-        device.movel_to(posicoes_fita[1]["x"], posicoes_fita[1]["y"], posicoes_fita[1]["z"], posicoes_fita[1]["r"], wait=True)
+        device.movel_to(posicoes_fita[1]["x"], posicoes_fita[1]["y"], posicoes_fita[1]["z"], wait=True)
         time.sleep(1)
         
         # Retorna à posição de segurança
-        device.movel_to(posicoes_fita[1]["x"], posicoes_fita[1]["y"], posicoes_fita[1]["z"] + 80, posicoes_fita[1]["r"], wait=True)
+        device.movel_to(posicoes_fita[1]["x"], posicoes_fita[1]["y"], posicoes_fita[1]["z"] + 80, wait=True)
         time.sleep(1)
     
     # Solicita ao usuário os números das ilhas separados por vírgula
