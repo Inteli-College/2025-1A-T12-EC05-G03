@@ -36,9 +36,7 @@ def main():
         ilha_1 = ilhas[(ilhas['ilha'] == 1) & (ilhas['etapa'] == i)]
         
         return ilha_0['position'].tolist() + ilha_1['position'].tolist()
-
-
-
+    
 
     # Obtém as portas disponíveis e tenta conectar em cada uma
     available_ports = list_ports.comports()
@@ -73,13 +71,14 @@ def main():
     def safe_move(ilha):
         # Move para a posição de segurança (posição de leitura + 80 no eixo Z)
         device.movel_to(ilha[1]["x"], ilha[1]["y"], ilha[1]["z"] + 80, ilha[1]["r"], wait=True)
+                
 
     def processa_ilha(ilha_num):
         ilha = locais(ilha_num)
         
         print(f"Movendo para a posição de leitura da ilha {ilha_num}...")
         safe_move(ilha)
-        
+
         # Movimento para pegar o medicamento
         device.movej_to(ilha[0]["x"], ilha[0]["y"], ilha[0]["z"], ilha[0]["r"], wait=True)
         safe_move(ilha)
@@ -88,17 +87,13 @@ def main():
         
         print(f"Ativando sucção e movendo para a posição da ilha {ilha_num}...")
         device.suck(True)
+        safe_move(ilha)
+        
         time.sleep(1)
         device.movel_to(ilha[1]["x"], ilha[1]["y"], ilha[1]["z"], ilha[1]["r"], wait=True)
         time.sleep(1)
         safe_move(ilha)
-        
-        # Movimento para depositar o medicamento
-        device.movej_to(-132.88974, 271.68582, (-19.19559 + 80), 115.23366)
-        device.movej_to(-132.88974, 271.68582, -19.19559, 115.23366)
-        device.suck(False)
-        device.movej_to(-132.88974, 271.68582, (-19.19559 + 100), 115.23366)
-        
+                
         print("Movendo para uma posição à direita da ilha...")
         time.sleep(1)
         
@@ -107,6 +102,42 @@ def main():
         device.GoHomeInteli()
         time.sleep(1)
 
+    # FUNÇÃO NOVA: Processa a fita de medicamentos
+    def processa_fita():
+        # Lê as posições da fita a partir do JSON
+        fita = pd.read_json("fita.json")
+        
+        # Função interna para obter as posições da fita para uma determinada etapa
+        def locais_fita(i):
+            fita_0 = fita[(fita['ilha'] == 0) & (fita['etapa'] == i)]
+            fita_1 = fita[(fita['ilha'] == 1) & (fita['etapa'] == i)]
+            return fita_0['position'].tolist() + fita_1['position'].tolist()
+        
+        # Solicita ao usuário a etapa da fita para depositar o medicamento
+        fita_etapa = int(input("Digite a etapa da fita para depositar o medicamento: "))
+        posicoes_fita = locais_fita(fita_etapa)
+        
+        print(f"Depositando medicamento na fita, etapa {fita_etapa}...")
+        # Move para a posição de segurança (posição de leitura + 80 no eixo Z)
+        device.movel_to(posicoes_fita[1]["x"], posicoes_fita[1]["y"], posicoes_fita[1]["z"] + 80, posicoes_fita[1]["r"], wait=True)
+        time.sleep(1)
+        
+        # Movimento para a posição de leitura da fita
+        device.movej_to(posicoes_fita[0]["x"], posicoes_fita[0]["y"], posicoes_fita[0]["z"], posicoes_fita[0]["r"], wait=True)
+        time.sleep(1)
+        
+        # Desativa a sucção para depositar o medicamento
+        device.suck(False)
+        time.sleep(1)
+        
+        # Movimento para a posição final da fita (de depósito)
+        device.movel_to(posicoes_fita[1]["x"], posicoes_fita[1]["y"], posicoes_fita[1]["z"], posicoes_fita[1]["r"], wait=True)
+        time.sleep(1)
+        
+        # Retorna à posição de segurança
+        device.movel_to(posicoes_fita[1]["x"], posicoes_fita[1]["y"], posicoes_fita[1]["z"] + 80, posicoes_fita[1]["r"], wait=True)
+        time.sleep(1)
+    
     # Solicita ao usuário os números das ilhas separados por vírgula
     ilhas_input = input("Digite os números das ilhas separados por vírgula: ")
     # Cria uma fila (queue) para organizar as ilhas em ordem (one in one out)
@@ -116,6 +147,7 @@ def main():
     while fila_ilhas:
         ilha_num = fila_ilhas.popleft()
         processa_ilha(ilha_num)
+        processa_fita()
 
     device.close()
     print("Operação finalizada.")
