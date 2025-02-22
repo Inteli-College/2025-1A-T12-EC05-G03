@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from backend.models.prescricao import Prescricao
+from backend.models.pedido import Pedido
 from backend.models.database import db
 from datetime import datetime
 
@@ -23,8 +24,9 @@ def add_prescricao():
     newPrescricao = Prescricao(
         hc_paciente=data['hc_paciente'],
         lista_remedios=str(lista_remedios),
-        datatime= datetime.now(),
     )
+
+    newPrescricao.status_prescricao = 1
 
     db.session.add(newPrescricao)
     db.session.commit()
@@ -40,12 +42,25 @@ def listar_por_id(prescricao_id):
     return jsonify(prescricao.as_dict()), 200
 
 # Aprovar a prescrição
-@prescricoes_bp.route('/aprovar/<prescricao_id>', methods=['PATCH'])
+@prescricoes_bp.route('/aprovar/<prescricao_id>', methods=['PUT'])
 def aprovar_prescricao(prescricao_id):
     prescricao = Prescricao.query.get_or_404(prescricao_id)
     data = request.get_json()
+
+    lista_remedios = data['lista_remedios'] if isinstance(data['lista_remedios'], list) else []
+
+    if(data['status'] != 4):
+        newPedido = Pedido(
+            id_prescricao = prescricao_id,
+            lista_remedios = str(lista_remedios),
+            status_pedido = 1
+        )
+        
+        db.session.add(newPedido)
+
     prescricao.crf_farmaceutico = data['crf_farmaceutico']
-    prescricao.aprovacao_farmaceutico = True
+    prescricao.data_aprovacao = datetime.now()
+    prescricao.status_prescricao = data['status']
 
     db.session.commit()
     return jsonify({'Message': 'Prescricao aprovada com sucesso'}), 200

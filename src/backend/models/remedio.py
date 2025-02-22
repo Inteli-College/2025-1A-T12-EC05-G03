@@ -10,7 +10,7 @@ class Remedio(db.Model):
     id = db.Column(db.Integer, nullable = False, primary_key=True)
     nome = db.Column(db.String(255), nullable=False)
     principio = db.Column(db.String(255), nullable=False)
-    lote = db.Column(db.String(255), db.ForeignKey('lote.lote'), nullable=False)
+    lote_id = db.Column(db.String(255), db.ForeignKey('lote.id'), nullable=False)
     bin = db.Column(db.Integer, nullable=False)
     fabricante = db.Column(db.String(255), nullable=False)
 
@@ -23,7 +23,7 @@ class Remedio(db.Model):
             'id': self.id,
             'nome': self.nome,
             'principio': self.principio,
-            'lote': self.lote,
+            'lote_id': self.lote_id,
             'bin': self.bin,
             'fabricante': self.fabricante
         }

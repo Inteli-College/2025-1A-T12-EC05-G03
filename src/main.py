@@ -5,8 +5,12 @@ from backend.models.farmaceutico import Farmaceutico
 from backend.models.prescricao import Prescricao
 from backend.models.lote import Lote
 from backend.models.remedio import Remedio
+from backend.models.pedido import Pedido
+from backend.models.statusPedido import StatusPedido
+from backend.models.statusPrescricao import StatusPrescricao
 from backend.routes.prescricoes import prescricoes_bp
 from backend.routes.farmaceuticos import farmaceutico_bp
+from backend.routes.pedidos import pedidos_bp
 import os
 from backend.models.database import db  # Importa o SQLAlchemy
 
@@ -31,6 +35,7 @@ with app.app_context():
 # Chamadnas as rotas que foram criadas no outro arquivo
 app.register_blueprint(prescricoes_bp)
 app.register_blueprint(farmaceutico_bp)
+app.register_blueprint(pedidos_bp)
 
 
 # Configurando para iniciar o projeto
