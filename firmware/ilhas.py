@@ -131,92 +131,13 @@ def main():
 
         # Movimento para a posição de leitura da fita
 # Movimento para a posição de leitura da fita
-    if ilha_num == 0 and fita_etapa == 0:
-        device.movej_to(posicoes_fita[0]["x"], posicoes_fita[0]["y"], posicoes_fita[0]["z"] + 10, posicoes_fita[0]["r"] + 40, wait=True)
-        time.sleep(1)
-    elif ilha_num == 0 and fita_etapa == 1:
-        device.movej_to(posicoes_fita[0]["x"], posicoes_fita[0]["y"], posicoes_fita[0]["z"] + 10, posicoes_fita[0]["r"] + 40, wait=True)
-        time.sleep(1)
-    elif ilha_num == 0 and fita_etapa == 2:
-        device.movej_to(posicoes_fita[0]["x"], posicoes_fita[0]["y"], posicoes_fita[0]["z"] + 10, posicoes_fita[0]["r"] + 40, wait=True)
-        time.sleep(1)
-    elif ilha_num == 0 and fita_etapa == 3:
-        device.movej_to(posicoes_fita[0]["x"], posicoes_fita[0]["y"], posicoes_fita[0]["z"] + 10, posicoes_fita[0]["r"] + 40, wait=True)
-        time.sleep(1)
-    elif ilha_num == 0 and fita_etapa == 4:
-        device.movej_to(posicoes_fita[0]["x"], posicoes_fita[0]["y"], posicoes_fita[0]["z"] + 10, posicoes_fita[0]["r"] + 40, wait=True)
-        time.sleep(1)
 
-    elif ilha_num == 1 and fita_etapa == 0:
-        device.movej_to(posicoes_fita[1]["x"], posicoes_fita[1]["y"], posicoes_fita[1]["z"] + 10, posicoes_fita[1]["r"] + 40, wait=True)
-        time.sleep(1)
-    elif ilha_num == 1 and fita_etapa == 1:
-        device.movej_to(posicoes_fita[1]["x"], posicoes_fita[1]["y"], posicoes_fita[1]["z"] + 10, posicoes_fita[1]["r"] + 40, wait=True)
-        time.sleep(1)
-    elif ilha_num == 1 and fita_etapa == 2:
-        device.movej_to(posicoes_fita[1]["x"], posicoes_fita[1]["y"], posicoes_fita[1]["z"] + 10, posicoes_fita[1]["r"] + 40, wait=True)
-        time.sleep(1)
-    elif ilha_num == 1 and fita_etapa == 3:
-        device.movej_to(posicoes_fita[1]["x"], posicoes_fita[1]["y"], posicoes_fita[1]["z"] + 10, posicoes_fita[1]["r"] + 40, wait=True)
-        time.sleep(1)
-    elif ilha_num == 1 and fita_etapa == 4:
-        device.movej_to(posicoes_fita[1]["x"], posicoes_fita[1]["y"], posicoes_fita[1]["z"] + 10, posicoes_fita[1]["r"] + 40, wait=True)
-        time.sleep(1)
-
-    elif ilha_num == 2 and fita_etapa == 0:
-        device.movej_to(posicoes_fita[2]["x"], posicoes_fita[2]["y"], posicoes_fita[2]["z"] + 10, posicoes_fita[2]["r"] + 40, wait=True)
-        time.sleep(1)
-    elif ilha_num == 2 and fita_etapa == 1:
-        device.movej_to(posicoes_fita[2]["x"], posicoes_fita[2]["y"], posicoes_fita[2]["z"] + 10, posicoes_fita[2]["r"] + 40, wait=True)
-        time.sleep(1)
-    elif ilha_num == 2 and fita_etapa == 2:
-        device.movej_to(posicoes_fita[2]["x"], posicoes_fita[2]["y"], posicoes_fita[2]["z"] + 10, posicoes_fita[2]["r"] + 40, wait=True)
-        time.sleep(1)
-    elif ilha_num == 2 and fita_etapa == 3:
-        device.movej_to(posicoes_fita[2]["x"], posicoes_fita[2]["y"], posicoes_fita[2]["z"] + 10, posicoes_fita[2]["r"] + 40, wait=True)
-        time.sleep(1)
-    elif ilha_num == 2 and fita_etapa == 4:
-        device.movej_to(posicoes_fita[2]["x"], posicoes_fita[2]["y"], posicoes_fita[2]["z"] + 10, posicoes_fita[2]["r"] + 40, wait=True)
-        time.sleep(1)
-
-    elif ilha_num == 3 and fita_etapa == 0:
-        device.movej_to(posicoes_fita[3]["x"], posicoes_fita[3]["y"], posicoes_fita[3]["z"] + 10, posicoes_fita[3]["r"] + 40, wait=True)
-        time.sleep(1)
-    elif ilha_num == 3 and fita_etapa == 1:
-        device.movej_to(posicoes_fita[3]["x"], posicoes_fita[3]["y"], posicoes_fita[3]["z"] + 10, posicoes_fita[3]["r"] + 40, wait=True)
-        time.sleep(1)
-    elif ilha_num == 3 and fita_etapa == 2:
-        device.movej_to(posicoes_fita[3]["x"], posicoes_fita[3]["y"], posicoes_fita[3]["z"] + 10, posicoes_fita[3]["r"] + 40, wait=True)
-        time.sleep(1)
-    elif ilha_num == 3 and fita_etapa == 3:
-        device.movej_to(posicoes_fita[3]["x"], posicoes_fita[3]["y"], posicoes_fita[3]["z"] + 10, posicoes_fita[3]["r"] + 40, wait=True)
-        time.sleep(1)
-    elif ilha_num == 3 and fita_etapa == 4:
-        device.movej_to(posicoes_fita[3]["x"], posicoes_fita[3]["y"], posicoes_fita[3]["z"] + 10, posicoes_fita[3]["r"] + 40, wait=True)
-        time.sleep(1)
-
-    elif ilha_num == 4 and fita_etapa == 0:
-        device.movej_to(posicoes_fita[4]["x"], posicoes_fita[4]["y"], posicoes_fita[4]["z"] + 10, posicoes_fita[4]["r"] + 40, wait=True)
-        time.sleep(1)
-    elif ilha_num == 4 and fita_etapa == 1:
-        device.movej_to(posicoes_fita[4]["x"], posicoes_fita[4]["y"], posicoes_fita[4]["z"] + 10, posicoes_fita[4]["r"] + 40, wait=True)
-        time.sleep(1)
-    elif ilha_num == 4 and fita_etapa == 2:
-        device.movej_to(posicoes_fita[4]["x"], posicoes_fita[4]["y"], posicoes_fita[4]["z"] + 10, posicoes_fita[4]["r"] + 40, wait=True)
-        time.sleep(1)
-    elif ilha_num == 4 and fita_etapa == 3:
-        device.movej_to(posicoes_fita[4]["x"], posicoes_fita[4]["y"], posicoes_fita[4]["z"] + 10, posicoes_fita[4]["r"] + 40, wait=True)
-        time.sleep(1)
-    elif ilha_num == 4 and fita_etapa == 4:
-        device.movej_to(posicoes_fita[4]["x"], posicoes_fita[4]["y"], posicoes_fita[4]["z"] + 10, posicoes_fita[4]["r"] + 40, wait=True)
-        time.sleep(1)
-        
         # Desativa a sucção para depositar o medicamento
-        device.suck(False)
-        time.sleep(1)
         
         # Movimento para a posição final da fita (de depósito)
         device.movel_to(posicoes_fita[1]["x"], posicoes_fita[1]["y"], posicoes_fita[1]["z"], posicoes_fita[1]["r"], wait=True)
+        time.sleep(1)
+        device.suck(False)
         time.sleep(1)
         
         # Retorna à posição de segurança
