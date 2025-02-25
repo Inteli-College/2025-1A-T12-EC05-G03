@@ -1,0 +1,8 @@
+{
+    "label": "Mapa de Fluxo",
+    "position": 2,
+    "link": {
+      "type": "generated-index",
+      "description": "Essa seção exige a criação de um mapa do fluxo de utilização do usuário (user flow), representando visualmente os passos e interações dentro do sistema, incluindo telas, trocas de dados e uso dos componentes da solução, garantindo que todos os elementos do sistema estejam contemplados e acompanhados de wireframes das principais telas."
+    }
+  }
