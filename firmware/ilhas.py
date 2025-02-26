@@ -27,7 +27,7 @@ class InteliDobot(pydobot.Dobot):
         super().speed(speed, acceleration)
 
 def main():
-# ----- Aqui são definidas as posições dos locus através de um arquivo json -----
+    # ----- Aqui são definidas as posições dos locus através de um arquivo json -----
     # pega localizações através dos arquivos json
     ilhas = pd.read_json("posicoes_ilhas.json")
  
@@ -49,7 +49,7 @@ def main():
 
         return fita_0['position'].tolist() + fita_1['position'].tolist()
 
-# --------------------------------------------------------------------------------
+    # --------------------------------------------------------------------------------
 
     # Obtém as portas disponíveis e tenta conectar em cada uma
     available_ports = list_ports.comports()
@@ -85,12 +85,14 @@ def main():
         # Move para a posição de segurança (posição de leitura + 90 no eixo Z)
         device.movel_to(ilha[1]["x"], ilha[1]["y"], ilha[1]["z"] + 70, ilha[1]["r"], wait=True)
                 
+    def safe_movej(ilha):
+        device.movej_to(ilha[1]["x"], ilha[1]["y"], 200, ilha[1]["r"], wait=True)
 
     def processa_ilha(ilha_num):
         ilha = locais(ilha_num)
         
         print(f"Movendo para a posição de leitura da ilha {ilha_num}...")
-        safe_move(ilha)
+        safe_movej(ilha)
 
         # Movimento para pegar o medicamento
         device.movej_to(ilha[0]["x"], ilha[0]["y"], ilha[0]["z"], ilha[0]["r"], wait=True)
@@ -112,40 +114,39 @@ def main():
         
         # Retorna à posição inicial (Home)
         print("Retornando à posição Home...")
-        device.GoHomeInteli()
-        time.sleep(1)
 
-    # FUNÇÃO NOVA: Processa a fita de medicamentos, você vai mexer aqui pablito
+    # Contador para a próxima posição na fita
+    fita_contador = 0
+
+    # FUNÇÃO MODIFICADA: Processa a fita de medicamentos automaticamente
     def processa_fita():
+        nonlocal fita_contador
         
-        # Solicita ao usuário a etapa da fita para depositar o medicamento
-        fita_etapa = int(input("Digite a etapa da fita para depositar o medicamento: "))
-        posicoes_fita = locais_fita(fita_etapa)
+        # Obtém as posições da fita para a próxima etapa
+        posicoes_fita = locais_fita(fita_contador)
         
-        print(f"Depositando medicamento na fita, etapa {fita_etapa}...")
+        print(f"Depositando medicamento na fita, etapa {fita_contador}...")
 
         # Move para a posição de segurança (posição de leitura + 80 no eixo Z)
         device.movej_to(posicoes_fita[1]["x"], posicoes_fita[1]["y"], posicoes_fita[1]["z"] + 80, posicoes_fita[1]["r"], wait=True)
         time.sleep(1)
-        
+        device.suck(False)
 
         # Movimento para a posição de leitura da fita
-# Movimento para a posição de leitura da fita
-
-        # Desativa a sucção para depositar o medicamento
-        
-        # Movimento para a posição final da fita (de depósito)
         device.movel_to(posicoes_fita[1]["x"], posicoes_fita[1]["y"], posicoes_fita[1]["z"], posicoes_fita[1]["r"], wait=True)
         time.sleep(1)
-        device.suck(False)
+        # device.suck(False)
         time.sleep(1)
         
         # Retorna à posição de segurança
         device.movej_to(posicoes_fita[1]["x"], posicoes_fita[1]["y"], posicoes_fita[1]["z"] + 80, posicoes_fita[1]["r"], wait=True)
         time.sleep(1)
+        # device.suck(False)
 
         device.GoHomeInteli()
 
+        # Incrementa o contador para a próxima posição na fita
+        fita_contador += 1
     
     # Solicita ao usuário os números das ilhas separados por vírgula
     ilhas_input = input("Digite os números das ilhas separados por vírgula: ")
@@ -156,7 +157,11 @@ def main():
     while fila_ilhas:
         ilha_num = fila_ilhas.popleft()
         processa_ilha(ilha_num)
+        device.GoHomeInteli()
+        time.sleep(1)
         processa_fita()
+        device.GoHomeInteli()
+        time.sleep(1)
 
     device.close()
     print("Operação finalizada.")
