@@ -23,3 +23,5 @@ custom_edit_url: null
 <p style={{textAlign: 'center'}}>Fonte: Produzida pelos Autores (2025). </p>
 
 
+&emsp;Seguindo para o próximo Wireflow, ele representa o fluxo de navegação da User Story 07 - Visualizar histórico de pedidos de medicamentos, ilustrando como a técnica em farmácia Clara Boia acessa e consulta registros de pedidos já processados. O fluxo começa na tela Home, onde Clara acessa a aba "Histórico" e seleciona a opção "Pedidos". Em seguida, ela visualiza uma lista de pedidos finalizados, podendo aplicar filtros para refinar a busca. Ao selecionar um pedido específico, uma janela modal é aberta exibindo detalhes como medicamentos incluídos, status final e eventuais observações registradas. Esse fluxo permite uma rápida consulta ao histórico de pedidos, garantindo que Clara possa verificar informações passadas com eficiência e rastrear a entrega de medicamentos dentro do hospital. É possível observar essa ilustração abaixo:
+
