@@ -1,0 +1,8 @@
+{
+    "label": "Userflow",
+    "position": 3,
+    "link": {
+      "type": "generated-index",
+      "description": "Esta seção apresenta o userflow da nossa solição, ilustrando os fluxos com base nas necessidades identificadas no mapeamento da jornada do usuário."
+    }
+  }
