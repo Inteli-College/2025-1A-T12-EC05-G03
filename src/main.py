@@ -11,8 +11,13 @@ from backend.models.statusPrescricao import StatusPrescricao
 from backend.routes.prescricoes import prescricoes_bp
 from backend.routes.farmaceuticos import farmaceutico_bp
 from backend.routes.pedidos import pedidos_bp
+import backend.routes.user
 import os
 from backend.models.database import db  # Importa o SQLAlchemy
+
+from flask_bcrypt import Bcrypt
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+
 
 app = Flask(__name__)
 
@@ -23,6 +28,10 @@ DB_PATH = os.path.join(BASE_DIR, "data", "database.db")
 # Configura o banco de dados para salvar na pasta `data/`
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DB_PATH}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config['JWT_SECRET_KEY'] = 'SenhaNDCSuprema'  # Troque isso por uma chave segura
+bcrypt = Bcrypt(app)
+jwt = JWTManager(app)
+
 
 # Inicializa o banco no app
 db.init_app(app)
