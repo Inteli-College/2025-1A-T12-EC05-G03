@@ -49,6 +49,10 @@ custom_edit_url: null
 
 &emsp;Logo, a implementação dos Wireflows para cada User Story reforça a importância de um fluxo de navegação bem estruturado, garantindo que a técnica em farmácia Clara Boia consiga realizar suas tarefas de forma intuitiva e eficiente. A representação visual dos processos facilita a compreensão das interações dentro do sistema, antecipando possíveis dificuldades e otimizando a experiência do usuário. Com isso, asseguramos que funcionalidades essenciais, como gestão de estoque, acompanhamento de pedidos e correção de erros, sejam acessíveis e bem integradas, tornando a automação da Fita de Medicamentos mais confiável e alinhada às necessidades do hospital.
 
+---
 
+## Bibliografia
+
+PRADANA, Nanda Ihsan et al. Ui/ux design of e-wallet appllication using design thinking approach. In: 2022 4th International Conference on Cybernetics and Intelligent System (ICORIS). IEEE, 2022. p. 1-5.
 
 
