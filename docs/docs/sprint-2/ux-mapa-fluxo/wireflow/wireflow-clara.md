@@ -35,3 +35,5 @@ custom_edit_url: null
 <p style={{textAlign: 'center'}}>Fonte: Produzida pelos Autores (2025). </p>
 
 
+&emsp;Por fim, temos o Wireflow da User Story 09 - Corrigir ou descartar pedidos finalizados com erro, detalhando como a técnica em farmácia Clara Boia lida com pedidos que apresentam inconsistências. O fluxo começa na tela Home, onde Clara visualiza a seção de Pedidos em "Aguardando Separação" e acessa aqueles que estão em "Em Revisão". Ao selecionar um pedido, ela pode aprovar ou negar a solicitação. Caso aprove, o sistema exige que ela registre observações e, se necessário, realize correções manuais no pedido. Se optar por negar, deve justificar a decisão, resultando no descarte do pedido. Após essa ação, o pedido desaparece da lista de "Em Revisão", sendo removido do sistema ou finalizado como "Concluído". Esse fluxo garante maior controle sobre os pedidos errados, permitindo ajustes eficientes e evitando a distribuição incorreta de medicamentos. A seguir podemos ver esse Wireflow:
+
