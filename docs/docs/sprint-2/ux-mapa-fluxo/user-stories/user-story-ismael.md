@@ -155,3 +155,7 @@ Critério de aceite 3 | CR3:  Ajustes no estoque de psicotrópicos devem exigir 
 
 &nbsp;&nbsp;&nbsp;&nbsp;As User Stories do farmacêutico chefe Ismael Gonçalves são importantes para que a plataforma atenda às demandas complexas do ambiente de separação da fita de medicamentos. Ao traduzir as atividades diárias em funcionalidades claras e bem definidas, garantimos que o sistema contribuirá diretamente para a segurança, organização e agilidade no atendimento aos pacientes. 
 
+## Bibliografia
+
+ZACHARIAS, Isabela Cristina Simões; CUNHA, Lorena Pereira da; COSTA, Janaina Mascarenhas Hornos da. User stories: quem, quando e como deve ser usado?. Anais, 2017.
+

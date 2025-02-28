@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 custom_edit_url: null
 ---
 
@@ -46,3 +46,7 @@ custom_edit_url: null
 
 &emsp;(Link de acesso para visualização completa dos wireflows para cada user stories: [Wireflow- Ismael Gonçalves](https://www.figma.com/design/gThbVne91wSJ4elePbQgQ4/Wireframa-NDC?node-id=78-122&p=f&t=5DieqV5tRO8ZjN3h-0))
 
+
+## Bibliografia
+
+PRADANA, Nanda Ihsan et al. Ui/ux design of e-wallet appllication using design thinking approach. In: 2022 4th International Conference on Cybernetics and Intelligent System (ICORIS). IEEE, 2022. p. 1-5.
