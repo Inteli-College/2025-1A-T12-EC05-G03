@@ -23,7 +23,7 @@ custom_edit_url: null
 
 ## Conclusão
 
-&emsp; O ***Wireflow*** demonstra uma interação intuitiva e segura com o sistema de automação, garantindo que os usuários realizem suas tarefas de forma eficaz. As funcionalidades foram ajustadas para atender às demandas específicas da farmácia, proporcionando uma operacionalização simplificada e eficiente, o que contribui para a melhoria contínua do processo de montagem das fitas de medicamento.
+&emsp; O ***Wireflow*** demonstra uma interação intuitiva e segura com o sistema de automação, garantindo que os usuários realizem suas tarefas de forma eficaz. As funcionalidades foram ajustadas para atender às demandas específicas da farmácia, proporcionando uma operacionalização simplificada e eficiente, o que contribui para a melhoria contínua do processo de montagem das fitas de medicamento. Ademais, nas próximas seções iremos expor mais detalhadamente os possíveis fluxos do nosso sistema com base nas *User Story's* das nossas Personas.
 
 
 
