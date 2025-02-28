@@ -25,6 +25,10 @@ class InteliDobot(pydobot.Dobot):
     
     def SetSpeed(self, speed, acceleration):
         super().speed(speed, acceleration)
+    
+    def movej_angles(self, j1, j2, j3, j4, wait=True):
+        mode = pydobot.enums.PTPMode.MOVJ_ANGLE
+        self._set_ptp_cmd(j1, j2, j3, j4, mode=mode, wait=wait)
 
 def main():
     # ----- Aqui são definidas as posições dos locus através de um arquivo json -----
@@ -83,26 +87,25 @@ def main():
 
     def safe_move(ilha):
         # Move para a posição de segurança (posição de leitura + 90 no eixo Z)
-        device.movel_to(ilha[1]["x"], ilha[1]["y"], ilha[1]["z"] + 70, ilha[1]["r"], wait=True)
+        device.movel_to(ilha[1]["x"], ilha[1]["y"], 130, ilha[1]["r"], wait=True)
                 
     def safe_movej(ilha):
-        device.movej_to(ilha[1]["x"], ilha[1]["y"], 200, ilha[1]["r"], wait=True)
+        device.movej_to(ilha[1]["x"], ilha[1]["y"], 130, ilha[1]["r"], wait=True)
 
     def processa_ilha(ilha_num):
         ilha = locais(ilha_num)
-        
+
+        safe_movej(ilha)
         print(f"Movendo para a posição de leitura da ilha {ilha_num}...")
         safe_movej(ilha)
-
-        # Movimento para pegar o medicamento
+        time.sleep(2)
+        # Movimento para ler o medicamento
         device.movej_to(ilha[0]["x"], ilha[0]["y"], ilha[0]["z"], ilha[0]["r"], wait=True)
-        safe_move(ilha)
-        
-        time.sleep(1)
+        time.sleep(1)        
         
         print(f"Ativando sucção e movendo para a posição da ilha {ilha_num}...")
         device.suck(True)
-        safe_move(ilha)
+        safe_movej(ilha)
         
         time.sleep(1)
         device.movel_to(ilha[1]["x"], ilha[1]["y"], ilha[1]["z"], ilha[1]["r"], wait=True)
@@ -120,33 +123,59 @@ def main():
 
     # FUNÇÃO MODIFICADA: Processa a fita de medicamentos automaticamente
     def processa_fita():
-        nonlocal fita_contador
+        # Variável estática para manter o estado do contador entre chamadas da função
+        if not hasattr(processa_fita, "fita_contador"):
+            processa_fita.fita_contador = 0
         
-        # Obtém as posições da fita para a próxima etapa
-        posicoes_fita = locais_fita(fita_contador)
+        # Obtém as posições da fita
+        posicoes_fita = locais_fita(processa_fita.fita_contador)
         
-        print(f"Depositando medicamento na fita, etapa {fita_contador}...")
+        print(f"Depositando medicamento na fita, etapa {processa_fita.fita_contador}...")
 
-        # Move para a posição de segurança (posição de leitura + 80 no eixo Z)
-        device.movej_to(posicoes_fita[1]["x"], posicoes_fita[1]["y"], posicoes_fita[1]["z"] + 80, posicoes_fita[1]["r"], wait=True)
+        if processa_fita.fita_contador == 0:
+            # Obtém os ângulos atuais das juntas
+            _, _, _, _, current_j1, current_j2, current_j3, current_j4 = device.pose()
+            
+            # Define o ângulo desejado para J1 (exemplo: 45 graus)
+            desired_j1 = 45  # Substitua pelo ângulo correto para sua aplicação
+            
+            # Move apenas o J1, mantendo as outras juntas iguais
+            device.movej_angles(desired_j1, current_j2, current_j3, current_j4, wait=True)
+        else:
+            safe_movej(posicoes_fita)
+        
+        safe_movej(posicoes_fita)
+
+        time.sleep(2)
+
+        # Movimento para a posição de deposição
+        device.movel_to(
+            posicoes_fita[1]["x"],
+            posicoes_fita[1]["y"],
+            posicoes_fita[1]["z"],
+            posicoes_fita[1]["r"],
+            wait=True
+        )
         time.sleep(1)
         device.suck(False)
-
-        # Movimento para a posição de leitura da fita
-        device.movel_to(posicoes_fita[1]["x"], posicoes_fita[1]["y"], posicoes_fita[1]["z"], posicoes_fita[1]["r"], wait=True)
-        time.sleep(1)
-        # device.suck(False)
-        time.sleep(1)
         
-        # Retorna à posição de segurança
-        device.movej_to(posicoes_fita[1]["x"], posicoes_fita[1]["y"], posicoes_fita[1]["z"] + 80, posicoes_fita[1]["r"], wait=True)
-        time.sleep(1)
-        # device.suck(False)
-
+        # Retorna à posição segura após depositar
+        if processa_fita.fita_contador == 0:
+            safe_movej(posicoes_fita)
+            device.GoHomeInteli()
+        else:
+            device.GoHomeInteli()
+            time.sleep(1)
+            safe_movej(posicoes_fita)
+            time.sleep(1)
+        
         device.GoHomeInteli()
-
-        # Incrementa o contador para a próxima posição na fita
-        fita_contador += 1
+        
+        # Incrementa o contador e reinicia se atingir o valor máximo (4)
+        if processa_fita.fita_contador == 4:
+            processa_fita.fita_contador = 0
+        else:
+            processa_fita.fita_contador += 1
     
     # Solicita ao usuário os números das ilhas separados por vírgula
     ilhas_input = input("Digite os números das ilhas separados por vírgula: ")
@@ -161,7 +190,6 @@ def main():
         time.sleep(1)
         processa_fita()
         device.GoHomeInteli()
-        time.sleep(1)
 
     device.close()
     print("Operação finalizada.")
