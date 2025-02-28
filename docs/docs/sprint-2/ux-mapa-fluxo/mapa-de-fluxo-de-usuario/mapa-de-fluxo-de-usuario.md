@@ -21,7 +21,7 @@ custom_edit_url: null
 
 &emsp; Para uma visualização detalhada do *User Flow* acessar o seguinte <a href="https://www.figma.com/design/gThbVne91wSJ4elePbQgQ4/Wireframa-NDC?node-id=68-182">link do Figma</a>
 
-## Conclusão:
+## Conclusão
 
 &emsp; O **Mapa de Fluxo de Usuário** demonstra uma interação intuitiva e segura com o sistema de automação, garantindo que os usuários realizem suas tarefas de forma eficaz. As funcionalidades foram ajustadas para atender às demandas específicas da farmácia, proporcionando uma operacionalização simplificada e eficiente, o que contribui para a melhoria contínua do processo de montagem das fitas de medicamento.
 
