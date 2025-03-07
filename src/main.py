@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from backend.routes.prescricoes import prescricoes_bp
-# from backend.routes.farmaceuticos import farmaceutico_bp
 from backend.routes.pedidos import pedidos_bp
 import os
 from backend.models.database import db  # Importa o SQLAlchemy
@@ -45,7 +44,6 @@ with app.app_context():
     
 # Chamadnas as rotas que foram criadas no outro arquivo
 app.register_blueprint(prescricoes_bp)
-# app.register_blueprint(farmaceutico_bp)
 app.register_blueprint(pedidos_bp)
 
 

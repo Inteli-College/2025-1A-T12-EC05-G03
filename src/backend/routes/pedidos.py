@@ -24,7 +24,8 @@ def add_pedido():
     newPedido = Pedido(
         id_prescricao = data['id_prescricao'],
         lista_remedios = str(lista_remedios),
-        status_pedido = data['status_pedido']
+        status_pedido = 1,
+        data_entrada = datetime.now()
     )
 
     db.session.add(newPedido)
@@ -47,21 +48,20 @@ def alterar_status(pedido_id):
     pedido = Pedido.query.get_or_404(pedido_id)
     data = request.get_json()
 
-    # Fazer verificao de somente ter os id que vão ter no status !! dar bad request
+    if data['status'] not in [1, 2, 3, 4, 5, 6]:
+        return {
+        "Message": f"O status de número {data['status']} não existe"
+        }, 400
+
 
     pedido.status_pedido = data['status']
     
-    if(data['status'] == 4 or data['status'] == 5 or data['status'] == 6):
+    if (data['status'] == 4 or data['status'] == 5 or data['status'] == 6) :
         pedido.data_finalizacao = datetime.now()
+        # Fazer lógica para puxar o id do usuario que aprovou! ou para o usuário que reprovou
 
     db.session.commit()
-    return jsonify({'Message': f'Status prescrição atualizado para {data['status']}, com sucesso'}), 200
-
-# # buscar por id prescricao
-# @pedidos_bp.route('/prescricaoId/<pedido_id_prescricao>', methods=['GET'])
-# def listar_por_idPrescricao(pedido_id_prescricao):
-#     pedido = Pedido.query.get_or_404(pedido_id_prescricao)
-#     return jsonify(pedido.as_dict()), 200
+    return jsonify({'Message': f"Status prescrição atualizado para {data['status']}, com sucesso"}), 200
 
 # Deletar a pedido
 @pedidos_bp.route('/deletar/<pedido_id>', methods=['DELETE'])

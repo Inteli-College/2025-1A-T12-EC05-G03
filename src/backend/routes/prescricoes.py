@@ -49,7 +49,9 @@ def aprovar_prescricao(prescricao_id):
 
     lista_remedios = data['lista_remedios'] if isinstance(data['lista_remedios'], list) else []
 
-    if(data['status'] != 4):
+    prescricao.status_prescricao = data['status_prescricao']
+
+    if(data['status_prescricao'] != 4):
         newPedido = Pedido(
             id_prescricao = prescricao_id,
             lista_remedios = str(lista_remedios),
@@ -58,9 +60,9 @@ def aprovar_prescricao(prescricao_id):
         
         db.session.add(newPedido)
 
-    prescricao.crf_farmaceutico = data['crf_farmaceutico']
-    prescricao.data_aprovacao = datetime.now()
-    prescricao.status_prescricao = data['status']
+    prescricao.data_avaliacao = datetime.now()
+ 
+    # Fazer lógica para puxar o id do usuário que aprovou!
 
     db.session.commit()
     return jsonify({'Message': 'Prescricao aprovada com sucesso'}), 200

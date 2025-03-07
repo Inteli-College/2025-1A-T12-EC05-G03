@@ -2,7 +2,7 @@ from .database import db  # Importação relativa
 
 #Criando a tabela de statusPrescricao
 class StatusPrescricao(db.Model):
-    __tablename__ = 'status_prescricao'  # Certifique-se de que está assim
+    __tablename__ = 'statusPrescricao'  # Certifique-se de que está assim
 
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     status_prescricao = db.Column(db.String(255), nullable=False)
