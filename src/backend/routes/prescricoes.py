@@ -3,6 +3,8 @@ from backend.models.prescricao import Prescricao
 from backend.models.pedido import Pedido
 from backend.models.database import db
 from datetime import datetime
+from flask_jwt_extended import jwt_required, get_jwt_identity
+
 
 # criando a rota base
 prescricoes_bp = Blueprint('prescricoes', __name__, url_prefix='/prescricoes')
@@ -10,12 +12,14 @@ prescricoes_bp = Blueprint('prescricoes', __name__, url_prefix='/prescricoes')
 #Rotas:
 #Listar todas as prescrições
 @prescricoes_bp.route('/listar', methods=['GET'])
+@jwt_required()
 def listar_prescricoes():
     prescrioes = Prescricao.query.all()
     return jsonify([prescricao.as_dict() for prescricao in prescrioes])
 
 # Adicionar uma prescrição nova
 @prescricoes_bp.route('/adicionar', methods=['POST'])
+@jwt_required()
 def add_prescricao():
     data = request.get_json()
 
@@ -24,6 +28,7 @@ def add_prescricao():
     newPrescricao = Prescricao(
         hc_paciente=data['hc_paciente'],
         lista_remedios=str(lista_remedios),
+        data_entrada = datetime.now()
     )
 
     newPrescricao.status_prescricao = 1
@@ -37,12 +42,14 @@ def add_prescricao():
 
 # Buscar prescrições por Id
 @prescricoes_bp.route('/<prescricao_id>', methods=['GET'])
+@jwt_required()
 def listar_por_id(prescricao_id):
     prescricao = Prescricao.query.get_or_404(prescricao_id)
     return jsonify(prescricao.as_dict()), 200
 
 # Aprovar a prescrição
 @prescricoes_bp.route('/aprovar/<prescricao_id>', methods=['PUT'])
+@jwt_required()
 def aprovar_prescricao(prescricao_id):
     prescricao = Prescricao.query.get_or_404(prescricao_id)
     data = request.get_json()
@@ -69,6 +76,7 @@ def aprovar_prescricao(prescricao_id):
 
 # Deletar a prescrição
 @prescricoes_bp.route('/deletar/<prescricao_id>', methods=['DELETE'])
+@jwt_required()
 def deletar_prescricao(prescricao_id):
     prescricao = Prescricao.query.get_or_404(prescricao_id)
     db.session.delete(prescricao)

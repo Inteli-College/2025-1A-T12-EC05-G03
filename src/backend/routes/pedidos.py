@@ -3,6 +3,8 @@ from backend.models.prescricao import Prescricao
 from backend.models.pedido import Pedido
 from backend.models.database import db
 from datetime import datetime
+from flask_jwt_extended import jwt_required, get_jwt_identity
+
 
 # criando a rota base
 pedidos_bp = Blueprint('pedidos', __name__, url_prefix='/pedidos')
@@ -10,12 +12,15 @@ pedidos_bp = Blueprint('pedidos', __name__, url_prefix='/pedidos')
 #Rotas:
 #Listar todas as pedidos
 @pedidos_bp.route('/listar', methods=['GET'])
+@jwt_required()
 def listar_pedidos():
     pedidos = Pedido.query.all()
     return jsonify([pedido.as_dict() for pedido in pedidos])
 
 # Adicionar uma Pedidos nova
 @pedidos_bp.route('/adicionar', methods=['POST'])
+@jwt_required()
+
 def add_pedido():
     data = request.get_json()
 
@@ -37,6 +42,8 @@ def add_pedido():
 
 # Buscar pedidos por Id
 @pedidos_bp.route('/<pedido_id>', methods=['GET'])
+@jwt_required()
+
 def listar_por_id(pedido_id):
     pedido = Pedido.query.get_or_404(pedido_id)
     return jsonify(pedido.as_dict()), 200
@@ -44,6 +51,8 @@ def listar_por_id(pedido_id):
 
 # Alterar Status Pedido
 @pedidos_bp.route('/status/<pedido_id>', methods=['PATCH'])
+@jwt_required()
+
 def alterar_status(pedido_id):
     pedido = Pedido.query.get_or_404(pedido_id)
     data = request.get_json()
@@ -65,6 +74,8 @@ def alterar_status(pedido_id):
 
 # Deletar a pedido
 @pedidos_bp.route('/deletar/<pedido_id>', methods=['DELETE'])
+@jwt_required()
+
 def deletar_pedido(pedido_id):
     pedido = Pedido.query.get_or_404(pedido_id)
     db.session.delete(pedido)
