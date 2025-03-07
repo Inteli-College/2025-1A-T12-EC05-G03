@@ -8,7 +8,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     nome_completo = db.Column(db.String(200), nullable=False)
-    senha = db.Column(db.Boolean, nullable=False)
+    senha = db.Column(db.String(), nullable=False)
     id_cargo = db.Column(db.Integer,db.ForeignKey('cargo.id'), nullable = False)
 
 # Fazendo a conexão com as outras tabelas

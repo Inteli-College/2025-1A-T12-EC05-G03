@@ -1,14 +1,17 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from backend.routes.prescricoes import prescricoes_bp
 from backend.routes.pedidos import pedidos_bp
+from backend.routes.auth import auth_bp
 import os
-from backend.models.database import db  # Importa o SQLAlchemy
-
+from flask_jwt_extended import JWTManager
 from flask_bcrypt import Bcrypt
-from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 
 
+
+
+
+from flask_sqlalchemy import SQLAlchemy
+from backend.models.database import db  # Importa o SQLAlchemy
 from backend.models.statusPedido import StatusPedido
 from backend.models.statusPrescricao import StatusPrescricao
 from backend.models.cargo import Cargo
@@ -29,9 +32,9 @@ DB_PATH = os.path.join(BASE_DIR, "data", "database.db")
 # Configura o banco de dados para salvar na pasta `data/`
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DB_PATH}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config['JWT_SECRET_KEY'] = 'SenhaNDCSuprema'  # Troque isso por uma chave segura
-bcrypt = Bcrypt(app)
+app.config['JWT_SECRET_KEY'] = 'NDCSuprema'  # Troque por uma chave segura
 jwt = JWTManager(app)
+bcrypt = Bcrypt(app)
 
 
 # Inicializa o banco no app
@@ -45,12 +48,12 @@ with app.app_context():
 # Chamadnas as rotas que foram criadas no outro arquivo
 app.register_blueprint(prescricoes_bp)
 app.register_blueprint(pedidos_bp)
+app.register_blueprint(auth_bp)
+
 
 
 # Configurando para iniciar o projeto
 if __name__ == '__main__':
     app.run(
         debug=True,
-        port=8080,
-        host='0.0.0.0'
         )
