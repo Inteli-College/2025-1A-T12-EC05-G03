@@ -9,7 +9,9 @@ class Pedido(db.Model):
     id_prescricao = db.Column(db.Integer, db.ForeignKey('prescricao.id'), nullable=False)
     lista_remedios = db.Column(db.Text, nullable=False)
     status_pedido = db.Column(db.Integer, db.ForeignKey('statusPedido.id'), nullable=False)
+    data_entrada = db.Column(db.DateTime, nullable=True)
     data_finalizacao = db.Column(db.DateTime, nullable=True)
+    id_user_revisao = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     # Fazendo a conexão com as outras tabelas
     prescricao = db.relationship('Prescricao', backref=db.backref('pedido', lazy=True))
@@ -22,5 +24,7 @@ class Pedido(db.Model):
             'id_prescricao': self.id_prescricao,
             'lista_remedios': self.lista_remedios,
             'status_pedido':self.status_pedido,
-            'data_finalizacao': self.data_finalizacao
+            'data_entrada': self.data_entrada,
+            'data_finalizacao': self.data_finalizacao,
+            'id_user_revisao': self.id_user_revisao
         }

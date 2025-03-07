@@ -1,22 +1,24 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from backend.models.paciente import Paciente
-from backend.models.farmaceutico import Farmaceutico
-from backend.models.prescricao import Prescricao
-from backend.models.lote import Lote
-from backend.models.remedio import Remedio
-from backend.models.pedido import Pedido
-from backend.models.statusPedido import StatusPedido
-from backend.models.statusPrescricao import StatusPrescricao
 from backend.routes.prescricoes import prescricoes_bp
-from backend.routes.farmaceuticos import farmaceutico_bp
+# from backend.routes.farmaceuticos import farmaceutico_bp
 from backend.routes.pedidos import pedidos_bp
-import backend.routes.user
 import os
 from backend.models.database import db  # Importa o SQLAlchemy
 
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+
+
+from backend.models.statusPedido import StatusPedido
+from backend.models.statusPrescricao import StatusPrescricao
+from backend.models.cargo import Cargo
+from backend.models.lote import Lote
+from backend.models.remedio import Remedio
+from backend.models.paciente import Paciente
+from backend.models.user import User
+from backend.models.pedido import Pedido
+from backend.models.prescricao import Prescricao
 
 
 app = Flask(__name__)
@@ -43,7 +45,7 @@ with app.app_context():
     
 # Chamadnas as rotas que foram criadas no outro arquivo
 app.register_blueprint(prescricoes_bp)
-app.register_blueprint(farmaceutico_bp)
+# app.register_blueprint(farmaceutico_bp)
 app.register_blueprint(pedidos_bp)
 
 

@@ -8,11 +8,9 @@ class Remedio(db.Model):
 
     # Definindo as colunas
     id = db.Column(db.Integer, nullable = False, primary_key=True)
-    nome = db.Column(db.String(255), nullable=False)
-    principio = db.Column(db.String(255), nullable=False)
-    lote_id = db.Column(db.String(255), db.ForeignKey('lote.id'), nullable=False)
-    bin = db.Column(db.Integer, nullable=False)
-    fabricante = db.Column(db.String(255), nullable=False)
+    id_lote = db.Column(db.Integer, db.ForeignKey('lote.id'), nullable=False)
+    principio_ativo = db.Column(db.String(255), nullable=False)
+    bin_qrcode = db.Column(db.Integer, nullable=False)
 
     # Fazendo a conexão com as outras tabelas
     lote_obj = db.relationship('Lote', backref=db.backref('remedios', lazy=True))
@@ -21,9 +19,7 @@ class Remedio(db.Model):
     def as_dict(self):
         return{
             'id': self.id,
-            'nome': self.nome,
-            'principio': self.principio,
-            'lote_id': self.lote_id,
-            'bin': self.bin,
-            'fabricante': self.fabricante
+            'id_lote': self.id_lote,
+            'principio_ativo': self.principio_ativo,
+            'bin_qrcode': self.bin_qrcode
         }
