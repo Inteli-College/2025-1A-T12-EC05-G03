@@ -1,7 +1,7 @@
 from flask import Flask
-from backend.routes.prescricoes import prescricoes_bp
-from backend.routes.pedidos import pedidos_bp
-from backend.routes.auth import auth_bp
+from routes.prescricoes import prescricoes_bp
+from routes.pedidos import pedidos_bp
+from routes.auth import auth_bp
 import os
 from flask_jwt_extended import JWTManager
 from flask_bcrypt import Bcrypt
@@ -11,16 +11,16 @@ from flask_bcrypt import Bcrypt
 
 
 from flask_sqlalchemy import SQLAlchemy
-from backend.models.database import db  # Importa o SQLAlchemy
-from backend.models.statusPedido import StatusPedido
-from backend.models.statusPrescricao import StatusPrescricao
-from backend.models.cargo import Cargo
-from backend.models.lote import Lote
-from backend.models.remedio import Remedio
-from backend.models.paciente import Paciente
-from backend.models.user import User
-from backend.models.pedido import Pedido
-from backend.models.prescricao import Prescricao
+from models.database import db  # Importa o SQLAlchemy
+from models.statusPedido import StatusPedido
+from models.statusPrescricao import StatusPrescricao
+from models.cargo import Cargo
+from models.lote import Lote
+from models.remedio import Remedio
+from models.paciente import Paciente
+from models.user import User
+from models.pedido import Pedido
+from models.prescricao import Prescricao
 
 
 app = Flask(__name__)
