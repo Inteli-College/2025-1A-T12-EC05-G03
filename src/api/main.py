@@ -27,7 +27,7 @@ app = Flask(__name__)
 
 # Define o caminho para a pasta `data`
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-DB_PATH = os.path.join(BASE_DIR, "data", "database.db")
+DB_PATH = os.path.join(BASE_DIR, "../data", "database.db")
 
 # Configura o banco de dados para salvar na pasta `data/`
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DB_PATH}"
