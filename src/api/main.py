@@ -19,6 +19,8 @@ from models.paciente import Paciente
 from models.user import User
 from models.pedido import Pedido
 from models.prescricao import Prescricao
+from models.codigo_log import CodigoLog
+from models.log import Log
 
 
 app = Flask(__name__)
