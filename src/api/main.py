@@ -1,13 +1,11 @@
 from flask import Flask
+from flask_migrate import Migrate
 from routes.prescricoes import prescricoes_bp
 from routes.pedidos import pedidos_bp
 from routes.auth import auth_bp
 import os
 from flask_jwt_extended import JWTManager
 from flask_bcrypt import Bcrypt
-
-
-
 
 
 from flask_sqlalchemy import SQLAlchemy
@@ -21,6 +19,8 @@ from models.paciente import Paciente
 from models.user import User
 from models.pedido import Pedido
 from models.prescricao import Prescricao
+from models.codigo_log import CodigoLog
+from models.log import Log
 
 
 app = Flask(__name__)
@@ -35,6 +35,8 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config['JWT_SECRET_KEY'] = 'NDCSuprema'  # Troque por uma chave segura
 jwt = JWTManager(app)
 bcrypt = Bcrypt(app)
+migrate = Migrate(app, db)
+
 
 
 # Inicializa o banco no app
