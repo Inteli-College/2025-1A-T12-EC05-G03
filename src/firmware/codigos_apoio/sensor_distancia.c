@@ -28,6 +28,22 @@ void loop() {
   monitorarSensor();
   delay(5000);
 
+  // Testando a função obterValorSensor
+  Serial.print("3. Função que retorna o valor do sensor");
+  int valorSensor = obterValorSensor();
+  Serial.print("Valor bruto do sensor: ");
+  Serial.println(valorSensor);  // Agora imprimimos o retorno da função
+  delay(5000);
+  
+  // Testando a função objetoDetectado
+  Serial.print("4. Função que retorna se o objeto foi detectado");
+  bool detectado = objetoDetectado();
+  Serial.print("Objeto detectado? ");
+  Serial.println(detectado ? "Sim" : "Não");
+  delay(5000);
+  // Aguarda 500 ms para a próxima leitura
+  delay(5000);
+
 }
 
 // Função 1: Verificar o estado do sensor e imprimir o resultado
