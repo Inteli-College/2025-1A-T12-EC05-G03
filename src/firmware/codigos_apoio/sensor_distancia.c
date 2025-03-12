@@ -72,3 +72,15 @@ int obterValorSensor() {
   
   return valor;
 }
+
+// Função 3: Verificar se há um objeto detectado e retornar um booleano (true/false)
+bool objetoDetectado() {
+  // Lê o valor do sensor
+  int valor = digitalRead(sensorPin);
+  
+  // Adicionando um Serial.print() para debug
+  Serial.print("Função objetoDetectado() retornou: ");
+  Serial.println(valor == LOW ? "true (Objeto detectado)" : "false (Nenhum objeto)");
+
+  return valor == LOW;
+}
