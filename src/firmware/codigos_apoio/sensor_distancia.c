@@ -84,3 +84,16 @@ bool objetoDetectado() {
 
   return valor == LOW;
 }
+
+// Função 4: Monitorar o sensor e enviar o estado atual via serial
+void monitorarSensor() {
+  // Lê o valor do sensor
+  int estadoSensor = digitalRead(sensorPin);
+  
+  // Envia o estado do sensor via serial
+  Serial.print("Estado do sensor: ");
+  if (estadoSensor == LOW) {
+    Serial.println("Objeto detectado.");
+  } else {
+    Serial.println("Nenhum objeto detectado.");
+  }
