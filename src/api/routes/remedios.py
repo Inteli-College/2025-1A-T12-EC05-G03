@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
-from models.remedio import Remedio
-from models.database import db
+from ..models.remedio import Remedio
+from ..models.database import db
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 remedios_bp = Blueprint('remedios', __name__, url_prefix='/remedios')

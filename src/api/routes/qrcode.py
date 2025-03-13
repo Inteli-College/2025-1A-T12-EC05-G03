@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from models.remedio import Remedio
+from ..models.remedio import Remedio
 
 qrcode_bp = Blueprint('qrcode', __name__, url_prefix='/qrcode')
 
