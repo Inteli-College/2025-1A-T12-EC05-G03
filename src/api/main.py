@@ -4,6 +4,8 @@ from routes.prescricoes import prescricoes_bp
 from routes.pedidos import pedidos_bp
 from routes.auth import auth_bp
 from routes.logs import log_bp
+from routes.remedios import remedios_bp
+from routes.qrcode import qrcode_bp
 import os
 from flask_jwt_extended import JWTManager
 from flask_bcrypt import Bcrypt
@@ -53,6 +55,8 @@ app.register_blueprint(prescricoes_bp)
 app.register_blueprint(pedidos_bp)
 app.register_blueprint(auth_bp)
 app.register_blueprint(log_bp)
+app.register_blueprint(remedios_bp)
+app.register_blueprint(qrcode_bp)
 
 
 
