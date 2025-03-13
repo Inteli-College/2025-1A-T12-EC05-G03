@@ -16,6 +16,60 @@ custom_edit_url: null
 3. **Estabilidade da Comunicação Serial** – A transmissão dos dados do sensor para o código principal, escrito em **Python**, foi realizada através da comunicação RX/TX entre o Arduino e o Raspberry Pi, garantindo uma transmissão eficiente e de baixa latência.
 4. **Facilidade de Expansão** – Com o Arduino intermediando a leitura do sensor, futuras expansões podem ser implementadas sem sobrecarregar o Raspberry Pi.
 
+## **Desenvolvimento das Funcionalidades**
+&emsp;Para garantir que o sensor funcionasse de forma eficiente, implementamos diferentes funções em C++ no Arduino para modularizar e otimizar sua operação:
+
+### **1️⃣ Função `verificarSensor()`**
+&emsp;Essa função lê diretamente o estado do sensor e exibe o resultado no Monitor Serial. Se um objeto for detectado (LOW), ele imprime a mensagem correspondente, permitindo que os dados sejam acompanhados em tempo real.
+```cpp
+void verificarSensor() {
+  sensorValue = digitalRead(sensorPin);
+  if (sensorValue == LOW) {
+    Serial.print("Objeto detectado! Valor: ");
+    Serial.println(sensorValue);
+  } else {
+    Serial.print("Nenhum objeto detectado. Valor: ");
+    Serial.println(sensorValue);
+  }
+}
+```
+
+### **2️⃣ Função `obterValorSensor()`**
+&emsp;Criamos essa função para retornar o valor digital bruto do sensor, permitindo que outras partes do sistema usem esse dado para validações.
+```cpp
+int obterValorSensor() {
+  int valor = digitalRead(sensorPin);
+  Serial.print("Função obterValorSensor() retornou: ");
+  Serial.println(valor);
+  return valor;
+}
+```
+
+### **3️⃣ Função `objetoDetectado()`**
+&emsp;Essa função retorna um valor booleano (true ou false), indicando se um objeto foi detectado. Essa lógica simplificada permite que o código principal do Raspberry Pi processe os dados de maneira mais intuitiva.
+```cpp
+bool objetoDetectado() {
+  int valor = digitalRead(sensorPin);
+  Serial.print("Função objetoDetectado() retornou: ");
+  Serial.println(valor == LOW ? "true (Objeto detectado)" : "false (Nenhum objeto)");
+  return valor == LOW;
+}
+```
+
+### **4️⃣ Função `monitorarSensor()`**
+&emsp;Essa função mantém a leitura contínua do sensor e envia o estado do objeto via comunicação serial, garantindo que o Raspberry Pi sempre receba os dados atualizados.
+```cpp
+void monitorarSensor() {
+  int estadoSensor = digitalRead(sensorPin);
+  Serial.print("Estado do sensor: ");
+  if (estadoSensor == LOW) {
+    Serial.println("Objeto detectado.");
+  } else {
+    Serial.println("Nenhum objeto detectado.");
+  }
+}
+```
+
 ## **Testes e Depuração de Erros**
 &emsp;Durante o processo de desenvolvimento, realizamos testes intensivos para validar a precisão e confiabilidade do sensor. Algumas das principais dificuldades encontradas e as soluções aplicadas foram:
 
