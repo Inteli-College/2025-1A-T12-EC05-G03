@@ -3,6 +3,7 @@ from flask_migrate import Migrate
 from routes.prescricoes import prescricoes_bp
 from routes.pedidos import pedidos_bp
 from routes.auth import auth_bp
+from routes.logs import log_bp
 import os
 from flask_jwt_extended import JWTManager
 from flask_bcrypt import Bcrypt
@@ -51,6 +52,8 @@ with app.app_context():
 app.register_blueprint(prescricoes_bp)
 app.register_blueprint(pedidos_bp)
 app.register_blueprint(auth_bp)
+app.register_blueprint(log_bp)
+
 
 
 

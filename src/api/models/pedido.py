@@ -11,7 +11,7 @@ class Pedido(db.Model):
     status_pedido = db.Column(db.Integer, db.ForeignKey('statusPedido.id'), nullable=False)
     data_entrada = db.Column(db.DateTime, nullable=True)
     data_finalizacao = db.Column(db.DateTime, nullable=True)
-    id_user_revisao = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    id_user_revisao = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
 
     # Fazendo a conexão com as outras tabelas
     prescricao = db.relationship('Prescricao', backref=db.backref('pedido', lazy=True))
