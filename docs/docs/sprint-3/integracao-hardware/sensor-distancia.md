@@ -7,7 +7,7 @@ custom_edit_url: null
 
 ##### Desenvolvimento e Integração do Sensor TCRT5000 no Projeto
 
-&emsp;A implementação do sensor de distância TCRT5000 no nosso projeto foi um passo essencial para garantir a detecção precisa de objetos a até 25mm de distância. Como esse sensor opera com leitura de reflexão de luz infravermelha, sua precisão e tempo de resposta foram pontos críticos a serem validados. Para integrar essa funcionalidade ao nosso sistema principal, utilizamos um Arduino como intermediário, comunicando-se com o Raspberry Pi via RX/TX. Essa decisão foi tomada para garantir uma comunicação confiável e minimizar o impacto no processamento do Raspberry, além de facilitar a manipulação do sensor, já que o Arduino oferece maior flexibilidade para o tratamento direto de sinais digitais em tempo real.
+&emsp;A implementação do sensor de distância TCRT5000 no nosso projeto foi um passo essencial para garantir a detecção precisa de objetos a até 25mm de distância. Como esse sensor opera com leitura de reflexão de luz infravermelha, sua precisão e tempo de resposta foram pontos críticos a serem validados. Para integrar essa funcionalidade ao nosso sistema principal, utilizamos um Arduino como intermediário, comunicando-se com o Raspberry Pi via USB. Essa decisão foi tomada para garantir uma comunicação confiável e minimizar o impacto no processamento do Raspberry, além de facilitar a manipulação do sensor, já que o Arduino oferece maior flexibilidade para o tratamento direto de sinais digitais em tempo real.
 
 ## **Motivo para o Uso do Arduino**
 &emsp;A escolha de um Arduino para processar os dados do TCRT5000 foi baseada em alguns fatores essenciais:
@@ -78,7 +78,7 @@ void monitorarSensor() {
 3. **Calibração da Sensibilidade** – Durante os testes, percebemos que objetos de cores escuras não eram detectados corretamente. Isso ocorre porque superfícies escuras absorvem mais luz infravermelha, reduzindo a reflexão. Para mitigar esse problema, realizamos testes com diferentes materiais e ajustamos a posição do sensor.
 
 ## **Testes com LED como Indicador Visual**
-&emsp;Para facilitar a validação prática, implementamos um LED no circuito, que acendia automaticamente quando um objeto era detectado. Esse indicador foi extremamente útil para testes rápidos, permitindo verificar o funcionamento do sensor sem a necessidade de monitoramento constante do Serial Monitor.
+&emsp;Para facilitar a validação prática, implementamos um LED no circuito de testes, que acendia automaticamente quando um objeto era detectado. Esse indicador foi extremamente útil para testes rápidos, permitindo verificar o funcionamento do sensor sem a necessidade de monitoramento constante do Serial Monitor.
 
 &emsp;O código para essa funcionalidade foi simples:
 ```cpp
