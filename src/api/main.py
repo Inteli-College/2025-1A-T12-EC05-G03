@@ -33,7 +33,7 @@ app = Flask(__name__)
 # DB_PATH = os.path.join(BASE_DIR, "../data", "database.db")
 
 # Configura o banco de dados para salvar na pasta `data/`
-app.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql://ndcdb_z94y_user:gbZUi8Tqw4e8QqmmZD0I2AcABqNVYVZp@dpg-cv9jvthc1ekc738kbc1g-a.oregon-postgres.render.com/ndcdb_z94y"
+app.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql://ndcdb_w9zl_user:IYinpUeKcoIJpg1pgjTyz0FIBNoJu2nb@dpg-cv9m763qf0us73c9gpb0-a.oregon-postgres.render.com/ndcdb_w9zl"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config['JWT_SECRET_KEY'] = 'NDCSuprema'  # Troque por uma chave segura
 jwt = JWTManager(app)
