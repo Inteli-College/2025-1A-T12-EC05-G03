@@ -15,3 +15,11 @@ custom_edit_url: null
 2. **Facilidade na Manipulação de Sinais Digitais** – Como o TCRT5000 opera com um simples HIGH (1) ou LOW (0), o Arduino pode lidar com esses sinais diretamente e processá-los antes de enviá-los ao Raspberry Pi.
 3. **Estabilidade da Comunicação Serial** – A transmissão dos dados do sensor para o código principal, escrito em **Python**, foi realizada através da comunicação RX/TX entre o Arduino e o Raspberry Pi, garantindo uma transmissão eficiente e de baixa latência.
 4. **Facilidade de Expansão** – Com o Arduino intermediando a leitura do sensor, futuras expansões podem ser implementadas sem sobrecarregar o Raspberry Pi.
+
+## **Testes e Depuração de Erros**
+&emsp;Durante o processo de desenvolvimento, realizamos testes intensivos para validar a precisão e confiabilidade do sensor. Algumas das principais dificuldades encontradas e as soluções aplicadas foram:
+
+1. **Oscilações nas Leituras** – Inicialmente, o sensor apresentou leituras intermitentes devido a variações na superfície dos objetos testados. Ajustamos a posição e ângulo do sensor para melhorar a consistência.
+2. **Interferência na Comunicação Serial** – O envio contínuo de dados pelo Serial.print() gerava ruído na comunicação com o Raspberry Pi. Para resolver isso, otimizamos a taxa de atualização e implementamos um delay adequado.
+3. **Calibração da Sensibilidade** – Durante os testes, percebemos que objetos de cores escuras não eram detectados corretamente. Isso ocorre porque superfícies escuras absorvem mais luz infravermelha, reduzindo a reflexão. Para mitigar esse problema, realizamos testes com diferentes materiais e ajustamos a posição do sensor.
+
