@@ -1,5 +1,4 @@
 from flask import Flask
-from flask_migrate import Migrate
 from .routes.prescricoes import prescricoes_bp
 from .routes.pedidos import pedidos_bp
 from .routes.auth import auth_bp
@@ -26,17 +25,17 @@ from .models.log import Log
 
 app = Flask(__name__)
 
-# Define o caminho para a pasta `data`
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-DB_PATH = os.path.join(BASE_DIR, "../data", "database.db")
+# # Define o caminho para a pasta `data`
+# BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+# DB_PATH = os.path.join(BASE_DIR, "../data", "database.db")
 
 # Configura o banco de dados para salvar na pasta `data/`
-app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DB_PATH}"
+app.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql://ndcdb_z94y_user:gbZUi8Tqw4e8QqmmZD0I2AcABqNVYVZp@dpg-cv9jvthc1ekc738kbc1g-a.oregon-postgres.render.com/ndcdb_z94y"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config['JWT_SECRET_KEY'] = 'NDCSuprema'  # Troque por uma chave segura
 jwt = JWTManager(app)
 bcrypt = Bcrypt(app)
-migrate = Migrate(app, db)
+
 
 
 
