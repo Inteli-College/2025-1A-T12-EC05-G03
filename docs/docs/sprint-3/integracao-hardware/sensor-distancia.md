@@ -23,3 +23,6 @@ custom_edit_url: null
 2. **Interferência na Comunicação Serial** – O envio contínuo de dados pelo Serial.print() gerava ruído na comunicação com o Raspberry Pi. Para resolver isso, otimizamos a taxa de atualização e implementamos um delay adequado.
 3. **Calibração da Sensibilidade** – Durante os testes, percebemos que objetos de cores escuras não eram detectados corretamente. Isso ocorre porque superfícies escuras absorvem mais luz infravermelha, reduzindo a reflexão. Para mitigar esse problema, realizamos testes com diferentes materiais e ajustamos a posição do sensor.
 
+## **Conclusão**
+&emsp;A integração do TCRT5000 utilizando um Arduino como intermediário proporcionou uma solução robusta e eficiente para a detecção de objetos no projeto. O uso do Monitor Serial, aliado a um LED como indicador visual, permitiu depurar erros e ajustar parâmetros de forma prática. Além disso, a comunicação via RX/TX com o Raspberry Pi garantiu que os dados do sensor fossem utilizados de maneira eficiente no código principal, desenvolvido em Python. Com os testes validados e o sistema operando de forma estável, o próximo passo será integrar esses sensores de forma definitiva ao processo de automação do nosso projeto.
+
