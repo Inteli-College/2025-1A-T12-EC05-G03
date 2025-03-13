@@ -1,27 +1,27 @@
 from flask import Flask
 from flask_migrate import Migrate
-from routes.prescricoes import prescricoes_bp
-from routes.pedidos import pedidos_bp
-from routes.auth import auth_bp
-from routes.logs import log_bp
+from .routes.prescricoes import prescricoes_bp
+from .routes.pedidos import pedidos_bp
+from .routes.auth import auth_bp
+from .routes.logs import log_bp
 import os
 from flask_jwt_extended import JWTManager
 from flask_bcrypt import Bcrypt
 
 
 from flask_sqlalchemy import SQLAlchemy
-from models.database import db  # Importa o SQLAlchemy
-from models.statusPedido import StatusPedido
-from models.statusPrescricao import StatusPrescricao
-from models.cargo import Cargo
-from models.lote import Lote
-from models.remedio import Remedio
-from models.paciente import Paciente
-from models.user import User
-from models.pedido import Pedido
-from models.prescricao import Prescricao
-from models.codigo_log import CodigoLog
-from models.log import Log
+from .models.database import db  # Importa o SQLAlchemy
+from .models.statusPedido import StatusPedido
+from .models.statusPrescricao import StatusPrescricao
+from .models.cargo import Cargo
+from .models.lote import Lote
+from .models.remedio import Remedio
+from .models.paciente import Paciente
+from .models.user import User
+from .models.pedido import Pedido
+from .models.prescricao import Prescricao
+from .models.codigo_log import CodigoLog
+from .models.log import Log
 
 
 app = Flask(__name__)
