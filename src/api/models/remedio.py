@@ -4,7 +4,7 @@ from .database import db  # Importação relativa
 
 # criando a tabela de paciente
 class Remedio(db.Model):
-    __tablename__ = 'remedio' # Define o nome da tabela
+    __tablename__ = 'remedio'
 
     # Definindo as colunas
     id = db.Column(db.Integer, nullable = False, primary_key=True)
@@ -13,7 +13,7 @@ class Remedio(db.Model):
 
     # Função para transformar em json
     def as_dict(self):
-        return{
+        return {
             'id': self.id,
             'principio_ativo': self.principio_ativo,
             'bin_qrcode': self.bin_qrcode

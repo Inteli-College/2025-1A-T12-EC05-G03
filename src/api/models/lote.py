@@ -2,9 +2,8 @@ from sqlalchemy.dialects.postgresql import  UUID, TEXT, ENUM
 from sqlalchemy import func
 from .database import db  
 
-# criando a tabela de paciente
 class Lote(db.Model):
-    __tablename__ = 'lote' # Define o nome da tabela
+    __tablename__ = 'lote'  # Define o nome da tabela
 
     # Definindo as colunas
     id = db.Column(db.Integer, primary_key=True, nullable=False)
@@ -17,9 +16,8 @@ class Lote(db.Model):
     remedio_lote = db.relationship('Remedio', backref=db.backref('lotes', lazy=True))
 
 
-    # Função para transformar em json
     def as_dict(self):
-        return{
+        return {
             'id': self.id,
             'num_lote': self.num_lote,
             'data_validade': self.data_validade,
