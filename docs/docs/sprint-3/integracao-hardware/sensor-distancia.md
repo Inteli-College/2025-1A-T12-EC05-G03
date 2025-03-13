@@ -77,6 +77,33 @@ void monitorarSensor() {
 2. **Interferência na Comunicação Serial** – O envio contínuo de dados pelo Serial.print() gerava ruído na comunicação com o Raspberry Pi. Para resolver isso, otimizamos a taxa de atualização e implementamos um delay adequado.
 3. **Calibração da Sensibilidade** – Durante os testes, percebemos que objetos de cores escuras não eram detectados corretamente. Isso ocorre porque superfícies escuras absorvem mais luz infravermelha, reduzindo a reflexão. Para mitigar esse problema, realizamos testes com diferentes materiais e ajustamos a posição do sensor.
 
+## **Testes com LED como Indicador Visual**
+&emsp;Para facilitar a validação prática, implementamos um LED no circuito, que acendia automaticamente quando um objeto era detectado. Esse indicador foi extremamente útil para testes rápidos, permitindo verificar o funcionamento do sensor sem a necessidade de monitoramento constante do Serial Monitor.
+
+&emsp;O código para essa funcionalidade foi simples:
+```cpp
+const int ledPin = 13;  // LED no pino 13
+
+void setup() {
+  pinMode(sensorPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int sensorValue = digitalRead(sensorPin);
+  if (sensorValue == LOW) {
+    digitalWrite(ledPin, HIGH);  // Acende o LED
+    Serial.println("Objeto detectado!");
+  } else {
+    digitalWrite(ledPin, LOW);   // Apaga o LED
+    Serial.println("Nenhum objeto detectado.");
+  }
+  delay(500);
+}
+```
+&emsp;Com essa abordagem, conseguimos validar rapidamente o funcionamento do sensor sem depender do Monitor Serial, tornando os testes mais práticos.
+
 ## **Conclusão**
 &emsp;A integração do TCRT5000 utilizando um Arduino como intermediário proporcionou uma solução robusta e eficiente para a detecção de objetos no projeto. O uso do Monitor Serial, aliado a um LED como indicador visual, permitiu depurar erros e ajustar parâmetros de forma prática. Além disso, a comunicação via RX/TX com o Raspberry Pi garantiu que os dados do sensor fossem utilizados de maneira eficiente no código principal, desenvolvido em Python. Com os testes validados e o sistema operando de forma estável, o próximo passo será integrar esses sensores de forma definitiva ao processo de automação do nosso projeto.
 
