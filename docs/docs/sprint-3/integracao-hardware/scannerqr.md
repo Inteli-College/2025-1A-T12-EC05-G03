@@ -1,4 +1,11 @@
+---
+sidebar_position: 2
+custom_edit_url: null
+---
+
 # Scanner de QR Code  
+
+##### Desenvolvimento e Integração do Scanner MH-ET Live no Projeto 
 
 <p style={{textAlign: 'center'}}>Imagem scanner de Qr codes MH-ET Live</p>
 <div style={{margin: 25}}>
@@ -8,9 +15,7 @@
     </div>
 </div>
 <p style={{textAlign: 'center'}}>Fonte: https://www.tinytronics.nl/en/sensors/optical/cameras-and-scanners/mh-et-live-barcode-scanner-v3.0 (2025). </p>
-
-
-##### Desenvolvimento e Integração do Scanner MH-ET Live no Projeto  
+ 
 
 &emsp;A implementação do scanner de QR Code MH-ET Live no nosso projeto foi fundamental para a identificação ágil e precisa das medicações. Esse módulo supostamente tem tudo para funcionar, mandando as informações diretamente para o Raspberry Pi, mas enfrentamos problemas com a alimentação do scanner pelo fio que estava ligado diretamente no microcontrolador, que provou não ser suficiente para alimentar o scanner. Para possibilitar a conexão com o robô, utilizamos um Arduino Nano como intermediário, que se comunica com um Raspberry Pi via USB. Essa abordagem assegura uma comunicação eficiente e reduz o impacto no processamento do Raspberry Pi.  
 
