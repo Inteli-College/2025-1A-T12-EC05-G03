@@ -9,6 +9,12 @@ custom_edit_url: null
 
 &emsp; Uma rota de uma API é um caminho específico dentro de um servidor que responde a requisições HTTP. Ela define como as solicitações dos clientes (como um site ou um app) serão processadas e quais respostas serão enviadas.
 
+&emsp; Atualmente, nossa API está hospedada no Render, uma plataforma que permite a hospedagem gratuita de aplicações para testes. A rota base da API é:
+
+&emsp; &emsp;https://two025-1a-t12-ec05-g03.onrender.com/
+
+&emsp;A seguir, apresentamos todas as rotas disponíveis em nossa API.
+
 ## Rotas de Autenticação de usuário
 
 ### Rota para cadastro do usuário
@@ -355,3 +361,6 @@ custom_edit_url: null
   "message": "Qr Code válido"
 }
 ```
+
+## Conclusão
+&emsp; As rotas apresentadas estruturam a comunicação entre clientes e o sistema, garantindo um fluxo para a autenticação, registro de logs, gerenciamento de prescrições, pedidos, validação de QR Codes e controle de medicamentos. Cada endpoint foi detalhado com seus métodos, parâmetros e respostas esperadas. Esse mapeamento é feito para a integração e funcionamento adequado da API.
