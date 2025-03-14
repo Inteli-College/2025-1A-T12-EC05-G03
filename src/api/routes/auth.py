@@ -1,7 +1,7 @@
 from flask import request, jsonify, Blueprint
 from flask_jwt_extended import create_access_token
-from models.user import User
-from models.database import db
+from ..models.user import User
+from ..models.database import db
 
 
 auth_bp = Blueprint('auth', __name__, url_prefix='/')
@@ -9,7 +9,7 @@ auth_bp = Blueprint('auth', __name__, url_prefix='/')
 
 @auth_bp.route('/register', methods=['POST'])
 def register():
-    from main import bcrypt
+    from ..main import bcrypt
 
     data = request.get_json()
     email = data.get('email')
@@ -33,7 +33,7 @@ def register():
 
 @auth_bp.route('/login', methods=['POST'])
 def login():
-    from main import bcrypt
+    from ..main import bcrypt
 
     data = request.get_json()
     email = data.get('email')

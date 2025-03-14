@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
-from models.prescricao import Prescricao
-from models.pedido import Pedido
-from models.database import db
+from ..models.prescricao import Prescricao
+from ..models.pedido import Pedido
+from ..models.database import db
 from datetime import datetime
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
