@@ -17,7 +17,7 @@ custom_edit_url: null
 <p style={{textAlign: 'center'}}>Figura 1: Modelagem do Banco de Dados</p>
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
-        <img src={require("../../../../../media/modelagemBD.png").default} style={{width: 800}} alt="Imagem da organização das tabelas no banco de dados." />
+        <img src={require("../../../../media/modelagemBD.png").default} style={{width: 800}} alt="Imagem da organização das tabelas no banco de dados." />
         <br />
     </div>
 </div>
