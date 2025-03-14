@@ -77,8 +77,8 @@ custom_edit_url: null
 5. **⚙️ [Sistema NDC (Back-end)] → 💾 [Banco de Dados]**  
 6. **🔌 [Sistema NDC (API)] → ⚙️ [Sistema NDC (Back-end)]**  
 7. **🍓 [Raspberry Pi] ⇄ ⚙️ [Back-end]**  
-8. **📸 [Sensor Leitor de QR Code] → ⚙️ [Back-end]**  
-9. **📏 [Sensor de Distância] → ⚙️ [Back-end]**  
+8. **📸 [Sensor Leitor de QR Code] → ⚙️ [Arduino Uno]**  
+9. **📏 [Sensor de Distância] → ⚙️ [Arduino Uno]**  
 10. **🛠️ [Arduino Uno] → 🌀 [Sugador do Robô]**  
 
 ## Conclusão  
