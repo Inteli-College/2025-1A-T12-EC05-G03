@@ -8,6 +8,8 @@ import requests
 import json
 import serial
 from qrcode import QrCode
+# Importa as funções necessárias do módulo sensor_distancia
+from sensor_distancia import objeto_detectado, verificar_sensor
 
 # Códigos de log
 LOG_SUCESSO = 0
@@ -238,9 +240,9 @@ def main():
                 device.suck(True)
                 time.sleep(0.5)  # Aguarda um momento para estabilizar a sucção
                 
-                # Verificação se o medicamento foi coletado
-                # Aqui você integraria uma verificação real (sensor, peso, etc)
-                medicamento_coletado = True  # Substitua por sua lógica real de verificação
+                # Verificação se o medicamento foi coletado usando o sensor de distância
+                # Chamamos a função objeto_detectado() que retorna True se um objeto for detectado
+                medicamento_coletado = objeto_detectado()  # Retorna True se objeto detectado (GPIO.LOW)
                 
                 if not medicamento_coletado:
                     print(f"Não foi possível coletar o medicamento na ilha {ilha_num}")
@@ -262,17 +264,11 @@ def main():
                 device.movel_to(ilha[1]["x"], ilha[1]["y"], ilha[1]["z"], ilha[1]["r"], wait=True)
                 time.sleep(1)
                 safe_move(ilha)
-            except Exception as e:
-                print(f"Erro durante movimentação com o medicamento: {e}")
-                enviar_log(id_pedido, id_remedio, LOG_ERRO_DOBOT)
-                contador_erros[LOG_ERRO_DOBOT] += 1
-                device.suck(False)  # Desativa sucção para segurança
-                return False
-            
-            # Verificação se o medicamento permanece coletado após movimentação
-            try:
-                # Aqui você integraria uma verificação real
-                medicamento_no_trajeto = True  # Substitua por sua lógica real de verificação
+                
+                # Após o movimento de ilha[1], verificamos se o medicamento ainda está sendo segurado
+                # Usamos o sensor de distância para verificar
+                print("Verificando se o medicamento continua coletado após movimento...")
+                medicamento_no_trajeto = objeto_detectado()  # Verifica se o objeto ainda está presente
                 
                 if not medicamento_no_trajeto:
                     print(f"O medicamento caiu durante o percurso da ilha {ilha_num}")
@@ -280,10 +276,13 @@ def main():
                     contador_erros[LOG_REMEDIO_CAIU] += 1
                     device.suck(False)  # Desativa sucção
                     return False
+                
+                print("Medicamento continua seguro após movimento!")
+                
             except Exception as e:
-                print(f"Erro durante verificação do medicamento em trajeto: {e}")
-                enviar_log(id_pedido, id_remedio, LOG_REMEDIO_CAIU)
-                contador_erros[LOG_REMEDIO_CAIU] += 1
+                print(f"Erro durante movimentação com o medicamento: {e}")
+                enviar_log(id_pedido, id_remedio, LOG_ERRO_DOBOT)
+                contador_erros[LOG_ERRO_DOBOT] += 1
                 device.suck(False)  # Desativa sucção para segurança
                 return False
                     
@@ -342,9 +341,10 @@ def main():
                 return False
 
             # Verifica se o medicamento ainda está sendo segurado antes da deposição
+            # usando o sensor de distância
             try:
-                # Aqui você implementaria uma verificação real
-                medicamento_presente = True  # Substitua por verificação real
+                print("Verificando se o medicamento ainda está presente...")
+                medicamento_presente = objeto_detectado()  # Verifica se o objeto ainda está presente
                 
                 if not medicamento_presente:
                     print("O medicamento caiu antes de chegar à posição de deposição")
@@ -352,6 +352,8 @@ def main():
                     contador_erros[LOG_REMEDIO_CAIU] += 1
                     device.suck(False)  # Desativa sucção por segurança
                     return False
+                
+                print("Medicamento detectado! Prosseguindo com a deposição.")
             except Exception as e:
                 print(f"Erro na verificação do medicamento antes da deposição: {e}")
                 enviar_log(id_pedido, id_remedio, LOG_REMEDIO_CAIU)
@@ -382,8 +384,8 @@ def main():
                 time.sleep(0.5)  # Aguarda um momento para estabilização
                 
                 # Verifica se o medicamento foi depositado corretamente
-                # Aqui você implementaria uma verificação real (sensor, câmera, etc.)
-                medicamento_depositado = True  # Substitua por verificação real
+                # Um objeto depositado NÃO deve estar mais presente, então invertemos a lógica
+                medicamento_depositado = not objeto_detectado()  # True se NÃO detectar objeto
                 
                 if not medicamento_depositado:
                     print(f"Erro ao depositar medicamento na fita, etapa {processa_fita.fita_contador}")
