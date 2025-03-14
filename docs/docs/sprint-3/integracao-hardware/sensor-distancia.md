@@ -5,6 +5,16 @@ custom_edit_url: null
 
 # Sensor de Distância
 
+<p style={{textAlign: 'center'}}>Imagem scanner de Qr codes MH-ET Live</p>
+<div style={{margin: 25}}>
+    <div style={{textAlign: 'center'}}>
+        <img src={require("../../../../media/componentes/sensor.png").default} style={{width: 800}} alt="Imagem informativa de Clara e suas informações dispostas nas colunas." />
+        <br />
+    </div>
+</div>
+<p style={{textAlign: 'center'}}>Fonte: https://www.digikey.com.br/pt/products/detail/vishay-semiconductor-opto-division/TCRT5000/1681167 (2025). </p>
+
+
 ##### Desenvolvimento e Integração do Sensor TCRT5000 no Projeto
 
 &emsp;A implementação do sensor de distância TCRT5000 no nosso projeto foi um passo essencial para garantir a detecção precisa de objetos a até 25mm de distância. Como esse sensor opera com leitura de reflexão de luz infravermelha, sua precisão e tempo de resposta foram pontos críticos a serem validados. Para integrar essa funcionalidade ao nosso sistema principal, utilizamos um Arduino como intermediário, comunicando-se com o Raspberry Pi via USB. Essa decisão foi tomada para garantir uma comunicação confiável e minimizar o impacto no processamento do Raspberry, além de facilitar a manipulação do sensor, já que o Arduino oferece maior flexibilidade para o tratamento direto de sinais digitais em tempo real.
