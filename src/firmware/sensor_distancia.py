@@ -12,12 +12,12 @@ class SensorDistancia:
         self.sensor_pin = sensor_pin
         self.inicializar()
         
-"""Inicializa o GPIO e configura o pino do sensor como entrada."""
-# Configuração do modo do GPIO (BCM ou BOARD)
-GPIO.setmode(GPIO.BOARD)
-# Configura o pino do sensor como entrada
-GPIO.setup(self.sensor_pin, GPIO.IN)
-print("Inicialização completa. Sistema pronto.")
+    """Inicializa o GPIO e configura o pino do sensor como entrada."""
+    # Configuração do modo do GPIO (BCM ou BOARD)
+    GPIO.setmode(GPIO.BOARD)
+    # Configura o pino do sensor como entrada
+    GPIO.setup(self.sensor_pin, GPIO.IN)
+    print("Inicialização completa. Sistema pronto.")
         
     def verificar_sensor(self):
         """

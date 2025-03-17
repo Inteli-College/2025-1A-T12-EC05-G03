@@ -1,17 +1,26 @@
-from serial.tools import list_ports
-import pydobot
-import time
+"""
+Sistema de Controle Dobot para Automação Farmacêutica
+Este script controla um braço robótico Dobot para automatizar o manuseio de medicamentos.
+"""
+
+# Importações de bibliotecas padrão
 import sys
-import pandas as pd
-from collections import deque
-import requests
+import time
 import json
+from collections import deque
+
+# Importações de bibliotecas de terceiros
+import pandas as pd
+import requests
 import serial
-from qrcode import QrCode
-# Importa as funções necessárias do módulo sensor_distancia
+import pydobot
+from serial.tools import list_ports
+
+# Importações locais
 from sensor_distancia import objeto_detectado, verificar_sensor
 
-# Códigos de log
+
+# Constantes
 LOG_SUCESSO = 0
 LOG_QR_NAO_CORRESPONDE = 1
 LOG_QR_NAO_RECONHECIDO = 2
@@ -19,8 +28,14 @@ LOG_REMEDIO_NAO_COLETADO = 3
 LOG_REMEDIO_CAIU = 4
 LOG_ERRO_DOBOT = 5
 
-# Classe estendida para o Dobot
+
+#####################################
+# CLASSE CONTROLADORA DO DOBOT
+#####################################
+
 class InteliDobot(pydobot.Dobot):
+    """Classe estendida do Dobot com funções adicionais de movimento."""
+    
     def __init__(self, port=None, verbose=False):
         super().__init__(port=port, verbose=verbose)
 
@@ -44,8 +59,126 @@ class InteliDobot(pydobot.Dobot):
         mode = pydobot.enums.PTPMode.MOVJ_ANGLE
         self._set_ptp_cmd(j1, j2, j3, j4, mode=mode, wait=wait)
 
-# Função para enviar log para a API
+
+#####################################
+# FUNÇÕES DE QR CODE E API
+#####################################
+
+def QRCodeV():
+    """
+    Lê e valida um código QR da porta serial.
+    
+    Retorna:
+        bool: True se o código QR foi lido e validado com sucesso, False caso contrário
+    """
+    try:
+        ser = serial.Serial('/dev/ttyACM0', 9600, timeout=3)
+        time.sleep(1)  # Dá tempo para a conexão serial estabilizar
+    except serial.SerialException as e:
+        print(f"❌ Não consegui abrir a porta serial: {e}")
+        return False
+
+    try:
+        # Tenta ler múltiplas vezes
+        tentativas = 3
+        qrcode_lido = ""
+        
+        for i in range(tentativas):
+            data = ser.readline().decode('utf-8').strip()
+            if data:
+                qrcode_lido = data
+                break
+            time.sleep(0.5)  # Espera entre tentativas
+            
+        print(f"Dados brutos do QR Code: '{qrcode_lido}'")
+        remedio_id = 1  # Use o ID correto do remédio
+        
+        if qrcode_lido:
+            print(f"🔍 Detectei um QR Code: {qrcode_lido}")
+            return validar_qrcode(remedio_id, qrcode_lido)
+        else:
+            print("❌ Não consegui ler nenhum QR Code após múltiplas tentativas")
+            return False
+
+    except serial.SerialException as e:
+        print(f"❌ Tive um problema na comunicação serial: {e}")
+        return False
+    except requests.RequestException as e:
+        print(f"❌ Tive um problema na requisição para a API: {e}")
+        return False
+    finally:
+        # Garante que a conexão serial seja fechada
+        try:
+            ser.close()
+        except:
+            pass
+
+
+def validar_qrcode(remedio_id, qrcode_lido):
+    """
+    Valida um código QR na API.
+    
+    Argumentos:
+        remedio_id (int): ID do medicamento
+        qrcode_lido (str): Conteúdo do código QR a ser validado
+        
+    Retorna:
+        bool: True se o código QR é válido, False caso contrário
+    """
+    try:
+        API_URL = "https://two025-1a-t12-ec05-g03.onrender.com/qrcode/validar"
+
+        headers = {'Content-Type': 'application/json'}
+        payload = {"remedio_id": remedio_id, "qrcode_lido": qrcode_lido}
+        
+        print(f"Enviando para API: {payload}")
+        
+        response = requests.get(API_URL, json=payload, headers=headers)
+
+        print(f"Resposta completa da API: Status={response.status_code}, Body={response.text}")
+
+        if response.status_code == 200:
+            try:
+                resposta_json = response.json()
+                if resposta_json.get('validacao') == 'correto':
+                    print(f"✅ Consegui validar o QR Code com sucesso: {resposta_json}")
+                    return True
+                else:
+                    print(f"❌ Não consegui validar o QR Code, ele não corresponde ao medicamento.")
+                    return False
+            except ValueError as e:
+                print(f"❌ Não consegui interpretar a resposta da API como JSON: {e}")
+                return False
+        elif response.status_code == 404:
+            print(f"❌ Não consegui reconhecer este QR Code")
+            return False
+        elif response.status_code == 405:
+            print(f"❌ Método não permitido (405). A API não aceita requisições POST no endpoint informado.")
+            try:
+                get_response = requests.get(f"{API_URL}?remedio_id={remedio_id}&qrcode_lido={qrcode_lido}")
+                print(f"Tentativa GET: Status={get_response.status_code}, Body={get_response.text}")
+                if get_response.status_code == 200:
+                    return True
+            except Exception as e:
+                print(f"❌ Tentativa com GET também falhou: {e}")
+            return False
+        else:
+            print(f"❌ Tive um problema na comunicação com a API: {response.status_code} - {response.text}")
+            return False
+    except Exception as e:
+        print(f"❌ Tive um problema ao tentar validar o QR Code: {e}")
+        return False
+
+
 def enviar_log(id_pedido, id_remedio_em_separacao, codigo_log):
+    """
+    Envia informações de log para a API.
+    
+    Argumentos:
+        id_pedido (int): ID do pedido
+        id_remedio_em_separacao (int): ID do medicamento
+        codigo_log (int): Código do log
+    """
     try:
         url = "https://two025-1a-t12-ec05-g03.onrender.com/logs/cadastrar"
         dados = {
@@ -55,83 +188,72 @@ def enviar_log(id_pedido, id_remedio_em_separacao, codigo_log):
         }
         response = requests.post(url, json=dados)
         if response.status_code == 200 or response.status_code == 201:
-            print(f"Log enviado com sucesso: {dados}")
+            print(f"✅ Enviei o log com sucesso: {dados}")
         else:
-            print(f"Erro ao enviar log: {response.status_code}")
+            print(f"❌ Não consegui enviar o log: {response.status_code}")
     except Exception as e:
-        print(f"Erro na requisição para a API: {e}")
+        print(f"❌ Tive um problema na requisição para a API: {e}")
 
-def lerQRCode(remedio_id, qrcode_lido):
-    try:
-        url = "https://two025-1a-t12-ec05-g03.onrender.com/qrcode/validar"
-        dados = {
-            "remedio_id": remedio_id,  # Corrigido: estava usando id_pedido
-            "qrcode_lido": qrcode_lido
-        }
-        response = requests.post(url, json=dados)
-        if response.status_code == 200 or response.status_code == 201:
-            print(f"QR Code validado com sucesso: {dados}")
-            return True
-        elif response.status_code == 404:
-            print(f"O QRCode não foi reconhecido")
-            return False
-        else:
-            print(f"Erro ao validar QR Code: {response.status_code}")
-            return False
-    except Exception as e:
-        print(f"Erro na requisição para a API: {e}")
-        return False
 
-# Função para obter pedidos da API
 def obter_pedidos():
+    """
+    Obtém pedidos da API.
+    
+    Retorna:
+        list: Lista de pedidos, lista vazia se houver erro
+    """
     try:
-        url = "http://api-endpoint/pedidos"
+        url = "https://two025-1a-t12-ec05-g03.onrender.com/pedidos/lista"
         response = requests.get(url)
         if response.status_code == 200:
             return response.json()
         else:
-            print(f"Erro ao obter pedidos: {response.status_code}")
+            print(f"❌ Não consegui obter os pedidos: {response.status_code}")
             return []
     except Exception as e:
-        print(f"Erro na requisição para obter pedidos: {e}")
+        print(f"❌ Tive um problema na requisição para obter pedidos: {e}")
         return []
 
+
+#####################################
+# FUNÇÃO PRINCIPAL E EXECUÇÃO
+#####################################
+
 def main():
-    # ----- Aqui são definidas as posições dos locus através de um arquivo json -----
-    # pega localizações através dos arquivos json
+    """Função principal que controla o robô e processa pedidos."""
+    # ----- Posições de arquivos JSON -----
+    # Obtém localizações de arquivos JSON
     ilhas = pd.read_json("posicoes_ilhas.json")
  
-    #define função para chamar determinado local
+    # Define função para obter localização específica
     def locais(i):
         ilha_0 = ilhas[(ilhas['ilha'] == 0) & (ilhas['etapa'] == i)]
         ilha_1 = ilhas[(ilhas['ilha'] == 1) & (ilhas['etapa'] == i)]
         
         return ilha_0['position'].tolist() + ilha_1['position'].tolist()
     
-
-    # Lê as posições da fita a partir do JSON
+    # Lê posições da fita do JSON
     fita = pd.read_json("fita.json")
     
-    # Função interna para obter as posições da fita para uma determinada etapa
+    # Função para obter posições da fita para uma determinada etapa
     def locais_fita(i):
         fita_0 = fita[(fita['ilha'] == 0) & (fita['etapa'] == i)]
         fita_1 = fita[(fita['ilha'] == 1) & (fita['etapa'] == i)]
 
         return fita_0['position'].tolist() + fita_1['position'].tolist()
 
-    # --------------------------------------------------------------------------------
-
-    # Obtém as portas disponíveis e tenta conectar em cada uma
+    # ----- Inicializa conexão do Dobot -----
+    # Obtém portas disponíveis e tenta conectar
     available_ports = list_ports.comports()
     if not available_ports:
-        print("Nenhuma porta serial encontrada. Conecte o Dobot e tente novamente.")
+        print("Não encontrei nenhuma porta serial. Por favor, conecte o Dobot e tente novamente.")
         return
 
     print("Portas disponíveis:")
     for p in available_ports:
         print(f" - {p.device}")
 
-    print("\nTentando conectar em cada porta...")
+    print("\nVou tentar conectar em cada porta...")
     device = None
     for p in available_ports:
         porta = p.device
@@ -139,19 +261,19 @@ def main():
         try:
             device = InteliDobot(port=porta, verbose=False)
             (x, y, z, r, j1, j2, j3, j4) = device.pose()
-            print(f"Sucesso! Pose inicial: x={x} y={y} z={z} j1={j1} j2={j2} j3={j3} j4={j4}")
+            print(f"Sucesso! Consegui me conectar! Minha pose inicial é: x={x} y={y} z={z} j1={j1} j2={j2} j3={j3} j4={j4}")
             device.GoHomeInteli()
             time.sleep(1)
             break
         except Exception as e:
-            print(f"Erro ao testar a porta {porta}: {e}")
+            print(f"Não consegui me conectar na porta {porta}: {e}")
 
     if device is None:
-        print("Nenhuma porta válida foi encontrada. Encerrando...")
+        print("Não consegui encontrar nenhuma porta válida. Vou encerrar...")
         enviar_log(1, 1, LOG_ERRO_DOBOT)  # Registra erro de conexão com o Dobot
         return
 
-    # Variáveis para contabilizar erros e sucessos
+    # ----- Configura contadores para rastrear sucessos e erros -----
     contador_sucessos = 0
     contador_erros = {
         LOG_QR_NAO_CORRESPONDE: 0,
@@ -161,103 +283,99 @@ def main():
         LOG_ERRO_DOBOT: 0
     }
 
+    # ----- Funções auxiliares de movimento -----
     def safe_move(ilha):
-        # Move para a posição de segurança (posição de leitura + 90 no eixo Z)
+        """Movimento seguro para uma posição (com Z=130)"""
         try:
             device.movel_to(ilha[1]["x"], ilha[1]["y"], 130, ilha[1]["r"], wait=True)
         except Exception as e:
-            print(f"Não consegui me mover de forma segura ._.: {e}")
+            print(f"Não consegui me mover de forma segura: {e}")
             enviar_log(pedido_atual["id"], remedio_atual, LOG_ERRO_DOBOT)
             contador_erros[LOG_ERRO_DOBOT] += 1
                 
     def safe_movej(ilha):
+        """Movimento seguro de junta para uma posição (com Z=130)"""
         try:
             device.movej_to(ilha[1]["x"], ilha[1]["y"], 130, ilha[1]["r"], wait=True)
         except Exception as e:
-            print(f"Não consegui me mover de forma segura ._.: {e}")
+            print(f"Não consegui me mover de forma segura: {e}")
             enviar_log(pedido_atual["id"], remedio_atual, LOG_ERRO_DOBOT)
             contador_erros[LOG_ERRO_DOBOT] += 1
 
+    # ----- Função para processar ilha -----
     def processa_ilha(ilha_num, id_pedido, id_remedio):
+        """
+        Processa medicamento de uma ilha.
+        
+        Argumentos:
+            ilha_num (int): Número da ilha
+            id_pedido (int): ID do pedido
+            id_remedio (int): ID do medicamento
+            
+        Retorna:
+            bool: True se bem-sucedido, False caso contrário
+        """
         nonlocal contador_sucessos
         
         try:
             ilha = locais(ilha_num)
 
-            # Movimentação para posição de leitura
+            # Move para posição de leitura
             try:
                 safe_movej(ilha)
-                print(f"Movendo para a posição de leitura da ilha {ilha_num}...")
+                print(f"Estou me movendo para a posição de leitura da ilha {ilha_num}...")
                 safe_movej(ilha)
                 time.sleep(2)
+                
             except Exception as e:
-                print(f"Não consegui me mover para a posição de leitura .-.: {e}")
+                print(f"Não consegui me mover para a posição de leitura: {e}")
                 enviar_log(id_pedido, id_remedio, LOG_ERRO_DOBOT)
                 contador_erros[LOG_ERRO_DOBOT] += 1
                 return False
             
-            # Movimento para ler o QR Code do medicamento (posição ilha[0])
+            # Move para ler o código QR
             try:
                 device.movej_to(ilha[0]["x"], ilha[0]["y"], ilha[0]["z"], ilha[0]["r"], wait=True)
                 time.sleep(1)
+                
             except Exception as e:
-                print(f"Erro durante movimentação para leitura de QR code: {e}")
+                print(f"Não consegui me mover para ler o QR code: {e}")
                 enviar_log(id_pedido, id_remedio, LOG_ERRO_DOBOT)
                 contador_erros[LOG_ERRO_DOBOT] += 1
                 return False
             
-            # Simulação da leitura do QR Code
+            # Lê e valida o código QR
             try:
-                print("Lendo QR Code do medicamento...")
-                qr_code_lido = QrCode()  # Chama a função que agora retorna o texto lido
-                
-                if not qr_code_lido:
-                    print(f"Não consegui enxergar o QR-code ou ele é inválido >_< na ilha: {ilha_num}")
+                print("Estou lendo o QR Code do medicamento...")
+                status_qr = QRCodeV()
+
+                if not status_qr:
+                    print(f"Não consegui enxergar o QR-code ou ele é inválido na ilha {ilha_num}")
                     enviar_log(id_pedido, id_remedio, LOG_QR_NAO_RECONHECIDO)
                     contador_erros[LOG_QR_NAO_RECONHECIDO] += 1
                     return False
-                
-                # Verifica se o QR code corresponde ao medicamento esperado usando a API
-                medicamento_correto = lerQRCode(id_remedio, qr_code_lido)
-                
-                if not medicamento_correto:
-                    print(f"QR Code lido não corresponde ao pedido na ilha {ilha_num}")
-                    enviar_log(id_pedido, id_remedio, LOG_QR_NAO_CORRESPONDE)
-                    contador_erros[LOG_QR_NAO_CORRESPONDE] += 1
-                    return False
-                
-                print("QR Code verificado com sucesso")
+
+                print("Consegui verificar o QR Code com sucesso!")
+
             except Exception as e:
-                print(f"Erro durante leitura/verificação do QR Code: {e}")
+                print(f"Tive um problema ao ler/verificar o QR Code: {e}")
                 enviar_log(id_pedido, id_remedio, LOG_QR_NAO_RECONHECIDO)
                 contador_erros[LOG_QR_NAO_RECONHECIDO] += 1
                 return False
                 
-            
-            # Coleta do medicamento
+            # Coleta o medicamento
             try:
-                print(f"Ativando sucção e coletando medicamento da ilha {ilha_num}...")
+                print(f"Estou ativando a sucção para coletar o medicamento da ilha {ilha_num}...")
                 device.suck(True)
-                time.sleep(0.5)  # Aguarda um momento para estabilizar a sucção
-                
-                # Verificação se o medicamento foi coletado usando o sensor de distância
-                # Chamamos a função objeto_detectado() que retorna True se um objeto for detectado
-                medicamento_coletado = objeto_detectado()  # Retorna True se objeto detectado (GPIO.LOW)
-                
-                if not medicamento_coletado:
-                    print(f"Não foi possível coletar o medicamento na ilha {ilha_num}")
-                    enviar_log(id_pedido, id_remedio, LOG_REMEDIO_NAO_COLETADO)
-                    contador_erros[LOG_REMEDIO_NAO_COLETADO] += 1
-                    device.suck(False)  # Desativa sucção
-                    return False
+                time.sleep(0.5)  # Aguarda para a sucção estabilizar
             except Exception as e:
-                print(f"Erro durante coleta do medicamento: {e}")
+                print(f"Não consegui coletar o medicamento: {e}")
                 enviar_log(id_pedido, id_remedio, LOG_REMEDIO_NAO_COLETADO)
                 contador_erros[LOG_REMEDIO_NAO_COLETADO] += 1
-                device.suck(False)  # Desativa sucção para segurança
+                device.suck(False)  # Desativa sucção por segurança
                 return False
             
-            # Movimentação com o medicamento
+            # Movimento com o medicamento
             try:
                 safe_movej(ilha)
                 time.sleep(1)
@@ -265,68 +383,73 @@ def main():
                 time.sleep(1)
                 safe_move(ilha)
                 
-                # Após o movimento de ilha[1], verificamos se o medicamento ainda está sendo segurado
-                # Usamos o sensor de distância para verificar
-                print("Verificando se o medicamento continua coletado após movimento...")
-                medicamento_no_trajeto = objeto_detectado()  # Verifica se o objeto ainda está presente
+                # Verifica se o medicamento ainda está sendo segurado
+                print("Estou verificando se o medicamento continua coletado após movimento...")
+                medicamento_no_trajeto = objeto_detectado()
                 
                 if not medicamento_no_trajeto:
-                    print(f"O medicamento caiu durante o percurso da ilha {ilha_num}")
+                    print(f"Oh não! O medicamento caiu durante o percurso da ilha {ilha_num}")
                     enviar_log(id_pedido, id_remedio, LOG_REMEDIO_CAIU)
                     contador_erros[LOG_REMEDIO_CAIU] += 1
                     device.suck(False)  # Desativa sucção
                     return False
                 
-                print("Medicamento continua seguro após movimento!")
+                print("Ótimo! O medicamento continua seguro após o movimento!")
                 
             except Exception as e:
-                print(f"Erro durante movimentação com o medicamento: {e}")
+                print(f"Tive um problema durante a movimentação com o medicamento: {e}")
                 enviar_log(id_pedido, id_remedio, LOG_ERRO_DOBOT)
                 contador_erros[LOG_ERRO_DOBOT] += 1
-                device.suck(False)  # Desativa sucção para segurança
+                device.suck(False)  # Desativa sucção por segurança
                 return False
                     
-            print("Movendo para uma posição à direita da ilha...")
+            print("Estou me movendo para uma posição à direita da ilha...")
             time.sleep(1)
             
-            # Etapa concluída com sucesso
-            print(f"Medicamento da ilha {ilha_num} coletado com sucesso")
+            # Concluído com sucesso
+            print(f"Consegui coletar o medicamento da ilha {ilha_num} com sucesso!")
             enviar_log(id_pedido, id_remedio, LOG_SUCESSO)
             contador_sucessos += 1
             return True
-            
         except Exception as e:
-            print(f"Erro não tratado ao processar a ilha {ilha_num}: {e}")
+            print(f"Tive um problema inesperado ao processar a ilha {ilha_num}: {e}")
             enviar_log(id_pedido, id_remedio, LOG_ERRO_DOBOT)
             contador_erros[LOG_ERRO_DOBOT] += 1
             return False
 
-    # Contador para a próxima posição na fita
-    fita_contador = 0
-
-    # Processa a fita de medicamentos automaticamente
+    # ----- Função para processar fita de medicamentos -----
     def processa_fita(id_pedido, id_remedio):
+        """
+        Processa colocação de medicamento na fita.
+        
+        Argumentos:
+            id_pedido (int): ID do pedido
+            id_remedio (int): ID do medicamento
+            
+        Retorna:
+            bool: True se bem-sucedido, False caso contrário
+        """
         nonlocal contador_sucessos
-        # Variável estática para manter o estado do contador entre chamadas da função
+        # Variável estática para manter o contador entre chamadas da função
         if not hasattr(processa_fita, "fita_contador"):
             processa_fita.fita_contador = 0
         
         try:
-            # Obtém as posições da fita
+            # Obtém posições da fita
             posicoes_fita = locais_fita(processa_fita.fita_contador)
             
-            print(f"Depositando medicamento na fita, etapa {processa_fita.fita_contador}...")
+            print(f"Estou depositando o medicamento na fita, etapa {processa_fita.fita_contador}...")
 
-            # Movimentação inicial para a posição da fita
+            # Movimento inicial para a posição da fita
             try:
                 if processa_fita.fita_contador == 0:
-                    # Obtém os ângulos atuais das juntas
+                    # Obtém ângulos atuais das juntas
                     _, _, _, _, current_j1, current_j2, current_j3, current_j4 = device.pose()
                     
-                    # Define o ângulo desejado para J1 (exemplo: 45 graus)
+                    # Define o ângulo desejado para J1
                     desired_j1 = 45  # Substitua pelo ângulo correto para sua aplicação
                     
-                    # Move apenas o J1, mantendo as outras juntas iguais
+                    # Move apenas J1, mantendo outras juntas iguais
                     device.movej_angles(desired_j1, current_j2, current_j3, current_j4, wait=True)
                 else:
                     safe_movej(posicoes_fita)
@@ -335,27 +458,26 @@ def main():
                 time.sleep(2)
                 
             except Exception as e:
-                print(f"Erro durante movimentação inicial para a fita: {e}")
+                print(f"Não consegui me mover para a posição inicial da fita: {e}")
                 enviar_log(id_pedido, id_remedio, LOG_ERRO_DOBOT)
                 contador_erros[LOG_ERRO_DOBOT] += 1
                 return False
 
             # Verifica se o medicamento ainda está sendo segurado antes da deposição
-            # usando o sensor de distância
             try:
-                print("Verificando se o medicamento ainda está presente...")
-                medicamento_presente = objeto_detectado()  # Verifica se o objeto ainda está presente
+                print("Estou verificando se o medicamento ainda está presente...")
+                medicamento_presente = objeto_detectado()
                 
                 if not medicamento_presente:
-                    print("O medicamento caiu antes de chegar à posição de deposição")
+                    print("Oh não! O medicamento caiu antes de chegar à posição de deposição")
                     enviar_log(id_pedido, id_remedio, LOG_REMEDIO_CAIU)
                     contador_erros[LOG_REMEDIO_CAIU] += 1
                     device.suck(False)  # Desativa sucção por segurança
                     return False
                 
-                print("Medicamento detectado! Prosseguindo com a deposição.")
+                print("Medicamento detectado! Vou prosseguir com a deposição.")
             except Exception as e:
-                print(f"Erro na verificação do medicamento antes da deposição: {e}")
+                print(f"Tive um problema ao verificar o medicamento antes da deposição: {e}")
                 enviar_log(id_pedido, id_remedio, LOG_REMEDIO_CAIU)
                 contador_erros[LOG_REMEDIO_CAIU] += 1
                 device.suck(False)  # Desativa sucção por segurança
@@ -372,32 +494,31 @@ def main():
                 )
                 time.sleep(1)
             except Exception as e:
-                print(f"Erro durante movimentação para posição de deposição: {e}")
+                print(f"Não consegui me mover para a posição de deposição: {e}")
                 enviar_log(id_pedido, id_remedio, LOG_ERRO_DOBOT)
                 contador_erros[LOG_ERRO_DOBOT] += 1
                 return False
             
             # Deposição do medicamento
             try:
-                print("Desativando sucção para depositar medicamento...")
+                print("Estou desativando a sucção para depositar o medicamento...")
                 device.suck(False)
-                time.sleep(0.5)  # Aguarda um momento para estabilização
+                time.sleep(0.5)  # Aguarda para estabilização
                 
                 # Verifica se o medicamento foi depositado corretamente
-                # Um objeto depositado NÃO deve estar mais presente, então invertemos a lógica
                 medicamento_depositado = not objeto_detectado()  # True se NÃO detectar objeto
                 
                 if not medicamento_depositado:
-                    print(f"Erro ao depositar medicamento na fita, etapa {processa_fita.fita_contador}")
+                    print(f"Não consegui depositar o medicamento na fita, etapa {processa_fita.fita_contador}")
                     enviar_log(id_pedido, id_remedio, LOG_REMEDIO_CAIU)
                     contador_erros[LOG_REMEDIO_CAIU] += 1
                     return False
                 
-                print("Medicamento depositado com sucesso na fita")
+                print("Consegui depositar o medicamento com sucesso na fita!")
                 enviar_log(id_pedido, id_remedio, LOG_SUCESSO)
                 contador_sucessos += 1
             except Exception as e:
-                print(f"Erro durante deposição do medicamento: {e}")
+                print(f"Tive um problema ao depositar o medicamento: {e}")
                 enviar_log(id_pedido, id_remedio, LOG_REMEDIO_CAIU)
                 contador_erros[LOG_REMEDIO_CAIU] += 1
                 return False
@@ -415,7 +536,7 @@ def main():
                 
                 device.GoHomeInteli()
             except Exception as e:
-                print(f"Erro durante retorno à posição segura: {e}")
+                print(f"Não consegui retornar à posição segura: {e}")
                 enviar_log(id_pedido, id_remedio, LOG_ERRO_DOBOT)
                 contador_erros[LOG_ERRO_DOBOT] += 1
                 return False
@@ -429,14 +550,20 @@ def main():
             return True
             
         except Exception as e:
-            print(f"Erro não tratado ao processar a fita: {e}")
+            print(f"Tive um problema inesperado ao processar a fita: {e}")
             enviar_log(id_pedido, id_remedio, LOG_ERRO_DOBOT)
             contador_erros[LOG_ERRO_DOBOT] += 1
             return False
     
-    # Função para processar um pedido completo
+    # ----- Função para processar pedido completo -----
     def processar_pedido(pedido):
-        print(f"\nProcessando pedido ID: {pedido['id']}")
+        """
+        Processa um pedido completo.
+        
+        Argumentos:
+            pedido (dict): Informações do pedido
+        """
+        print(f"\nEstou processando o pedido ID: {pedido['id']}")
         for remedio in pedido['remedios']:
             ilha_num = remedio['ilha']
             print(f"Processando remédio ID: {remedio['id']} da ilha {ilha_num}")
@@ -449,19 +576,19 @@ def main():
                 processa_fita(pedido['id'], remedio['id'])
                 device.GoHomeInteli()
             else:
-                print(f"Falha no processamento do remédio ID: {remedio['id']}")
+                print(f"Não consegui processar o remédio ID: {remedio['id']}")
                 device.GoHomeInteli()  # Retorna à posição inicial mesmo em caso de falha
     
-    # Modo de operação: manual com entrada do usuário ou via API
+    # ----- Seleção do modo de operação -----
     modo_operacao = input("Selecione o modo de operação (1 - Manual, 2 - API): ")
     
     if modo_operacao == "1":
-        # Solicita ao usuário os números das ilhas separados por vírgula
+        # Modo manual com entrada do usuário
         ilhas_input = input("Digite os números das ilhas separados por vírgula: ")
-        # Cria uma fila (queue) para organizar as ilhas em ordem (one in one out)
+        # Cria uma fila para organizar as ilhas em ordem
         fila_ilhas = deque(map(int, ilhas_input.split(',')))
         
-        # Cria um pedido mock para o modo manual
+        # Cria um pedido fictício para o modo manual
         pedido_atual = {"id": 1, "remedios": []}
         for ilha_num in fila_ilhas:
             pedido_atual["remedios"].append({"id": len(pedido_atual["remedios"]) + 1, "ilha": ilha_num})
@@ -474,7 +601,7 @@ def main():
             pedidos = obter_pedidos()
             
             if not pedidos:
-                print("Nenhum pedido disponível. Aguardando...")
+                print("Não encontrei nenhum pedido disponível. Vou aguardar...")
                 time.sleep(10)  # Aguarda 10 segundos antes de verificar novamente
                 continue
             
@@ -484,20 +611,25 @@ def main():
                 
                 # Marca o pedido como concluído na API
                 try:
-                    url = f"http://api-endpoint/pedidos/{pedido_atual['id']}/concluir"
-                    requests.post(url)
+                    url = f"https://two025-1a-t12-ec05-g03.onrender.com/pedidos/status/{pedido_atual['id']}"
+                    body = {
+                        "status": 3,  # Adicionei aspas em "status"
+                    }
+                    requests.patch(url, json=body)
                 except Exception as e:
-                    print(f"Erro ao marcar pedido como concluído: {e}")
+                    print(f"Não consegui marcar o pedido como concluído: {e}")
                 
                 # Pergunta ao usuário se deseja continuar ou encerrar
                 continuar = input("Deseja processar o próximo pedido? (s/n): ")
                 if continuar.lower() != 's':
                     break
             
+            # Se saiu do loop for por causa do break, também sai do loop while
             if continuar.lower() != 's':
                 break
+            
 
-    # Gera relatório final
+    # ----- Gera relatório final -----
     total_erros = sum(contador_erros.values())
     print("\n===== RELATÓRIO FINAL =====")
     print(f"Terminei o processo com {total_erros} erros e {contador_sucessos} etapas concluídas com sucesso")
@@ -510,7 +642,8 @@ def main():
     print("===========================")
 
     device.close()
-    print("Operação finalizada.")
+    print("Terminei a operação. Até a próxima!")
+
 
 if __name__ == "__main__":
     main()
