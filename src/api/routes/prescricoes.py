@@ -62,7 +62,8 @@ def aprovar_prescricao(prescricao_id):
         newPedido = Pedido(
             id_prescricao = prescricao_id,
             lista_remedios = str(lista_remedios),
-            status_pedido = 1
+            status_pedido = 1,
+            data_entrada = datetime.now()
         )
         
         db.session.add(newPedido)

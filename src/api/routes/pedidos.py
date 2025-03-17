@@ -81,3 +81,21 @@ def deletar_pedido(pedido_id):
     db.session.delete(pedido)
     db.session.commit()
     return jsonify({'Message': 'Pedido deletada com sucesso'}), 200
+
+# Puxar primeiro pedido da fila:
+@pedidos_bp.route('/fila', methods=['GET'])
+def puxar_prox_fila():
+    pedido = (
+        db.session.query(Pedido)
+        .filter(Pedido.status_pedido == 1)
+        .order_by(Pedido.data_entrada.asc()) 
+        .first()
+    )
+
+    pedido.status_pedido = 2
+    db.session.commit()
+
+    return jsonify({
+        "id": pedido.id,
+        "lista_remedios": pedido.lista_remedios
+    })
