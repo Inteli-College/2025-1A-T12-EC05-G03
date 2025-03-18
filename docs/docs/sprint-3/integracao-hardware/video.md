@@ -22,7 +22,7 @@ custom_edit_url: null
 
 &emsp;Além do monitoramento via terminal, utilizamos logs e feedbacks visuais no robô para acompanhar cada etapa e identificar eventuais falhas rapidamente. Esses testes asseguraram que o robô só avançasse após todos os sensores confirmarem que a coleta do medicamento foi realizada corretamente.
 
-
+&emsp;No vídeo abaixo, é possível observar o funcionamento integrado do robô, evidenciando como o sensor de distância e o leitor de QR Code garantem um processo seguro e eficiente.
 
 
 
