@@ -12,7 +12,6 @@ def cadastrar_remedio():
 
     newRemedio = Remedio(
         principio_ativo = data['principio_ativo'],
-        bin_qrcode = data['bin_qrcode']
     )
 
     db.session.add(newRemedio)
