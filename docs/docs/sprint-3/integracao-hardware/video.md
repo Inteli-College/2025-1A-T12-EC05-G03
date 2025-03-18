@@ -7,22 +7,36 @@ custom_edit_url: null
 
 ##### Demonstração do robô com os periféricos 
 
-&emsp;Para garantir maior segurança e precisão na separação dos medicamentos, desenvolvemos um robô automatizado que integra tanto o **sensor de distância TCRT5000** quanto um **leitor de QR Code MH-ET**. O robô realiza sua operação em etapas bem definidas, alinhadas ao fluxo de montagem da “Fita de Medicamentos”.
+### Funcionamento do Robô com Sensor de Distância e Leitor de QR Code
 
-&emsp;O **sensor de distância TCRT5000** foi posicionado estrategicamente no braço do robô para detectar a presença de medicamentos nos bins. Sempre que o robô se movimenta até a posição de coleta, o sensor verifica se há um medicamento disponível dentro do raio de leitura (até 25mm). Em seguida, o robô utiliza o **leitor de QR Code MH-ET** para bipar o código do medicamento, enviando a informação via HTTP para validação no sistema principal.
+&emsp;Para garantir maior segurança e precisão na separação dos medicamentos, desenvolvemos um robô automatizado que integra tanto o **sensor de distância TCRT5000** quanto o **leitor de QR Code MH-ET**. O robô realiza sua operação em etapas bem definidas, alinhadas ao fluxo de montagem da “Fita de Medicamentos”.
 
-&emsp;**Somente após a validação correta do QR Code e a confirmação da presença do medicamento pelo sensor**, o robô realiza o movimento de descida no eixo Z para coletar o item. Caso o sensor não detecte nenhum objeto ou a leitura do QR Code não corresponda à prescrição, o robô retorna à posição inicial e não avança para o próximo medicamento, evitando erros.
+&emsp;O processo começa com o **robô se movendo até a posição de coleta**. O **leitor de QR Code MH-ET** realiza a leitura do código do medicamento no bin, verificando se ele corresponde à prescrição. Caso a leitura seja válida, o robô **suga o medicamento**, sobe para a posição inicial e, **antes de continuar o movimento**, verifica novamente o **sensor de distância TCRT5000** para garantir que o medicamento foi coletado corretamente.
 
-## Testes e Tratamento de Erros
-&emsp;Durante os testes, simulamos diferentes cenários, incluindo ausência de medicamentos, QR Codes inválidos e leitura incorreta do sensor. Para cada situação, implementamos um tratamento de erro específico:
+&emsp;Após essa verificação, o robô move-se até a **fita de medicamentos**. **Antes de descer para realizar a entrega**, o sensor de distância é consultado novamente para garantir que o medicamento ainda está no bin correto. Se o sensor confirmar a presença do medicamento, o robô realiza o movimento de descida no eixo Z para entregar o item. Caso contrário, ele retorna à posição inicial e tenta novamente o processo de coleta e verificação.
 
-- **Falha na leitura do QR Code**: o robô retorna à posição inicial e solicita nova bipagem.
-- **Ausência de medicamento detectada pelo sensor**: o robô não executa a descida no eixo Z, evitando movimentos desnecessários.
-- **Validação negativa**: impede o robô de seguir para a entrega sem confirmação correta.
+## Testes de Erro e Tratamento de Falhas
 
-&emsp;Além do monitoramento via terminal, utilizamos logs e feedbacks visuais no robô para acompanhar cada etapa e identificar eventuais falhas rapidamente. Esses testes asseguraram que o robô só avançasse após todos os sensores confirmarem que a coleta do medicamento foi realizada corretamente.
+&emsp;Durante a implementação, realizamos diversos **testes de erro** para garantir que o robô pudesse lidar com falhas sem interromper todo o processo de separação. Esses testes foram realizados para simular cenários como **falta de correspondência no QR Code**, **ausência de medicamento no bin** e **erros de leitura do sensor**.
 
-&emsp;No vídeo abaixo, é possível observar o funcionamento integrado do robô, evidenciando como o sensor de distância e o leitor de QR Code garantem um processo seguro e eficiente.
+1. **Falha na Leitura do QR Code**: Caso o QR Code não corresponda à prescrição ou não seja lido corretamente, o robô **tenta a verificação novamente**. Se o erro persistir, o robô **pula o medicamento**, registra o incidente no **log** e continua com o processo de separação dos outros medicamentos, evitando que o fluxo seja interrompido.
+   
+2. **Erro na Detecção do Medicamento pelo Sensor de Distância**: Quando o robô **não consegue detectar o medicamento no bin**, ele **tenta a leitura novamente**. Se o erro continuar, o robô **pula a coleta do medicamento** e o erro é registrado no **log** para monitoramento e ajustes futuros.
+
+3. **Falha na Verificação Pós-Coleta**: Após a coleta do medicamento, o robô realiza uma nova verificação com o **sensor de distância TCRT5000** para garantir que o medicamento foi realmente retirado do bin. Se o sensor não detectar o objeto, o robô tenta a coleta novamente. Se o erro persistir, ele **pula o medicamento e registra o erro no log**.
+
+&emsp;Esses testes garantem que o robô não continue o processo sem confirmação de que cada etapa foi realizada corretamente, proporcionando maior segurança e eficiência na separação dos medicamentos. O log de erros também facilita o diagnóstico de problemas e permite ajustes contínuos no sistema, melhorando sua performance ao longo do tempo.
+
+&emsp;Desse modo, no vídeo abaixo, é possível observar o funcionamento integrado do robô, evidenciando como o sensor de distância e o leitor de QR Code garantem um processo seguro e eficiente.
+
+
+
+
+
+
+
+
+
 
 
 
