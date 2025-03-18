@@ -22,3 +22,24 @@ def cadastrar_log():
     return jsonify({
         'message':'log cadastrado com sucesso'
     }), 201
+
+
+@log_bp.route('/listar', methods = ['GET'])
+def listar_all_logs():
+    logs = Log.query.all()
+    return jsonify([log.as_dict() for log in logs])
+
+
+@log_bp.route('/pedido/<id_pedido>', methods = ['GET'])
+def listar_por_id_pedido(id_pedido):
+
+    logs_id = db.session.query(Log).filter(Log.id_pedido == id_pedido)
+
+    if(logs_id is None):
+        return jsonify({
+            'Message': 'Não foi encontrado nenhum log para esse pedido'
+        }), 404
+
+    return jsonify([log.as_dict() for log in logs_id]),200
+
+
