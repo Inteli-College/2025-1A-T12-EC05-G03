@@ -25,9 +25,8 @@ custom_edit_url: null
 
 3. **Falha na Verificação Pós-Coleta**: Após a coleta do medicamento, o robô realiza uma nova verificação com o **sensor de distância TCRT5000** para garantir que o medicamento foi realmente retirado do bin. Se o sensor não detectar o objeto, o robô tenta a coleta novamente. Se o erro persistir, ele **pula o medicamento e registra o erro no log**.
 
-&emsp;Esses testes garantem que o robô não continue o processo sem confirmação de que cada etapa foi realizada corretamente, proporcionando maior segurança e eficiência na separação dos medicamentos. O log de erros também facilita o diagnóstico de problemas e permite ajustes contínuos no sistema, melhorando sua performance ao longo do tempo.
+&emsp;Logo, esses testes garantem que o robô não continue o processo sem confirmação de que cada etapa foi realizada corretamente, proporcionando maior segurança e eficiência na separação dos medicamentos. O log de erros também facilita o diagnóstico de problemas e permite ajustes contínuos no sistema, melhorando sua performance ao longo do tempo.
 
-&emsp;Desse modo, no vídeo abaixo, é possível observar o funcionamento integrado do robô, evidenciando como o sensor de distância e o leitor de QR Code garantem um processo seguro e eficiente.
 
 
 
