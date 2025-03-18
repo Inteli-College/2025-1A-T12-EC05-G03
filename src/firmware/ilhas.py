@@ -72,7 +72,7 @@ def QRCodeV():
         bool: True se o código QR foi lido e validado com sucesso, False caso contrário
     """
     try:
-        ser = serial.Serial('/dev/ttyACM0', 9600, timeout=3)
+        ser = serial.Serial('/dev/ttyACM0', 9600, timeout=100)
         time.sleep(1)  # Dá tempo para a conexão serial estabilizar
     except serial.SerialException as e:
         print(f"❌ Não consegui abrir a porta serial: {e}")
@@ -88,7 +88,6 @@ def QRCodeV():
             if data:
                 qrcode_lido = data
                 break
-            time.sleep(0.5)  # Espera entre tentativas
             
         print(f"Dados brutos do QR Code: '{qrcode_lido}'")
         remedio_id = 1  # Use o ID correto do remédio
@@ -140,7 +139,7 @@ def validar_qrcode(remedio_id, qrcode_lido):
         if response.status_code == 200:
             try:
                 resposta_json = response.json()
-                if resposta_json.get('validacao') == 'correto':
+                if resposta_json.get('message') == 'QRCode válido' :
                     print(f"✅ Consegui validar o QR Code com sucesso: {resposta_json}")
                     return True
                 else:
