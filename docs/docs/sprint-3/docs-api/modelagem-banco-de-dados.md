@@ -33,9 +33,9 @@ custom_edit_url: null
 
 - **Tabela log**: Mantém um histórico detalhado de todas as ações que são realizadas no sistema, como mudanças de status ou falhas durante o processo. Cada log é vinculado a um pedido e a um código de evento específico.
 
-- **Tabela lote**: Gerencia os lotes de medicamentos, incluindo número de lote, validade, fabricante e quantidade disponível. Essa tabela auxilia no controle dos medicamentos em estoque.
+- **Tabela lote**: Gerencia os lotes de medicamentos, incluindo número de lote, validade, fabricante, quantidade disponível e bin_qrcode. Essa tabela auxilia no controle dos medicamentos em estoque, além de ser usada para identificar e validar os remédios durante a separação pela API.
 
-- **Tabela remedio**: Armazena os dados dos medicamentos, como princípio ativo e QR code associado. A API usa essa tabela para identificar e validar os remédios durante a separação.
+- **Tabela remedio**: Armazena os dados dos medicamentos, como o princípio ativo. 
 
 - **Tabela user**: Registra os usuários do sistema, incluindo e-mail, nome completo, senha e o cargo associado. A gestão de permissões é feita com base nesta tabela pelo código de autenticação gerado com a permissão de usuário.
 
