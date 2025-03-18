@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuário</title>
+    <!-- Importação do arquivo CSS externo -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Prevenção de cache para desenvolvimento -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+</head>
+<body>
+    <!-- Container da logo -->
+    <div class="logo-container">
+        <img src="../../media/Logos_GuiaDeEstilos/svgs logos/logo_escura_COMnome.svg" alt="Logo NDC" class="logo">
+    </div>
+    
+    <!-- Container principal do cadastro -->
+    <div class="form-container">
+        <h1 class="form-titulo">CADASTRO</h1>
+        
+        <!-- Formulário de cadastro -->
+        <form id="cadastroForm">
+            <!-- Campo de nome completo -->
+            <div class="form-group">
+                <label for="nomeCompleto" class="form-label">Nome Completo</label>
+                <input type="text" id="nomeCompleto" class="form-input" required>
+            </div>
+
+            <!-- Campo de email -->
+            <div class="form-group">
+                <label for="email" class="form-label">E-mail</label>
+                <input type="email" id="email" class="form-input" required>
+            </div>
+            
+            <!-- Campo de cargo -->
+            <div class="form-group">
+                <label for="cargo" class="form-label">Cargo</label>
+                <input type="text" id="cargo" class="form-input" required>
+            </div>
+            
+            <!-- Campo de senha -->
+            <div class="form-group">
+                <label for="senha" class="form-label">Senha</label>
+                <input type="password" id="senha" class="form-input" required>
+            </div>
+            
+            <!-- Campo de confirmação de senha -->
+            <div class="form-group">
+                <label for="confirmarSenha" class="form-label">Confirmar Senha</label>
+                <input type="password" id="confirmarSenha" class="form-input" required>
+            </div>
+            
+            <!-- Botões de ação -->
+            <div class="buttons-container">
+                <button type="button" id="btnVoltar" class="btn btn-voltar">
+                    Voltar para login
+                </button>
+                <button type="submit" id="btnCadastrar" class="btn btn-cadastrar">Cadastrar</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Script JavaScript para funcionalidades mockadas -->
+    <script>
+        // Captura elementos do DOM
+        const cadastroForm = document.getElementById('cadastroForm');
+        const btnVoltar = document.getElementById('btnVoltar');
+        
+        // Função para simular o cadastro
+        function simularCadastro(event) {
+            // Previne comportamento padrão do form
+            event.preventDefault();
+            
+            // Captura valores dos campos
+            const nome = document.getElementById('nomeCompleto').value;
+            const email = document.getElementById('email').value;
+            const cargo = document.getElementById('cargo').value;
+            const senha = document.getElementById('senha').value;
+            const confirmarSenha = document.getElementById('confirmarSenha').value;
+            
+            // Validação básica
+            if (!nome || !email || !cargo || !senha || !confirmarSenha) {
+                alert('Por favor, preencha todos os campos!');
+                return;
+            }
+            
+            // Verifica se as senhas são iguais
+            if (senha !== confirmarSenha) {
+                alert('As senhas não coincidem!');
+                return;
+            }
+            
+            // Normalmente aqui você faria uma requisição para o backend
+            // Como é mockado, apenas logamos no console e mostramos um alerta
+            console.log('Dados do cadastro:', { nome, email, cargo });
+            alert('Cadastro simulado com sucesso! Em uma versão final, você seria redirecionado para a página de login.');
+            
+            // Limpa o formulário após "cadastro"
+            cadastroForm.reset();
+            
+            // Redireciona para a página de login
+            setTimeout(function() {
+                window.location.href = "login.html";
+            }, 1500);
+        }
+        
+        // Função para voltar para a página de login
+        function voltarParaLogin() {
+            window.location.href = "login.html";
+        }
+        
+        // Adiciona event listeners
+        cadastroForm.addEventListener('submit', simularCadastro);
+        btnVoltar.addEventListener('click', voltarParaLogin);
+    </script>
+</body>
+</html>

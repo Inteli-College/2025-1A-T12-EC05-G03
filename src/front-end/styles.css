@@ -1,0 +1,223 @@
+/* Importação das fontes */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+
+/* Tentativa de importar Glacial Indifference - como é uma fonte não padrão, 
+   você precisará adicionar os arquivos da fonte ao projeto ou usar um serviço como o Google Fonts */
+@font-face {
+    font-family: 'Glacial Indifference';
+    src: url('fonts/GlacialIndifference-Regular.otf') format('opentype');
+    /* Isso é um placeholder - você precisará ajustar o caminho correto */
+}
+
+/* ===== ESTILOS PARA A PÁGINA DE REDIRECIONAMENTO (INDEX) ===== */
+.redirect-body {
+    background-color: var(--cor-clara);
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+.loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid var(--cor-base1);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.redirect-message {
+    color: var(--cor-escura);
+    font-size: 16px;
+}
+
+/* Variáveis de cores para fácil manutenção */
+:root {
+    --cor-clara: #F0F7F9;
+    --cor-base2: #79D7E2;
+    --cor-base1: #53B3BE;
+    --cor-escura: #1F2832;
+    --cor-destaque: #3BF7CB;
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Fundo claro e fonte padrão */
+    background-color: var(--cor-clara);
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Container da logo */
+.logo-container {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.logo {
+    width: 120px;
+    height: auto;
+}
+
+/* Container do formulário (comum para login e cadastro) */
+.login-container,
+.form-container {
+    background-color: #e0e0e0; /* Cor cinza semelhante à da imagem */
+    padding: 30px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.login-titulo,
+.form-titulo {
+    font-family: 'Glacial Indifference', Arial, sans-serif;
+    color: var(--cor-escura);
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* Estilo do formulário */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--cor-escura);
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 50px; /* Input arredondado como na imagem */
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--cor-base1);
+    box-shadow: 0 0 5px rgba(83, 179, 190, 0.5);
+}
+
+/* Link "Esqueci minha senha" */
+.forgot-password {
+    text-align: right;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.forgot-password a {
+    color: blue; /* Cor azul do link como na imagem */
+    text-decoration: none;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+/* Container dos botões */
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+/* Estilo dos botões */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px; /* Botões arredondados */
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-cadastro {
+    background-color: var(--cor-destaque);
+    color: var(--cor-escura);
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-right: 30px; /* Espaço para o cursor */
+}
+
+/* Cursor que aparece no botão cadastrar */
+.cursor-icon {
+    position: absolute;
+    right: 10px;
+    width: 20px;
+    height: auto;
+}
+
+.btn-login {
+    background-color: var(--cor-destaque);
+    color: var(--cor-escura);
+}
+
+.btn-cadastro:hover,
+.btn-login:hover,
+.btn-voltar:hover,
+.btn-cadastrar:hover {
+    background-color: #2ad5b0; /* Versão um pouco mais escura da cor de destaque */
+    transform: translateY(-2px);
+}
+
+/* Botões específicos para a página de cadastro */
+.btn-voltar {
+    background-color: var(--cor-destaque);
+    color: var(--cor-escura);
+}
+
+.btn-cadastrar {
+    background-color: var(--cor-destaque);
+    color: var(--cor-escura);
+}
+
+/* Responsividade básica */
+@media (max-width: 480px) {
+    .login-container,
+    .form-container {
+        padding: 20px;
+    }
+    
+    .buttons-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+}
