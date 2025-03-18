@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecionando...</title>
+    <!-- Meta tag de redirecionamento para a página de login -->
+    <meta http-equiv="refresh" content="0; URL='login.html'" />
+    <!-- Importação do arquivo CSS externo -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="redirect-body">
+    <!-- Animação de carregamento simples -->
+    <div class="loader"></div>
+    
+    <!-- Mensagem de redirecionamento -->
+    <p class="redirect-message">Redirecionando para a página de login...</p>
+    
+    <!-- Script alternativo caso o meta refresh não funcione -->
+    <script>
+        // Redireciona para a página de login após um breve atraso
+        setTimeout(function() {
+            window.location.href = "login.html";
+        }, 500); // Meio segundo de atraso como fallback
+    </script>
+</body>
+</html>

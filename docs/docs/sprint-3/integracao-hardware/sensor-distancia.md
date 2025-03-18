@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 custom_edit_url: null
 ---
 
@@ -7,13 +7,23 @@ custom_edit_url: null
 
 ##### Desenvolvimento e Integração do Sensor TCRT5000 no Projeto
 
-&emsp;A implementação do sensor de distância TCRT5000 no nosso projeto foi um passo essencial para garantir a detecção precisa de objetos a até 25mm de distância. Como esse sensor opera com leitura de reflexão de luz infravermelha, sua precisão e tempo de resposta foram pontos críticos a serem validados. Para integrar essa funcionalidade ao nosso sistema principal, utilizamos um Arduino como intermediário, comunicando-se com o Raspberry Pi via RX/TX. Essa decisão foi tomada para garantir uma comunicação confiável e minimizar o impacto no processamento do Raspberry, além de facilitar a manipulação do sensor, já que o Arduino oferece maior flexibilidade para o tratamento direto de sinais digitais em tempo real.
+
+<p style={{textAlign: 'center'}}>Imagem scanner de Qr codes MH-ET Live</p>
+<div style={{margin: 25}}>
+    <div style={{textAlign: 'center'}}>
+        <img src={require("../../../../media/componentes/sensor.png").default} style={{width: 800}} alt="Imagem informativa de Clara e suas informações dispostas nas colunas." />
+        <br />
+    </div>
+</div>
+<p style={{textAlign: 'center'}}>Fonte: https://www.digikey.com.br/pt/products/detail/vishay-semiconductor-opto-division/TCRT5000/1681167 (2025). </p>
+
+&emsp;A implementação do sensor de distância TCRT5000 no nosso projeto foi um passo essencial para garantir a detecção precisa de objetos a até 25mm de distância. Como esse sensor opera com leitura de reflexão de luz infravermelha, sua precisão e tempo de resposta foram pontos críticos a serem validados. Para integrar essa funcionalidade ao nosso sistema principal, utilizamos um Arduino como intermediário, comunicando-se com o Raspberry Pi via USB. Essa decisão foi tomada para garantir uma comunicação confiável e minimizar o impacto no processamento do Raspberry, além de facilitar a manipulação do sensor, já que o Arduino oferece maior flexibilidade para o tratamento direto de sinais digitais em tempo real.
 
 ## **Motivo para o Uso do Arduino**
 &emsp;A escolha de um Arduino para processar os dados do TCRT5000 foi baseada em alguns fatores essenciais:
 1. **Baixa Latência na Leitura do Sensor** – O Arduino permite leituras mais rápidas e consistentes do sensor, sem depender do sistema operacional do Raspberry Pi, que pode ter variações de tempo devido ao uso multitarefa.
 2. **Facilidade na Manipulação de Sinais Digitais** – Como o TCRT5000 opera com um simples HIGH (1) ou LOW (0), o Arduino pode lidar com esses sinais diretamente e processá-los antes de enviá-los ao Raspberry Pi.
-3. **Estabilidade da Comunicação Serial** – A transmissão dos dados do sensor para o código principal, escrito em **Python**, foi realizada através da comunicação RX/TX entre o Arduino e o Raspberry Pi, garantindo uma transmissão eficiente e de baixa latência.
+3. **Estabilidade da Comunicação Serial** – A transmissão dos dados do sensor para o código principal, escrito em **Python**, foi realizada através da comunicação USB entre o Arduino e o Raspberry Pi, garantindo uma transmissão eficiente e de baixa latência.
 4. **Facilidade de Expansão** – Com o Arduino intermediando a leitura do sensor, futuras expansões podem ser implementadas sem sobrecarregar o Raspberry Pi.
 
 ## **Desenvolvimento das Funcionalidades**
@@ -78,7 +88,7 @@ void monitorarSensor() {
 3. **Calibração da Sensibilidade** – Durante os testes, percebemos que objetos de cores escuras não eram detectados corretamente. Isso ocorre porque superfícies escuras absorvem mais luz infravermelha, reduzindo a reflexão. Para mitigar esse problema, realizamos testes com diferentes materiais e ajustamos a posição do sensor.
 
 ## **Testes com LED como Indicador Visual**
-&emsp;Para facilitar a validação prática, implementamos um LED no circuito, que acendia automaticamente quando um objeto era detectado. Esse indicador foi extremamente útil para testes rápidos, permitindo verificar o funcionamento do sensor sem a necessidade de monitoramento constante do Serial Monitor.
+&emsp;Para facilitar a validação prática, implementamos um LED no circuito de testes, que acendia automaticamente quando um objeto era detectado. Esse indicador foi extremamente útil para testes rápidos, permitindo verificar o funcionamento do sensor sem a necessidade de monitoramento constante do Serial Monitor.
 
 &emsp;O código para essa funcionalidade foi simples:
 ```cpp
@@ -105,5 +115,5 @@ void loop() {
 &emsp;Com essa abordagem, conseguimos validar rapidamente o funcionamento do sensor sem depender do Monitor Serial, tornando os testes mais práticos.
 
 ## **Conclusão**
-&emsp;A integração do TCRT5000 utilizando um Arduino como intermediário proporcionou uma solução robusta e eficiente para a detecção de objetos no projeto. O uso do Monitor Serial, aliado a um LED como indicador visual, permitiu depurar erros e ajustar parâmetros de forma prática. Além disso, a comunicação via RX/TX com o Raspberry Pi garantiu que os dados do sensor fossem utilizados de maneira eficiente no código principal, desenvolvido em Python. Com os testes validados e o sistema operando de forma estável, o próximo passo será integrar esses sensores de forma definitiva ao processo de automação do nosso projeto.
+&emsp;A integração do TCRT5000 utilizando um Arduino como intermediário proporcionou uma solução robusta e eficiente para a detecção de objetos no projeto. O uso do Monitor Serial, aliado a um LED como indicador visual, permitiu depurar erros e ajustar parâmetros de forma prática. Além disso, a comunicação via USB com o Raspberry Pi garantiu que os dados do sensor fossem utilizados de maneira eficiente no código principal, desenvolvido em Python. Com os testes validados e o sistema operando de forma estável, o próximo passo será integrar esses sensores de forma definitiva ao processo de automação do nosso projeto.
 

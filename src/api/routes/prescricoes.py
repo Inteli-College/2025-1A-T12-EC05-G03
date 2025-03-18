@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
-from models.prescricao import Prescricao
-from models.pedido import Pedido
-from models.database import db
+from ..models.prescricao import Prescricao
+from ..models.pedido import Pedido
+from ..models.database import db
 from datetime import datetime
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
@@ -62,7 +62,8 @@ def aprovar_prescricao(prescricao_id):
         newPedido = Pedido(
             id_prescricao = prescricao_id,
             lista_remedios = str(lista_remedios),
-            status_pedido = 1
+            status_pedido = 1,
+            data_entrada = datetime.now()
         )
         
         db.session.add(newPedido)

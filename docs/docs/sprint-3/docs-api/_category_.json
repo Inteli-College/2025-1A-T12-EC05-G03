@@ -1,0 +1,8 @@
+{
+    "label": "Documentação da API",
+    "position": 3,
+    "link": {
+      "type": "generated-index",
+      "description": "Essa seção possui a documentação detalhada dos códigos da API, garantindo que todos as tabelas e rotas desenvolvidas no backend estejam devidamente explicados."
+    }
+  }

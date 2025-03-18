@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
-from models.log import Log
-from models.database import db
+from ..models.log import Log
+from ..models.database import db
 from datetime import datetime
 
 log_bp = Blueprint('logs', __name__, url_prefix = '/logs')
