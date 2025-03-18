@@ -12,6 +12,8 @@ class Lote(db.Model):
     fabricante = db.Column(db.String(255), nullable=False)
     id_remedio = db.Column(db.Integer, db.ForeignKey('remedio.id'), nullable=False)
     quantidade = db.Column(db.Integer, nullable=False)
+    bin_qrcode = db.Column(db.Text, nullable=False)
+
 
     remedio_lote = db.relationship('Remedio', backref=db.backref('lotes', lazy=True))
 
@@ -23,5 +25,6 @@ class Lote(db.Model):
             'data_validade': self.data_validade,
             'fabricante': self.fabricante,
             'id_remedio': self.id_remedio,
-            'quantidade': self.quantidade
+            'quantidade': self.quantidade,
+            'bin_qrcode': self.bin_qrcode
         }

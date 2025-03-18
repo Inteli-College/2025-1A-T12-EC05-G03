@@ -9,12 +9,10 @@ class Remedio(db.Model):
     # Definindo as colunas
     id = db.Column(db.Integer, nullable = False, primary_key=True)
     principio_ativo = db.Column(db.String(255), nullable=False)
-    bin_qrcode = db.Column(db.Text, nullable=False)
 
     # Função para transformar em json
     def as_dict(self):
         return {
             'id': self.id,
             'principio_ativo': self.principio_ativo,
-            'bin_qrcode': self.bin_qrcode
         }
