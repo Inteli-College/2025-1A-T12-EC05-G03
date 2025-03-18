@@ -1,2 +1,5 @@
 node
-src/venv
+venv
+__pycache__
+ssh_tools.jsonc
+node_modules
