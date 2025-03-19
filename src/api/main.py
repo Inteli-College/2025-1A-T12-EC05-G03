@@ -1,5 +1,4 @@
 from flask import Flask
-from flask_migrate import Migrate
 from .routes.prescricoes import prescricoes_bp
 from .routes.pedidos import pedidos_bp
 from .routes.auth import auth_bp
@@ -36,12 +35,9 @@ app = Flask(__name__)
 # Configura o banco de dados para salvar na pasta `data/`
 app.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql://ndcdb_w9zl_user:IYinpUeKcoIJpg1pgjTyz0FIBNoJu2nb@dpg-cv9m763qf0us73c9gpb0-a.oregon-postgres.render.com/ndcdb_w9zl"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config['JWT_SECRET_KEY'] = 'NDCSuprema'  # Troque por uma chave segura
+app.config['JWT_SECRET_KEY'] = 'NDCSuprema' 
 jwt = JWTManager(app)
 bcrypt = Bcrypt(app)
-
-
-
 
 # Inicializa o banco no app
 db.init_app(app)
