@@ -1,0 +1,360 @@
+/* Estilos específicos para a página de Estoque */
+
+/* Botões de ação principais */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-cadastrar {
+    background-color: var(--cor-base1);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.btn-cadastrar:hover {
+    background-color: var(--cor-base2);
+    transform: translateY(-2px);
+}
+
+.btn-retirar {
+    background-color: var(--cor-escura);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.btn-retirar:hover {
+    background-color: #2d3a4a;
+    transform: translateY(-2px);
+}
+
+/* Barra de pesquisa e filtros */
+.search-filter-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.search-container {
+    display: flex;
+    flex: 1;
+    max-width: 500px;
+    position: relative;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.btn-search {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--cor-escura);
+    cursor: pointer;
+}
+
+.btn-filtros {
+    background-color: var(--cor-base2);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.btn-filtros.filtro-ativo {
+    background-color: var(--cor-destaque);
+    color: var(--cor-escura);
+    font-weight: 700;
+}
+
+/* Estilos para linhas de lotes vencidos ou próximos a vencer */
+.vencido {
+    background-color: rgba(255, 99, 71, 0.1); /* Tomato com transparência */
+}
+
+.vencido:hover {
+    background-color: rgba(255, 99, 71, 0.2) !important;
+}
+
+.proximo-vencer {
+    background-color: rgba(255, 206, 86, 0.1); /* Amarelo com transparência */
+}
+
+.proximo-vencer:hover {
+    background-color: rgba(255, 206, 86, 0.2) !important;
+}
+
+/* Tabela de estoque */
+.estoque-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.estoque-table th {
+    background-color: var(--cor-base1);
+    color: white;
+    text-align: left;
+    padding: 12px 15px;
+}
+
+.estoque-table th:first-child {
+    border-top-left-radius: 8px;
+}
+
+.estoque-table th:last-child {
+    border-top-right-radius: 8px;
+    text-align: center;
+}
+
+.estoque-table tbody tr {
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s;
+}
+
+.estoque-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.estoque-table tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+.estoque-table td {
+    padding: 12px 15px;
+    color: var(--cor-escura);
+}
+
+.estoque-table td:last-child {
+    text-align: center;
+}
+
+.btn-visualizar {
+    background-color: var(--cor-destaque);
+    color: var(--cor-escura);
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    border: none;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.btn-visualizar:hover {
+    background-color: #2ad5b0;
+    transform: translateY(-2px);
+}
+
+/* Modais/pop-ups */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 0;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: modalopen 0.3s;
+}
+
+@keyframes modalopen {
+    from {opacity: 0; transform: translateY(-60px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.modal-header {
+    padding: 15px 20px;
+    background-color: var(--cor-clara);
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    font-family: 'Glacial Indifference', Arial, sans-serif;
+    color: var(--cor-escura);
+    margin: 0;
+}
+
+.close-btn {
+    color: var(--cor-escura);
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-btn:hover {
+    color: var(--cor-base1);
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+/* Formulários */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--cor-escura);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-cancelar {
+    background-color: #f5f5f5;
+    color: var(--cor-escura);
+    padding: 10px 15px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-confirmar {
+    background-color: var(--cor-destaque);
+    color: var(--cor-escura);
+    padding: 10px 15px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-confirmar:hover {
+    background-color: #2ad5b0;
+}
+
+/* Informações do medicamento */
+.medicamento-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.medicamento-info, 
+.lote-info {
+    background-color: var(--cor-clara);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.medicamento-info h3,
+.lote-info h3 {
+    font-family: 'Glacial Indifference', Arial, sans-serif;
+    margin-bottom: 10px;
+    color: var(--cor-escura);
+}
+
+/* Estilos para os filtros */
+.range-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.range-inputs {
+    display: flex;
+    gap: 15px;
+}
+
+.range-input-group {
+    flex: 1;
+}
+
+.range-input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.checkbox-item input[type="checkbox"] {
+    width: auto;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .search-filter-container {
+        flex-direction: column;
+    }
+    
+    .search-container {
+        max-width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+    }
+    
+    .range-inputs {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

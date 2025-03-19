@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gerenciamento - Estoque</title>
+    <!-- Importando fontes do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Importando ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="estoque-css.css">
+</head>
+<body>
+    <!-- Barra lateral de navegação -->
+    <div class="sidebar" id="sidebar">
+        <div class="menu-icon" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="menu-items">
+            <a href="#" class="menu-item">
+                <i class="fas fa-home"></i>
+                <span class="menu-text">Home</span>
+            </a>
+            <a href="#" class="menu-item active">
+                <i class="fas fa-pills"></i>
+                <span class="menu-text">Estoque</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-search"></i>
+                <span class="menu-text">Histórico</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Container principal -->
+    <div class="container">
+        <!-- Conteúdo principal -->
+        <div class="main-content">
+            <div class="section-container">
+                <h1 class="section-title">Estoque</h1>
+                
+                <!-- Botões de ação -->
+                <div class="action-buttons">
+                    <button class="btn btn-cadastrar" id="btnCadastrarLote">Cadastrar Lote</button>
+                    <button class="btn btn-cadastrar" id="btnCadastrarMedicamento">Cadastrar Medicamento</button>
+                    <button class="btn btn-retirar" id="btnRetirarMedicamento">Retirar Medicamento</button>
+                </div>
+                
+                <!-- Barra de pesquisa e filtros -->
+                <div class="search-filter-container">
+                    <div class="search-container">
+                        <input type="text" class="search-input" placeholder="Buscar medicamento...">
+                        <button class="btn btn-search"><i class="fas fa-search"></i></button>
+                    </div>
+                    <button class="btn btn-filtros" id="btnFiltros">Filtros</button>
+                </div>
+                
+                <!-- Tabela de medicamentos -->
+                <div class="table-container">
+                    <table class="estoque-table">
+                        <thead>
+                            <tr>
+                                <th>Medicamento</th>
+                                <th>Lote</th>
+                                <th>Quantidade</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="estoqueTableBody">
+                            <!-- Dados serão inseridos via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pop-up de Cadastro de Lote -->
+    <div class="modal" id="modalCadastrarLote">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Cadastrar Lote</h2>
+                <span class="close-btn" id="closeCadastrarLote">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="formCadastrarLote">
+                    <div class="form-group">
+                        <label for="medicamentoLote">Medicamento:</label>
+                        <select id="medicamentoLote" required>
+                            <!-- Opções serão inseridas via JavaScript -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="numLote">Número do Lote:</label>
+                        <input type="text" id="numLote" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dataValidade">Data de Validade:</label>
+                        <input type="date" id="dataValidade" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fabricante">Fabricante:</label>
+                        <input type="text" id="fabricante" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantidadeLote">Quantidade:</label>
+                        <input type="number" id="quantidadeLote" min="1" required>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-cancelar" id="cancelarCadastroLote">Cancelar</button>
+                        <button type="submit" class="btn btn-confirmar">Confirmar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pop-up de Cadastro de Medicamento -->
+    <div class="modal" id="modalCadastrarMedicamento">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Cadastrar Medicamento</h2>
+                <span class="close-btn" id="closeCadastrarMedicamento">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="formCadastrarMedicamento">
+                    <div class="form-group">
+                        <label for="principioAtivo">Princípio Ativo:</label>
+                        <input type="text" id="principioAtivo" required>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-cancelar" id="cancelarCadastroMedicamento">Cancelar</button>
+                        <button type="submit" class="btn btn-confirmar">Confirmar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pop-up de Retirar Medicamento -->
+    <div class="modal" id="modalRetirarMedicamento">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Retirar Medicamento</h2>
+                <span class="close-btn" id="closeRetirarMedicamento">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="formRetirarMedicamento">
+                    <div class="form-group">
+                        <label for="medicamentoRetirar">Medicamento:</label>
+                        <select id="medicamentoRetirar" required>
+                            <!-- Opções serão inseridas via JavaScript -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="loteRetirar">Lote:</label>
+                        <select id="loteRetirar" required>
+                            <!-- Opções serão inseridas via JavaScript -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantidadeRetirar">Quantidade:</label>
+                        <input type="number" id="quantidadeRetirar" min="1" required>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-cancelar" id="cancelarRetiradaMedicamento">Cancelar</button>
+                        <button type="submit" class="btn btn-confirmar">Confirmar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pop-up de Visualização de Medicamento -->
+    <div class="modal" id="modalVisualizarMedicamento">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="medicamentoTitulo">Medicamento X</h2>
+                <span class="close-btn" id="closeVisualizarMedicamento">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="medicamento-info-container">
+                    <div class="medicamento-info">
+                        <h3>Informações do Medicamento</h3>
+                        <p><strong>Princípio Ativo:</strong> <span id="viewPrincipioAtivo"></span></p>
+                    </div>
+                    <div class="lote-info">
+                        <h3>Informações do Lote</h3>
+                        <p><strong>Número do Lote:</strong> <span id="viewNumLote"></span></p>
+                        <p><strong>Data de Validade:</strong> <span id="viewDataValidade"></span></p>
+                        <p><strong>Fabricante:</strong> <span id="viewFabricante"></span></p>
+                        <p><strong>Quantidade:</strong> <span id="viewQuantidade"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Pop-up de Filtros -->
+    <div class="modal" id="modalFiltros">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Filtros</h2>
+                <span class="close-btn" id="closeFiltros">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="formFiltros">
+                    <div class="form-group">
+                        <label for="filtroMedicamento">Medicamento:</label>
+                        <select id="filtroMedicamento">
+                            <option value="">Todos</option>
+                            <!-- Opções serão inseridas via JavaScript -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="filtroFabricante">Fabricante:</label>
+                        <select id="filtroFabricante">
+                            <option value="">Todos</option>
+                            <!-- Opções serão inseridas via JavaScript -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantidade em estoque:</label>
+                        <div class="range-filter">
+                            <div class="range-inputs">
+                                <div class="range-input-group">
+                                    <label for="quantidadeMin">Mínima:</label>
+                                    <input type="number" id="quantidadeMin" min="0" placeholder="Min">
+                                </div>
+                                <div class="range-input-group">
+                                    <label for="quantidadeMax">Máxima:</label>
+                                    <input type="number" id="quantidadeMax" min="0" placeholder="Max">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Validade:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="filtroVencidos">
+                                <label for="filtroVencidos">Mostrar vencidos</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="filtroProximosVencer">
+                                <label for="filtroProximosVencer">Próximos a vencer (3 meses)</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-cancelar" id="limparFiltros">Limpar Filtros</button>
+                        <button type="submit" class="btn btn-confirmar">Aplicar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="estoque-js.js"></script>
+</body>
+</html>
