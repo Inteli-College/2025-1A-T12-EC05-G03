@@ -15,9 +15,7 @@ import requests
 import serial
 import pydobot
 from serial.tools import list_ports
-
-# Importações locais
-from sensor_distancia import objeto_detectado, verificar_sensor
+import threading
 
 
 # Constantes
@@ -61,57 +59,78 @@ class InteliDobot(pydobot.Dobot):
 
 
 #####################################
-# FUNÇÕES DE QR CODE E API
+# FUNÇÕES DE QR CODE, DISTANCIA E API
 #####################################
 
-def QRCodeV():
-    """
-    Lê e valida um código QR da porta serial.
+SERIAL_PORT = '/dev/ttyACM0'  # Porta do Arduino no Raspberry Pi
+BAUD_RATE = 9600
+def ler_serial():
+    """Função que roda em segundo plano lendo dados da serial."""
+    global sensor_distancia, qr_code
     
-    Retorna:
-        bool: True se o código QR foi lido e validado com sucesso, False caso contrário
-    """
-    try:
-        ser = serial.Serial('/dev/ttyACM0', 9600, timeout=100)
-        time.sleep(1)  # Dá tempo para a conexão serial estabilizar
-    except serial.SerialException as e:
-        print(f"❌ Não consegui abrir a porta serial: {e}")
-        return False
-
-    try:
-        # Tenta ler múltiplas vezes
-        tentativas = 3
-        qrcode_lido = ""
+    # Initialize global variables if they don't exist
+    if 'sensor_distancia' not in globals():
+        global sensor_distancia
+        sensor_distancia = False
+    if 'qr_code' not in globals():
+        global qr_code
+        qr_code = "n/a"
         
-        for i in range(tentativas):
-            data = ser.readline().decode('utf-8').strip()
-            if data:
-                qrcode_lido = data
-                break
-            
-        print(f"Dados brutos do QR Code: '{qrcode_lido}'")
-        remedio_id = 1  # Use o ID correto do remédio
-        
-        if qrcode_lido:
-            print(f"🔍 Detectei um QR Code: {qrcode_lido}")
-            return validar_qrcode(remedio_id, qrcode_lido)
-        else:
-            print("❌ Não consegui ler nenhum QR Code após múltiplas tentativas")
-            return False
-
+    try:
+        with serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1) as ser:
+            while True:
+                try:
+                    linha = ser.readline().decode('utf-8').strip()
+                    if not linha:
+                        continue
+                    
+                    print(f"Debug - Received serial data: '{linha}'")
+                    
+                    # Primeiro processa sensorD e depois qr, para evitar problemas com vírgulas no QR
+                    if "sensorD:" in linha:
+                        parts = linha.split("sensorD:")
+                        if len(parts) > 1:
+                            valor_sensor = parts[1].split(",")[0].strip()
+                            # Inverte a lógica: sensorD:0 significa objeto detectado, sensorD:1 significa nada detectado
+                            # Anteriormente: sensor_distancia = (valor_sensor == "1" or valor_sensor == "1 ")
+                            sensor_distancia = (valor_sensor == "0" or valor_sensor == "0 ")
+                            print(f"Debug - Sensor distância atualizado: {sensor_distancia} (valor original: {valor_sensor})")
+                    
+                    if "qr:" in linha:
+                        parts = linha.split("qr:")
+                        if len(parts) > 1:
+                            # Pega tudo após "qr:" até o final da linha
+                            qr_value = parts[1].strip()
+                            # Ignora se for n/a ou N/A
+                            if qr_value.lower() != "n/a":
+                                qr_code = qr_value
+                                print(f"Debug - QR code completo atualizado: {qr_code}")
+                            else:
+                                print(f"Debug - QR code N/A ignorado")
+                    
+                except Exception as e:
+                    print(f"Debug - Erro ao processar linha serial: {e}")
     except serial.SerialException as e:
-        print(f"❌ Tive um problema na comunicação serial: {e}")
-        return False
-    except requests.RequestException as e:
-        print(f"❌ Tive um problema na requisição para a API: {e}")
-        return False
-    finally:
-        # Garante que a conexão serial seja fechada
-        try:
-            ser.close()
-        except:
-            pass
+        print(f"❌ Erro na comunicação serial: {e}")
+    except Exception as e:
+        print(f"❌ Erro inesperado na thread serial: {e}")
+        
+# Inicializa variáveis globais
+sensor_distancia = False
+qr_code = "n/a"
 
+# Inicia a thread de leitura da serial
+thread = threading.Thread(target=ler_serial)
+thread.daemon = True
+thread.start()
+
+def QRCodeV():
+    """Retorna o último QR Code lido."""
+    return qr_code
+
+def objeto_detectado():
+    """Retorna True se o sensor de distância detectar um objeto."""
+    return sensor_distancia
 
 def validar_qrcode(remedio_id, qrcode_lido):
     """
@@ -346,16 +365,40 @@ def main():
             # Lê e valida o código QR
             try:
                 print("Estou lendo o QR Code do medicamento...")
-                status_qr = QRCodeV()
-
-                if not status_qr:
-                    print(f"Não consegui enxergar o QR-code ou ele é inválido na ilha {ilha_num}")
+                
+                # Aguarda um tempo para o QR code ser detectado
+                print("Aguardando leitura estável do QR code...")
+                time.sleep(2)  # Dá tempo para a câmera capturar o QR code
+                
+                # Leitura sincronizada do QR code
+                qrcode_lido = QRCodeV()
+                print(f"QR code lido: '{qrcode_lido}'")
+                
+                if qrcode_lido == "n/a" or not qrcode_lido:
+                    print(f"Não consegui enxergar o QR-code na ilha {ilha_num}")
                     enviar_log(id_pedido, id_remedio, LOG_QR_NAO_RECONHECIDO)
                     contador_erros[LOG_QR_NAO_RECONHECIDO] += 1
                     return False
+                
+                # Valida o QR code com a API - execução sincronizada
+                print(f"Validando o QR code '{qrcode_lido}' com a API para o remédio ID: {id_remedio}...")
+                qrcode_valido = validar_qrcode(id_remedio, qrcode_lido)
+                print(f"Resultado da validação: {'Válido' if qrcode_valido else 'Inválido'}")
+                
+                if not qrcode_valido:
+                    print(f"O QR code lido não corresponde ao medicamento da ilha {ilha_num}")
+                    enviar_log(id_pedido, id_remedio, LOG_QR_NAO_CORRESPONDE)
+                    contador_erros[LOG_QR_NAO_CORRESPONDE] += 1
+                    return False
+                
+                print("QR Code validado com sucesso pela API! Prosseguindo com a coleta...")
+                time.sleep(1)  # Pausa antes de prosseguir para garantir sincronização
 
-                print("Consegui verificar o QR Code com sucesso!")
-
+            except Exception as e:
+                print(f"Tive um problema ao ler/verificar o QR Code: {e}")
+                enviar_log(id_pedido, id_remedio, LOG_QR_NAO_RECONHECIDO)
+                contador_erros[LOG_QR_NAO_RECONHECIDO] += 1
+                return False
             except Exception as e:
                 print(f"Tive um problema ao ler/verificar o QR Code: {e}")
                 enviar_log(id_pedido, id_remedio, LOG_QR_NAO_RECONHECIDO)
