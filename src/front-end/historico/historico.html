@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gerenciamento - Histórico de Prescrições</title>
+    <!-- Importando fontes do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Importando ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="../estoque/styles.css">
+    <link rel="stylesheet" href="historico.css">
+</head>
+<body>
+    <!-- Barra lateral de navegação -->
+    <div class="sidebar" id="sidebar">
+        <div class="menu-icon" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="menu-items">
+            <a href="index.html" class="menu-item">
+                <i class="fas fa-home"></i>
+                <span class="menu-text">Home</span>
+            </a>
+            <a href="estoque.html" class="menu-item">
+                <i class="fas fa-pills"></i>
+                <span class="menu-text">Estoque</span>
+            </a>
+            <a href="historico.html" class="menu-item active">
+                <i class="fas fa-search"></i>
+                <span class="menu-text">Histórico</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Container principal -->
+    <div class="container">
+        <!-- Conteúdo principal -->
+        <div class="main-content">
+            <div class="section-container">
+                <h1 class="section-title">Histórico Prescrição</h1>
+                
+                <!-- Barra de pesquisa e filtros -->
+                <div class="search-filter-container">
+                    <div class="search-container">
+                        <input type="text" class="search-input" placeholder="Buscar prescrição...">
+                        <button class="btn btn-search"><i class="fas fa-search"></i></button>
+                    </div>
+                    <button class="btn btn-filtros" id="btnFiltros">Filtros</button>
+                </div>
+                
+                <!-- Tabela de prescrições -->
+                <div class="table-container">
+                    <table class="historico-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Paciente</th>
+                                <th>HC</th>
+                                <th>Data Entrada</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historicoTableBody">
+                            <!-- Dados serão inseridos via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pop-up de Detalhes da Prescrição -->
+    <div class="modal" id="modalDetalhesPrescricao">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h2>Detalhes da Prescrição</h2>
+                <span class="close-btn" id="closeDetalhesPrescricao">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="prescricao-info">
+                    <div class="info-row">
+                        <div class="info-group">
+                            <h3>Informações da Prescrição</h3>
+                            <p><strong>ID:</strong> <span id="prescricao-id"></span></p>
+                            <p><strong>Status:</strong> <span id="prescricao-status"></span></p>
+                            <p><strong>Data de Entrada:</strong> <span id="prescricao-data-entrada"></span></p>
+                            <p><strong>Data de Avaliação:</strong> <span id="prescricao-data-avaliacao"></span></p>
+                        </div>
+                        <div class="info-group">
+                            <h3>Informações do Paciente</h3>
+                            <p><strong>Nome:</strong> <span id="paciente-nome"></span></p>
+                            <p><strong>HC:</strong> <span id="paciente-hc"></span></p>
+                        </div>
+                    </div>
+                    
+                    <h3>Medicamentos Prescritos</h3>
+                    <div class="table-container">
+                        <table class="medicamentos-table">
+                            <thead>
+                                <tr>
+                                    <th>Medicamento</th>
+                                    <th>Dosagem</th>
+                                    <th>Frequência</th>
+                                    <th>Via</th>
+                                </tr>
+                            </thead>
+                            <tbody id="medicamentosTableBody">
+                                <!-- Dados serão inseridos via JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="info-row">
+                        <div class="info-group">
+                            <h3>Usuário Revisor</h3>
+                            <p><strong>Nome:</strong> <span id="usuario-nome"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Pop-up de Filtros -->
+    <div class="modal" id="modalFiltros">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Filtros</h2>
+                <span class="close-btn" id="closeFiltros">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="formFiltros">
+                    <div class="form-group">
+                        <label for="filtroStatus">Status da Prescrição:</label>
+                        <select id="filtroStatus">
+                            <option value="">Todos</option>
+                            <!-- Opções serão inseridas via JavaScript -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Período:</label>
+                        <div class="range-filter">
+                            <div class="range-inputs">
+                                <div class="range-input-group">
+                                    <label for="dataInicio">Data Inicial:</label>
+                                    <input type="date" id="dataInicio">
+                                </div>
+                                <div class="range-input-group">
+                                    <label for="dataFim">Data Final:</label>
+                                    <input type="date" id="dataFim">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="filtroPaciente">Paciente (HC):</label>
+                        <input type="text" id="filtroPaciente" placeholder="Digite o HC do paciente">
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-cancelar" id="limparFiltros">Limpar Filtros</button>
+                        <button type="submit" class="btn btn-confirmar">Aplicar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="historico.js"></script>
+</body>
+</html>
