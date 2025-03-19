@@ -28,3 +28,21 @@ def cadastrar_lote():
     return jsonify({
         'message': 'Lote cadastrado com sucesso',
     }), 201
+
+@lote_bp.route('/listar', methods = ['GET'])
+def listar_all_logs():
+    lotes = Lote.query.all()
+    return jsonify([lote.as_dict() for lote in lotes])
+
+
+@lote_bp.route('/remedio/<id_remedio>', methods = ['GET'])
+def listar_por_id_remedio(id_remedio):
+
+    lotes_id = db.session.query(Lote).filter(Lote.id_remedio == id_remedio)
+
+    if(lotes_id is None):
+        return jsonify({
+            'Message': 'Não foi encontrado nenhum lote para esse remédio'
+        }), 404
+
+    return jsonify([log.as_dict() for log in lotes_id]),200
