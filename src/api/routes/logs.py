@@ -33,9 +33,9 @@ def listar_all_logs():
 @log_bp.route('/pedido/<id_pedido>', methods = ['GET'])
 def listar_por_id_pedido(id_pedido):
 
-    logs_id = db.session.query(Log).filter(Log.id_pedido == id_pedido)
+    logs_id = db.session.query(Log).filter(Log.id_pedido == id_pedido).all()
 
-    if(logs_id is None):
+    if not logs_id:
         return jsonify({
             'Message': 'Não foi encontrado nenhum log para esse pedido'
         }), 404

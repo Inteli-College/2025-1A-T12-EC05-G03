@@ -2,7 +2,8 @@ from flask import Blueprint, jsonify, request
 from ..models.lote import Lote
 from ..models.database import db
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from datetime import datetime
+from datetime import date, datetime, timedelta
+
 
 lote_bp = Blueprint('lotes', __name__, url_prefix='/lotes')
 
@@ -38,11 +39,28 @@ def listar_all_logs():
 @lote_bp.route('/remedio/<id_remedio>', methods = ['GET'])
 def listar_por_id_remedio(id_remedio):
 
-    lotes_id = db.session.query(Lote).filter(Lote.id_remedio == id_remedio)
+    lotes_id = db.session.query(Lote).filter(Lote.id_remedio == id_remedio).all()
 
-    if(lotes_id is None):
+    if not lotes_id:
         return jsonify({
             'Message': 'Não foi encontrado nenhum lote para esse remédio'
         }), 404
 
     return jsonify([log.as_dict() for log in lotes_id]),200
+
+@lote_bp.route('/proximos-validade', methods = ['GET'])
+def listar_remedio_proximos_a_validade():
+
+    data_limite = date.today() + timedelta(days=7)
+
+    prox_validade = db.session.query(Lote).filter(
+        Lote.data_validade.between(date.today(), data_limite)
+    ).all()
+
+    if not prox_validade:
+        return jsonify({
+            'Message': 'Não foi encontrado nenhum lote que está para vencer'
+        }), 404 
+    
+    return jsonify([lote.as_dict() for lote in prox_validade])
+
