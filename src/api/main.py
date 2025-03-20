@@ -5,7 +5,7 @@ from .routes.auth import auth_bp
 from .routes.logs import log_bp
 from .routes.remedios import remedios_bp
 from .routes.lotes import lote_bp
-from .routes.qrcode import qrcode_bp
+from .routes.rotas_qrcode import qrcode_bp
 import os
 from flask_jwt_extended import JWTManager
 from flask_bcrypt import Bcrypt
