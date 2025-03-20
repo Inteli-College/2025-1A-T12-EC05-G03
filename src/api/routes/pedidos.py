@@ -1,5 +1,4 @@
 from flask import Blueprint, jsonify, request
-from ..models.prescricao import Prescricao
 from ..models.pedido import Pedido
 from ..models.user import User
 from ..models.database import db
@@ -112,46 +111,5 @@ def puxar_prox_fila():
         "lista_remedios": pedido.lista_remedios
     })
 
-@pedidos_bp.route('/atualizar-home', methods=['GET'])
-def atualizar_pedidos_home():
-    pedidos_aguardando_separacao = (
-    db.session.query(Pedido)
-    .filter(
-        (Pedido.status_pedido == 1) &
-        (func.date(Pedido.data_entrada) == date.today())
-    )
-    .all()
-    )
-    pedidos_em_separacao = (
-    db.session.query(Pedido)
-    .filter(
-        (Pedido.status_pedido == 2) &
-        (func.date(Pedido.data_entrada) == date.today())
-    )
-    .all()
-    )
-    pedidos_em_revisao = (
-    db.session.query(Pedido)
-    .filter(
-        (Pedido.status_pedido == 3) &
-        (func.date(Pedido.data_entrada) == date.today())
-    )
-    .all()
-    )
-    pedidos_concluidos = (
-    db.session.query(Pedido)
-    .filter(
-        (Pedido.status_pedido == 4) &
-        (func.date(Pedido.data_entrada) == date.today())
-    )
-    .all()
-    )
-
-    return jsonify({
-        "Aguardando Separacao": [aguardando.as_dict() for aguardando in pedidos_aguardando_separacao],
-        "Em Separação": [separacao.as_dict() for separacao in pedidos_em_separacao],
-        "Em Revisão": [revisao.as_dict() for revisao in pedidos_em_revisao],
-        "Concluído": [concluido.as_dict() for concluido in pedidos_concluidos],
-    }), 200
 
 
