@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from ..models.prescricao import Prescricao
 from ..models.pedido import Pedido
+from ..models.user import User
 from ..models.database import db
 from datetime import datetime
 from flask_jwt_extended import jwt_required, get_jwt_identity
@@ -71,6 +72,12 @@ def aprovar_prescricao(prescricao_id):
     prescricao.data_avaliacao = datetime.now()
  
     # Fazer lógica para puxar o id do usuário que aprovou!
+    email = get_jwt_identity()
+    user = User.query.filter_by(email=email).first()
+    if not user:
+        return jsonify({"Usuário não encontrado"}), 404
+
+    prescricao.id_user_aprovacao = user.id
 
     db.session.commit()
     return jsonify({'Message': 'Prescricao aprovada com sucesso'}), 200

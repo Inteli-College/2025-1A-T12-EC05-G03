@@ -8,7 +8,7 @@ class Lote(db.Model):
     # Definindo as colunas
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     num_lote = db.Column(db.String(100), nullable=False)
-    data_validade = db.Column(db.DateTime, nullable=True)
+    data_validade = db.Column(db.Date, nullable=True)
     fabricante = db.Column(db.String(255), nullable=False)
     id_remedio = db.Column(db.Integer, db.ForeignKey('remedio.id'), nullable=False)
     quantidade = db.Column(db.Integer, nullable=False)
