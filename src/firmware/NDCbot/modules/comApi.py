@@ -29,7 +29,7 @@ def enviar_log(id_pedido, id_remedio_em_separacao, codigo_log):
 
 def obter_pedidos():
     try:
-        url = "https://two025-1a-t12-ec05-g03.onrender.com/pedidos/lista"
+        url = "https://two025-1a-t12-ec05-g03.onrender.com/pedidos/fila"
         response = requests.get(url)
         if response.status_code == 200:
             return response.json()
@@ -38,4 +38,4 @@ def obter_pedidos():
             return []
     except Exception as e:
         print(f"❌ Tive um problema na requisição para obter pedidos: {e}")
-        return []
+        return
