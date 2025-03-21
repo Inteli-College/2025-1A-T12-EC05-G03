@@ -55,7 +55,7 @@ def processa_ilha(ilha_num, id_pedido, id_remedio, device, contador_erros, conta
         
         # Move para ler o código QR
         try:
-            device.movej_to(ilha[0]["x"], ilha[0]["y"], ilha[0]["z"], ilha[0]["r"], wait=True)
+            device.movej_to(ilha[0]["x"], ilha[0]["y"], 130, ilha[0]["r"], wait=True)
             time.sleep(1)
             
         except Exception as e:
@@ -124,6 +124,7 @@ def processa_ilha(ilha_num, id_pedido, id_remedio, device, contador_erros, conta
             
             # Verifica se o medicamento ainda está sendo segurado
             print("Estou verificando se o medicamento continua coletado após movimento...")
+            time.sleep(3)
             medicamento_no_trajeto = objeto_detectado()
             
             if not medicamento_no_trajeto:
@@ -195,6 +196,7 @@ def processa_fita(id_pedido, id_remedio, device, contador_sucessos, contador_err
         # Verifica se o medicamento ainda está sendo segurado antes da deposição
         try:
             print("Estou verificando se o medicamento ainda está presente...")
+            time.sleep(3)
             medicamento_presente = objeto_detectado()
             
             if not medicamento_presente:
@@ -235,6 +237,7 @@ def processa_fita(id_pedido, id_remedio, device, contador_sucessos, contador_err
             time.sleep(0.5)  # Aguarda para estabilização
             
             # Verifica se o medicamento foi depositado corretamente
+            time.sleep(3)
             medicamento_depositado = not objeto_detectado()  # True se NÃO detectar objeto
             
             if not medicamento_depositado:

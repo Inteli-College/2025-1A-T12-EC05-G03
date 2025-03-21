@@ -18,7 +18,7 @@ def QRCodeV():
     
     try:
         # Conecta à porta serial
-        with serial.Serial('/dev/ttyACM0', 9600, timeout=2) as ser:
+        with serial.Serial('/dev/ttyACM1', 9600, timeout=2) as ser:
             ser.reset_input_buffer()
             
             # Tenta ler múltiplas vezes

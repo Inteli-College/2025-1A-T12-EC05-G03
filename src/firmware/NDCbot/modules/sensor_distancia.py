@@ -8,7 +8,7 @@ import time
 # Variável global para armazenar o último valor do sensor
 sensor_value = False
 
-def verificar_sensor(porta='/dev/ttyACM0', baud_rate=9600):
+def verificar_sensor(porta='/dev/ttyACM1', baud_rate=9600):
     """
     Lê o valor atual do sensor de distância.
     
