@@ -107,8 +107,7 @@ let filtrosAtivos = {
 
 // Função para inicializar a página quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', function() {
-    // Inicializa a barra lateral
-    initSidebar();
+    // A inicialização da barra lateral agora é controlada por menu.js
     
     // Carrega os dados na tabela
     carregarTabelaHistorico();
@@ -119,18 +118,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Adiciona listeners para os botões
     setupEventListeners();
 });
-
-// Inicialização da barra lateral
-function initSidebar() {
-    const menuToggle = document.getElementById('menu-toggle');
-    const sidebar = document.getElementById('sidebar');
-    
-    // Evento de clique para expandir/retrair a barra lateral
-    menuToggle.addEventListener('click', function() {
-        sidebar.classList.toggle('expanded');
-        document.body.classList.toggle('menu-expanded');
-    });
-}
 
 // Carrega as opções de filtro
 function carregarOpcoesParaFiltros() {
