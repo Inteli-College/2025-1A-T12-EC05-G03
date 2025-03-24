@@ -1,9 +1,11 @@
 from flask import Blueprint, jsonify, request
-from ..models.prescricao import Prescricao
 from ..models.pedido import Pedido
+from ..models.user import User
 from ..models.database import db
-from datetime import datetime
+from datetime import datetime, date
 from flask_jwt_extended import jwt_required, get_jwt_identity
+from sqlalchemy.sql import func
+
 
 
 # criando a rota base
@@ -12,7 +14,6 @@ pedidos_bp = Blueprint('pedidos', __name__, url_prefix='/pedidos')
 #Rotas:
 #Listar todas as pedidos
 @pedidos_bp.route('/listar', methods=['GET'])
-@jwt_required()
 def listar_pedidos():
     pedidos = Pedido.query.all()
     return jsonify([pedido.as_dict() for pedido in pedidos])
@@ -67,7 +68,17 @@ def alterar_status(pedido_id):
     
     if (data['status'] == 4 or data['status'] == 5 or data['status'] == 6) :
         pedido.data_finalizacao = datetime.now()
-        # Fazer lógica para puxar o id do usuario que aprovou! ou para o usuário que reprovou
+        
+    # Fazer lógica para puxar o id do usuario que aprovou! ou para o usuário que reprovou
+
+        email = get_jwt_identity()
+        user = User.query.filter_by(email=email).first()
+        if not user:
+            return jsonify({"Usuário não encontrado"}), 404
+
+        pedido.id_user_revisao = user.id
+    
+    
 
     db.session.commit()
     return jsonify({'Message': f"Status prescrição atualizado para {data['status']}, com sucesso"}), 200
@@ -99,3 +110,6 @@ def puxar_prox_fila():
         "id": pedido.id,
         "lista_remedios": pedido.lista_remedios
     })
+
+
+
