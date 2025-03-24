@@ -93,6 +93,59 @@ custom_edit_url: null
 }
 ```
 
+### Listar todos os log
+```
+/logs/listar
+```
+
+ - **Método**: GET
+ - **Corpo da Requisição**:
+```
+{
+    
+}
+```
+
+ - **Resposta Esperada**:
+    - status code : 200
+    - *response*:
+```
+{
+  [
+  {
+    "id": 0,
+    "codigo_log": 0,
+    "hora_log": "",
+    "id_pedido": 0,
+    "id_remedio_em_separacao": 0
+  }
+]
+}
+```
+
+### Listar logs por Id pedido
+```
+/logs/pedido/<id_pedido>
+```
+
+ - **Método**: GET
+ - **Resposta Esperada**:
+    - status code : 200
+    - *response*:
+```
+{
+  [
+  {
+    "id": 0,
+    "codigo_log": 0,
+    "hora_log": "",
+    "id_pedido": 0,
+    "id_remedio_em_separacao": 0
+  }
+  ]
+}
+```
+
 ## Rotas de Controle de Prescrições do Sistema
 
 
@@ -226,6 +279,7 @@ custom_edit_url: null
   "message": "Pedido inserido com sucesso"
 }
 ```
+
 ### Listar todas os pedidos
 ```
 /pedidos/listar
@@ -326,6 +380,22 @@ custom_edit_url: null
 ```
 
 
+### Puxar o próximo pedido da fila
+```
+/pedidos/fila
+```
+
+ - **Método**: GET
+ - **Resposta Esperada**:
+    - status code : 200
+    - *response*:
+```
+{
+    "id": 0,
+    "lista_remedios": "[]"
+}
+```
+
 
 ## Rotas de Qr Code
 
@@ -377,13 +447,33 @@ custom_edit_url: null
 }
 ```
 
+## Rotas de Home
+
+### Atualizar as informações da Home Page
+```
+/home/atualizar
+```
+
+ - **Método**: GET
+ - **Resposta Esperada**:
+    - status code : 200
+    - *response*:
+```
+{
+  "Prescricoes aguardando avaliacao": [],
+  "Prescricoes avaliadas": [],
+  "Aguardando Separacao": [],
+  "Em Separação": [],
+  "Em Revisão": [],
+  "Concluído": []
+}
+```
 
 
-&emsp;Ademais, vale pontuar que todas as rotas da nossa API serão protegidas, ou seja, só poderão ser acessadas se, durante a requisição, for enviado um token de acesso nos ***headers***. Esse token é gerado assim que o usuário faz login no nosso sistema e possui uma validade. Ou seja, caso o usuário deslogue da aplicação e tente realizar a requisição utilizando o mesmo token, ela não será processada, devido à expiração do token.
+## Rotas de Controle de Lote
 
-## Rotas de Lote
 
-### Cadastro de Lote
+### Cadastro de Lotes
 ```
 /lotes/cadastrar
 ```
@@ -392,23 +482,103 @@ custom_edit_url: null
  - **Corpo da Requisição**:
 ```
 {
-    num_lote = 0,
-    data_validade = "",
-    fabricante = "",
-    id_remedio = 0,
-    quantidade = 0,
-    bin_qrcode = "",
-}
-```
- - **Resposta Esperada**:
-    - status code : 201
-    - *response*:
-```
-{
-    "message": "Lote cadastrado com sucesso"
+    "num_lote": 0,
+    "data_validade": ",
+    "fabricante": "",
+    "id_remedio": 0,
+    "quantidade": 0,
+    "bin_qrcode": ""
 }
 ```
 
+ - **Resposta Esperada**:
+    - status code : 200
+    - *response*:
+```
+{
+  "message": "Lote cadastrado com sucesso"
+}
+```
+
+### Listar todos os lotes
+```
+/lotes/listar
+```
+
+ - **Método**: GET
+ - **Resposta Esperada**:
+    - status code : 200
+    - *response*:
+```
+{
+  [
+    {
+        "id": 0,
+        "num_lote": 0,
+        "data_validade": ",
+        "fabricante": "",
+        "id_remedio": 0,
+        "quantidade": 0,
+        "bin_qrcode": ""
+    }
+  ]
+}
+```
+
+### Listar lotes por id remedio
+```
+/lotes/remedio/<id_remedio>
+```
+
+ - **Método**: GET
+ - **Resposta Esperada**:
+    - status code : 200
+    - *response*:
+```
+{
+  [
+    {
+        "id": 0,
+        "num_lote": 0,
+        "data_validade": ",
+        "fabricante": "",
+        "id_remedio": 0,
+        "quantidade": 0,
+        "bin_qrcode": ""
+    }
+  ]
+}
+```
+
+### Listar lotes próximos da validade
+```
+/lotes/proximos-validade
+```
+
+ - **Método**: GET
+ - **Resposta Esperada**:
+    - status code : 200
+    - *response*:
+```
+{
+  [
+    {
+        "id": 0,
+        "num_lote": 0,
+        "data_validade": ",
+        "fabricante": "",
+        "id_remedio": 0,
+        "quantidade": 0,
+        "bin_qrcode": ""
+    }
+  ]
+}
+```
+
+
+##
+
+&emsp;Ademais, vale pontuar que todas as rotas da nossa API serão protegidas, ou seja, só poderão ser acessadas se, durante a requisição, for enviado um token de acesso nos ***headers***. Esse token é gerado assim que o usuário faz login no nosso sistema e possui uma validade. Ou seja, caso o usuário deslogue da aplicação e tente realizar a requisição utilizando o mesmo token, ela não será processada, devido à expiração do token.
 
 ## Conclusão
 &emsp; As rotas apresentadas estruturam a comunicação entre clientes e o sistema, garantindo um fluxo para a autenticação, registro de logs, gerenciamento de prescrições, pedidos, validação de QR Code e controle de medicamentos. Cada endpoint foi detalhado com seus métodos, parâmetros e respostas esperadas. Esse mapeamento é feito para a integração e funcionamento adequado da API.
