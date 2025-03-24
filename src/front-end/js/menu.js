@@ -1,6 +1,30 @@
 // Arquivo para controle do menu sanduíche (sidebar)
 // Será compartilhado por todas as páginas para manter a consistência
 
+// Função para alternar o estado do menu
+function toggleMenu(e) {
+    if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+    
+    const sidebar = document.getElementById('sidebar');
+    const body = document.body;
+    
+    if (!sidebar) return;
+    
+    // Alterna a classe 'expanded' na sidebar
+    sidebar.classList.toggle('expanded');
+    
+    // Alterna a classe no body para ajustar o conteúdo principal
+    body.classList.toggle('menu-expanded');
+    
+    // Salva o estado do menu no localStorage
+    localStorage.setItem('menuExpandido', sidebar.classList.contains('expanded'));
+    
+    console.log("Estado do menu: " + (sidebar.classList.contains('expanded') ? "expandido" : "retraído"));
+}
+
 // Função para inicializar a barra lateral
 function initSidebar() {
     console.log("Inicializando menu sanduíche");
@@ -22,21 +46,17 @@ function initSidebar() {
         body.classList.add('menu-expanded');
     }
     
-    // Evento de clique para expandir/retrair a barra lateral
-    menuToggle.addEventListener('click', function() {
-        console.log("Clique no botão do menu detectado");
-        
-        // Alterna a classe 'expanded' na sidebar
-        sidebar.classList.toggle('expanded');
-        
-        // Alterna a classe no body para ajustar o conteúdo principal
-        body.classList.toggle('menu-expanded');
-        
-        // Salva o estado do menu no localStorage
-        localStorage.setItem('menuExpandido', sidebar.classList.contains('expanded'));
-        
-        console.log("Estado do menu: " + (sidebar.classList.contains('expanded') ? "expandido" : "retraído"));
-    });
+    // Remove qualquer evento existente para evitar duplicação
+    menuToggle.removeEventListener('click', toggleMenu);
+    
+    // Adiciona evento de clique no botão hamburguer de forma mais direta
+    menuToggle.addEventListener('click', toggleMenu);
+    
+    // Adiciona evento também ao ícone dentro do botão (para garantir)
+    const iconElement = menuToggle.querySelector('i');
+    if (iconElement) {
+        iconElement.style.pointerEvents = 'none'; // Evita problemas de propagação
+    }
     
     // Verifica qual página está ativa baseada na URL atual
     const urlAtual = window.location.pathname;
@@ -72,8 +92,21 @@ function initSidebar() {
     });
 }
 
-// Executa a inicialização quando o DOM estiver carregado
-document.addEventListener('DOMContentLoaded', function() {
-    console.log("DOM carregado, inicializando sidebar");
-    initSidebar();
+// Inicializar imediatamente
+initSidebar();
+
+// Garantir que o menu é inicializado quando o DOM estiver pronto
+document.addEventListener('DOMContentLoaded', initSidebar);
+
+// Garantir que o menu continua funcionando mesmo após a página carregar completamente
+window.addEventListener('load', function() {
+    const menuToggle = document.getElementById('menu-toggle');
+    if (menuToggle) {
+        // Reforçar a adição do evento de clique
+        menuToggle.removeEventListener('click', toggleMenu);
+        menuToggle.addEventListener('click', toggleMenu);
+        
+        // Tornar visualmente mais clicável
+        menuToggle.style.cursor = 'pointer';
+    }
 });
