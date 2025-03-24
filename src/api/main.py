@@ -9,6 +9,8 @@ from .routes.rotas_qrcode import qrcode_bp
 import os
 from flask_jwt_extended import JWTManager
 from flask_bcrypt import Bcrypt
+from flask_cors import CORS
+
 
 
 from flask_sqlalchemy import SQLAlchemy
@@ -27,6 +29,7 @@ from .models.log import Log
 
 
 app = Flask(__name__)
+CORS(app)
 
 # # Define o caminho para a pasta `data`
 # BASE_DIR = os.path.abspath(os.path.dirname(__file__))

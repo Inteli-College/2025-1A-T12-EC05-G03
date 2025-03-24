@@ -55,7 +55,7 @@
         const btnCadastro = document.getElementById('btnCadastro');
         
         // Função para simular o login
-        function simularLogin(event) {
+        function login(event) {
             // Previne comportamento padrão do form
             event.preventDefault();
             
@@ -65,11 +65,25 @@
             
             // Validação básica
             if (email && senha) {
-                // Normalmente aqui você faria uma requisição para o backend
-                // Como é mockado, apenas logamos no console e mostramos um alerta
-                console.log('Tentativa de login:', { email });
-                alert('Login simulado com sucesso! Em uma versão final, você seria redirecionado.');
-                
+                fetch('http://127.0.0.1:5000/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, senha })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.access_token) {  
+                    localStorage.setItem('access_token', data.access_token);  // Armazena o token no localStorage
+                    window.location.href = "home-page.html";  // Aqui você redireciona para outra página
+
+                    } else {
+                    alert(data.error || "Erro desconhecido");
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    alert('Erro na requisição. Tente novamente.');
+                });                
                 // Limpa o formulário após "login"
                 loginForm.reset();
             } else {
@@ -84,7 +98,7 @@
         }
         
         // Adiciona event listeners
-        loginForm.addEventListener('submit', simularLogin);
+        loginForm.addEventListener('submit', login);
         btnCadastro.addEventListener('click', redirecionarParaCadastro);
     </script>
 </body>
