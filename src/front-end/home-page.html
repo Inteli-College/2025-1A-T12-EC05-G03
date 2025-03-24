@@ -41,11 +41,11 @@
                 <h1 class="section-title">Prescrições</h1>
                 
                 <div class="workflow-container">
-                    <!-- Etapas do fluxo de trabalho para prescrições -->
+                    <!-- Etapas do fluxo de trabalho para prescrições - agora como filtros -->
                     <div class="workflow-step">
-                        <div class="workflow-box">
+                        <div class="workflow-box active-filter" id="filtro-aguardando">
                             <div class="step-title">Aguardando Avaliação</div>
-                            <div class="step-count">X</div>
+                            <div class="step-count" id="count-aguardando">X</div>
                         </div>
                     </div>
                     
@@ -54,14 +54,14 @@
                     </div>
                     
                     <div class="workflow-step">
-                        <div class="workflow-box">
+                        <div class="workflow-box" id="filtro-avaliadas">
                             <div class="step-title">Avaliadas</div>
-                            <div class="step-count">X</div>
+                            <div class="step-count" id="count-avaliadas">X</div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="section-subtitle">Aguardando Avaliação</div>
+                <div class="section-subtitle" id="prescricoes-subtitulo">Aguardando Avaliação</div>
                 
                 <!-- Lista de prescrições aguardando avaliação -->
                 <div class="list-container">
@@ -201,10 +201,7 @@
                 </div>
                 
                 <div class="avaliacao-form">
-                    <div class="form-group">
-                        <label for="observacoes">Observações (opcional):</label>
-                        <textarea id="observacoes" class="form-control" placeholder="Adicione observações sobre esta prescrição..."></textarea>
-                    </div>
+                    <!-- Formulário será preenchido dinamicamente pelo JavaScript -->
                 </div>
             </div>
             <div class="modal-footer">
@@ -251,6 +248,25 @@
                 <div class="btn-group">
                     <button class="btn-modal btn-secondary modal-close-btn">Cancelar</button>
                     <button class="btn-modal btn-primary" id="btn-confirmar-separacao">Confirmar Separação</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de Revisão de Pedido -->
+    <div class="modal-overlay" id="modal-revisao">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Revisão de Pedido</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="revisao-detalhes">
+                <!-- Conteúdo será preenchido dinamicamente pelo JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group">
+                    <button class="btn-modal btn-secondary modal-close-btn">Cancelar</button>
+                    <button class="btn-modal btn-primary" id="btn-confirmar-revisao">Confirmar Revisão</button>
                 </div>
             </div>
         </div>
