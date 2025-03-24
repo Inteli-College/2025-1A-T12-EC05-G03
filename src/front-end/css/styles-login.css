@@ -1,8 +1,6 @@
 /* Importação das fontes */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
 
-/* Tentativa de importar Glacial Indifference - como é uma fonte não padrão, 
-   você precisará adicionar os arquivos da fonte ao projeto ou usar um serviço como o Google Fonts */
 @font-face {
     font-family: 'Glacial Indifference';
     src: url('fonts/GlacialIndifference-Regular.otf') format('opentype');

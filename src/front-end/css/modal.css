@@ -1,0 +1,537 @@
+/* Estilos para os modais/pop-ups */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(31, 40, 50, 0.7); /* Cor escura com opacidade */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Acima de todos os outros elementos */
+}
+
+.modal {
+    background-color: var(--cor-clara);
+    border-radius: 15px;
+    width: 90%;
+    max-width: 650px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: modalFadeIn 0.3s ease forwards;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    background-color: var(--cor-base1);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 15px 15px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    font-family: 'Glacial Indifference', Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.modal-close {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.modal-close:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-footer {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid #eee;
+}
+
+/* Estilos específicos para o modal de prescrição */
+.prescricao-info {
+    margin-bottom: 20px;
+}
+
+.paciente-detalhes, .prescricao-detalhes {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.info-label {
+    color: var(--cor-escura);
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-block;
+    min-width: 100px;
+}
+
+.info-row {
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.info-row:last-child {
+    margin-bottom: 0;
+}
+
+.remedio-card {
+    background-color: #f9f9f9;
+    border-left: 4px solid var(--cor-base2);
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.remedio-title {
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--cor-escura);
+}
+
+.remedio-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 14px;
+}
+
+.remedio-detail {
+    display: flex;
+    align-items: center;
+    color: var(--cor-escura);
+}
+
+.remedio-detail i {
+    margin-right: 6px;
+    color: var(--cor-base1);
+}
+
+/* Estilo para status */
+.status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.status-aguardando {
+    background-color: #FFE082;
+    color: #886A08;
+}
+
+.status-avaliada, .status-concluido {
+    background-color: var(--cor-destaque);
+    color: var(--cor-escura);
+}
+
+.status-separacao {
+    background-color: var(--cor-base2);
+    color: var(--cor-escura);
+}
+
+.status-revisao {
+    background-color: #B39DDB;
+    color: #4527A0;
+}
+
+/* Estilos para o modal de avaliação de prescrição */
+.avaliacao-form {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--cor-escura);
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Nunito', sans-serif;
+}
+
+textarea.form-control {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-modal {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--cor-destaque);
+    color: var(--cor-escura);
+}
+
+.btn-primary:hover {
+    background-color: #2ad5b0;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: #e0e0e0;
+    color: var(--cor-escura);
+}
+
+.btn-secondary:hover {
+    background-color: #d0d0d0;
+}
+
+/* Estilos para separação de pedidos */
+.separacao-section {
+    margin-top: 20px;
+}
+
+.separacao-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.separacao-title {
+    font-family: 'Glacial Indifference', Arial, sans-serif;
+    font-size: 18px;
+    color: var(--cor-escura);
+}
+
+.remedio-separacao {
+    background-color: white;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.remedio-info {
+    flex-grow: 1;
+}
+
+.remedio-check {
+    margin-left: 15px;
+}
+
+.checkbox-container {
+    display: inline-block;
+    position: relative;
+    width: 24px;
+    height: 24px;
+}
+
+.custom-checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 24px;
+    width: 24px;
+    background-color: #eee;
+    border-radius: 5px;
+    transition: all 0.2s;
+}
+
+.checkbox-container:hover .checkmark {
+    background-color: #ccc;
+}
+
+.custom-checkbox:checked ~ .checkmark {
+    background-color: var(--cor-destaque);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.custom-checkbox:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Estilo para box ativo (filtro selecionado) */
+.workflow-box.active-filter {
+    background-color: var(--cor-destaque);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.workflow-box.active-filter .workflow-icon,
+.workflow-box.active-filter .step-title,
+.workflow-box.active-filter .step-count {
+    color: var(--cor-escura);
+    font-weight: bold;
+}
+
+/* Efeito de clique nos boxes de workflow */
+.workflow-box {
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+.workflow-box:active {
+    transform: translateY(-3px);
+}
+
+/* Estilo para o painel de notificações expansível */
+.notifications-panel {
+    transition: width 0.3s ease, height 0.3s ease;
+    position: relative;
+}
+
+.notifications-panel.expanded {
+    width: 100%;
+    min-height: 400px;
+}
+
+.notification-toggle {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--cor-base1);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.notification-toggle:hover {
+    background-color: var(--cor-destaque);
+    transform: scale(1.1);
+}
+
+.notification-toggle i {
+    transition: transform 0.3s;
+}
+
+.notifications-panel.expanded .notification-toggle i {
+    transform: rotate(180deg);
+}
+
+/* Estilo para notificações em modo expandido */
+.notifications-panel.expanded .notification-list {
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.notifications-panel.expanded .notification-item {
+    padding: 15px;
+}
+
+.notifications-panel .notification-date {
+    font-size: 12px;
+    color: #777;
+    margin-top: 5px;
+}
+
+.notification-empty {
+    text-align: center;
+    padding: 20px;
+    color: #888;
+}
+
+/* Scrollbar personalizada para a lista de notificações */
+.notification-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.notification-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.notification-list::-webkit-scrollbar-thumb {
+    background: var(--cor-base2);
+    border-radius: 10px;
+}
+
+.notification-list::-webkit-scrollbar-thumb:hover {
+    background: var(--cor-base1);
+}
+
+/* Animação para novas notificações */
+@keyframes highlightNotification {
+    0% { background-color: rgba(59, 247, 203, 0.3); }
+    100% { background-color: #eee; }
+}
+
+.notification-item.new {
+    animation: highlightNotification 2s ease-out;
+}
+
+/* Estilo para botão ver mais notificações */
+.btn-ver-mais {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    text-align: center;
+    margin-top: 10px;
+    background-color: var(--cor-base2);
+    color: var(--cor-escura);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-ver-mais:hover {
+    background-color: var(--cor-destaque);
+    transform: translateY(-2px);
+}
+
+/* Estilos para o histórico de notificações no modal */
+.notificacoes-lista {
+    max-height: 400px;
+    overflow-y: auto;
+    margin: 0 -20px;
+    padding: 0 20px;
+}
+
+.notificacao-dia {
+    margin-bottom: 20px;
+}
+
+.notificacao-data-header {
+    font-family: 'Glacial Indifference', Arial, sans-serif;
+    color: var(--cor-escura);
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Botões de avançar status dos pedidos */
+.status-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+    gap: 10px;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .modal {
+        width: 95%;
+    }
+    
+    .info-label {
+        min-width: 80px;
+    }
+    
+    .remedio-details {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-header {
+        padding: 12px 15px;
+    }
+    
+    .modal-body {
+        padding: 15px;
+    }
+    
+    .paciente-detalhes, .prescricao-detalhes {
+        padding: 12px;
+    }
+    
+    .btn-group {
+        flex-direction: column;
+    }
+    
+    .btn-modal {
+        width: 100%;
+    }
+}
