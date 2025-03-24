@@ -20,4 +20,14 @@ def validar_qrcode():
     if not remedio:
         return jsonify({'erro': f'Remédio ID {remedio_id} não existe'}), 404
 
+    # Verificação do QR Code
+    if remedio.bin_qrcode != qrcode_lido:
+        # QR Code inválido -> incrementa estoque +1
+        remedio.quantidade += 1
+        db.session.commit()
+        return jsonify({
+            'erro': 'QRCode inválido para o remédio. Estoque incrementado em +1.'
+        }), 404
 
+    # QRCode válido
+    return jsonify({'message': 'QRCode válido'}), 200
