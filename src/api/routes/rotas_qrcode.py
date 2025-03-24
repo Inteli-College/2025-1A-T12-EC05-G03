@@ -4,24 +4,14 @@ from ..models.database import db
 
 qrcode_bp = Blueprint('qrcode', __name__, url_prefix='/qrcode')
 
-@qrcode_bp.route('validar', methods=['GET'])
+@qrcode_bp.route('/validar', methods=['POST'])
 def validar_qrcode():
     data = request.get_json()
 
-    remedio = (
-    db.session.query(Lote)
-    .filter((Lote.id_remedio == data['remedio_id']) & (Lote.bin_qrcode == data['qrcode_lido']))
-    .first()
-    )
+    if not data or 'remedio_id' not in data or 'qrcode_lido' not in data:
+        return jsonify({'erro': 'Dados insuficientes. Necessário informar remedio_id e qrcode_lido'}), 400
 
-    # remedio = Remedio.query.get_or_404(data['remedio_id'])
+    remedio_id = data['remedio_id']
+    qrcode_lido = data['qrcode_lido']
 
-    if remedio is None:
-        return jsonify({
-            'message':'QRCode inválido'
-        }), 404
-    
-    return jsonify({
-            'message':'QRCode válido'
-        }), 200
-
+ 
