@@ -14,4 +14,10 @@ def validar_qrcode():
     remedio_id = data['remedio_id']
     qrcode_lido = data['qrcode_lido']
 
- 
+    # Busca o remédio pelo ID 
+    remedio = Lote.query.get(remedio_id)
+
+    if not remedio:
+        return jsonify({'erro': f'Remédio ID {remedio_id} não existe'}), 404
+
+
