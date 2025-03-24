@@ -1,27 +1,37 @@
 import serial
-import time
+import requests
 
-def QrCode():
-    qrSerial = serial.Serial('COM3', 9600, timeout=1)  # Ajuste a porta para a sua (ex: 'COM3', '/dev/ttyUSB0', etc. No meu caso, eu estou usando o Windows, portanto a maneira de identificar a porta é COM e o número da porta. Quando formos para o RaspBerry, por usarmos o Linux, utilizaremos '/dev/ttyUSB0')
-    serialOutput = serial.Serial('COM1', 9600) 
+def QRCodeV():
+    try:
+        ser = serial.Serial('COM15', 9600, timeout=1)  
+    except serial.SerialException as e:
+        print(f"❌ Erro ao abrir a porta serial: {e}")
+        return  # Sai da função para evitar que o código continue rodando sem conexão
 
-    qrText = ""
-    startTime = time.time()
+    API_URL = "https://two025-1a-t12-ec05-g03.onrender.com/qrcode/validar"
 
-    while time.time() - startTime < 1:  
-        if qrSerial.in_waiting > 0:
-            c = qrSerial.read().decode('utf-8')
-            qrText += c
-            startTime = time.time()
+    print("📡 Sistema pronto! Aguardando QR Codes...")
 
-    qrText = qrText.strip()
+    while True:
+        try:
+            qrcode_lido = ser.readline().decode('utf-8').strip()
+            remedio_id = 1
 
-    if len(qrText) > 0:
-        serialOutput.write(f"{qrText}".encode())
-        return qrText
-    else:
-        serialOutput.write("❌ Nenhum QR Code detectado no tempo limite.\n".encode())
-        return None
+            if qrcode_lido:
+                print(f"🔍 QR Code detectado: {qrcode_lido}")
+
+                response = requests.get(API_URL, json={"remedio_id": remedio_id,"qrcode_lido": qrcode_lido})
+
+                if response.status_code == 200:
+                    print(f"✅ Resposta do servidor: {response.json()}")
+                else:
+                    print(f"❌ Erro na API: {response.status_code} - {response.text}")
+
+        except serial.SerialException as e:
+            print(f"❌ Erro na comunicação serial: {e}")
+            break  # Encerra o loop se houver erro de comunicação
+        except requests.RequestException as e:
+            print(f"❌ Erro na requisição para a API: {e}")
 
 if __name__ == "__main__":
-    QrCode()
+    QRCodeV()

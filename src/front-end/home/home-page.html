@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Gerenciamento de Remédios</title>
     <link rel="stylesheet" href="css-file.css">
+    <link rel="stylesheet" href="modal.css">
     <!-- Importando as fontes -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- Ícones do Font Awesome para usar na interface -->
@@ -166,6 +167,111 @@
                 </table>
             </div>
         </section>
+    </div>
+
+    <!-- Modal de Visualização de Prescrição -->
+    <div class="modal-overlay" id="modal-prescricao">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Detalhes da Prescrição</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="prescricao-detalhes">
+                <!-- Conteúdo será preenchido dinamicamente pelo JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group">
+                    <button class="btn-modal btn-secondary modal-close-btn">Fechar</button>
+                    <button class="btn-modal btn-primary" id="btn-avaliar-modal">Avaliar Prescrição</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Avaliação de Prescrição -->
+    <div class="modal-overlay" id="modal-avaliacao">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Avaliar Prescrição</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="paciente-detalhes" id="avaliacao-paciente-info">
+                    <!-- Informações do paciente preenchidas pelo JavaScript -->
+                </div>
+                
+                <div class="avaliacao-form">
+                    <div class="form-group">
+                        <label for="observacoes">Observações (opcional):</label>
+                        <textarea id="observacoes" class="form-control" placeholder="Adicione observações sobre esta prescrição..."></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group">
+                    <button class="btn-modal btn-secondary modal-close-btn">Cancelar</button>
+                    <button class="btn-modal btn-primary" id="btn-confirmar-avaliacao">Confirmar Avaliação</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Visualização de Pedido -->
+    <div class="modal-overlay" id="modal-pedido">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Detalhes do Pedido</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="pedido-detalhes">
+                <!-- Conteúdo será preenchido dinamicamente pelo JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group">
+                    <button class="btn-modal btn-secondary modal-close-btn">Fechar</button>
+                    <button class="btn-modal btn-primary" id="btn-separar-pedido">Iniciar Separação</button>
+                    <button class="btn-modal btn-primary" id="btn-enviar-revisao">Enviar para Revisão</button>
+                    <button class="btn-modal btn-primary" id="btn-concluir-pedido">Concluir Pedido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Separação de Pedido -->
+    <div class="modal-overlay" id="modal-separacao">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Separação de Pedido</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="separacao-detalhes">
+                <!-- Conteúdo será preenchido dinamicamente pelo JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group">
+                    <button class="btn-modal btn-secondary modal-close-btn">Cancelar</button>
+                    <button class="btn-modal btn-primary" id="btn-confirmar-separacao">Confirmar Separação</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de Histórico de Notificações -->
+    <div class="modal-overlay" id="modal-notificacoes">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Histórico de Notificações</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="notificacoes-historico">
+                <!-- Conteúdo será preenchido dinamicamente pelo JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group">
+                    <button class="btn-modal btn-secondary modal-close-btn">Fechar</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="js-file.js"></script>
