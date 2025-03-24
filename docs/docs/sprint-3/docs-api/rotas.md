@@ -363,6 +363,22 @@ custom_edit_url: null
 }
 ```
 
+### Puxar primeiro pedido da fila
+```
+/pedidos/fila/
+```
+
+ - **Método**: GET
+ - **Resposta Esperada**:
+    - status code : 200
+    - *response*:
+```
+{
+    "id": 0,
+    "lista_remedios": []
+}
+```
+
 
 ### Puxar o próximo pedido da fila
 ```
@@ -419,16 +435,15 @@ custom_edit_url: null
 ```
 {
     "principio_ativo": "",
-    "bin_qrcode": ""
 }
 ```
 
  - **Resposta Esperada**:
-    - status code : 200
+    - status code : 201
     - *response*:
 ```
 {
-  "message": "Qr Code válido"
+  "message": "Remedio cadastrado com sucesso"
 }
 ```
 
@@ -564,7 +579,6 @@ custom_edit_url: null
 ##
 
 &emsp;Ademais, vale pontuar que todas as rotas da nossa API serão protegidas, ou seja, só poderão ser acessadas se, durante a requisição, for enviado um token de acesso nos ***headers***. Esse token é gerado assim que o usuário faz login no nosso sistema e possui uma validade. Ou seja, caso o usuário deslogue da aplicação e tente realizar a requisição utilizando o mesmo token, ela não será processada, devido à expiração do token.
-
 
 ## Conclusão
 &emsp; As rotas apresentadas estruturam a comunicação entre clientes e o sistema, garantindo um fluxo para a autenticação, registro de logs, gerenciamento de prescrições, pedidos, validação de QR Code e controle de medicamentos. Cada endpoint foi detalhado com seus métodos, parâmetros e respostas esperadas. Esse mapeamento é feito para a integração e funcionamento adequado da API.

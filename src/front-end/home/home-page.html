@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gerenciamento de Remédios</title>
+    <link rel="stylesheet" href="css-file.css">
+    <!-- Importando as fontes -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Ícones do Font Awesome para usar na interface -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Menu lateral -->
+        <div class="sidebar" id="sidebar">
+            <div class="menu-icon" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="menu-items">
+                <a href="#" class="menu-item active">
+                    <i class="fas fa-home"></i>
+                    <span class="menu-text">Home</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-file-prescription"></i>
+                    <span class="menu-text">Estoque</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-search"></i>
+                    <span class="menu-text">Histórico</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Conteúdo principal -->
+        <div class="main-content">
+            <!-- Seção de prescrições -->
+            <section class="section-container prescricoes-section">
+                <h1 class="section-title">Prescrições</h1>
+                
+                <div class="workflow-container">
+                    <!-- Etapas do fluxo de trabalho para prescrições -->
+                    <div class="workflow-step">
+                        <div class="workflow-box">
+                            <div class="step-title">Aguardando Avaliação</div>
+                            <div class="step-count">X</div>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="workflow-box">
+                            <div class="step-title">Avaliadas</div>
+                            <div class="step-count">X</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-subtitle">Aguardando Avaliação</div>
+                
+                <!-- Lista de prescrições aguardando avaliação -->
+                <div class="list-container">
+                    <ul class="item-list" id="lista-prescricoes">
+                        <!-- Os dados serão preenchidos pelo JavaScript -->
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- Notificações -->
+            <aside class="notifications-panel">
+                <div class="notification-header">
+                    <h2>Notificações <i class="fas fa-bell"></i></h2>
+                </div>
+                
+                <div class="notification-list">
+                    <div class="notification-item">
+                        <div class="notification-text"></div>
+                    </div>
+                    <div class="notification-item">
+                        <div class="notification-text"></div>
+                    </div>
+                    <div class="notification-item">
+                        <div class="notification-text"></div>
+                    </div>
+                    <div class="notification-item">
+                        <div class="notification-text"></div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+        
+        <!-- Seção de pedidos -->
+        <section class="section-container pedidos-section">
+            <h1 class="section-title">Pedidos</h1>
+            
+            <div class="workflow-container centralized">
+                <!-- Etapas do fluxo de trabalho para pedidos -->
+                <div class="workflow-step">
+                    <div class="workflow-box">
+                        <i class="fas fa-clock workflow-icon"></i>
+                        <div class="step-title">Aguardando Separação</div>
+                        <div class="step-count">X</div>
+                    </div>
+                </div>
+                
+                <div class="workflow-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                
+                <div class="workflow-step">
+                    <div class="workflow-box">
+                        <i class="fas fa-box workflow-icon"></i>
+                        <div class="step-title">Em Separação</div>
+                        <div class="step-count">X</div>
+                    </div>
+                </div>
+                
+                <div class="workflow-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                
+                <div class="workflow-step">
+                    <div class="workflow-box">
+                        <i class="fas fa-clipboard-check workflow-icon"></i>
+                        <div class="step-title">Em Revisão</div>
+                        <div class="step-count">X</div>
+                    </div>
+                </div>
+                
+                <div class="workflow-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                
+                <div class="workflow-step">
+                    <div class="workflow-box">
+                        <i class="fas fa-check-circle workflow-icon"></i>
+                        <div class="step-title">Concluído</div>
+                        <div class="step-count">X</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-subtitle">Aguardando Separação</div>
+            
+            <!-- Tabela de pedidos aguardando separação -->
+            <div class="table-container">
+                <table class="pedidos-table">
+                    <thead>
+                        <tr>
+                            <th>Número</th>
+                            <th>Paciente</th>
+                            <th>HC</th>
+                            <th>Quarto</th>
+                            <th>Data</th>
+                            <th>Itens</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-pedidos">
+                        <!-- Os dados serão preenchidos pelo JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <script src="js-file.js"></script>
+</body>
+</html>
