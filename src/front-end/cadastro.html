@@ -33,10 +33,21 @@
                 <input type="email" id="email" class="form-input" required>
             </div>
             
-            <!-- Campo de cargo -->
+            <!-- Campo de cargo com select -->
             <div class="form-group">
                 <label for="cargo" class="form-label">Cargo</label>
-                <input type="text" id="cargo" class="form-input" required>
+                <select id="cargo" class="form-select" required>
+                    <option value="" disabled selected>Selecione seu cargo</option>
+                    <option value="1">Farmacêutico(a)</option>
+                    <option value="2">Técnico(a) em Farmácia</option>
+                    <option value="3">Outro</option>
+                </select>
+            </div>
+            
+            <!-- Campo de cargo personalizado (aparece apenas quando "Outro" é selecionado) -->
+            <div class="form-group" id="outroCargoGroup" style="display: none;">
+                <label for="outroCargo" class="form-label">Especifique seu cargo</label>
+                <input type="text" id="outroCargo" class="form-input">
             </div>
             
             <!-- Campo de senha -->
@@ -66,6 +77,23 @@
         // Captura elementos do DOM
         const cadastroForm = document.getElementById('cadastroForm');
         const btnVoltar = document.getElementById('btnVoltar');
+        const selectCargo = document.getElementById('cargo');
+        const outroCargoGroup = document.getElementById('outroCargoGroup');
+        const outroCargoInput = document.getElementById('outroCargo');
+        
+        // Mostrar/ocultar o campo de cargo personalizado quando "Outro" é selecionado
+        selectCargo.addEventListener('change', function() {
+            // Se o valor selecionado for 3 (Outro), mostra o campo adicional
+            if (this.value === '3') {
+                outroCargoGroup.style.display = 'block';
+                outroCargoInput.setAttribute('required', 'required');
+            } else {
+                outroCargoGroup.style.display = 'none';
+                outroCargoInput.removeAttribute('required');
+                // Limpa o campo quando não está visível
+                outroCargoInput.value = '';
+            }
+        });
         
         // Função para simular o cadastro
         function simularCadastro(event) {
@@ -75,13 +103,29 @@
             // Captura valores dos campos
             const nome = document.getElementById('nomeCompleto').value;
             const email = document.getElementById('email').value;
-            const cargo = document.getElementById('cargo').value;
+            const cargoId = document.getElementById('cargo').value;
             const senha = document.getElementById('senha').value;
             const confirmarSenha = document.getElementById('confirmarSenha').value;
             
+            // Prepara os dados do cargo (ID e texto)
+            let cargoTexto = '';
+            if (cargoId === '1') {
+                cargoTexto = 'Farmacêutico(a)';
+            } else if (cargoId === '2') {
+                cargoTexto = 'Técnico(a) em Farmácia';
+            } else if (cargoId === '3') {
+                cargoTexto = document.getElementById('outroCargo').value;
+            }
+            
             // Validação básica
-            if (!nome || !email || !cargo || !senha || !confirmarSenha) {
+            if (!nome || !email || !cargoId || !senha || !confirmarSenha) {
                 alert('Por favor, preencha todos os campos!');
+                return;
+            }
+            
+            // Validação adicional para o campo "Outro cargo"
+            if (cargoId === '3' && !outroCargoInput.value) {
+                alert('Por favor, especifique seu cargo!');
                 return;
             }
             
@@ -93,11 +137,20 @@
             
             // Normalmente aqui você faria uma requisição para o backend
             // Como é mockado, apenas logamos no console e mostramos um alerta
-            console.log('Dados do cadastro:', { nome, email, cargo });
+            console.log('Dados do cadastro:', { 
+                nome, 
+                email, 
+                cargo: {
+                    id: cargoId,
+                    texto: cargoTexto
+                }
+            });
             alert('Cadastro simulado com sucesso! Em uma versão final, você seria redirecionado para a página de login.');
             
             // Limpa o formulário após "cadastro"
             cadastroForm.reset();
+            // Esconde o campo de "Outro cargo" após o reset
+            outroCargoGroup.style.display = 'none';
             
             // Redireciona para a página de login
             setTimeout(function() {

@@ -113,7 +113,8 @@ body {
     color: var(--cor-escura);
 }
 
-.form-input {
+.form-input,
+.form-select {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -122,10 +123,36 @@ body {
     font-size: 16px;
 }
 
-.form-input:focus {
+/* Estilo específico para o select */
+.form-select {
+    appearance: none; /* Remove a aparência padrão do navegador */
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    padding-right: 30px; /* Espaço para o ícone */
+    cursor: pointer;
+}
+
+.form-input:focus,
+.form-select:focus {
     outline: none;
     border-color: var(--cor-base1);
     box-shadow: 0 0 5px rgba(83, 179, 190, 0.5);
+}
+
+/* Animação suave para o campo 'Outro cargo' */
+#outroCargoGroup {
+    transition: all 0.3s ease;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+}
+
+#outroCargoGroup.visible {
+    max-height: 100px; /* Altura máxima quando visível */
+    opacity: 1;
+    margin-bottom: 20px;
 }
 
 /* Link "Esqueci minha senha" */
