@@ -160,8 +160,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializa o menu hamburguer
     inicializarMenuHamburguer();
     
-    // Inicializa os filtros de workflow
+    // Inicializa os filtros de workflow para pedidos
     inicializarFiltrosWorkflow();
+    
+    // Inicializa os filtros de workflow para prescrições
+    inicializarFiltrosPrescricoes();
     
     // Inicializa o painel de notificações expansível
     inicializarNotificacoesExpansiveis();
@@ -173,66 +176,32 @@ document.addEventListener('DOMContentLoaded', function() {
 // Função para atualizar os contadores nas caixas de fluxo de trabalho
 function atualizarContadores() {
     // Contadores para prescrições
-    document.querySelector('.prescricoes-section .workflow-step:nth-child(1) .step-count').textContent = 
-        dadosMockados.prescricoes.aguardandoAvaliacao.length;
+    const countAguardando = document.getElementById('count-aguardando');
+    const countAvaliadas = document.getElementById('count-avaliadas');
     
-    document.querySelector('.prescricoes-section .workflow-step:nth-child(3) .step-count').textContent = 
-        dadosMockados.prescricoes.avaliadas.length;
+    if (countAguardando) {
+        countAguardando.textContent = dadosMockados.prescricoes.aguardandoAvaliacao.length;
+    }
+    
+    if (countAvaliadas) {
+        countAvaliadas.textContent = dadosMockados.prescricoes.avaliadas.length;
+    }
     
     // Contadores para pedidos
     const pedidosBoxes = document.querySelectorAll('.pedidos-section .workflow-step .step-count');
     
-    pedidosBoxes[0].textContent = dadosMockados.pedidos.aguardandoSeparacao.length;
-    pedidosBoxes[1].textContent = dadosMockados.pedidos.emSeparacao.length;
-    pedidosBoxes[2].textContent = dadosMockados.pedidos.emRevisao.length;
-    pedidosBoxes[3].textContent = dadosMockados.pedidos.concluidos.length;
+    if (pedidosBoxes.length >= 4) {
+        pedidosBoxes[0].textContent = dadosMockados.pedidos.aguardandoSeparacao.length;
+        pedidosBoxes[1].textContent = dadosMockados.pedidos.emSeparacao.length;
+        pedidosBoxes[2].textContent = dadosMockados.pedidos.emRevisao.length;
+        pedidosBoxes[3].textContent = dadosMockados.pedidos.concluidos.length;
+    }
 }
 
 // Função para carregar dados mockados na interface
 function carregarDadosMockados() {
-    // Carrega as prescrições aguardando avaliação
-    const listaPrescricoes = document.getElementById('lista-prescricoes');
-    
-    // Limpa a lista atual
-    listaPrescricoes.innerHTML = '';
-    
-    // Adiciona as prescrições da lista mockada
-    dadosMockados.prescricoes.aguardandoAvaliacao.forEach(prescricao => {
-        const itemLista = document.createElement('li');
-        itemLista.className = 'list-item';
-        itemLista.dataset.id = prescricao.id;
-        
-        // Cria o HTML para os remédios da prescrição
-        const remediosHTML = prescricao.remedios.map(remedio => 
-            `<div class="remedio-item">
-                <span class="info-text">${remedio.nome}</span>
-                <span class="info-text">${remedio.dosagem}</span>
-                <span class="info-text">${remedio.via}</span>
-                <span class="info-text">Qtd: ${remedio.quantidade}</span>
-            </div>`
-        ).join('');
-        
-        itemLista.innerHTML = `
-            <div class="prescricao-header">
-                <div class="paciente-info">
-                    <strong>Paciente:</strong> ${prescricao.paciente_nome} (HC: ${prescricao.hc_paciente})
-                </div>
-                <div class="data-info">
-                    <strong>Data:</strong> ${prescricao.data_entrada}
-                </div>
-            </div>
-            <div class="prescricao-content">
-                <div class="remedios-list">
-                    ${remediosHTML}
-                </div>
-            </div>
-            <div class="prescricao-footer">
-                <button class="btn btn-avaliar" data-id="${prescricao.id}">Avaliar</button>
-            </div>
-        `;
-        
-        listaPrescricoes.appendChild(itemLista);
-    });
+    // Inicialmente carrega as prescrições aguardando avaliação
+    carregarPrescricoesAguardando();
     
     // Carrega os pedidos na tabela (baseado no filtro ativo)
     const activeBox = document.querySelector('.pedidos-section .workflow-box.active-filter');
@@ -294,7 +263,7 @@ function obterNomeStatus(idStatus, tipo) {
 
 // ================ FUNÇÕES PARA OS FILTROS DE WORKFLOW ================
 
-// Função para inicializar os filtros de workflow
+// Função para inicializar os filtros de workflow para pedidos
 function inicializarFiltrosWorkflow() {
     // Seleciona todos os boxes de workflow na seção de pedidos
     const workflowBoxes = document.querySelectorAll('.pedidos-section .workflow-box');
@@ -317,6 +286,182 @@ function inicializarFiltrosWorkflow() {
             // Atualiza o texto do subtítulo
             const statusTexto = this.querySelector('.step-title').textContent;
             document.querySelector('.pedidos-section .section-subtitle').textContent = statusTexto;
+        });
+    });
+}
+
+// Função para inicializar os filtros de workflow para prescrições
+function inicializarFiltrosPrescricoes() {
+    // Seleciona os boxes de workflow na seção de prescrições
+    const boxAguardando = document.getElementById('filtro-aguardando');
+    const boxAvaliadas = document.getElementById('filtro-avaliadas');
+    
+    if (!boxAguardando || !boxAvaliadas) return;
+    
+    // Adiciona destaque inicial ao primeiro box (Aguardando Avaliação)
+    boxAguardando.classList.add('active-filter');
+    
+    // Adiciona event listener para cada box
+    boxAguardando.addEventListener('click', function() {
+        // Remove a classe 'active-filter' de todos os boxes
+        boxAvaliadas.classList.remove('active-filter');
+        
+        // Adiciona a classe ao box clicado
+        this.classList.add('active-filter');
+        
+        // Atualiza o texto do subtítulo
+        document.getElementById('prescricoes-subtitulo').textContent = "Aguardando Avaliação";
+        
+        // Carrega as prescrições aguardando avaliação
+        carregarPrescricoesAguardando();
+    });
+    
+    boxAvaliadas.addEventListener('click', function() {
+        // Remove a classe 'active-filter' de todos os boxes
+        boxAguardando.classList.remove('active-filter');
+        
+        // Adiciona a classe ao box clicado
+        this.classList.add('active-filter');
+        
+        // Atualiza o texto do subtítulo
+        document.getElementById('prescricoes-subtitulo').textContent = "Avaliadas";
+        
+        // Carrega as prescrições avaliadas
+        carregarPrescricoesAvaliadas();
+    });
+}
+
+// Funções para carregar as prescrições filtradas
+function carregarPrescricoesAguardando() {
+    const listaPrescricoes = document.getElementById('lista-prescricoes');
+    
+    // Limpa a lista atual
+    listaPrescricoes.innerHTML = '';
+    
+    // Adiciona as prescrições da lista mockada
+    dadosMockados.prescricoes.aguardandoAvaliacao.forEach(prescricao => {
+        const itemLista = document.createElement('li');
+        itemLista.className = 'list-item';
+        itemLista.dataset.id = prescricao.id;
+        
+        // Cria o HTML para os remédios da prescrição
+        const remediosHTML = prescricao.remedios.map(remedio => 
+            `<div class="remedio-item">
+                <span class="info-text">${remedio.nome}</span>
+                <span class="info-text">${remedio.dosagem}</span>
+                <span class="info-text">${remedio.via}</span>
+                <span class="info-text">Qtd: ${remedio.quantidade}</span>
+            </div>`
+        ).join('');
+        
+        itemLista.innerHTML = `
+            <div class="prescricao-header">
+                <div class="paciente-info">
+                    <strong>Paciente:</strong> ${prescricao.paciente_nome} (HC: ${prescricao.hc_paciente})
+                </div>
+                <div class="data-info">
+                    <strong>Data:</strong> ${prescricao.data_entrada}
+                </div>
+            </div>
+            <div class="prescricao-content">
+                <div class="remedios-list">
+                    ${remediosHTML}
+                </div>
+            </div>
+            <div class="prescricao-footer">
+                <button class="btn btn-avaliar" data-id="${prescricao.id}">Avaliar</button>
+            </div>
+        `;
+        
+        listaPrescricoes.appendChild(itemLista);
+    });
+    
+    // Adiciona mensagem se não houver prescrições
+    if (dadosMockados.prescricoes.aguardandoAvaliacao.length === 0) {
+        listaPrescricoes.innerHTML = `
+            <li class="list-item empty-message">
+                <p>Não há prescrições aguardando avaliação.</p>
+            </li>
+        `;
+    }
+}
+
+// Função atualizada para carregar prescrições avaliadas
+function carregarPrescricoesAvaliadas() {
+    const listaPrescricoes = document.getElementById('lista-prescricoes');
+    
+    // Limpa a lista atual
+    listaPrescricoes.innerHTML = '';
+    
+    // Adiciona as prescrições da lista mockada
+    dadosMockados.prescricoes.avaliadas.forEach(prescricao => {
+        const itemLista = document.createElement('li');
+        itemLista.className = 'list-item';
+        itemLista.dataset.id = prescricao.id;
+        
+        // Verifica se a prescrição tem remédios
+        const remediosHTML = prescricao.remedios && prescricao.remedios.length > 0 ? 
+            prescricao.remedios.map(remedio => 
+                `<div class="remedio-item">
+                    <span class="info-text">${remedio.nome}</span>
+                    <span class="info-text">${remedio.dosagem}</span>
+                    <span class="info-text">${remedio.via}</span>
+                    <span class="info-text">Qtd: ${remedio.quantidade}</span>
+                </div>`
+            ).join('') : 
+            `<div class="remedio-item empty">
+                <span class="info-text">Nenhum medicamento avaliado para esta prescrição</span>
+            </div>`;
+        
+        // Adiciona informações do usuário avaliador
+        const avaliadorInfo = prescricao.user_nome ? 
+            `<div class="avaliador-info">
+                <strong>Avaliado por:</strong> ${prescricao.user_nome}
+            </div>` : '';
+        
+        itemLista.innerHTML = `
+            <div class="prescricao-header">
+                <div class="paciente-info">
+                    <strong>Paciente:</strong> ${prescricao.paciente_nome} (HC: ${prescricao.hc_paciente})
+                </div>
+                <div class="data-info">
+                    <strong>Data:</strong> ${prescricao.data_entrada}
+                    <br>
+                    <strong>Avaliada em:</strong> ${prescricao.data_avaliacao}
+                </div>
+            </div>
+            ${avaliadorInfo}
+            <div class="prescricao-content">
+                <div class="remedios-list">
+                    ${remediosHTML}
+                </div>
+                ${prescricao.observacoes ? `<div class="observacoes"><strong>Observações:</strong> ${prescricao.observacoes}</div>` : ''}
+            </div>
+            <div class="prescricao-footer">
+                <button class="btn btn-visualizar" data-id="${prescricao.id}">Visualizar</button>
+            </div>
+        `;
+        
+        listaPrescricoes.appendChild(itemLista);
+    });
+    
+    // Adiciona mensagem se não houver prescrições
+    if (dadosMockados.prescricoes.avaliadas.length === 0) {
+        listaPrescricoes.innerHTML = `
+            <li class="list-item empty-message">
+                <p>Não há prescrições avaliadas.</p>
+            </li>
+        `;
+    }
+    
+    // Adiciona event listener para os botões de visualizar
+    document.querySelectorAll('.btn-visualizar').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const prescricaoId = parseInt(this.dataset.id);
+            const prescricao = buscarPrescricaoPorId(prescricaoId);
+            if (prescricao) {
+                abrirModalPrescricao(prescricao);
+            }
         });
     });
 }
@@ -708,7 +853,15 @@ function inicializarModais() {
     // Novos botões para progresso do pedido
     document.getElementById('btn-enviar-revisao').addEventListener('click', function() {
         if (pedidoAtual) {
-            enviarParaRevisao(pedidoAtual.id);
+            document.getElementById('modal-pedido').style.display = 'none';
+            abrirModalRevisao(pedidoAtual);
+        }
+    });
+    
+    document.getElementById('btn-confirmar-revisao').addEventListener('click', function() {
+        // Simulação da confirmação de revisão
+        if (pedidoAtual) {
+            concluirPedido(pedidoAtual.id);
             fecharModal();
         }
     });
@@ -849,8 +1002,37 @@ function abrirModalAvaliacao(prescricao) {
         </div>
     `;
     
-    // Limpa o campo de observações
-    document.getElementById('observacoes').value = '';
+    // Adiciona os remédios com checkboxes
+    const avaliacaoForm = document.querySelector('.avaliacao-form');
+    const remediosHTML = prescricao.remedios.map((remedio, index) => `
+        <div class="remedio-avaliacao">
+            <div class="remedio-info">
+                <div class="remedio-title">${remedio.nome} ${remedio.dosagem}</div>
+                <div class="info-text">${remedio.via} - Quantidade: ${remedio.quantidade}</div>
+            </div>
+            <div class="remedio-check">
+                <label class="checkbox-container">
+                    <input type="checkbox" class="avaliacao-checkbox" data-index="${index}" checked>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+    `).join('');
+    
+    // Atualiza o conteúdo do formulário
+    avaliacaoForm.innerHTML = `
+        <div class="remedios-avaliacao">
+            <h4>Medicamentos para Avaliação</h4>
+            <div class="remedios-lista">
+                ${remediosHTML}
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="observacoes">Observações (opcional):</label>
+            <textarea id="observacoes" class="form-control" placeholder="Adicione observações sobre esta prescrição..."></textarea>
+        </div>
+    `;
     
     // Exibe o modal
     document.getElementById('modal-avaliacao').style.display = 'flex';
@@ -980,18 +1162,12 @@ function abrirModalSeparacao(pedido) {
     const conteudoModal = document.getElementById('separacao-detalhes');
     
     let remediosHTML = '';
-    pedido.remedios.forEach((remedio, index) => {
+    pedido.remedios.forEach((remedio) => {
         remediosHTML += `
             <div class="remedio-separacao">
                 <div class="remedio-info">
                     <div class="remedio-title">${remedio.nome} ${remedio.dosagem}</div>
                     <div class="info-text">${remedio.via} - Quantidade: ${remedio.quantidade}</div>
-                </div>
-                <div class="remedio-check">
-                    <label class="checkbox-container">
-                        <input type="checkbox" class="custom-checkbox" data-index="${index}">
-                        <span class="checkmark"></span>
-                    </label>
                 </div>
             </div>
         `;
@@ -1014,13 +1190,64 @@ function abrirModalSeparacao(pedido) {
                 ${remediosHTML}
             </div>
             <div class="info-text" style="margin-top: 15px;">
-                <i class="fas fa-info-circle"></i> Marque os itens conforme forem separados
+                <i class="fas fa-info-circle"></i> Confirme quando todos os itens estiverem separados
             </div>
         </div>
     `;
     
     // Exibe o modal
     document.getElementById('modal-separacao').style.display = 'flex';
+}
+
+// Nova função para abrir o modal de revisão
+function abrirModalRevisao(pedido) {
+    pedidoAtual = pedido;
+    
+    // Preenche as informações do pedido no modal de revisão
+    const conteudoModal = document.getElementById('revisao-detalhes');
+    
+    let remediosHTML = '';
+    pedido.remedios.forEach((remedio, index) => {
+        remediosHTML += `
+            <div class="remedio-revisao">
+                <div class="remedio-info">
+                    <div class="remedio-title">${remedio.nome} ${remedio.dosagem}</div>
+                    <div class="info-text">${remedio.via} - Quantidade: ${remedio.quantidade}</div>
+                </div>
+                <div class="remedio-check">
+                    <label class="checkbox-container">
+                        <input type="checkbox" class="revisao-checkbox" data-index="${index}" checked>
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+        `;
+    });
+    
+    conteudoModal.innerHTML = `
+        <div class="paciente-detalhes">
+            <h4>Pedido #${pedido.id} - ${pedido.paciente}</h4>
+            <div class="info-row">
+                <span class="info-label">Quarto:</span>
+                <span>${pedido.quarto}</span>
+            </div>
+        </div>
+        
+        <div class="revisao-section">
+            <div class="revisao-header">
+                <div class="revisao-title">Itens para revisão</div>
+            </div>
+            <div class="remedios-lista">
+                ${remediosHTML}
+            </div>
+            <div class="info-text" style="margin-top: 15px;">
+                <i class="fas fa-info-circle"></i> Marque os itens que foram aprovados na revisão
+            </div>
+        </div>
+    `;
+    
+    // Exibe o modal
+    document.getElementById('modal-revisao').style.display = 'flex';
 }
 
 // Função para fechar qualquer modal aberto
@@ -1051,6 +1278,19 @@ function avaliarPrescricao(idPrescricao) {
     if (index !== -1) {
         // Move a prescrição para a lista de avaliadas
         const prescricaoAvaliada = dadosMockados.prescricoes.aguardandoAvaliacao.splice(index, 1)[0];
+        
+        // Filtra os remédios aprovados
+        const checkboxes = document.querySelectorAll('.avaliacao-checkbox');
+        const remediosAprovados = [];
+        
+        checkboxes.forEach((checkbox, idx) => {
+            if (checkbox.checked) {
+                remediosAprovados.push(prescricaoAvaliada.remedios[idx]);
+            }
+        });
+        
+        // Atualiza a lista de remédios da prescrição
+        prescricaoAvaliada.remedios = remediosAprovados;
         
         // Adiciona informações de avaliação
         prescricaoAvaliada.status_prescricao = 2; // Avaliada
@@ -1143,6 +1383,19 @@ function concluirPedido(idPedido) {
     if (index !== -1) {
         // Move o pedido para a lista de concluídos
         const pedidoConcluido = dadosMockados.pedidos.emRevisao.splice(index, 1)[0];
+        
+        // Filtra os remédios aprovados
+        const checkboxes = document.querySelectorAll('.revisao-checkbox');
+        const remediosAprovados = [];
+        
+        checkboxes.forEach((checkbox, idx) => {
+            if (checkbox.checked) {
+                remediosAprovados.push(pedidoConcluido.remedios[idx]);
+            }
+        });
+        
+        // Atualiza a lista de remédios do pedido
+        pedidoConcluido.remedios = remediosAprovados;
         
         // Atualiza o status
         pedidoConcluido.status_pedido = 4; // Concluído
