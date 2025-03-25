@@ -9,6 +9,7 @@ class Remedio(db.Model):
     # Definindo as colunas
     id = db.Column(db.Integer, nullable = False, primary_key=True)
     principio_ativo = db.Column(db.String(255), nullable=False)
+    
 
     # Função para transformar em json
     def as_dict(self):

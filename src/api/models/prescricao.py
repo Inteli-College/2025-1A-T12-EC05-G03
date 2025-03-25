@@ -1,4 +1,5 @@
 from .database import db  # Importação relativa
+import json
 
 #Criando a tabela de prescrição
 class Prescricao(db.Model):
@@ -24,9 +25,22 @@ class Prescricao(db.Model):
         return{
             'id': self.id,
             'hc_paciente': self.hc_paciente,
-            'lista_remedios': self.lista_remedios,
+            'lista_remedios': json.loads(self.lista_remedios) if isinstance(self.lista_remedios, str) else [],
             'status_prescricao':self.status_prescricao,
             'id_user_aprovacao': self.id_user_aprovacao,
+            'data_entrada': self.data_entrada,
+            'data_avaliacao': self.data_avaliacao
+        }
+
+    def as_front(self):
+        return{
+            'id': self.id,
+            'hc_paciente': self.hc_paciente,
+            'paciente_nome': self.paciente.nome,
+            'remedios': json.loads(self.lista_remedios) if isinstance(self.lista_remedios, str) else [],
+            'status_prescricao':self.status_prescricao,
+            'id_user_aprovacao': self.id_user_aprovacao,
+            'user_nome': getattr(self.user_revisao, 'nome_completo', ''),
             'data_entrada': self.data_entrada,
             'data_avaliacao': self.data_avaliacao
         }

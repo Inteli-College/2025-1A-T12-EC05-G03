@@ -6,6 +6,7 @@ from .routes.logs import log_bp
 from .routes.remedios import remedios_bp
 from .routes.lotes import lote_bp
 from .routes.rotas_qrcode import qrcode_bp
+from .routes.home import home_bp
 import os
 from flask_jwt_extended import JWTManager
 from flask_bcrypt import Bcrypt
@@ -58,6 +59,7 @@ app.register_blueprint(log_bp)
 app.register_blueprint(remedios_bp)
 app.register_blueprint(qrcode_bp)
 app.register_blueprint(lote_bp)
+app.register_blueprint(home_bp)
 
 
 
