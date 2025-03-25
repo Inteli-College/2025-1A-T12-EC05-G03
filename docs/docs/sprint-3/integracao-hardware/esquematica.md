@@ -61,7 +61,7 @@ Este documento descreve a conexão e funcionalidade dos periféricos utilizados 
 - **Resistores** (um de 330 Ohms e um de 10 kOhms) conectados ao sensor TCRT5000.
 - **Fios de conexão** garantindo a comunicação entre os periféricos.
 
-### **2. Componentes adicionais para finalização**
+### **3. Componentes adicionais para finalização**
 - **Espaguete Termo-retrátil** para acabamento e durabilidade.
 - **Cabo de rede** garantindo a comunicação entre os periféricos com um corpo mais forte e durável. 
 
