@@ -5,6 +5,7 @@ from ..models.database import db
 from datetime import datetime, date
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from sqlalchemy.sql import func
+import json
 
 
 
@@ -108,7 +109,7 @@ def puxar_prox_fila():
 
     return jsonify({
         "id": pedido.id,
-        "lista_remedios": pedido.lista_remedios
+        "lista_remedios": json.loads(pedido.lista_remedios) if isinstance(pedido.lista_remedios, str) else []
     })
 
 
