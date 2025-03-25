@@ -44,12 +44,6 @@
                 </select>
             </div>
             
-            <!-- Campo de cargo personalizado (aparece apenas quando "Outro" é selecionado) -->
-            <div class="form-group" id="outroCargoGroup" style="display: none;">
-                <label for="outroCargo" class="form-label">Especifique seu cargo</label>
-                <input type="text" id="outroCargo" class="form-input">
-            </div>
-            
             <!-- Campo de senha -->
             <div class="form-group">
                 <label for="senha" class="form-label">Senha</label>
@@ -78,22 +72,7 @@
         const cadastroForm = document.getElementById('cadastroForm');
         const btnVoltar = document.getElementById('btnVoltar');
         const selectCargo = document.getElementById('cargo');
-        const outroCargoGroup = document.getElementById('outroCargoGroup');
-        const outroCargoInput = document.getElementById('outroCargo');
         
-        // Mostrar/ocultar o campo de cargo personalizado quando "Outro" é selecionado
-        selectCargo.addEventListener('change', function() {
-            // Se o valor selecionado for 3 (Outro), mostra o campo adicional
-            if (this.value === '3') {
-                outroCargoGroup.style.display = 'block';
-                outroCargoInput.setAttribute('required', 'required');
-            } else {
-                outroCargoGroup.style.display = 'none';
-                outroCargoInput.removeAttribute('required');
-                // Limpa o campo quando não está visível
-                outroCargoInput.value = '';
-            }
-        });
         
         // Função para simular o cadastro
         function simularCadastro(event) {
@@ -101,31 +80,16 @@
             event.preventDefault();
             
             // Captura valores dos campos
-            const nome = document.getElementById('nomeCompleto').value;
+            const nome_completo = document.getElementById('nomeCompleto').value;
             const email = document.getElementById('email').value;
-            const cargoId = document.getElementById('cargo').value;
+            const id_cargo = document.getElementById('cargo').value;
             const senha = document.getElementById('senha').value;
             const confirmarSenha = document.getElementById('confirmarSenha').value;
             
-            // Prepara os dados do cargo (ID e texto)
-            let cargoTexto = '';
-            if (cargoId === '1') {
-                cargoTexto = 'Farmacêutico(a)';
-            } else if (cargoId === '2') {
-                cargoTexto = 'Técnico(a) em Farmácia';
-            } else if (cargoId === '3') {
-                cargoTexto = document.getElementById('outroCargo').value;
-            }
             
             // Validação básica
-            if (!nome || !email || !cargoId || !senha || !confirmarSenha) {
+            if (!nome_completo || !email || !id_cargo || !senha || !confirmarSenha) {
                 alert('Por favor, preencha todos os campos!');
-                return;
-            }
-            
-            // Validação adicional para o campo "Outro cargo"
-            if (cargoId === '3' && !outroCargoInput.value) {
-                alert('Por favor, especifique seu cargo!');
                 return;
             }
             
@@ -135,27 +99,29 @@
                 return;
             }
             
-            // Normalmente aqui você faria uma requisição para o backend
-            // Como é mockado, apenas logamos no console e mostramos um alerta
-            console.log('Dados do cadastro:', { 
-                nome, 
-                email, 
-                cargo: {
-                    id: cargoId,
-                    texto: cargoTexto
-                }
-            });
-            alert('Cadastro simulado com sucesso! Em uma versão final, você seria redirecionado para a página de login.');
-            
+            fetch('http://127.0.0.1:5000/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, senha, nome_completo, id_cargo })
+                })
+                .then(response => {
+                    if (response.status === 400) {
+                    throw new Error('Email já cadastrado')
+                    };
+                    alert('Cadastro realizado com sucesso');
+                    // Redireciona para a página de login
+                    setTimeout(function() {
+                        window.location.href = "login.html";
+                    }, 500);
+                    return response.json(); // Continuar com o processamento normal da resposta se não for 422
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    alert(error);
+                });     
+                    
             // Limpa o formulário após "cadastro"
             cadastroForm.reset();
-            // Esconde o campo de "Outro cargo" após o reset
-            outroCargoGroup.style.display = 'none';
-            
-            // Redireciona para a página de login
-            setTimeout(function() {
-                window.location.href = "login.html";
-            }, 1500);
         }
         
         // Função para voltar para a página de login
