@@ -8,26 +8,33 @@ qrcode_bp = Blueprint('qrcode', __name__, url_prefix='/qrcode')
 def validar_qrcode():
     data = request.get_json()
 
-    if not data or 'remedio_id' not in data or 'qrcode_lido' not in data:
-        return jsonify({'erro': 'Dados insuficientes. Necessário informar remedio_id e qrcode_lido'}), 400
+    if not data or 'id_remedio' not in data or 'bin_qrcode' not in data:
+        return jsonify({'erro': 'Dados insuficientes. Necessário informar id_remedio e bin_qrcode'}), 400
 
-    remedio_id = data['remedio_id']
-    qrcode_lido = data['qrcode_lido']
+    id_remedio = data['id_remedio']
+    bin_qrcode = data['bin_qrcode']
 
-    # Busca o remédio pelo ID 
-    remedio = Lote.query.get(remedio_id)
+    # Busca lote com QRCode correspondente (válido)
+    lote_valido = (
+        db.session.query(Lote)
+        .filter((Lote.id_remedio == id_remedio) & (Lote.bin_qrcode == bin_qrcode))
+        .first()
+    )
 
-    if not remedio:
-        return jsonify({'erro': f'Remédio ID {remedio_id} não existe'}), 404
+    if lote_valido:
+        return jsonify({'message': 'QRCode válido'}), 200
 
-    # Verificação do QR Code
-    if remedio.bin_qrcode != qrcode_lido:
-        # QR Code inválido -> incrementa estoque +1
-        remedio.quantidade += 1
+    # QR Code inválido → incrementar quantidade de algum lote daquele remédio
+    lote_para_incrementar = (
+        db.session.query(Lote)
+        .filter(Lote.id_remedio == id_remedio)
+        .first()
+    )
+
+    if lote_para_incrementar:
+        lote_para_incrementar.quantidade += 1
         db.session.commit()
-        return jsonify({
-            'erro': 'QRCode inválido para o remédio. Estoque incrementado em +1.'
-        }), 404
+        return jsonify({'erro': 'QRCode inválido. Estoque incrementado em +1 no lote ID {}.'.format(lote_para_incrementar.id)}), 404
 
-    # QRCode válido
-    return jsonify({'message': 'QRCode válido'}), 200
+    return jsonify({'erro': f'Remédio ID {id_remedio} não encontrado em nenhum lote'}), 404
+
