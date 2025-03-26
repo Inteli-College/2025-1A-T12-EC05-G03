@@ -8,33 +8,27 @@ qrcode_bp = Blueprint('qrcode', __name__, url_prefix='/qrcode')
 def validar_qrcode():
     data = request.get_json()
 
-    if not data or 'id_remedio' not in data or 'bin_qrcode' not in data:
-        return jsonify({'erro': 'Dados insuficientes. Necessário informar id_remedio e bin_qrcode'}), 400
+    # Validação dos campos
+    if not data or 'qrcode_lido' not in data or 'qrcode_procurado' not in data:
+        return jsonify({'erro': 'Dados insuficientes. Necessário informar qrcode_lido e qrcode_procurado'}), 400
 
-    id_remedio = data['id_remedio']
-    bin_qrcode = data['bin_qrcode']
+    qrcode_lido = data['qrcode_lido']
+    qrcode_procurado = data['qrcode_procurado']
 
-    # Busca lote com QRCode correspondente (válido)
-    lote_valido = (
-        db.session.query(Lote)
-        .filter((Lote.id_remedio == id_remedio) & (Lote.bin_qrcode == bin_qrcode))
-        .first()
-    )
-
-    if lote_valido:
+    # Se os dois QR Codes forem iguais → válido
+    if qrcode_lido == qrcode_procurado:
         return jsonify({'message': 'QRCode válido'}), 200
 
-    # QR Code inválido → incrementar quantidade de algum lote daquele remédio
-    lote_para_incrementar = (
+    # QR Code inválido → busca lote com bin_qrcode igual ao qrcode_procurado
+    lote = (
         db.session.query(Lote)
-        .filter(Lote.id_remedio == id_remedio)
+        .filter(Lote.bin_qrcode == qrcode_procurado)
         .first()
     )
 
-    if lote_para_incrementar:
-        lote_para_incrementar.quantidade += 1
+    if lote:
+        lote.quantidade += 1
         db.session.commit()
-        return jsonify({'erro': 'QRCode inválido. Estoque incrementado em +1 no lote ID {}.'.format(lote_para_incrementar.id)}), 404
+        return jsonify({'erro': f'QRCode inválido. Estoque incrementado em +1 no lote ID {lote.id}.'}), 404
 
-    return jsonify({'erro': f'Remédio ID {id_remedio} não encontrado em nenhum lote'}), 404
-
+    return jsonify({'erro': 'QRCode inválido e nenhum lote encontrado com o QR Code procurado.'}), 404
