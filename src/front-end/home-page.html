@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Gerenciamento de Remédios</title>
-    <link rel="stylesheet" href="css/css-file.css">
-    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/css-file.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/modal.css') }}">
     <!-- Importando as fontes -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- Ícones do Font Awesome para usar na interface -->
@@ -18,15 +18,15 @@
             <i class="fas fa-bars"></i>
         </div>
         <div class="menu-items">
-            <a href="home-page.html" class="menu-item">
+            <a href="/home" class="menu-item">
                 <i class="fas fa-home"></i>
                 <span class="menu-text">Home</span>
             </a>
-            <a href="estoque.html" class="menu-item">
+            <a href="/estoque" class="menu-item">
                 <i class="fas fa-pills"></i>
                 <span class="menu-text">Estoque</span>
             </a>
-            <a href="historico.html" class="menu-item active">
+            <a href="/historico" class="menu-item active">
                 <i class="fas fa-search"></i>
                 <span class="menu-text">Histórico</span>
             </a>
@@ -291,8 +291,8 @@
     </div>
 
     <!-- Scripts -->
-    <script src="js/menu.js"></script>
-    <script src="js/js-file.js"></script>
-    <script src="js/modal.js"></script>
+    <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/js-file.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/modal.js') }}"></script>
 </body>
 </html>
