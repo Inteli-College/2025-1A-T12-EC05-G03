@@ -2,7 +2,7 @@ name: Deploy Front-End to GitHub Pages
 on:
   push:
     branches:
-      - gh-pages-front-end 
+      - gh-pages-front-end  # Dispara quando houver push na branch gh-pages-front-end
 
 permissions:
   contents: write
@@ -17,14 +17,14 @@ jobs:
       - name: Checkout do repositório
         uses: actions/checkout@v4
 
-      - name: Criar e mudar para a branch gh-pages-front-end
+      - name: Mudar para a branch gh-pages-front-end
         run: |
-          git checkout --orphan gh-pages-front-end
-          git rm -rf .
-          cp -r src/front-end/* .
+          git checkout gh-pages-front-end  # Muda para a branch já existente
+          git rm -rf .  # Remove os arquivos antigos
+          cp -r src/front-end/* .  # Copia os novos arquivos para a branch
           git add .
           git commit -m "Deploy Front-End"
-          git push -f origin gh-pages-front-end
+          git push origin gh-pages-front-end  # Atualiza a branch no GitHub
 
   deploy:
     name: Deploy to GitHub Pages
