@@ -1,0 +1,39 @@
+name: Deploy Front-End to GitHub Pages
+on:
+  push:
+    branches:
+      - develop 
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    name: Build and Upload Artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Criar e mudar para a branch gh-pages-front-end
+        run: |
+          git checkout --orphan gh-pages-front-end
+          git rm -rf .
+          cp -r src/front-end/* .
+          git add .
+          git commit -m "Deploy Front-End"
+          git push -f origin gh-pages-front-end
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
