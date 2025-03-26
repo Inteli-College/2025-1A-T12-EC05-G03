@@ -2,7 +2,7 @@ name: Deploy Front-End to GitHub Pages
 on:
   push:
     branches:
-      - develop 
+      - gh-pages-front-end 
 
 permissions:
   contents: write
