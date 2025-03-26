@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Usuário</title>
     <!-- Importação do arquivo CSS externo -->
-    <link rel="stylesheet" href="css/styles-login.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles-login.css') }}">
     <!-- Prevenção de cache para desenvolvimento -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 </head>
 <body>
     <!-- Container da logo -->
     <div class="logo-container">
-        <img src="../../media/Logos_GuiaDeEstilos/svgs logos/logo_escura_COMnome.svg" alt="Logo NDC" class="logo">
+        <img src="{{ url_for('media', filename='Logos_GuiaDeEstilos/svgs logos/logo_escura_COMnome.svg') }}" alt="Logo NDC" class="logo">
     </div>
     
     <!-- Container principal do cadastro -->
@@ -99,7 +99,7 @@
                 return;
             }
             
-            fetch('https://two025-1a-t12-ec05-g03.onrender.com/register', {
+            fetch('http://127.0.0.1:5000/auth/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, senha, nome_completo, id_cargo })
@@ -111,7 +111,7 @@
                     alert('Cadastro realizado com sucesso');
                     // Redireciona para a página de login
                     setTimeout(function() {
-                        window.location.href = "login.html";
+                        window.location.href = "/login";
                     }, 500);
                     return response.json(); // Continuar com o processamento normal da resposta se não for 422
                 })
@@ -126,7 +126,7 @@
         
         // Função para voltar para a página de login
         function voltarParaLogin() {
-            window.location.href = "login.html";
+            window.location.href = "/login";
         }
         
         // Adiciona event listeners
