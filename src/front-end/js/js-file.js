@@ -1,4 +1,3 @@
-// Dados mockados para simulação
 const dadosMockados = {
     prescricoes: {
         aguardandoAvaliacao: [
@@ -146,32 +145,48 @@ const dadosMockados = {
     ]
 };
 
-// Função executada quando o DOM estiver totalmente carregado
-document.addEventListener('DOMContentLoaded', function() {
-    // Inicializa os contadores nas caixas de fluxo de trabalho
-    atualizarContadores();
-    
-    // Carrega os dados mockados na interface
-    carregarDadosMockados();
-    
-    // Adiciona os event listeners para os botões
-    adicionarEventListeners();
-    
-    // Inicializa o menu hamburguer
-    inicializarMenuHamburguer();
-    
-    // Inicializa os filtros de workflow para pedidos
-    inicializarFiltrosWorkflow();
-    
-    // Inicializa os filtros de workflow para prescrições
-    inicializarFiltrosPrescricoes();
-    
-    // Inicializa o painel de notificações expansível
-    inicializarNotificacoesExpansiveis();
-    
-    // Inicializa os modais
-    inicializarModais();
+const dadosAPI_Atualiza = {};
+
+async function chamar_api_atualiza() {
+    try {
+        const response = await fetch('https://two025-1a-t12-ec05-g03.onrender.com/home/atualizar', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao atualizar');
+        }
+
+        const data = await response.json();
+        console.log('Dados recebidos:', data);
+        Object.assign(dadosAPI_Atualiza, data); // Armazena os dados na variável
+    } catch (error) {
+        console.error('Erro:', error);
+        alert(error.message);
+        throw error; // Repassa o erro para ser capturado na função chamadora
+    }
+}
+
+document.addEventListener('DOMContentLoaded', async function() {
+    try {
+        await chamar_api_atualiza();
+        console.log('API atualizada com sucesso.');
+
+        // Agora que os dados estão carregados, as funções seguintes são executadas
+        atualizarContadores();
+        carregarDadosMockados();
+        adicionarEventListeners();
+        inicializarMenuHamburguer();
+        inicializarFiltrosWorkflow();
+        inicializarFiltrosPrescricoes();
+        inicializarNotificacoesExpansiveis();
+        inicializarModais();
+    } catch (error) {
+        console.error('Erro ao atualizar a API:', error);
+    }
 });
+
 
 // Função para atualizar os contadores nas caixas de fluxo de trabalho
 function atualizarContadores() {
@@ -180,21 +195,21 @@ function atualizarContadores() {
     const countAvaliadas = document.getElementById('count-avaliadas');
     
     if (countAguardando) {
-        countAguardando.textContent = dadosMockados.prescricoes.aguardandoAvaliacao.length;
+        countAguardando.textContent = dadosAPI_Atualiza.prescricoes.aguardandoAvaliacao.length;
     }
     
     if (countAvaliadas) {
-        countAvaliadas.textContent = dadosMockados.prescricoes.avaliadas.length;
+        countAvaliadas.textContent = dadosAPI_Atualiza.prescricoes.avaliadas.length;
     }
     
     // Contadores para pedidos
     const pedidosBoxes = document.querySelectorAll('.pedidos-section .workflow-step .step-count');
     
     if (pedidosBoxes.length >= 4) {
-        pedidosBoxes[0].textContent = dadosMockados.pedidos.aguardandoSeparacao.length;
-        pedidosBoxes[1].textContent = dadosMockados.pedidos.emSeparacao.length;
-        pedidosBoxes[2].textContent = dadosMockados.pedidos.emRevisao.length;
-        pedidosBoxes[3].textContent = dadosMockados.pedidos.concluidos.length;
+        pedidosBoxes[0].textContent = dadosAPI_Atualiza.pedidos.aguardandoSeparacao.length;
+        pedidosBoxes[1].textContent = dadosAPI_Atualiza.pedidos.emSeparacao.length;
+        pedidosBoxes[2].textContent = dadosAPI_Atualiza.pedidos.emRevisao.length;
+        pedidosBoxes[3].textContent = dadosAPI_Atualiza.pedidos.concluidos.length;
     }
 }
 
@@ -242,8 +257,8 @@ function inicializarMenuHamburguer() {
 // Função auxiliar para encontrar um pedido pelo ID
 function encontrarPedidoPorId(id) {
     // Busca em todas as categorias de pedidos
-    for (const categoria in dadosMockados.pedidos) {
-        const pedido = dadosMockados.pedidos[categoria].find(p => p.id === id);
+    for (const categoria in dadosAPI_Atualiza.pedidos) {
+        const pedido = dadosAPI_Atualiza.pedidos[categoria].find(p => p.id === id);
         if (pedido) return pedido;
     }
     return null;
@@ -255,11 +270,29 @@ function obterNomeStatus(idStatus, tipo) {
         const status = dadosMockados.statusPedido.find(s => s.id === idStatus);
         return status ? status.status_pedido : 'Desconhecido';
     } else if (tipo === 'prescricao') {
-        const status = dadosMockados.statusPrescricao.find(s => s.id === idStatus);
-        return status ? status.status_prescricao : 'Desconhecido';
+        let status = ""; // Corrigido para let
+        switch(idStatus) {
+            case 1:
+                status = "Aguardando Avaliação";
+                break;
+            case 2:
+                status = "Aprovada Total";
+                break;
+            case 3:
+                status = "Aprovada Parcial";
+                break;
+            case 4:
+                status = "Reprovada";
+                break;
+            default:
+                status = "Desconhecido"; // Garante um retorno seguro
+        }
+        return status; // Corrigido para retornar diretamente a string
     }
     return 'Desconhecido';
 }
+
+// const status = dadosMockados.statusPrescricao.find(s => s.id === idStatus); 
 
 // ================ FUNÇÕES PARA OS FILTROS DE WORKFLOW ================
 
@@ -339,20 +372,10 @@ function carregarPrescricoesAguardando() {
     listaPrescricoes.innerHTML = '';
     
     // Adiciona as prescrições da lista mockada
-    dadosMockados.prescricoes.aguardandoAvaliacao.forEach(prescricao => {
+    dadosAPI_Atualiza.prescricoes.aguardandoAvaliacao.forEach(prescricao => {
         const itemLista = document.createElement('li');
         itemLista.className = 'list-item';
         itemLista.dataset.id = prescricao.id;
-        
-        // Cria o HTML para os remédios da prescrição
-        const remediosHTML = prescricao.remedios.map(remedio => 
-            `<div class="remedio-item">
-                <span class="info-text">${remedio.nome}</span>
-                <span class="info-text">${remedio.dosagem}</span>
-                <span class="info-text">${remedio.via}</span>
-                <span class="info-text">Qtd: ${remedio.quantidade}</span>
-            </div>`
-        ).join('');
         
         itemLista.innerHTML = `
             <div class="prescricao-header">
@@ -361,11 +384,6 @@ function carregarPrescricoesAguardando() {
                 </div>
                 <div class="data-info">
                     <strong>Data:</strong> ${prescricao.data_entrada}
-                </div>
-            </div>
-            <div class="prescricao-content">
-                <div class="remedios-list">
-                    ${remediosHTML}
                 </div>
             </div>
             <div class="prescricao-footer">
@@ -377,7 +395,7 @@ function carregarPrescricoesAguardando() {
     });
     
     // Adiciona mensagem se não houver prescrições
-    if (dadosMockados.prescricoes.aguardandoAvaliacao.length === 0) {
+    if (dadosAPI_Atualiza.prescricoes.aguardandoAvaliacao.length === 0) {
         listaPrescricoes.innerHTML = `
             <li class="list-item empty-message">
                 <p>Não há prescrições aguardando avaliação.</p>
@@ -394,7 +412,7 @@ function carregarPrescricoesAvaliadas() {
     listaPrescricoes.innerHTML = '';
     
     // Adiciona as prescrições da lista mockada
-    dadosMockados.prescricoes.avaliadas.forEach(prescricao => {
+    dadosAPI_Atualiza.prescricoes.avaliadas.forEach(prescricao => {
         const itemLista = document.createElement('li');
         itemLista.className = 'list-item';
         itemLista.dataset.id = prescricao.id;
@@ -431,12 +449,6 @@ function carregarPrescricoesAvaliadas() {
                 </div>
             </div>
             ${avaliadorInfo}
-            <div class="prescricao-content">
-                <div class="remedios-list">
-                    ${remediosHTML}
-                </div>
-                ${prescricao.observacoes ? `<div class="observacoes"><strong>Observações:</strong> ${prescricao.observacoes}</div>` : ''}
-            </div>
             <div class="prescricao-footer">
                 <button class="btn btn-visualizar" data-id="${prescricao.id}">Visualizar</button>
             </div>
@@ -446,7 +458,7 @@ function carregarPrescricoesAvaliadas() {
     });
     
     // Adiciona mensagem se não houver prescrições
-    if (dadosMockados.prescricoes.avaliadas.length === 0) {
+    if (dadosAPI_Atualiza.prescricoes.avaliadas.length === 0) {
         listaPrescricoes.innerHTML = `
             <li class="list-item empty-message">
                 <p>Não há prescrições avaliadas.</p>
@@ -459,6 +471,7 @@ function carregarPrescricoesAvaliadas() {
         btn.addEventListener('click', function() {
             const prescricaoId = parseInt(this.dataset.id);
             const prescricao = buscarPrescricaoPorId(prescricaoId);
+            // Rota para puxar prescricão por id!!!!
             if (prescricao) {
                 abrirModalPrescricao(prescricao);
             }
@@ -476,19 +489,19 @@ function filtrarPedidosPorStatus(statusId) {
     let pedidosFiltrados;
     switch(statusId) {
         case 1:
-            pedidosFiltrados = dadosMockados.pedidos.aguardandoSeparacao;
+            pedidosFiltrados = dadosAPI_Atualiza.pedidos.aguardandoSeparacao;
             break;
         case 2:
-            pedidosFiltrados = dadosMockados.pedidos.emSeparacao;
+            pedidosFiltrados = dadosAPI_Atualiza.pedidos.emSeparacao;
             break;
         case 3:
-            pedidosFiltrados = dadosMockados.pedidos.emRevisao;
+            pedidosFiltrados = dadosAPI_Atualiza.pedidos.emRevisao;
             break;
         case 4:
-            pedidosFiltrados = dadosMockados.pedidos.concluidos;
+            pedidosFiltrados = dadosAPI_Atualiza.pedidos.concluidos;
             break;
         default:
-            pedidosFiltrados = dadosMockados.pedidos.aguardandoSeparacao;
+            pedidosFiltrados = dadosAPI_Atualiza.pedidos.aguardandoSeparacao;
     }
     
     // Popula a tabela com os pedidos filtrados
@@ -502,7 +515,7 @@ function filtrarPedidosPorStatus(statusId) {
             <td>${pedido.hc_paciente}</td>
             <td>${pedido.quarto}</td>
             <td>${pedido.data_entrada}</td>
-            <td>${pedido.remedios.length} itens</td>
+            <td>${pedido.lista_remedios.length} itens</td>
             <td>
                 <button class="btn-visualizar" data-id="${pedido.id}">
                     <i class="fas fa-eye"></i> ${statusId === 1 ? 'Visualizar pedido' : statusId === 2 ? 'Continuar separação' : statusId === 3 ? 'Revisar pedido' : 'Ver detalhes'}
@@ -831,7 +844,7 @@ function inicializarModais() {
     document.getElementById('btn-confirmar-avaliacao').addEventListener('click', function() {
         // Simulação da confirmação de avaliação
         if (prescricaoAtual) {
-            avaliarPrescricao(prescricaoAtual.id);
+            avaliarPrescricao(prescricaoAtual);
             fecharModal();
         }
     });
@@ -907,84 +920,110 @@ function adicionarEventListenersModais() {
         }
     });
 }
+async function puxa_prescricao_por_id(id){
+    try {
+        const token = localStorage.getItem('access_token');
+        const response = await fetch('https://two025-1a-t12-ec05-g03.onrender.com/prescricoes/' + id, {
+            method: 'GET',
+            headers: { 'Authorization': `Bearer ${token}` },
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao puxar a prescrição');
+        }
+
+        const data = await response.json();
+        console.log('Dados recebidos:', data);
+        return data;
+    } catch (error) {
+        console.error('Erro:', error);
+        alert(error.message);
+        throw error; 
+    }
+}
 
 // Função para abrir o modal de prescrição
 function abrirModalPrescricao(prescricao) {
-    prescricaoAtual = prescricao;
-    
-    // Preenche os detalhes da prescrição no modal
-    const conteudoModal = document.getElementById('prescricao-detalhes');
-    const statusPrescricao = obterNomeStatus(prescricao.status_prescricao, 'prescricao');
-    const statusClass = prescricao.status_prescricao === 1 ? 'status-aguardando' : 'status-avaliada';
-    
-    let remediosHTML = '';
-    prescricao.remedios.forEach(remedio => {
-        remediosHTML += `
-            <div class="remedio-card">
-                <div class="remedio-title">${remedio.nome}</div>
-                <div class="remedio-details">
-                    <div class="remedio-detail"><i class="fas fa-pills"></i> ${remedio.dosagem}</div>
-                    <div class="remedio-detail"><i class="fas fa-route"></i> ${remedio.via}</div>
-                    <div class="remedio-detail"><i class="fas fa-sort-amount-up"></i> Quantidade: ${remedio.quantidade}</div>
+    puxa_prescricao_por_id(prescricao.id)
+        .then(data => {
+            prescricaoAtual = data;
+
+            const statusPrescricao = obterNomeStatus(prescricaoAtual.prescricao.status_prescricao, 'prescricao');
+            console.log(prescricaoAtual.prescricao.status_prescrica)
+            const statusClass = prescricaoAtual.prescricao.status_prescricao === 1 ? 'status-aguardando' : 'status-avaliada';
+            let remediosHTML = '';
+            prescricaoAtual.remedios.forEach(remedio => {
+                remediosHTML += `
+                    <div class="remedio-card">
+                        <div class="remedio-title">${remedio.principio_ativo}</div>
+                        <div class="remedio-details">
+                            <div class="remedio-detail"><i class="fas fa-pills"></i> ${remedio.dosagem}</div>
+                            <div class="remedio-detail"><i class="fas fa-sort-amount-up"></i> Quantidade: ${remedio.quantidade}</div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            const conteudoModal = document.getElementById('prescricao-detalhes');
+            conteudoModal.innerHTML = `
+                <div class="prescricao-info">
+                    <div class="paciente-detalhes">
+                        <h4>Dados do Paciente</h4>
+                        <div class="info-row">
+                            <span class="info-label">Nome:</span>
+                            <span>${prescricaoAtual.prescricao.paciente_nome}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">HC:</span>
+                            <span>${prescricaoAtual.prescricao.hc_paciente}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="prescricao-detalhes">
+                        <h4>Dados da Prescrição</h4>
+                        <div class="info-row">
+                            <span class="info-label">Status:</span>
+                            <span>${statusPrescricao} <span class="status-badge ${statusClass}">${statusPrescricao}</span></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Data:</span>
+                            <span>${prescricaoAtual.prescricao.data_entrada}</span>
+                        </div>
+                        ${prescricaoAtual.prescricao.data_avaliacao ? `
+                        <div class="info-row">
+                            <span class="info-label">Avaliada em:</span>
+                            <span>${prescricaoAtual.prescricao.data_avaliacao}</span>
+                        </div>` : ''}
+                        ${prescricaoAtual.prescricao.user_nome ? `
+                        <div class="info-row">
+                            <span class="info-label">Avaliado por:</span>
+                            <span>${prescricaoAtual.prescricao.user_nome}</span>
+                        </div>` : ''}
+                    </div>
                 </div>
-            </div>
-        `;
-    });
-    
-    conteudoModal.innerHTML = `
-        <div class="prescricao-info">
-            <div class="paciente-detalhes">
-                <h4>Dados do Paciente</h4>
-                <div class="info-row">
-                    <span class="info-label">Nome:</span>
-                    <span>${prescricao.paciente_nome}</span>
+                
+                <h4>Medicamentos</h4>
+                <div class="remedios-container">
+                    ${remediosHTML}
                 </div>
-                <div class="info-row">
-                    <span class="info-label">HC:</span>
-                    <span>${prescricao.hc_paciente}</span>
-                </div>
-            </div>
+            `;
             
-            <div class="prescricao-detalhes">
-                <h4>Dados da Prescrição</h4>
-                <div class="info-row">
-                    <span class="info-label">Status:</span>
-                    <span>${statusPrescricao} <span class="status-badge ${statusClass}">${statusPrescricao}</span></span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Data:</span>
-                    <span>${prescricao.data_entrada}</span>
-                </div>
-                ${prescricao.data_avaliacao ? `
-                <div class="info-row">
-                    <span class="info-label">Avaliada em:</span>
-                    <span>${prescricao.data_avaliacao}</span>
-                </div>` : ''}
-                ${prescricao.user_nome ? `
-                <div class="info-row">
-                    <span class="info-label">Avaliado por:</span>
-                    <span>${prescricao.user_nome}</span>
-                </div>` : ''}
-            </div>
-        </div>
-        
-        <h4>Medicamentos</h4>
-        <div class="remedios-container">
-            ${remediosHTML}
-        </div>
-    `;
-    
-    // Ajusta o botão de avaliar para estar disponível apenas para prescrições aguardando avaliação
-    const btnAvaliar = document.getElementById('btn-avaliar-modal');
-    if (prescricao.status_prescricao === 1) {
-        btnAvaliar.style.display = 'block';
-    } else {
-        btnAvaliar.style.display = 'none';
-    }
-    
-    // Exibe o modal
-    document.getElementById('modal-prescricao').style.display = 'flex';
+            // Ajusta o botão de avaliar para estar disponível apenas para prescrições aguardando avaliação
+            const btnAvaliar = document.getElementById('btn-avaliar-modal');
+            if (prescricaoAtual.prescricao.status_prescricao === 1) {
+                btnAvaliar.style.display = 'block';
+            } else {
+                btnAvaliar.style.display = 'none';
+            }
+            
+            // Exibe o modal
+            document.getElementById('modal-prescricao').style.display = 'flex';
+        })
+        .catch(error => {
+            console.error('Erro ao puxar a prescrição da API:', error);
+        });
 }
+
 
 // Função para abrir o modal de avaliação
 function abrirModalAvaliacao(prescricao) {
@@ -994,11 +1033,11 @@ function abrirModalAvaliacao(prescricao) {
         <h4>Dados do Paciente</h4>
         <div class="info-row">
             <span class="info-label">Nome:</span>
-            <span>${prescricao.paciente_nome}</span>
+            <span>${prescricao.prescricao.paciente_nome}</span>
         </div>
         <div class="info-row">
             <span class="info-label">HC:</span>
-            <span>${prescricao.hc_paciente}</span>
+            <span>${prescricao.prescricao.hc_paciente}</span>
         </div>
     `;
     
@@ -1007,8 +1046,8 @@ function abrirModalAvaliacao(prescricao) {
     const remediosHTML = prescricao.remedios.map((remedio, index) => `
         <div class="remedio-avaliacao">
             <div class="remedio-info">
-                <div class="remedio-title">${remedio.nome} ${remedio.dosagem}</div>
-                <div class="info-text">${remedio.via} - Quantidade: ${remedio.quantidade}</div>
+                <div class="remedio-title">${remedio.principio_ativo} - ${remedio.dosagem}</div>
+                <div class="info-text">Quantidade: ${remedio.quantidade}</div>
             </div>
             <div class="remedio-check">
                 <label class="checkbox-container">
@@ -1026,11 +1065,6 @@ function abrirModalAvaliacao(prescricao) {
             <div class="remedios-lista">
                 ${remediosHTML}
             </div>
-        </div>
-        
-        <div class="form-group">
-            <label for="observacoes">Observações (opcional):</label>
-            <textarea id="observacoes" class="form-control" placeholder="Adicione observações sobre esta prescrição..."></textarea>
         </div>
     `;
     
@@ -1055,13 +1089,12 @@ function abrirModalPedido(pedido) {
     }
     
     let remediosHTML = '';
-    pedido.remedios.forEach(remedio => {
+    pedido.lista_remedios.forEach(remedio => {
         remediosHTML += `
             <div class="remedio-card">
                 <div class="remedio-title">${remedio.nome}</div>
                 <div class="remedio-details">
                     <div class="remedio-detail"><i class="fas fa-pills"></i> ${remedio.dosagem}</div>
-                    <div class="remedio-detail"><i class="fas fa-route"></i> ${remedio.via}</div>
                     <div class="remedio-detail"><i class="fas fa-sort-amount-up"></i> Quantidade: ${remedio.quantidade}</div>
                 </div>
             </div>
@@ -1162,12 +1195,12 @@ function abrirModalSeparacao(pedido) {
     const conteudoModal = document.getElementById('separacao-detalhes');
     
     let remediosHTML = '';
-    pedido.remedios.forEach((remedio) => {
+    pedido.lista_remedios.forEach((remedio) => {
         remediosHTML += `
             <div class="remedio-separacao">
                 <div class="remedio-info">
                     <div class="remedio-title">${remedio.nome} ${remedio.dosagem}</div>
-                    <div class="info-text">${remedio.via} - Quantidade: ${remedio.quantidade}</div>
+                    <div class="info-text"> Quantidade: ${remedio.quantidade}</div>
                 </div>
             </div>
         `;
@@ -1207,12 +1240,12 @@ function abrirModalRevisao(pedido) {
     const conteudoModal = document.getElementById('revisao-detalhes');
     
     let remediosHTML = '';
-    pedido.remedios.forEach((remedio, index) => {
+    pedido.lista_remedios.forEach((remedio, index) => {
         remediosHTML += `
             <div class="remedio-revisao">
                 <div class="remedio-info">
                     <div class="remedio-title">${remedio.nome} ${remedio.dosagem}</div>
-                    <div class="info-text">${remedio.via} - Quantidade: ${remedio.quantidade}</div>
+                    <div class="info-text">Quantidade: ${remedio.quantidade}</div>
                 </div>
                 <div class="remedio-check">
                     <label class="checkbox-container">
@@ -1260,66 +1293,118 @@ function fecharModal() {
 // Função auxiliar para buscar uma prescrição pelo ID
 function buscarPrescricaoPorId(id) {
     // Busca primeiro na lista de aguardando avaliação
-    let prescricao = dadosMockados.prescricoes.aguardandoAvaliacao.find(p => p.id === id);
+    let prescricao = dadosAPI_Atualiza.prescricoes.aguardandoAvaliacao.find(p => p.id === id);
     
     // Se não encontrar, busca na lista de avaliadas
     if (!prescricao) {
-        prescricao = dadosMockados.prescricoes.avaliadas.find(p => p.id === id);
+        prescricao = dadosAPI_Atualiza.prescricoes.avaliadas.find(p => p.id === id);
     }
     
     return prescricao;
 }
+async function puxa_prescricao_por_id(id){
+    try {
+        const token = localStorage.getItem('access_token');
+        const response = await fetch('https://two025-1a-t12-ec05-g03.onrender.com/prescricoes/' + id, {
+            method: 'GET',
+            headers: { 'Authorization': `Bearer ${token}` },
+        });
 
-// Função para avaliar uma prescrição
-function avaliarPrescricao(idPrescricao) {
-    // Pega o índice da prescrição na lista de aguardando avaliação
-    const index = dadosMockados.prescricoes.aguardandoAvaliacao.findIndex(p => p.id === idPrescricao);
-    
-    if (index !== -1) {
-        // Move a prescrição para a lista de avaliadas
-        const prescricaoAvaliada = dadosMockados.prescricoes.aguardandoAvaliacao.splice(index, 1)[0];
-        
+        if (!response.ok) {
+            throw new Error('Erro ao puxar a prescrição');
+        }
+
+        const data = await response.json();
+        console.log('Dados recebidos:', data);
+        return data;
+    } catch (error) {
+        console.error('Erro:', error);
+        alert(error.message);
+        throw error; 
+    }
+}
+async function avaliarPrescricaoAPI(id, remedios_aprovados, id_aprovacao){
+    try {
+        const token = localStorage.getItem('access_token');
+        const response = await fetch('https://two025-1a-t12-ec05-g03.onrender.com/prescricoes/aprovar/' + id, {
+            method: 'PUT',
+            headers: { 
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'  // Adicionando o cabeçalho Content-Type
+            },
+            body: JSON.stringify({
+                "lista_remedios": remedios_aprovados,
+                "status_prescricao": id_aprovacao
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao avaliar a prescrição');
+        }
+
+        console.log('Prescricao: ', id, ' foi avaliada');
+        return true;
+    } catch (error) {
+        console.error('Erro:', error);
+        alert(error.message);
+        return false;
+    }
+}
+
+async function avaliarPrescricao(prescricao) {
+    try {
         // Filtra os remédios aprovados
         const checkboxes = document.querySelectorAll('.avaliacao-checkbox');
         const remediosAprovados = [];
-        
+
         checkboxes.forEach((checkbox, idx) => {
             if (checkbox.checked) {
-                remediosAprovados.push(prescricaoAvaliada.remedios[idx]);
+                remediosAprovados.push(prescricao.remedios[idx]);
             }
         });
-        
-        // Atualiza a lista de remédios da prescrição
-        prescricaoAvaliada.remedios = remediosAprovados;
-        
-        // Adiciona informações de avaliação
-        prescricaoAvaliada.status_prescricao = 2; // Avaliada
-        prescricaoAvaliada.data_avaliacao = new Date().toLocaleString('pt-BR').replace(',', '');
-        prescricaoAvaliada.id_user_aprovacao = 1;
-        prescricaoAvaliada.user_nome = "Dr. Roberto Silva";
-        
-        // Adiciona observações (se houver)
-        const observacoes = document.getElementById('observacoes').value;
-        if (observacoes) {
-            prescricaoAvaliada.observacoes = observacoes;
+
+        const ids_remedios_aprovados = [];
+        remediosAprovados.forEach(remedio =>{
+            ids_remedios_aprovados.push(remedio.id)
+        })
+        console.log('Remédios Aprovados:', remediosAprovados);
+        console.log('Todos Remédios:', prescricao.remedios);
+
+        // Determina o status da aprovação
+        let id_aprovacao;
+        switch (true) {
+            case ids_remedios_aprovados.length === prescricao.remedios.length:
+                id_aprovacao = 2;
+                break;
+            case ids_remedios_aprovados.length === 0:
+                id_aprovacao = 4;
+                break;
+            default:
+                id_aprovacao = 3;
+                break;
         }
-        
-        dadosMockados.prescricoes.avaliadas.push(prescricaoAvaliada);
-        
-        // Adiciona um pedido baseado nesta prescrição
-        adicionarPedidoDePrescricao(prescricaoAvaliada);
-        
+
+        console.log('Status da aprovação:', id_aprovacao);
+
+        // Chama a API de avaliação
+        const resultado = await avaliarPrescricaoAPI(prescricao.prescricao.id, ids_remedios_aprovados, id_aprovacao);
+
+        if(!resultado){     
+            throw new Error("Erro ao avaliar a prescrição pela API")
+        }
+        await chamar_api_atualiza();
         // Atualiza a interface
         atualizarContadores();
         carregarDadosMockados();
-        
-        // Adiciona notificação
-        adicionarNotificacao(`Prescrição de ${prescricaoAvaliada.paciente_nome} foi avaliada por Dr. Roberto Silva`, new Date());
-        
+
         // Feedback visual
-        alert(`Prescrição de ${prescricaoAvaliada.paciente_nome} avaliada com sucesso!`);
+        alert(`Prescrição de ${prescricao.prescricao.paciente_nome} avaliada com sucesso!`);
+    } catch (error) {
+        alert('Erro ao enviar a requisição de avaliação da prescrição!');
+        console.error(error);
     }
 }
+
 
 // Função para separar um pedido
 function separarPedido(idPedido) {

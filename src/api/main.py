@@ -6,9 +6,12 @@ from .routes.logs import log_bp
 from .routes.remedios import remedios_bp
 from .routes.lotes import lote_bp
 from .routes.rotas_qrcode import qrcode_bp
+from .routes.home import home_bp
 import os
 from flask_jwt_extended import JWTManager
 from flask_bcrypt import Bcrypt
+from flask_cors import CORS
+
 
 
 from flask_sqlalchemy import SQLAlchemy
@@ -27,6 +30,7 @@ from .models.log import Log
 
 
 app = Flask(__name__)
+CORS(app)
 
 # # Define o caminho para a pasta `data`
 # BASE_DIR = os.path.abspath(os.path.dirname(__file__))
@@ -55,6 +59,7 @@ app.register_blueprint(log_bp)
 app.register_blueprint(remedios_bp)
 app.register_blueprint(qrcode_bp)
 app.register_blueprint(lote_bp)
+app.register_blueprint(home_bp)
 
 
 

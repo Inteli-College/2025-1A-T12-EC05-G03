@@ -1,10 +1,12 @@
 from flask import Blueprint, jsonify, request
 from ..models.prescricao import Prescricao
 from ..models.pedido import Pedido
+from ..models.remedio import Remedio
 from ..models.user import User
 from ..models.database import db
 from datetime import datetime
 from flask_jwt_extended import jwt_required, get_jwt_identity
+import json
 
 
 # criando a rota base
@@ -46,7 +48,16 @@ def add_prescricao():
 @jwt_required()
 def listar_por_id(prescricao_id):
     prescricao = Prescricao.query.get_or_404(prescricao_id)
-    return jsonify(prescricao.as_dict()), 200
+    ids_remedios = json.loads(prescricao.lista_remedios) if isinstance(prescricao.lista_remedios, str) else []
+
+    # Filtra apenas os remédios com IDs na lista
+    remedios = Remedio.query.filter(Remedio.id.in_(ids_remedios)).all()
+
+    return jsonify({
+        "prescricao": prescricao.as_front(),
+        "remedios": [remedio.as_dict() for remedio in remedios]  # Corrigido para singular
+    }), 200
+
 
 # Aprovar a prescrição
 @prescricoes_bp.route('/aprovar/<prescricao_id>', methods=['PUT'])
