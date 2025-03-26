@@ -149,7 +149,7 @@ const dadosAPI_Atualiza = {};
 
 async function chamar_api_atualiza() {
     try {
-        const response = await fetch('http://127.0.0.1:5000/home/atualizar', {
+        const response = await fetch('https://two025-1a-t12-ec05-g03.onrender.com/home/atualizar', {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
         });
@@ -923,7 +923,7 @@ function adicionarEventListenersModais() {
 async function puxa_prescricao_por_id(id){
     try {
         const token = localStorage.getItem('access_token');
-        const response = await fetch('http://127.0.0.1:5000/prescricoes/' + id, {
+        const response = await fetch('https://two025-1a-t12-ec05-g03.onrender.com/prescricoes/' + id, {
             method: 'GET',
             headers: { 'Authorization': `Bearer ${token}` },
         });
@@ -1305,7 +1305,7 @@ function buscarPrescricaoPorId(id) {
 async function puxa_prescricao_por_id(id){
     try {
         const token = localStorage.getItem('access_token');
-        const response = await fetch('http://127.0.0.1:5000/prescricoes/' + id, {
+        const response = await fetch('https://two025-1a-t12-ec05-g03.onrender.com/prescricoes/' + id, {
             method: 'GET',
             headers: { 'Authorization': `Bearer ${token}` },
         });
@@ -1326,7 +1326,7 @@ async function puxa_prescricao_por_id(id){
 async function avaliarPrescricaoAPI(id, remedios_aprovados, id_aprovacao){
     try {
         const token = localStorage.getItem('access_token');
-        const response = await fetch('http://127.0.0.1:5000/prescricoes/aprovar/' + id, {
+        const response = await fetch('https://two025-1a-t12-ec05-g03.onrender.com/prescricoes/aprovar/' + id, {
             method: 'PUT',
             headers: { 
                 'Authorization': `Bearer ${token}`,
