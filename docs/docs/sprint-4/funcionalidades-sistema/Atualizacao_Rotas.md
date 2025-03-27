@@ -136,3 +136,46 @@ Retorna todos os logs vinculados a um pedido específico.
 - `404 Not Found`: Nenhum log encontrado para o pedido informado.
 ---
 
+## 📦 **5. Rotas de Lotes (`lotes.py`)**
+
+&emsp;Estas rotas permitem o gerenciamento dos lotes de medicamentos cadastrados no sistema.
+
+### `POST /lotes/cadastrar`  
+Cadastra um novo lote vinculado a um remédio.  
+🔒 Requer autenticação JWT.  
+**Corpo esperado:**
+```json
+{
+  "num_lote": "ABC123",
+  "data_validade": "2025-10-01",
+  "fabricante": "Farmacêutica XYZ",
+  "id_remedio": 1,
+  "quantidade": 10,
+  "bin_qrcode": "QR123456"
+}
+```
+**Resposta:** `201 Created`
+
+---
+
+### `GET /lotes/listar`  
+Lista todos os lotes registrados no sistema.
+
+---
+
+### `GET /lotes/remedio/<id_remedio>`  
+Retorna todos os lotes associados a um determinado remédio pelo seu `id`.
+
+---
+
+### `GET /lotes/proximos-validade`  
+Lista lotes que estão com validade próxima (até 7 dias a partir da data atual).
+
+---
+
+### `DELETE /lotes/deletar/<lote_id>`  
+Deleta um lote pelo seu ID.  
+🔒 Requer autenticação JWT.
+
+---
+
