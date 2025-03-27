@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from ..models.pedido import Pedido
 from ..models.user import User
+from ..models.lote import Lote
 from ..models.database import db
 from datetime import datetime, date
 from flask_jwt_extended import jwt_required, get_jwt_identity
@@ -48,7 +49,15 @@ def add_pedido():
 
 def listar_por_id(pedido_id):
     pedido = Pedido.query.get_or_404(pedido_id)
-    return jsonify(pedido.as_dict()), 200
+    qr_codes = json.loads(pedido.lista_remedios) if isinstance(pedido.lista_remedios, str) else []
+
+    # Filtra apenas os remédios com IDs na lista
+    remedios = Lote.query.filter(Lote.bin_qrcode.in_(qr_codes)).all()
+
+    return jsonify({
+        "pedido": pedido.as_dict(),
+        "remedios": [remedio.as_listar_pedido() for remedio in remedios]  # Corrigido para singular
+    }), 200
 
 
 # Alterar Status Pedido

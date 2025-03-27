@@ -48,7 +48,7 @@ def atualizar_pedidos_home():
     pedidos_concluidos = (
     db.session.query(Pedido)
     .filter(
-        (Pedido.status_pedido == 4) &
+        ((Pedido.status_pedido == 4)& (Pedido.status_pedido == 5)) &
         (func.date(Pedido.data_entrada) == date.today())
     )
     .all()

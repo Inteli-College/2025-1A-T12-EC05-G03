@@ -28,3 +28,11 @@ class Lote(db.Model):
             'quantidade': self.quantidade,
             'bin_qrcode': self.bin_qrcode
         }
+    
+    def as_listar_pedido(self):
+        return {
+            'id': self.id,
+            'id_remedio': self.id_remedio,
+            'quantidade': self.quantidade,
+            'principio_ativo': self.remedio_lote.principio_ativo
+        }
