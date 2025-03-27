@@ -149,7 +149,7 @@ const dadosAPI_Atualiza = {};
 
 async function chamar_api_atualiza() {
     try {
-        const response = await fetch('https://two025-1a-t12-ec05-g03.onrender.com/home/atualizar', {
+        const response = await fetch('http://127.0.0.1:5000/home/atualizar', {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
         });
@@ -267,8 +267,27 @@ function encontrarPedidoPorId(id) {
 // Função auxiliar para obter o nome do status pelo ID
 function obterNomeStatus(idStatus, tipo) {
     if (tipo === 'pedido') {
-        const status = dadosMockados.statusPedido.find(s => s.id === idStatus);
-        return status ? status.status_pedido : 'Desconhecido';
+        let status = ""; // Corrigido para let
+        switch(idStatus) {
+            case 1:
+                status = "Aguardando separação";
+                break;
+            case 2:
+                status = "Em separação";
+                break;
+            case 3:
+                status = "Em revisão";
+                break;
+            case 4:
+                status = "Concluído com exito";
+                break;
+            case 5:
+                status = "Concluído com erros";
+                break;
+            default:
+                status = "Desconhecido"; // Garante um retorno seguro
+        }
+        return status;
     } else if (tipo === 'prescricao') {
         let status = ""; // Corrigido para let
         switch(idStatus) {
@@ -848,20 +867,6 @@ function inicializarModais() {
             fecharModal();
         }
     });
-
-    document.getElementById('btn-separar-pedido').addEventListener('click', function() {
-        // Fecha o modal de detalhes e abre o de separação
-        document.getElementById('modal-pedido').style.display = 'none';
-        abrirModalSeparacao(pedidoAtual);
-    });
-
-    document.getElementById('btn-confirmar-separacao').addEventListener('click', function() {
-        // Simulação da confirmação de separação
-        if (pedidoAtual) {
-            separarPedido(pedidoAtual.id);
-            fecharModal();
-        }
-    });
     
     // Novos botões para progresso do pedido
     document.getElementById('btn-enviar-revisao').addEventListener('click', function() {
@@ -1072,6 +1077,28 @@ function abrirModalAvaliacao(prescricao) {
     document.getElementById('modal-avaliacao').style.display = 'flex';
 }
 
+async function pedidoPorIdAPI(id){
+    try {
+        const token = localStorage.getItem('access_token');
+        const response = await fetch('http://127.0.0.1:5000/pedidos' + id, {
+            method: 'GET',
+            headers: { 'Authorization': `Bearer ${token}` },
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao puxar o pedido');
+        }
+
+        const data = await response.json();
+        console.log('Dados recebidos:', data);
+        return data;
+    } catch (error) {
+        console.error('Erro:', error);
+        alert(error.message);
+        throw error; 
+    }    
+}
+
 // Função para abrir o modal de pedido
 function abrirModalPedido(pedido) {
     pedidoAtual = pedido;
@@ -1163,20 +1190,15 @@ function abrirModalPedido(pedido) {
     `;
     
     // Configura os botões de ação com base no status atual
-    const btnSeparar = document.getElementById('btn-separar-pedido');
     const btnRevisar = document.getElementById('btn-enviar-revisao');
     const btnConcluir = document.getElementById('btn-concluir-pedido');
     
     // Esconde todos os botões inicialmente
-    btnSeparar.style.display = 'none';
     btnRevisar.style.display = 'none';
     btnConcluir.style.display = 'none';
     
     // Mostra apenas o botão relevante para o status atual
     switch(pedido.status_pedido) {
-        case 1: // Aguardando Separação
-            btnSeparar.style.display = 'block';
-            break;
         case 2: // Em Separação
             btnRevisar.style.display = 'block';
             break;
@@ -1405,33 +1427,6 @@ async function avaliarPrescricao(prescricao) {
     }
 }
 
-
-// Função para separar um pedido
-function separarPedido(idPedido) {
-    // Busca o pedido na lista de aguardando separação
-    const index = dadosMockados.pedidos.aguardandoSeparacao.findIndex(p => p.id === idPedido);
-    
-    if (index !== -1) {
-        // Move o pedido para a lista de em separação
-        const pedidoSeparado = dadosMockados.pedidos.aguardandoSeparacao.splice(index, 1)[0];
-        
-        // Atualiza o status
-        pedidoSeparado.status_pedido = 2; // Em Separação
-        pedidoSeparado.data_inicio_separacao = new Date().toLocaleString('pt-BR').replace(',', '');
-        
-        dadosMockados.pedidos.emSeparacao.push(pedidoSeparado);
-        
-        // Atualiza a interface
-        atualizarContadores();
-        carregarDadosMockados();
-        
-        // Adiciona notificação
-        adicionarNotificacao(`Pedido #${pedidoSeparado.id} em separação`, new Date());
-        
-        // Feedback visual
-        alert(`Separação do pedido #${pedidoSeparado.id} iniciada com sucesso!`);
-    }
-}
 
 // Função para enviar um pedido para revisão
 function enviarParaRevisao(idPedido) {

@@ -65,7 +65,7 @@
             
             // Validação básica
             if (email && senha) {
-                fetch('https://two025-1a-t12-ec05-g03.onrender.com/login', {
+                fetch('https://two025-1a-t12-ec05-g03.onrender.com/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, senha })
