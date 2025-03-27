@@ -160,7 +160,7 @@
     color: #886A08;
 }
 
-.status-avaliada, .status-concluido {
+.status-avaliada, .status-concluido-com-exito {
     background-color: var(--cor-destaque);
     color: var(--cor-escura);
 }
@@ -173,6 +173,10 @@
 .status-revisao {
     background-color: #B39DDB;
     color: #4527A0;
+}
+.status-concluido-com-erros {
+    background-color: #ff2222;
+    color: #ffffff;
 }
 
 /* Estilos para o modal de avaliação de prescrição */

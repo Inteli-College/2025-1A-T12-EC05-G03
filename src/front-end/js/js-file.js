@@ -1108,7 +1108,9 @@ function abrirModalPedido(pedido) {
                 case 1: statusClass = 'status-aguardando'; break;
                 case 2: statusClass = 'status-separacao'; break;
                 case 3: statusClass = 'status-revisao'; break;
-                case 4: statusClass = 'status-concluido'; break;
+                case 4: statusClass = 'status-concluido-com-exito'; break;
+                case 5: statusClass = 'status-concluido-com-erros'; break;
+
             }
 
             let remediosHTML = '';
