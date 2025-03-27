@@ -101,3 +101,38 @@ Retorna os dados atualizados do dia atual, organizados em:
 
 ---
 
+## 📋 **4. Rotas de Logs do Robô (`logs.py`)**
+
+&emsp;Estas rotas armazenam e consultam os registros (logs) de eventos durante a separação de medicamentos pelo robô.
+
+### `POST /logs/cadastrar`  
+Registra um novo log com informações sobre o pedido, medicamento e tipo de evento (via `codigo_log`).  
+**Corpo esperado:**
+```json
+{
+  "id_pedido": 1,
+  "id_remedio_em_separacao": 3,
+  "codigo_log": "MEDICAMENTO_VALIDADO"
+}
+```
+**Resposta:**  
+- `201 Created`: Log cadastrado com sucesso.
+
+---
+
+### `GET /logs/listar`  
+Lista todos os logs registrados no sistema.
+
+**Resposta:**  
+Array de objetos `Log`.
+
+---
+
+### `GET /logs/pedido/<id_pedido>`  
+Retorna todos os logs vinculados a um pedido específico.
+
+**Resposta:**  
+- `200 OK`: Array de logs encontrados.  
+- `404 Not Found`: Nenhum log encontrado para o pedido informado.
+---
+
