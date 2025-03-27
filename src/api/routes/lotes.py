@@ -31,7 +31,7 @@ def cadastrar_lote():
     }), 201
 
 @lote_bp.route('/listar', methods = ['GET'])
-def listar_all_logs():
+def listar_lotes():
     lotes = Lote.query.all()
     return jsonify([lote.as_dict() for lote in lotes])
 
