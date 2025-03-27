@@ -108,6 +108,10 @@
                         <label for="quantidadeLote">Quantidade:</label>
                         <input type="number" id="quantidadeLote" min="1" required>
                     </div>
+                    <div class="form-group">
+                        <label for="bin_qrcode">QRCode:</label>
+                        <input type="text" id="bin_qrcode" required>
+                    </div>
                     <div class="form-buttons">
                         <button type="button" class="btn btn-cancelar" id="cancelarCadastroLote">Cancelar</button>
                         <button type="submit" class="btn btn-confirmar">Confirmar</button>
@@ -159,10 +163,6 @@
                         <select id="loteRetirar" required>
                             <!-- Opções serão inseridas via JavaScript -->
                         </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="quantidadeRetirar">Quantidade:</label>
-                        <input type="number" id="quantidadeRetirar" min="1" required>
                     </div>
                     <div class="form-buttons">
                         <button type="button" class="btn btn-cancelar" id="cancelarRetiradaMedicamento">Cancelar</button>
@@ -260,6 +260,6 @@
 
     <!-- Scripts -->
     <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/estoque.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/estoque-js.js') }}"></script>
 </body>
 </html>
