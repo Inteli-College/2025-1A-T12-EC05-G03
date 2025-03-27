@@ -318,3 +318,5 @@ Deleta um pedido pelo seu ID.
 ### `GET /pedidos/fila`  
 Puxa o próximo pedido da fila (status 1), atualizando seu status para 2 (em separação).
 
+## Conclusão
+&emsp;A integração entre as rotas da API, a interface web e o robô é essencial para o funcionamento automatizado e seguro do sistema de separação de medicamentos. Cada rota desempenha um papel específico na gestão de usuários, prescrições, pedidos, lotes, logs e validação de QR Codes, garantindo rastreabilidade e eficiência em todo o fluxo. Nesta sprint, a atualização e organização das rotas foi um passo crucial para consolidar a comunicação entre os módulos, corrigir inconsistências e preparar o sistema para novas funcionalidades. Essa padronização contribui diretamente para a escalabilidade, manutenção e confiabilidade da aplicação, tornando o ambiente mais estável e preparado para evoluções futuras.
