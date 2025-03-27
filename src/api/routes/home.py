@@ -48,11 +48,11 @@ def atualizar_pedidos_home():
     pedidos_concluidos = (
     db.session.query(Pedido)
     .filter(
-        (Pedido.status_pedido == 4) &
-        (func.date(Pedido.data_entrada) == date.today())
+        Pedido.status_pedido.in_([4, 5]),  # Alternativa correta
+        func.date(Pedido.data_entrada) == date.today()
     )
     .all()
-    )
+)
 
     prescricoes_aguardando = (
         db.session.query(Prescricao)

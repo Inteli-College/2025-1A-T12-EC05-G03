@@ -149,7 +149,7 @@ const dadosAPI_Atualiza = {};
 
 async function chamar_api_atualiza() {
     try {
-        const response = await fetch('https://two025-1a-t12-ec05-g03.onrender.com/home/atualizar', {
+        const response = await fetch('http://127.0.0.1:5000/home/atualizar', {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
         });
@@ -267,8 +267,27 @@ function encontrarPedidoPorId(id) {
 // Função auxiliar para obter o nome do status pelo ID
 function obterNomeStatus(idStatus, tipo) {
     if (tipo === 'pedido') {
-        const status = dadosMockados.statusPedido.find(s => s.id === idStatus);
-        return status ? status.status_pedido : 'Desconhecido';
+        let status = ""; // Corrigido para let
+        switch(idStatus) {
+            case 1:
+                status = "Aguardando separação";
+                break;
+            case 2:
+                status = "Em separação";
+                break;
+            case 3:
+                status = "Em revisão";
+                break;
+            case 4:
+                status = "Concluído com exito";
+                break;
+            case 5:
+                status = "Concluído com erros";
+                break;
+            default:
+                status = "Desconhecido"; // Garante um retorno seguro
+        }
+        return status;
     } else if (tipo === 'prescricao') {
         let status = ""; // Corrigido para let
         switch(idStatus) {
@@ -292,7 +311,6 @@ function obterNomeStatus(idStatus, tipo) {
     return 'Desconhecido';
 }
 
-// const status = dadosMockados.statusPrescricao.find(s => s.id === idStatus); 
 
 // ================ FUNÇÕES PARA OS FILTROS DE WORKFLOW ================
 
@@ -517,7 +535,7 @@ function filtrarPedidosPorStatus(statusId) {
             <td>${pedido.data_entrada}</td>
             <td>${pedido.lista_remedios.length} itens</td>
             <td>
-                <button class="btn-visualizar" data-id="${pedido.id}">
+                <button class="btn-visualizar-pedido" data-id="${pedido.id}">
                     <i class="fas fa-eye"></i> ${statusId === 1 ? 'Visualizar pedido' : statusId === 2 ? 'Continuar separação' : statusId === 3 ? 'Revisar pedido' : 'Ver detalhes'}
                 </button>
             </td>
@@ -848,40 +866,18 @@ function inicializarModais() {
             fecharModal();
         }
     });
-
-    document.getElementById('btn-separar-pedido').addEventListener('click', function() {
-        // Fecha o modal de detalhes e abre o de separação
-        document.getElementById('modal-pedido').style.display = 'none';
-        abrirModalSeparacao(pedidoAtual);
-    });
-
-    document.getElementById('btn-confirmar-separacao').addEventListener('click', function() {
-        // Simulação da confirmação de separação
-        if (pedidoAtual) {
-            separarPedido(pedidoAtual.id);
-            fecharModal();
-        }
-    });
     
-    // Novos botões para progresso do pedido
-    document.getElementById('btn-enviar-revisao').addEventListener('click', function() {
+    document.getElementById('btn-concluir-pedido').addEventListener('click', function() {
         if (pedidoAtual) {
             document.getElementById('modal-pedido').style.display = 'none';
             abrirModalRevisao(pedidoAtual);
         }
     });
-    
+
     document.getElementById('btn-confirmar-revisao').addEventListener('click', function() {
         // Simulação da confirmação de revisão
         if (pedidoAtual) {
-            concluirPedido(pedidoAtual.id);
-            fecharModal();
-        }
-    });
-    
-    document.getElementById('btn-concluir-pedido').addEventListener('click', function() {
-        if (pedidoAtual) {
-            concluirPedido(pedidoAtual.id);
+            concluirPedido(pedidoAtual);
             fecharModal();
         }
     });
@@ -907,10 +903,10 @@ function adicionarEventListenersModais() {
     
     // Para botões de visualizar pedido na tabela
     document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('btn-visualizar') || 
-            (e.target.parentElement && e.target.parentElement.classList.contains('btn-visualizar'))) {
+        if (e.target.classList.contains('btn-visualizar-pedido') || 
+            (e.target.parentElement && e.target.parentElement.classList.contains('btn-visualizar-pedido'))) {
             e.preventDefault();
-            const botao = e.target.classList.contains('btn-visualizar') ? e.target : e.target.parentElement;
+            const botao = e.target.classList.contains('btn-visualizar-pedido') ? e.target : e.target.parentElement;
             const idPedido = parseInt(botao.dataset.id);
             const pedido = encontrarPedidoPorId(idPedido);
             
@@ -944,6 +940,7 @@ async function puxa_prescricao_por_id(id){
 
 // Função para abrir o modal de prescrição
 function abrirModalPrescricao(prescricao) {
+    console.log("abrirModalPrescricao")
     puxa_prescricao_por_id(prescricao.id)
         .then(data => {
             prescricaoAtual = data;
@@ -1027,6 +1024,7 @@ function abrirModalPrescricao(prescricao) {
 
 // Função para abrir o modal de avaliação
 function abrirModalAvaliacao(prescricao) {
+    console.log("abrirModalAvaliacao")
     // Preenche as informações do paciente no modal de avaliação
     const pacienteInfo = document.getElementById('avaliacao-paciente-info');
     pacienteInfo.innerHTML = `
@@ -1072,179 +1070,192 @@ function abrirModalAvaliacao(prescricao) {
     document.getElementById('modal-avaliacao').style.display = 'flex';
 }
 
-// Função para abrir o modal de pedido
-function abrirModalPedido(pedido) {
-    pedidoAtual = pedido;
-    
-    // Preenche os detalhes do pedido no modal
-    const conteudoModal = document.getElementById('pedido-detalhes');
-    const statusPedido = obterNomeStatus(pedido.status_pedido, 'pedido');
-    
-    let statusClass = '';
-    switch(pedido.status_pedido) {
-        case 1: statusClass = 'status-aguardando'; break;
-        case 2: statusClass = 'status-separacao'; break;
-        case 3: statusClass = 'status-revisao'; break;
-        case 4: statusClass = 'status-concluido'; break;
-    }
-    
-    let remediosHTML = '';
-    pedido.lista_remedios.forEach(remedio => {
-        remediosHTML += `
-            <div class="remedio-card">
-                <div class="remedio-title">${remedio.nome}</div>
-                <div class="remedio-details">
-                    <div class="remedio-detail"><i class="fas fa-pills"></i> ${remedio.dosagem}</div>
-                    <div class="remedio-detail"><i class="fas fa-sort-amount-up"></i> Quantidade: ${remedio.quantidade}</div>
-                </div>
-            </div>
-        `;
-    });
-    
-    conteudoModal.innerHTML = `
-        <div class="prescricao-info">
-            <div class="paciente-detalhes">
-                <h4>Dados do Paciente</h4>
-                <div class="info-row">
-                    <span class="info-label">Nome:</span>
-                    <span>${pedido.paciente}</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">HC:</span>
-                    <span>${pedido.hc_paciente}</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Quarto:</span>
-                    <span>${pedido.quarto}</span>
-                </div>
-            </div>
-            
-            <div class="prescricao-detalhes">
-                <h4>Dados do Pedido</h4>
-                <div class="info-row">
-                    <span class="info-label">Número:</span>
-                    <span>Pedido #${pedido.id}</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Status:</span>
-                    <span>${statusPedido} <span class="status-badge ${statusClass}">${statusPedido}</span></span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Data entrada:</span>
-                    <span>${pedido.data_entrada}</span>
-                </div>
-                ${pedido.data_inicio_separacao ? `
-                <div class="info-row">
-                    <span class="info-label">Início separação:</span>
-                    <span>${pedido.data_inicio_separacao}</span>
-                </div>` : ''}
-                ${pedido.data_inicio_revisao ? `
-                <div class="info-row">
-                    <span class="info-label">Início revisão:</span>
-                    <span>${pedido.data_inicio_revisao}</span>
-                </div>` : ''}
-                ${pedido.data_finalizacao ? `
-                <div class="info-row">
-                    <span class="info-label">Finalizado em:</span>
-                    <span>${pedido.data_finalizacao}</span>
-                </div>` : ''}
-                ${pedido.user_nome ? `
-                <div class="info-row">
-                    <span class="info-label">Revisado por:</span>
-                    <span>${pedido.user_nome}</span>
-                </div>` : ''}
-            </div>
-        </div>
-        
-        <h4>Medicamentos</h4>
-        <div class="remedios-container">
-            ${remediosHTML}
-        </div>
-    `;
-    
-    // Configura os botões de ação com base no status atual
-    const btnSeparar = document.getElementById('btn-separar-pedido');
-    const btnRevisar = document.getElementById('btn-enviar-revisao');
-    const btnConcluir = document.getElementById('btn-concluir-pedido');
-    
-    // Esconde todos os botões inicialmente
-    btnSeparar.style.display = 'none';
-    btnRevisar.style.display = 'none';
-    btnConcluir.style.display = 'none';
-    
-    // Mostra apenas o botão relevante para o status atual
-    switch(pedido.status_pedido) {
-        case 1: // Aguardando Separação
-            btnSeparar.style.display = 'block';
-            break;
-        case 2: // Em Separação
-            btnRevisar.style.display = 'block';
-            break;
-        case 3: // Em Revisão
-            btnConcluir.style.display = 'block';
-            break;
-    }
-    
-    // Exibe o modal
-    document.getElementById('modal-pedido').style.display = 'flex';
+async function pedidoPorIdAPI(id){
+    try {
+        const token = localStorage.getItem('access_token');
+        const response = await fetch('http://127.0.0.1:5000/pedidos/' + id, {
+            method: 'GET',
+            headers: { 'Authorization': `Bearer ${token}` },
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao puxar o pedido');
+        }
+
+        const data = await response.json();
+        console.log('Dados recebidos:', data);
+        return data;
+    } catch (error) {
+        console.error('Erro:', error);
+        alert(error.message);
+        throw error; 
+    }    
 }
 
-// Função para abrir o modal de separação
-function abrirModalSeparacao(pedido) {
-    // Preenche as informações do pedido no modal de separação
-    const conteudoModal = document.getElementById('separacao-detalhes');
-    
-    let remediosHTML = '';
-    pedido.lista_remedios.forEach((remedio) => {
-        remediosHTML += `
-            <div class="remedio-separacao">
-                <div class="remedio-info">
-                    <div class="remedio-title">${remedio.nome} ${remedio.dosagem}</div>
-                    <div class="info-text"> Quantidade: ${remedio.quantidade}</div>
+// Função para abrir o modal de pedido
+function abrirModalPedido(pedido) {
+    console.log("abrirModalPedido")
+    pedidoPorIdAPI(pedido.id)
+        .then(data => {
+            pedido = data;
+            pedidoAtual = pedido;
+            // Preenche os detalhes do pedido no modal
+            const conteudoModal = document.getElementById('pedido-detalhes');
+            const statusPedido = obterNomeStatus(pedido.pedido.status_pedido, 'pedido');
+
+            let statusClass = '';
+            switch(pedido.pedido.status_pedido) {
+                case 1: statusClass = 'status-aguardando'; break;
+                case 2: statusClass = 'status-separacao'; break;
+                case 3: statusClass = 'status-revisao'; break;
+                case 4: statusClass = 'status-concluido-com-exito'; break;
+                case 5: statusClass = 'status-concluido-com-erros'; break;
+
+            }
+
+            let remediosHTML = '';
+            pedido.remedios.forEach(remedio => {
+                remediosHTML += `
+                    <div class="remedio-card">
+                        <div class="remedio-title">${remedio.principio_ativo}</div>
+                        <div class="remedio-details">
+                            <div class="remedio-detail"><i class="fas fa-pills"></i> ${remedio.dosagem}</div>
+                            <div class="remedio-detail"><i class="fas fa-sort-amount-up"></i> Quantidade: ${remedio.quantidade}</div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            conteudoModal.innerHTML = `
+                <div class="prescricao-info">
+                    <div class="paciente-detalhes">
+                        <h4>Dados do Paciente</h4>
+                        <div class="info-row">
+                            <span class="info-label">Nome:</span>
+                            <span>${pedido.pedido.paciente}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">HC:</span>
+                            <span>${pedido.pedido.hc_paciente}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Quarto:</span>
+                            <span>${pedido.pedido.quarto}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="prescricao-detalhes">
+                        <h4>Dados do Pedido</h4>
+                        <div class="info-row">
+                            <span class="info-label">Número:</span>
+                            <span>Pedido #${pedido.pedido.id}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Status:</span>
+                            <span>${statusPedido} <span class="status-badge ${statusClass}">${statusPedido}</span></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Data entrada:</span>
+                            <span>${pedido.pedido.data_entrada}</span>
+                        </div>
+                        ${pedido.pedido.data_inicio_separacao ? `
+                        <div class="info-row">
+                            <span class="info-label">Início separação:</span>
+                            <span>${pedido.pedido.data_inicio_separacao}</span>
+                        </div>` : ''}
+                        ${pedido.pedido.data_inicio_revisao ? `
+                        <div class="info-row">
+                            <span class="info-label">Início revisão:</span>
+                            <span>${pedido.pedido.data_inicio_revisao}</span>
+                        </div>` : ''}
+                        ${pedido.pedido.data_finalizacao ? `
+                        <div class="info-row">
+                            <span class="info-label">Finalizado em:</span>
+                            <span>${pedido.pedido.data_finalizacao}</span>
+                        </div>` : ''}
+                        ${pedido.pedido.id_user_revisao ? `
+                        <div class="info-row">
+                            <span class="info-label">Revisado por:</span>
+                            <span>${pedido.pedido.id_user_revisao}</span>
+                        </div>` : ''}
+                    </div>
                 </div>
-            </div>
-        `;
-    });
+                
+                <h4>Medicamentos</h4>
+                <div class="remedios-container">
+                    ${remediosHTML}
+                </div>
+            `;
+
+            // Configura os botões de ação com base no status atual
+            const btnConcluir = document.getElementById('btn-concluir-pedido');
+
+            // Esconde todos os botões inicialmente
+            btnConcluir.style.display = 'none';
+
+            // Mostra apenas o botão relevante para o status atual
+            switch(pedido.pedido.status_pedido) {
+                case 3: // Em Revisão
+                    btnConcluir.style.display = 'block';
+                    break;
+            }
+
+            // Exibe o modal
+            document.getElementById('modal-pedido').style.display = 'flex';
+        })
     
-    conteudoModal.innerHTML = `
-        <div class="paciente-detalhes">
-            <h4>Pedido #${pedido.id} - ${pedido.paciente}</h4>
-            <div class="info-row">
-                <span class="info-label">Quarto:</span>
-                <span>${pedido.quarto}</span>
-            </div>
-        </div>
+}
+
+async function concluirPedido(pedido){
+    try{
+        // Filtra os remédios aprovados
+        const checkboxes = document.querySelectorAll('.revisao-checkbox');
+        const remediosAprovados = [];
         
-        <div class="separacao-section">
-            <div class="separacao-header">
-                <div class="separacao-title">Itens para separação</div>
-            </div>
-            <div class="remedios-lista">
-                ${remediosHTML}
-            </div>
-            <div class="info-text" style="margin-top: 15px;">
-                <i class="fas fa-info-circle"></i> Confirme quando todos os itens estiverem separados
-            </div>
-        </div>
-    `;
-    
-    // Exibe o modal
-    document.getElementById('modal-separacao').style.display = 'flex';
+        checkboxes.forEach((checkbox, idx) => {
+            if (checkbox.checked) {
+                remediosAprovados.push(pedido.remedios[idx]);
+            }
+        });
+
+        const ids_remedios_aprovados = [];
+        remediosAprovados.forEach(remedio =>{
+            ids_remedios_aprovados.push(remedio.id)
+        })
+        console.log('Remédios Aprovados:', remediosAprovados);
+        console.log('Todos Remédios:', pedido.remedios);
+
+        // Determina o status da aprovação
+        const id_status = ids_remedios_aprovados.length === pedido.remedios.length ? 4 : 5;
+
+
+        const resultado = await revisaoPedidoAPI(pedido.pedido.id, id_status)
+        if(!resultado){     
+            throw new Error("Erro ao revisar o pedido pela API")
+        }
+        
+        // Atualiza a interface
+        atualizarContadores();
+        carregarDadosMockados();
+                
+        // Feedback visual
+        alert(`Pedido #${pedido.pedido.id} concluído com sucesso!`);
+    }catch (error) {
+        console.error('Erro ao fazer a revisão do pedido: ', error);
+    }
 }
 
 // Nova função para abrir o modal de revisão
 function abrirModalRevisao(pedido) {
-    pedidoAtual = pedido;
-    
     // Preenche as informações do pedido no modal de revisão
     const conteudoModal = document.getElementById('revisao-detalhes');
     
     let remediosHTML = '';
-    pedido.lista_remedios.forEach((remedio, index) => {
+    pedido.remedios.forEach((remedio, index) => {
         remediosHTML += `
             <div class="remedio-revisao">
                 <div class="remedio-info">
-                    <div class="remedio-title">${remedio.nome} ${remedio.dosagem}</div>
+                    <div class="remedio-title">${remedio.principio_ativo} ${remedio.dosagem}</div>
                     <div class="info-text">Quantidade: ${remedio.quantidade}</div>
                 </div>
                 <div class="remedio-check">
@@ -1259,10 +1270,10 @@ function abrirModalRevisao(pedido) {
     
     conteudoModal.innerHTML = `
         <div class="paciente-detalhes">
-            <h4>Pedido #${pedido.id} - ${pedido.paciente}</h4>
+            <h4>Pedido #${pedido.pedido.id} - ${pedido.pedido.paciente}</h4>
             <div class="info-row">
                 <span class="info-label">Quarto:</span>
-                <span>${pedido.quarto}</span>
+                <span>${pedido.pedido.quarto}</span>
             </div>
         </div>
         
@@ -1302,27 +1313,7 @@ function buscarPrescricaoPorId(id) {
     
     return prescricao;
 }
-async function puxa_prescricao_por_id(id){
-    try {
-        const token = localStorage.getItem('access_token');
-        const response = await fetch('https://two025-1a-t12-ec05-g03.onrender.com/prescricoes/' + id, {
-            method: 'GET',
-            headers: { 'Authorization': `Bearer ${token}` },
-        });
 
-        if (!response.ok) {
-            throw new Error('Erro ao puxar a prescrição');
-        }
-
-        const data = await response.json();
-        console.log('Dados recebidos:', data);
-        return data;
-    } catch (error) {
-        console.error('Erro:', error);
-        alert(error.message);
-        throw error; 
-    }
-}
 async function avaliarPrescricaoAPI(id, remedios_aprovados, id_aprovacao){
     try {
         const token = localStorage.getItem('access_token');
@@ -1405,100 +1396,26 @@ async function avaliarPrescricao(prescricao) {
     }
 }
 
-
-// Função para separar um pedido
-function separarPedido(idPedido) {
-    // Busca o pedido na lista de aguardando separação
-    const index = dadosMockados.pedidos.aguardandoSeparacao.findIndex(p => p.id === idPedido);
-    
-    if (index !== -1) {
-        // Move o pedido para a lista de em separação
-        const pedidoSeparado = dadosMockados.pedidos.aguardandoSeparacao.splice(index, 1)[0];
-        
-        // Atualiza o status
-        pedidoSeparado.status_pedido = 2; // Em Separação
-        pedidoSeparado.data_inicio_separacao = new Date().toLocaleString('pt-BR').replace(',', '');
-        
-        dadosMockados.pedidos.emSeparacao.push(pedidoSeparado);
-        
-        // Atualiza a interface
-        atualizarContadores();
-        carregarDadosMockados();
-        
-        // Adiciona notificação
-        adicionarNotificacao(`Pedido #${pedidoSeparado.id} em separação`, new Date());
-        
-        // Feedback visual
-        alert(`Separação do pedido #${pedidoSeparado.id} iniciada com sucesso!`);
-    }
-}
-
-// Função para enviar um pedido para revisão
-function enviarParaRevisao(idPedido) {
-    // Busca o pedido na lista em separação
-    const index = dadosMockados.pedidos.emSeparacao.findIndex(p => p.id === idPedido);
-    
-    if (index !== -1) {
-        // Move o pedido para a lista de em revisão
-        const pedidoRevisao = dadosMockados.pedidos.emSeparacao.splice(index, 1)[0];
-        
-        // Atualiza o status
-        pedidoRevisao.status_pedido = 3; // Em Revisão
-        pedidoRevisao.data_inicio_revisao = new Date().toLocaleString('pt-BR').replace(',', '');
-        
-        dadosMockados.pedidos.emRevisao.push(pedidoRevisao);
-        
-        // Atualiza a interface
-        atualizarContadores();
-        carregarDadosMockados();
-        
-        // Adiciona notificação
-        adicionarNotificacao(`Pedido #${pedidoRevisao.id} enviado para revisão`, new Date());
-        
-        // Feedback visual
-        alert(`Pedido #${pedidoRevisao.id} enviado para revisão com sucesso!`);
-    }
-}
-
-// Função para concluir um pedido
-function concluirPedido(idPedido) {
-    // Busca o pedido na lista em revisão
-    const index = dadosMockados.pedidos.emRevisao.findIndex(p => p.id === idPedido);
-    
-    if (index !== -1) {
-        // Move o pedido para a lista de concluídos
-        const pedidoConcluido = dadosMockados.pedidos.emRevisao.splice(index, 1)[0];
-        
-        // Filtra os remédios aprovados
-        const checkboxes = document.querySelectorAll('.revisao-checkbox');
-        const remediosAprovados = [];
-        
-        checkboxes.forEach((checkbox, idx) => {
-            if (checkbox.checked) {
-                remediosAprovados.push(pedidoConcluido.remedios[idx]);
-            }
+async function revisaoPedidoAPI(id, id_avaliacao){
+    try {
+        const token = localStorage.getItem('access_token');
+        const response = await fetch('http://127.0.0.1:5000/pedidos/status/' + id, {
+            method: 'PATCH',
+            headers: { 
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'  // Adicionando o cabeçalho Content-Type
+            },
+            body: JSON.stringify({ "status": id_avaliacao})
         });
-        
-        // Atualiza a lista de remédios do pedido
-        pedidoConcluido.remedios = remediosAprovados;
-        
-        // Atualiza o status
-        pedidoConcluido.status_pedido = 4; // Concluído
-        pedidoConcluido.data_finalizacao = new Date().toLocaleString('pt-BR').replace(',', '');
-        pedidoConcluido.id_user_revisao = 2; // ID do usuário atual (mockado)
-        pedidoConcluido.user_nome = "Farmacêutico Pedro Santos"; // Nome do usuário atual (mockado)
-        
-        dadosMockados.pedidos.concluidos.push(pedidoConcluido);
-        
-        // Atualiza a interface
-        atualizarContadores();
-        carregarDadosMockados();
-        
-        // Adiciona notificação
-        adicionarNotificacao(`Pedido #${pedidoConcluido.id} concluído por Farmacêutico Pedro Santos`, new Date());
-        
-        // Feedback visual
-        alert(`Pedido #${pedidoConcluido.id} concluído com sucesso!`);
+
+        if (!response.ok) {
+            throw new Error('Erro ao revisar o pedido');
+        }
+        return true;
+    } catch (error) {
+        console.error('Erro:', error);
+        alert(error.message);
+        return false;
     }
 }
 

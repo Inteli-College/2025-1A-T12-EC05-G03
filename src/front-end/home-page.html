@@ -1,298 +1,309 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sistema de Gerenciamento de Remédios</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/css-file.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/modal.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/css-file.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/modal.css') }}"
+    />
     <!-- Importando as fontes -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
     <!-- Ícones do Font Awesome para usar na interface -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
     <!-- Barra lateral de navegação -->
     <div class="sidebar" id="sidebar">
-        <div class="menu-icon" id="menu-toggle">
-            <i class="fas fa-bars"></i>
-        </div>
-        <div class="menu-items">
-            <a href="/home" class="menu-item">
-                <i class="fas fa-home"></i>
-                <span class="menu-text">Home</span>
-            </a>
-            <a href="/estoque" class="menu-item">
-                <i class="fas fa-pills"></i>
-                <span class="menu-text">Estoque</span>
-            </a>
-            <a href="/historico" class="menu-item active">
-                <i class="fas fa-search"></i>
-                <span class="menu-text">Histórico</span>
-            </a>
-        </div>
+      <div class="menu-icon" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="menu-items">
+        <a href="/home" class="menu-item">
+          <i class="fas fa-home"></i>
+          <span class="menu-text">Home</span>
+        </a>
+        <a href="/estoque" class="menu-item">
+          <i class="fas fa-pills"></i>
+          <span class="menu-text">Estoque</span>
+        </a>
+        <a href="/historico" class="menu-item active">
+          <i class="fas fa-search"></i>
+          <span class="menu-text">Histórico</span>
+        </a>
+      </div>
     </div>
 
     <div class="container">
-        <!-- Conteúdo principal -->
-        <div class="main-content">
-            <!-- Seção de prescrições -->
-            <section class="section-container prescricoes-section">
-                <h1 class="section-title">Prescrições</h1>
-                
-                <div class="workflow-container">
-                    <!-- Etapas do fluxo de trabalho para prescrições - agora como filtros -->
-                    <div class="workflow-step">
-                        <div class="workflow-box active-filter" id="filtro-aguardando">
-                            <div class="step-title">Aguardando Avaliação</div>
-                            <div class="step-count" id="count-aguardando">X</div>
-                        </div>
-                    </div>
-                    
-                    <div class="workflow-arrow">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                    
-                    <div class="workflow-step">
-                        <div class="workflow-box" id="filtro-avaliadas">
-                            <div class="step-title">Avaliadas</div>
-                            <div class="step-count" id="count-avaliadas">X</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="section-subtitle" id="prescricoes-subtitulo">Aguardando Avaliação</div>
-                
-                <!-- Lista de prescrições aguardando avaliação -->
-                <div class="list-container">
-                    <ul class="item-list" id="lista-prescricoes">
-                        <!-- Os dados serão preenchidos pelo JavaScript -->
-                    </ul>
-                </div>
-            </section>
-            
-            <!-- Notificações -->
-            <aside class="notifications-panel">
-                <div class="notification-header">
-                    <h2>Notificações <i class="fas fa-bell"></i></h2>
-                </div>
-                
-                <div class="notification-list">
-                    <div class="notification-item">
-                        <div class="notification-text"></div>
-                    </div>
-                    <div class="notification-item">
-                        <div class="notification-text"></div>
-                    </div>
-                    <div class="notification-item">
-                        <div class="notification-text"></div>
-                    </div>
-                    <div class="notification-item">
-                        <div class="notification-text"></div>
-                    </div>
-                </div>
-            </aside>
-        </div>
-        
-        <!-- Seção de pedidos -->
-        <section class="section-container pedidos-section">
-            <h1 class="section-title">Pedidos</h1>
-            
-            <div class="workflow-container centralized">
-                <!-- Etapas do fluxo de trabalho para pedidos -->
-                <div class="workflow-step">
-                    <div class="workflow-box">
-                        <i class="fas fa-clock workflow-icon"></i>
-                        <div class="step-title">Aguardando Separação</div>
-                        <div class="step-count">X</div>
-                    </div>
-                </div>
-                
-                <div class="workflow-arrow">
-                    <i class="fas fa-arrow-right"></i>
-                </div>
-                
-                <div class="workflow-step">
-                    <div class="workflow-box">
-                        <i class="fas fa-box workflow-icon"></i>
-                        <div class="step-title">Em Separação</div>
-                        <div class="step-count">X</div>
-                    </div>
-                </div>
-                
-                <div class="workflow-arrow">
-                    <i class="fas fa-arrow-right"></i>
-                </div>
-                
-                <div class="workflow-step">
-                    <div class="workflow-box">
-                        <i class="fas fa-clipboard-check workflow-icon"></i>
-                        <div class="step-title">Em Revisão</div>
-                        <div class="step-count">X</div>
-                    </div>
-                </div>
-                
-                <div class="workflow-arrow">
-                    <i class="fas fa-arrow-right"></i>
-                </div>
-                
-                <div class="workflow-step">
-                    <div class="workflow-box">
-                        <i class="fas fa-check-circle workflow-icon"></i>
-                        <div class="step-title">Concluído</div>
-                        <div class="step-count">X</div>
-                    </div>
-                </div>
+      <!-- Conteúdo principal -->
+      <div class="main-content">
+        <!-- Seção de prescrições -->
+        <section class="section-container prescricoes-section">
+          <h1 class="section-title">Prescrições</h1>
+
+          <div class="workflow-container">
+            <!-- Etapas do fluxo de trabalho para prescrições - agora como filtros -->
+            <div class="workflow-step">
+              <div class="workflow-box active-filter" id="filtro-aguardando">
+                <div class="step-title">Aguardando Avaliação</div>
+                <div class="step-count" id="count-aguardando">X</div>
+              </div>
             </div>
-            
-            <div class="section-subtitle">Aguardando Separação</div>
-            
-            <!-- Tabela de pedidos aguardando separação -->
-            <div class="table-container">
-                <table class="pedidos-table">
-                    <thead>
-                        <tr>
-                            <th>Número</th>
-                            <th>Paciente</th>
-                            <th>HC</th>
-                            <th>Quarto</th>
-                            <th>Data</th>
-                            <th>Itens</th>
-                            <th>Ação</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tabela-pedidos">
-                        <!-- Os dados serão preenchidos pelo JavaScript -->
-                    </tbody>
-                </table>
+
+            <div class="workflow-arrow">
+              <i class="fas fa-arrow-right"></i>
             </div>
+
+            <div class="workflow-step">
+              <div class="workflow-box" id="filtro-avaliadas">
+                <div class="step-title">Avaliadas</div>
+                <div class="step-count" id="count-avaliadas">X</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-subtitle" id="prescricoes-subtitulo">
+            Aguardando Avaliação
+          </div>
+
+          <!-- Lista de prescrições aguardando avaliação -->
+          <div class="list-container">
+            <ul class="item-list" id="lista-prescricoes">
+              <!-- Os dados serão preenchidos pelo JavaScript -->
+            </ul>
+          </div>
         </section>
+
+        <!-- Notificações -->
+        <aside class="notifications-panel">
+          <div class="notification-header">
+            <h2>Notificações <i class="fas fa-bell"></i></h2>
+          </div>
+
+          <div class="notification-list">
+            <div class="notification-item">
+              <div class="notification-text"></div>
+            </div>
+            <div class="notification-item">
+              <div class="notification-text"></div>
+            </div>
+            <div class="notification-item">
+              <div class="notification-text"></div>
+            </div>
+            <div class="notification-item">
+              <div class="notification-text"></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Seção de pedidos -->
+      <section class="section-container pedidos-section">
+        <h1 class="section-title">Pedidos</h1>
+
+        <div class="workflow-container centralized">
+          <!-- Etapas do fluxo de trabalho para pedidos -->
+          <div class="workflow-step">
+            <div class="workflow-box">
+              <i class="fas fa-clock workflow-icon"></i>
+              <div class="step-title">Aguardando Separação</div>
+              <div class="step-count">X</div>
+            </div>
+          </div>
+
+          <div class="workflow-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+
+          <div class="workflow-step">
+            <div class="workflow-box">
+              <i class="fas fa-box workflow-icon"></i>
+              <div class="step-title">Em Separação</div>
+              <div class="step-count">X</div>
+            </div>
+          </div>
+
+          <div class="workflow-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+
+          <div class="workflow-step">
+            <div class="workflow-box">
+              <i class="fas fa-clipboard-check workflow-icon"></i>
+              <div class="step-title">Em Revisão</div>
+              <div class="step-count">X</div>
+            </div>
+          </div>
+
+          <div class="workflow-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+
+          <div class="workflow-step">
+            <div class="workflow-box">
+              <i class="fas fa-check-circle workflow-icon"></i>
+              <div class="step-title">Concluído</div>
+              <div class="step-count">X</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-subtitle">Aguardando Separação</div>
+
+        <!-- Tabela de pedidos aguardando separação -->
+        <div class="table-container">
+          <table class="pedidos-table">
+            <thead>
+              <tr>
+                <th>Número</th>
+                <th>Paciente</th>
+                <th>HC</th>
+                <th>Quarto</th>
+                <th>Data</th>
+                <th>Itens</th>
+                <th>Ação</th>
+              </tr>
+            </thead>
+            <tbody id="tabela-pedidos">
+              <!-- Os dados serão preenchidos pelo JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </section>
     </div>
 
     <!-- Modal de Visualização de Prescrição -->
     <div class="modal-overlay" id="modal-prescricao">
-        <div class="modal">
-            <div class="modal-header">
-                <h3 class="modal-title">Detalhes da Prescrição</h3>
-                <button class="modal-close">&times;</button>
-            </div>
-            <div class="modal-body" id="prescricao-detalhes">
-                <!-- Conteúdo será preenchido dinamicamente pelo JavaScript -->
-            </div>
-            <div class="modal-footer">
-                <div class="btn-group">
-                    <button class="btn-modal btn-secondary modal-close-btn">Fechar</button>
-                    <button class="btn-modal btn-primary" id="btn-avaliar-modal">Avaliar Prescrição</button>
-                </div>
-            </div>
+      <div class="modal">
+        <div class="modal-header">
+          <h3 class="modal-title">Detalhes da Prescrição</h3>
+          <button class="modal-close">&times;</button>
         </div>
+        <div class="modal-body" id="prescricao-detalhes">
+          <!-- Conteúdo será preenchido dinamicamente pelo JavaScript -->
+        </div>
+        <div class="modal-footer">
+          <div class="btn-group">
+            <button class="btn-modal btn-secondary modal-close-btn">
+              Fechar
+            </button>
+            <button class="btn-modal btn-primary" id="btn-avaliar-modal">
+              Avaliar Prescrição
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Modal de Avaliação de Prescrição -->
     <div class="modal-overlay" id="modal-avaliacao">
-        <div class="modal">
-            <div class="modal-header">
-                <h3 class="modal-title">Avaliar Prescrição</h3>
-                <button class="modal-close">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="paciente-detalhes" id="avaliacao-paciente-info">
-                    <!-- Informações do paciente preenchidas pelo JavaScript -->
-                </div>
-                
-                <div class="avaliacao-form">
-                    <!-- Formulário será preenchido dinamicamente pelo JavaScript -->
-                </div>
-            </div>
-            <div class="modal-footer">
-                <div class="btn-group">
-                    <button class="btn-modal btn-secondary modal-close-btn">Cancelar</button>
-                    <button class="btn-modal btn-primary" id="btn-confirmar-avaliacao">Confirmar Avaliação</button>
-                </div>
-            </div>
+      <div class="modal">
+        <div class="modal-header">
+          <h3 class="modal-title">Avaliar Prescrição</h3>
+          <button class="modal-close">&times;</button>
         </div>
+        <div class="modal-body">
+          <div class="paciente-detalhes" id="avaliacao-paciente-info">
+            <!-- Informações do paciente preenchidas pelo JavaScript -->
+          </div>
+
+          <div class="avaliacao-form">
+            <!-- Formulário será preenchido dinamicamente pelo JavaScript -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="btn-group">
+            <button class="btn-modal btn-secondary modal-close-btn">
+              Cancelar
+            </button>
+            <button class="btn-modal btn-primary" id="btn-confirmar-avaliacao">
+              Confirmar Avaliação
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Modal de Visualização de Pedido -->
     <div class="modal-overlay" id="modal-pedido">
-        <div class="modal">
-            <div class="modal-header">
-                <h3 class="modal-title">Detalhes do Pedido</h3>
-                <button class="modal-close">&times;</button>
-            </div>
-            <div class="modal-body" id="pedido-detalhes">
-                <!-- Conteúdo será preenchido dinamicamente pelo JavaScript -->
-            </div>
-            <div class="modal-footer">
-                <div class="btn-group">
-                    <button class="btn-modal btn-secondary modal-close-btn">Fechar</button>
-                    <button class="btn-modal btn-primary" id="btn-separar-pedido">Iniciar Separação</button>
-                    <button class="btn-modal btn-primary" id="btn-enviar-revisao">Enviar para Revisão</button>
-                    <button class="btn-modal btn-primary" id="btn-concluir-pedido">Concluir Pedido</button>
-                </div>
-            </div>
+      <div class="modal">
+        <div class="modal-header">
+          <h3 class="modal-title">Detalhes do Pedido</h3>
+          <button class="modal-close">&times;</button>
         </div>
+        <div class="modal-body" id="pedido-detalhes">
+          <!-- Conteúdo será preenchido dinamicamente pelo JavaScript -->
+        </div>
+        <div class="modal-footer">
+          <div class="btn-group">
+            <button class="btn-modal btn-secondary modal-close-btn">
+              Fechar
+            </button>
+            <button class="btn-modal btn-primary" id="btn-concluir-pedido">
+              Concluir Pedido
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Modal de Separação de Pedido -->
-    <div class="modal-overlay" id="modal-separacao">
-        <div class="modal">
-            <div class="modal-header">
-                <h3 class="modal-title">Separação de Pedido</h3>
-                <button class="modal-close">&times;</button>
-            </div>
-            <div class="modal-body" id="separacao-detalhes">
-                <!-- Conteúdo será preenchido dinamicamente pelo JavaScript -->
-            </div>
-            <div class="modal-footer">
-                <div class="btn-group">
-                    <button class="btn-modal btn-secondary modal-close-btn">Cancelar</button>
-                    <button class="btn-modal btn-primary" id="btn-confirmar-separacao">Confirmar Separação</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
     <!-- Modal de Revisão de Pedido -->
     <div class="modal-overlay" id="modal-revisao">
-        <div class="modal">
-            <div class="modal-header">
-                <h3 class="modal-title">Revisão de Pedido</h3>
-                <button class="modal-close">&times;</button>
-            </div>
-            <div class="modal-body" id="revisao-detalhes">
-                <!-- Conteúdo será preenchido dinamicamente pelo JavaScript -->
-            </div>
-            <div class="modal-footer">
-                <div class="btn-group">
-                    <button class="btn-modal btn-secondary modal-close-btn">Cancelar</button>
-                    <button class="btn-modal btn-primary" id="btn-confirmar-revisao">Confirmar Revisão</button>
-                </div>
-            </div>
+      <div class="modal">
+        <div class="modal-header">
+          <h3 class="modal-title">Revisão de Pedido</h3>
+          <button class="modal-close">&times;</button>
         </div>
+        <div class="modal-body" id="revisao-detalhes">
+          <!-- Conteúdo será preenchido dinamicamente pelo JavaScript -->
+        </div>
+        <div class="modal-footer">
+          <div class="btn-group">
+            <button class="btn-modal btn-secondary modal-close-btn">
+              Cancelar
+            </button>
+            <button class="btn-modal btn-primary" id="btn-confirmar-revisao">
+              Confirmar Revisão
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-    
+
     <!-- Modal de Histórico de Notificações -->
     <div class="modal-overlay" id="modal-notificacoes">
-        <div class="modal">
-            <div class="modal-header">
-                <h3 class="modal-title">Histórico de Notificações</h3>
-                <button class="modal-close">&times;</button>
-            </div>
-            <div class="modal-body" id="notificacoes-historico">
-                <!-- Conteúdo será preenchido dinamicamente pelo JavaScript -->
-            </div>
-            <div class="modal-footer">
-                <div class="btn-group">
-                    <button class="btn-modal btn-secondary modal-close-btn">Fechar</button>
-                </div>
-            </div>
+      <div class="modal">
+        <div class="modal-header">
+          <h3 class="modal-title">Histórico de Notificações</h3>
+          <button class="modal-close">&times;</button>
         </div>
+        <div class="modal-body" id="notificacoes-historico">
+          <!-- Conteúdo será preenchido dinamicamente pelo JavaScript -->
+        </div>
+        <div class="modal-footer">
+          <div class="btn-group">
+            <button class="btn-modal btn-secondary modal-close-btn">
+              Fechar
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Scripts -->
     <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
     <script src="{{ url_for('static', filename='js/js-file.js') }}"></script>
     <script src="{{ url_for('static', filename='js/modal.js') }}"></script>
-</body>
+  </body>
 </html>
