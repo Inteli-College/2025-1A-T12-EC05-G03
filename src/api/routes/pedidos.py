@@ -62,8 +62,6 @@ def listar_por_id(pedido_id):
 
 # Alterar Status Pedido
 @pedidos_bp.route('/status/<pedido_id>', methods=['PATCH'])
-@jwt_required()
-
 def alterar_status(pedido_id):
     pedido = Pedido.query.get_or_404(pedido_id)
     data = request.get_json()
