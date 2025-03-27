@@ -83,18 +83,18 @@ def processar_pedido(pedido, device, contador_sucessos, contador_erros, modo_api
             
             for remedio in remedios:
                 ilha_num = remedio['ilha']
-                remedio_id = remedio['id']
-                print(f"Processando remédio ID: {remedio_id} da ilha {ilha_num}")
+                id_remedio = remedio['id']
+                print(f"Processando remédio ID: {id_remedio} da ilha {ilha_num}")
                 
-                sucesso = processa_ilha(ilha_num, pedido['id'], remedio_id, device, contador_erros, contador_sucessos)
+                sucesso = processa_ilha(ilha_num, pedido['id'], id_remedio, device, contador_erros, contador_sucessos)
                 
                 if sucesso:
                     device.GoHomeInteli()
                     time.sleep(1)
-                    processa_fita(pedido['id'], remedio_id, device, contador_sucessos, contador_erros)
+                    processa_fita(pedido['id'], id_remedio, device, contador_sucessos, contador_erros)
                     device.GoHomeInteli()
                 else:
-                    print(f"Não consegui processar o remédio ID: {remedio_id}")
+                    print(f"Não consegui processar o remédio ID: {id_remedio}")
                     device.GoHomeInteli()
                     
     except KeyError as e:

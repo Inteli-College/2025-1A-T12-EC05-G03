@@ -27,7 +27,6 @@ def QRCodeV(qrcode_procurado):
             
             for i in range(tentativas):
                 linha = ser.readline().decode('latin-1').strip()
-                
                 if "qr:" in linha:
                     parts = linha.split("qr:")
                     if len(parts) > 1:
@@ -37,19 +36,20 @@ def QRCodeV(qrcode_procurado):
                             update_qrcode(novo_qrcode)
                             print(f"🔍 Detectei um QR Code: {novo_qrcode}")
                             # Agora validamos o código lido
-                            return validar_qrcode(qrcode_procurado, novo_qrcode)
+                            return novo_qrcode
                 
                 time.sleep(0.5)
             
             # Se chegou aqui, não conseguiu ler um QR code válido
-            return False
+            novo_qrcode = 0
+            return novo_qrcode
 
     except serial.SerialException as e:
         print(f"❌ Erro na comunicação serial ao ler QR code: {e}")
-        return False
+        return "n/a"
     except Exception as e:
         print(f"❌ Erro inesperado ao ler QR code: {e}")
-        return False
+        return "n/a"
         
 def validar_qrcode(qrcode_procurado, qrcode_lido):
     """    
@@ -63,12 +63,11 @@ def validar_qrcode(qrcode_procurado, qrcode_lido):
         
         headers = {'Content-Type': 'application/json'}
         payload = {"qrcode_procurado": qrcode_procurado, "qrcode_lido": qrcode_lido}
-        payload = {"qrcode_procurado": qrcode_procurado, "qrcode_lido": qrcode_lido}
         
         print(f"Enviando para API: {payload}")
         
         # Use GET em vez de POST se a API espera GET
-        response = requests.get(API_URL, json=payload, headers=headers)
+        response = requests.post(API_URL, json=payload, headers=headers)
         
         print(f"Resposta completa da API: Status={response.status_code}, Body={response.text}")
 

@@ -78,42 +78,36 @@ def processa_ilha(ilha_num, id_pedido, id_remedio, device, contador_erros, conta
                 qrcode_lido = QRCodeV(id_remedio)
                 print(f"QR code lido: '{qrcode_lido}'")
                 if qrcode_lido != "n/a":
-                    qrcode_lido = "n/a"
                     break
 
                 device.movej_to(ilha[0]["x"], ilha[0]["y"], 130, ilha[0]["r"], wait=False)
                 qrcode_lido = QRCodeV(id_remedio)
                 print(f"QR code lido: '{qrcode_lido}'")
                 if qrcode_lido != "n/a":
-                    qrcode_lido = "n/a"
                     break
 
                 device.movej_to(ilha[0]["x"] + 5, ilha[0]["y"], 80, ilha[0]["r"] + 5, wait=False)
                 qrcode_lido = QRCodeV(id_remedio)
                 if qrcode_lido != "n/a":
-                    qrcode_lido = "n/a"
                     break
 
                 device.movej_to(ilha[0]["x"] - 5, ilha[0]["y"], 80, ilha[0]["r"] - 5, wait=False)
                 qrcode_lido = QRCodeV(id_remedio)
                 if qrcode_lido != "n/a":
-                    qrcode_lido = "n/a"
                     break
 
                 device.movej_to(ilha[0]["x"] + 5, ilha[0]["y"], 130, ilha[0]["r"] + 5, wait=False)
                 qrcode_lido = QRCodeV(id_remedio)
                 if qrcode_lido != "n/a":
-                    qrcode_lido = "n/a"
                     break
 
                 device.movej_to(ilha[0]["x"] - 5, ilha[0]["y"], 130, ilha[0]["r"] - 5, wait=False)
                 qrcode_lido = QRCodeV(id_remedio)
                 if qrcode_lido != "n/a":
-                    qrcode_lido = "n/a"
                     break
 
             
-            if qrcode_lido == "n/a" or not qrcode_lido:
+            if qrcode_lido == "n/a" or not qrcode_lido or qrcode_lido == 0:
                 print(f"Não consegui enxergar o QR-code na ilha {ilha_num}")
                 enviar_log(id_pedido, id_remedio, LOG_QR_NAO_RECONHECIDO)
                 contador_erros[LOG_QR_NAO_RECONHECIDO] += 1
@@ -122,7 +116,7 @@ def processa_ilha(ilha_num, id_pedido, id_remedio, device, contador_erros, conta
             # Valida o QR code com a API - execução sincronizada
             print(f"Validando o QR code '{qrcode_lido}' com a API para o remédio ID: {id_remedio}...")
             qrcode_valid = validar_qrcode(id_remedio, qrcode_lido)  # Assuming id_remedio is what you're comparing against
-            print(f"Resultado da validação: {'Válido' if qrcode_procurado else 'Inválido'}")
+            print(f"Resultado da validação: {'Válido' if qrcode_valid else 'Inválido'}")
             
             if not qrcode_valid:
                 print(f"O QR code lido não corresponde ao medicamento da ilha {ilha_num}")

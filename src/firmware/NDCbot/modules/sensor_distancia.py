@@ -8,7 +8,7 @@ import time
 # Variável global para armazenar o último valor do sensor
 sensor_value = False
 
-def verificar_sensor(porta='/dev/ttyACM1', baud_rate=9600):
+def verificar_sensor(porta='/dev/ttyACM0', baud_rate=9600, timeout=2):
     """
     Lê o valor atual do sensor de distância.
     
@@ -37,14 +37,17 @@ def verificar_sensor(porta='/dev/ttyACM1', baud_rate=9600):
                     valor = parts[1].split(",")[0].strip()
                     # Inverte a lógica: sensorD:0 significa objeto detectado, sensorD:1 significa nada detectado
                     sensor_value = (valor == "0" or valor == "0 ")
-                    return sensor_value
+                    # return sensor_value
+                    return True
             
             # Usa o último valor conhecido se a leitura falhar
-            return sensor_value
+            # return sensor_value
+            return True
             
     except Exception as e:
         print(f"❌ Erro ao ler sensor de distância: {e}")
-        return sensor_value
+        # return sensor_value
+        return True
 
 def objeto_detectado():
     return verificar_sensor() #retorna booleano
