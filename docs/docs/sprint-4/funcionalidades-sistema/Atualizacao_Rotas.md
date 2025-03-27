@@ -248,3 +248,24 @@ Lista todos os remédios cadastrados.
 
 ---
 
+## 📷 **8. Rotas de Validação de QR Code (`rotas_qrcode.py`)**
+
+&emsp;Responsáveis pela validação dos QR Codes escaneados pelo robô.
+
+### `POST /qrcode/validar`  
+Valida se o `qrcode_lido` corresponde ao `qrcode_procurado`.  
+Se forem diferentes, incrementa o estoque do lote vinculado ao `qrcode_procurado`.  
+**Corpo esperado:**
+```json
+{
+  "qrcode_lido": "QR123",
+  "qrcode_procurado": "QR123"
+}
+```
+
+**Resposta:**
+- `200 OK`: QR Code válido  
+- `404 Not Found`: QR Code inválido e lote não encontrado (acrescenta +1 no estoque do lote procurado) 
+
+---
+
