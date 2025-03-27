@@ -44,3 +44,27 @@ Autentica um usuário e retorna um token de acesso JWT.
 
 ---
 
+## 🖥️ **2. Rotas de Interface (`front.py`)**
+
+&emsp;Estas rotas renderizam as páginas HTML da aplicação, que compõem a interface gráfica usada pelos usuários.
+
+### `GET /`  
+Renderiza a página de login (padrão).
+
+### `GET /login`  
+Renderiza a página de login.
+
+### `GET /home`  
+Renderiza a página principal do sistema.
+
+### `GET /cadastro`  
+Renderiza a página de cadastro de usuário.
+
+### `GET /historico`  
+Renderiza a página com o histórico de atendimentos e logs.
+
+### `GET /estoque`  
+Renderiza a página de controle de estoque de medicamentos.
+
+---
+
