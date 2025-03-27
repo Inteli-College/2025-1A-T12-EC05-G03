@@ -269,3 +269,52 @@ Se forem diferentes, incrementa o estoque do lote vinculado ao `qrcode_procurado
 
 ---
 
+## 📦 **9. Rotas de Pedidos (`pedidos.py`)**
+
+&emsp;Controla os pedidos gerados a partir da aprovação de prescrições.
+
+### `GET /pedidos/listar`  
+Lista todos os pedidos registrados.
+
+---
+
+### `POST /pedidos/adicionar`  
+Adiciona um novo pedido com base em uma prescrição aprovada.  
+🔒 Requer autenticação JWT.  
+**Corpo esperado:**
+```json
+{
+  "id_prescricao": 1,
+  "lista_remedios": ["QR123", "QR456"]
+}
+```
+
+---
+
+### `GET /pedidos/<pedido_id>`  
+Retorna os dados de um pedido específico, com os remédios vinculados.  
+🔒 Requer autenticação JWT.
+
+---
+
+### `PATCH /pedidos/status/<pedido_id>`  
+Altera o status de um pedido.  
+Atualiza a data de finalização e quem revisou, caso o status seja de finalização.  
+**Corpo esperado:**
+```json
+{
+  "status": 4
+}
+```
+
+---
+
+### `DELETE /pedidos/deletar/<pedido_id>`  
+Deleta um pedido pelo seu ID.  
+🔒 Requer autenticação JWT.
+
+---
+
+### `GET /pedidos/fila`  
+Puxa o próximo pedido da fila (status 1), atualizando seu status para 2 (em separação).
+
