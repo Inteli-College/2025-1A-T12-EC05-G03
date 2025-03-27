@@ -536,7 +536,7 @@ function filtrarPedidosPorStatus(statusId) {
             <td>${pedido.data_entrada}</td>
             <td>${pedido.lista_remedios.length} itens</td>
             <td>
-                <button class="btn-visualizar" data-id="${pedido.id}">
+                <button class="btn-visualizar-pedido" data-id="${pedido.id}">
                     <i class="fas fa-eye"></i> ${statusId === 1 ? 'Visualizar pedido' : statusId === 2 ? 'Continuar separação' : statusId === 3 ? 'Revisar pedido' : 'Ver detalhes'}
                 </button>
             </td>
@@ -912,10 +912,10 @@ function adicionarEventListenersModais() {
     
     // Para botões de visualizar pedido na tabela
     document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('btn-visualizar') || 
-            (e.target.parentElement && e.target.parentElement.classList.contains('btn-visualizar'))) {
+        if (e.target.classList.contains('btn-visualizar-pedido') || 
+            (e.target.parentElement && e.target.parentElement.classList.contains('btn-visualizar-pedido'))) {
             e.preventDefault();
-            const botao = e.target.classList.contains('btn-visualizar') ? e.target : e.target.parentElement;
+            const botao = e.target.classList.contains('btn-visualizar-pedido') ? e.target : e.target.parentElement;
             const idPedido = parseInt(botao.dataset.id);
             const pedido = encontrarPedidoPorId(idPedido);
             
@@ -949,6 +949,7 @@ async function puxa_prescricao_por_id(id){
 
 // Função para abrir o modal de prescrição
 function abrirModalPrescricao(prescricao) {
+    console.log("abrirModalPrescricao")
     puxa_prescricao_por_id(prescricao.id)
         .then(data => {
             prescricaoAtual = data;
@@ -1032,6 +1033,7 @@ function abrirModalPrescricao(prescricao) {
 
 // Função para abrir o modal de avaliação
 function abrirModalAvaliacao(prescricao) {
+    console.log("abrirModalAvaliacao")
     // Preenche as informações do paciente no modal de avaliação
     const pacienteInfo = document.getElementById('avaliacao-paciente-info');
     pacienteInfo.innerHTML = `
@@ -1102,6 +1104,8 @@ async function pedidoPorIdAPI(id){
 // Função para abrir o modal de pedido
 function abrirModalPedido(pedido) {
     pedidoAtual = pedido;
+    console.log("abrirModalPedido")
+
     
     // Preenche os detalhes do pedido no modal
     const conteudoModal = document.getElementById('pedido-detalhes');
