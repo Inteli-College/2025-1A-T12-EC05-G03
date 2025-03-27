@@ -1,58 +1,99 @@
-// Dados mockados para simular o banco de dados
-// Quando integrado com o back-end, estas variáveis serão substituídas por chamadas à API
+async function atualiza_remedios() {
+    try {
+        const token = localStorage.getItem('access_token');
+        if (!token) {
+            throw new Error('Token de autenticação não encontrado');
+        }
+        const response = await fetch('http://127.0.0.1:5000/remedios/listar', {
+            method: 'GET',
+            headers: { 
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+        });
 
-// Array de medicamentos (simula a tabela 'remedio')
-const medicamentos = [
-    { id: 1, principio_ativo: "Paracetamol" },
-    { id: 2, principio_ativo: "Ibuprofeno" },
-    { id: 3, principio_ativo: "Dipirona" },
-    { id: 4, principio_ativo: "Amoxicilina" },
-    { id: 5, principio_ativo: "Omeprazol" }
-];
+        if (!response.ok) {
+            throw new Error('Erro ao atualizar medicamentos');
+        }
+
+        const data = await response.json();
+        console.log('Medicamentos disponiveis:', data);
+        
+        // Atribui diretamente como array
+        Object.assign(medicamentos, data); // Armazena os dados na variável
+        
+        // Chama a função para carregar selects após atualizar
+        carregarMedicamentosSelect();
+        
+        return data;
+    } catch (error) {
+        console.error('Erro:', error);
+        alert(error.message);
+        throw error; 
+    }
+}
+
+const medicamentos = [];
+
+
+async function atualiza_lotes() {
+    try {
+        const token = localStorage.getItem('access_token');
+        if (!token) {
+            throw new Error('Token de autenticação não encontrado');
+        }
+        const response = await fetch('http://127.0.0.1:5000/lotes/listar', {
+            method: 'GET',
+            headers: { 
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao atualizar lotes');
+        }
+
+        const data = await response.json();
+        console.log('Lotes de medicamentos disponiveis:', data);
+        
+        // Atribui diretamente como array
+        Object.assign(lotes, data); // Armazena os dados na variável
+
+        
+        // Atualiza a tabela e filtros após carregar os lotes
+        atualizarTabelaComFiltros();
+        carregarOpcoesParaFiltros();
+        
+        return data;
+    } catch (error) {
+        console.error('Erro:', error);
+        alert(error.message);
+        throw error; 
+    }
+}
+
+async function inicializarPagina() {
+    try {
+        await Promise.all([
+            atualiza_remedios(),
+            atualiza_lotes()
+        ]);
+        
+        carregarTabelaEstoque();
+        carregarMedicamentosSelect();
+        carregarOpcoesParaFiltros();
+        setupEventListeners();
+    } catch (error) {
+        console.error('Erro ao inicializar página:', error);
+        alert('Não foi possível carregar os dados');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', inicializarPagina);
 
 // Array de lotes (simula a tabela 'lote')
-let lotes = [
-    { 
-        id: 1, 
-        num_lote: "LOT123456", 
-        data_validade: "2025-12-31", 
-        fabricante: "Farmacêutica ABC", 
-        id_remedio: 1, 
-        quantidade: 100 
-    },
-    { 
-        id: 2, 
-        num_lote: "LOT234567", 
-        data_validade: "2025-10-15", 
-        fabricante: "MediLab", 
-        id_remedio: 2, 
-        quantidade: 50 
-    },
-    { 
-        id: 3, 
-        num_lote: "LOT345678", 
-        data_validade: "2026-01-20", 
-        fabricante: "Farmacêutica XYZ", 
-        id_remedio: 3, 
-        quantidade: 75 
-    },
-    { 
-        id: 4, 
-        num_lote: "LOT456789", 
-        data_validade: "2025-11-10", 
-        fabricante: "MediLab", 
-        id_remedio: 4, 
-        quantidade: 30 
-    },
-    { 
-        id: 5, 
-        num_lote: "LOT567890", 
-        data_validade: "2026-03-05", 
-        fabricante: "PharmaPlus", 
-        id_remedio: 5, 
-        quantidade: 60 
-    }
-];
+let lotes = [];
 
 // Contador para gerar novos IDs
 let nextLoteId = 6;
@@ -68,26 +109,9 @@ let filtrosAtivos = {
     proximosVencer: false
 };
 
-// Função para inicializar a página quando o DOM estiver carregado
-document.addEventListener('DOMContentLoaded', function() {
-    // A inicialização da barra lateral agora é controlada por menu.js
-    
-    // Carrega os dados na tabela
-    carregarTabelaEstoque();
-    
-    // Carrega os medicamentos nos selects dos formulários
-    carregarMedicamentosSelect();
-    
-    // Carrega os dados para os filtros
-    carregarOpcoesParaFiltros();
-    
-    // Adiciona listeners para os botões
-    setupEventListeners();
-});
-
 // Carrega a tabela de estoque com os dados mockados
 function carregarTabelaEstoque() {
-    atualizarTabelaEstoque(lotes);
+    atualiza_lotes();
 }
 
 // Carrega os medicamentos nos selects dos formulários
@@ -283,6 +307,7 @@ function cadastrarLote(event) {
     const dataValidade = document.getElementById('dataValidade').value;
     const fabricante = document.getElementById('fabricante').value;
     const quantidade = parseInt(document.getElementById('quantidadeLote').value);
+    const bin_qrcode = document.getElementById('bin_qrcode').value;
     
     // Validação básica
     if (!idRemedio || !numLote || !dataValidade || !fabricante || !quantidade) {
@@ -297,7 +322,8 @@ function cadastrarLote(event) {
         data_validade: dataValidade,
         fabricante: fabricante,
         id_remedio: idRemedio,
-        quantidade: quantidade
+        quantidade: quantidade,
+        bin_qrcode: bin_qrcode,
     };
     
     // Adiciona o lote ao array
@@ -315,130 +341,131 @@ function cadastrarLote(event) {
     // Limpa o formulário
     document.getElementById('formCadastrarLote').reset();
     
-    // Feedback ao usuário
-    alert('Lote cadastrado com sucesso!');
+    // Previne comportamento padrão do form
+    event.preventDefault();
     
-    // Aqui seria feita a chamada à API para salvar no banco de dados
-    // fetch('/api/lote', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(novoLote),
-    // })
-    // .then(response => response.json())
-    // .then(data => console.log('Success:', data))
-    // .catch((error) => console.error('Error:', error));
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+        throw new Error('Token de autenticação não encontrado');
+    }
+
+    fetch('http://127.0.0.1:5000/lotes/cadastrar', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            "num_lote": numLote,
+            "data_validade": dataValidade,
+            "fabricante": fabricante,
+            "id_remedio": idRemedio,
+            "quantidade": quantidade,
+            "bin_qrcode": bin_qrcode
+        })
+        })
+        .then(response => {
+            alert('Medicamento cadastrado com sucesso');
+            // Redireciona para a página de estoque
+            setTimeout(function() {
+                window.location.href = "/estoque";
+            }, 500);
+            return response.json(); // Continuar com o processamento normal da resposta se não for 422
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert(error);
+        });     
 }
 
 // Função para cadastrar um novo medicamento
 function cadastrarMedicamento(event) {
+    // Previne comportamento padrão do form
     event.preventDefault();
     
-    // Obtém o princípio ativo do formulário
-    const principioAtivo = document.getElementById('principioAtivo').value;
+    // Captura valores dos campos
+    const principio_ativo = document.getElementById('principioAtivo').value;
     
     // Validação básica
-    if (!principioAtivo) {
-        alert('Por favor, preencha o princípio ativo');
+    if (!principio_ativo) {
+        alert('Por favor, antes de prosseguirmos, precisamos que você forneça o principio ativo do remédio!');
         return;
     }
-    
-    // Cria o novo medicamento
-    const novoMedicamento = {
-        id: nextMedicamentoId++,
-        principio_ativo: principioAtivo
-    };
-    
-    // Adiciona o medicamento ao array
-    medicamentos.push(novoMedicamento);
-    
-    // Atualiza os selects dos formulários
-    carregarMedicamentosSelect();
-    
-    // Atualiza as opções de filtro
-    carregarOpcoesParaFiltros();
-    
-    // Fecha o modal
-    document.getElementById('modalCadastrarMedicamento').style.display = 'none';
-    
-    // Limpa o formulário
-    document.getElementById('formCadastrarMedicamento').reset();
-    
-    // Feedback ao usuário
-    alert('Medicamento cadastrado com sucesso!');
-    
-    // Aqui seria feita a chamada à API para salvar no banco de dados
-    // fetch('/api/remedio', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(novoMedicamento),
-    // })
-    // .then(response => response.json())
-    // .then(data => console.log('Success:', data))
-    // .catch((error) => console.error('Error:', error));
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+        throw new Error('Token de autenticação não encontrado');
+    }
+
+    fetch('http://127.0.0.1:5000/remedios/cadastrar', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({principio_ativo})
+        })
+        .then(response => {
+            alert('Medicamento cadastrado com sucesso');
+            // Redireciona para a página de estoque
+            setTimeout(function() {
+                window.location.href = "/estoque";
+            }, 500);
+            return response.json(); // Continuar com o processamento normal da resposta se não for 422
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert(error);
+        });     
+            
+    // Limpa o formulário após "cadastro"
+    formCadastrarMedicamento.reset();
 }
 
 // Função para retirar medicamento do estoque
 function retirarMedicamento(event) {
-    event.preventDefault();
+        // Previne comportamento padrão do form
+        event.preventDefault();
     
-    // Obtém os valores do formulário
-    const loteId = parseInt(document.getElementById('loteRetirar').value);
-    const quantidadeRetirar = parseInt(document.getElementById('quantidadeRetirar').value);
+        // Captura valores dos campos
+        const loteId = parseInt(document.getElementById('loteRetirar').value);
+        
+        // Validação básica
+        if (!loteId) {
+            alert('Por favor, preencha todos os campos');
+            return;
+        }
     
-    // Validação básica
-    if (!loteId || !quantidadeRetirar) {
-        alert('Por favor, preencha todos os campos');
-        return;
-    }
+        // Encontra o lote
+        const lote = lotes.find(l => l.id === loteId);
+        if (!lote) {
+            alert('Lote não encontrado');
+            return;
+        }
     
-    // Encontra o lote
-    const lote = lotes.find(l => l.id === loteId);
-    if (!lote) {
-        alert('Lote não encontrado');
-        return;
-    }
+        // Atualiza a tabela mantendo os filtros ativos
+        atualizarTabelaComFiltros();
     
-    // Verifica se há quantidade suficiente
-    if (lote.quantidade < quantidadeRetirar) {
-        alert('Quantidade insuficiente no estoque');
-        return;
-    }
+        // Fecha o modal
+        document.getElementById('modalRetirarMedicamento').style.display = 'none';
     
-    // Atualiza a quantidade do lote
-    lote.quantidade -= quantidadeRetirar;
+        // Limpa o formulário
+         document.getElementById('formRetirarMedicamento').reset();
     
-    // Se a quantidade chegou a zero, remove o lote
-    if (lote.quantidade === 0) {
-        lotes = lotes.filter(l => l.id !== loteId);
-    }
+        const token = localStorage.getItem('access_token');
+        if (!token) {
+            throw new Error('Token de autenticação não encontrado');
+        }
+        console.log({loteId})
     
-    // Atualiza a tabela mantendo os filtros ativos
-    atualizarTabelaComFiltros();
-    
-    // Fecha o modal
-    document.getElementById('modalRetirarMedicamento').style.display = 'none';
-    
-    // Limpa o formulário
-    document.getElementById('formRetirarMedicamento').reset();
-    
-    // Feedback ao usuário
-    alert('Medicamento retirado com sucesso!');
-    
-    // Aqui seria feita a chamada à API para atualizar no banco de dados
-    // fetch(`/api/lote/${loteId}`, {
-    //     method: 'PUT',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({ quantidade: lote.quantidade }),
-    // })
-    // .then(response => response.json())
-    // .then(data => console.log('Success:', data))
-    // .catch((error) => console.error('Error:', error));
+        fetch('http://127.0.0.1:5000/lotes/deletar/' + loteId, {
+            method: 'DELETE',
+            headers: { 'Authorization': `Bearer ${token}`},
+            })
+            .then(response => {
+                alert('Medicamento excluído com sucesso');
+                return response.json(); // Continuar com o processamento normal da resposta se não for 422
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert(error);
+            });     
+                
+        // Limpa o formulário após "cadastro"
+        formCadastrarMedicamento.reset();
 }
 
 // Função para aplicar filtros
@@ -479,7 +506,7 @@ function limparFiltros() {
     };
     
     // Atualizar a tabela mostrando todos os lotes
-    carregarTabelaEstoque();
+    atualiza_lotes();
     
     // Atualiza a aparência do botão de filtros
     atualizarEstadoBotaoFiltros();
