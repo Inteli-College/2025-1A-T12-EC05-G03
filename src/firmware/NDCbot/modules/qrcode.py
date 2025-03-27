@@ -18,7 +18,7 @@ def QRCodeV():
     
     try:
         # Conecta à porta serial
-        with serial.Serial('/dev/ttyACM1', 9600, timeout=2) as ser:
+        with serial.Serial('/dev/ttyACM0', 9600, timeout=2) as ser:
             ser.reset_input_buffer()
             
             # Tenta ler múltiplas vezes
@@ -50,17 +50,17 @@ def QRCodeV():
         print(f"❌ Erro inesperado ao ler QR code: {e}")
         return qr_code
 
-def validar_qrcode(remedio_id, qrcode_lido):
+def validar_qrcode(qrcode_procurado, qrcode_lido):
     """    
     body:
-        remedio_id: ID do medicamento
+        qrcode_procurado: O qrcode correto que está sendo procurado
         qrcode_lido: Conteúdo do código QR a ser validado
     """
     try:
         API_URL = "https://two025-1a-t12-ec05-g03.onrender.com/qrcode/validar"
 
         headers = {'Content-Type': 'application/json'}
-        payload = {"remedio_id": remedio_id, "qrcode_lido": qrcode_lido}
+        payload = {"qrcode_procurado": qrcode_procurado, "qrcode_lido": qrcode_lido}
         
         print(f"Enviando para API: {payload}")
         
@@ -86,7 +86,7 @@ def validar_qrcode(remedio_id, qrcode_lido):
         elif response.status_code == 405:
             print(f"❌ Método não permitido (405). A API não aceita requisições POST no endpoint informado.")
             try:
-                get_response = requests.get(f"{API_URL}?remedio_id={remedio_id}&qrcode_lido={qrcode_lido}")
+                get_response = requests.get(f"{API_URL}?qrcode_procurado={qrcode_procurado}&qrcode_lido={qrcode_lido}")
                 print(f"Tentativa GET: Status={get_response.status_code}, Body={get_response.text}")
                 if get_response.status_code == 200:
                     return True

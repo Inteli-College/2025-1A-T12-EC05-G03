@@ -4,7 +4,7 @@ Funções para ler informações do serial
 import serial
 
 def ler_serial():
-    SERIAL_PORT = '/dev/ttyACM1'  # Porta do Arduino no Raspberry Pi
+    SERIAL_PORT = '/dev/ttyACM0'  # Porta do Arduino no Raspberry Pi
     BAUD_RATE = 9600
 
     global sensor_distancia, qr_code

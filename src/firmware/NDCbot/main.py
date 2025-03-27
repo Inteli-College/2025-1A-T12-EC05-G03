@@ -22,7 +22,7 @@ from modules.comApi import enviar_log, obter_pedidos
 from modules.sensor_distancia import objeto_detectado
 from modules.qrcode import QRCodeV, validar_qrcode
 from modules.posicoes import locais, locais_fita
-from modules.processamento import processa_ilha, processa_fita
+from modules.processamento import processa_ilha, processa_fita #,  mapear_ilhas_qrcodes
 
 
 # Constantes de log
@@ -33,9 +33,7 @@ LOG_REMEDIO_NAO_COLETADO = 3
 LOG_REMEDIO_CAIU = 4
 LOG_ERRO_DOBOT = 5
 
-
-# ----- Função para processar pedido completo -----
-def processar_pedido(pedido, device, contador_sucessos, contador_erros):
+def processar_pedido(pedido, device, contador_sucessos, contador_erros, modo_api=False, qrcode_para_ilha=None):
     """
     Processa um pedido completo.
     
@@ -44,23 +42,69 @@ def processar_pedido(pedido, device, contador_sucessos, contador_erros):
         device: Instância do controlador Dobot
         contador_sucessos (list): Lista para contagem de sucessos
         contador_erros (dict): Dicionário para contagem de erros
+        modo_api (bool): Indica se o pedido vem da API (True) ou é manual (False)
+        qrcode_para_ilha (dict): Mapeamento de QR codes para ilhas
     """
     print(f"\nEstou processando o pedido ID: {pedido['id']}")
-    for remedio in pedido['remedios']:
-        ilha_num = remedio['ilha']
-        print(f"Processando remédio ID: {remedio['id']} da ilha {ilha_num}")
-        
-        sucesso = processa_ilha(ilha_num, pedido['id'], remedio['id'], device, contador_erros, contador_sucessos)
-        
-        if sucesso:
-            device.GoHomeInteli()
-            time.sleep(1)
-            processa_fita(pedido['id'], remedio['id'], device, contador_sucessos, contador_erros)
-            device.GoHomeInteli()
+    
+    try:
+        if modo_api:
+            # No modo API, cada item da lista é o valor do QR code do remédio
+            lista_remedios = pedido.get('lista_remedios', [])
+            
+            for qrcode_id in lista_remedios:
+                print(f"Processando remédio com QR code ID: {qrcode_id}")
+                
+                if qrcode_para_ilha and str(qrcode_id) in qrcode_para_ilha:
+                    # Usa o mapeamento para encontrar a ilha correspondente
+                    ilha_num = qrcode_para_ilha[str(qrcode_id)]
+                    print(f"Encontrado QR code {qrcode_id} na ilha {ilha_num}")
+                
+                else:
+                    # Se não encontrado no mapeamento, informa e continua para o próximo
+                    print(f"Não encontrei o QR code {qrcode_id} no mapeamento. Verifique se o remédio está em alguma ilha.")
+                    continue
+                
+                # Processa o remédio com a ilha encontrada
+                sucesso = processa_ilha(ilha_num, pedido['id'], qrcode_id, device, contador_erros, contador_sucessos)
+                
+                if sucesso:
+                    device.GoHomeInteli()
+                    time.sleep(1)
+                    processa_fita(pedido['id'], qrcode_id, device, contador_sucessos, contador_erros)
+                    device.GoHomeInteli()
+                else:
+                    print(f"Não consegui processar o remédio com QR code ID: {qrcode_id}")
+                    device.GoHomeInteli()  # Retorna à posição inicial mesmo em caso de falha
+                
         else:
-            print(f"Não consegui processar o remédio ID: {remedio['id']}")
-            device.GoHomeInteli()  # Retorna à posição inicial mesmo em caso de falha
-
+            # No modo manual, cada item da lista é um dicionário com ilha e ID
+            remedios = pedido.get('remedios', [])
+            
+            for remedio in remedios:
+                ilha_num = remedio['ilha']
+                remedio_id = remedio['id']
+                print(f"Processando remédio ID: {remedio_id} da ilha {ilha_num}")
+                
+                sucesso = processa_ilha(ilha_num, pedido['id'], remedio_id, device, contador_erros, contador_sucessos)
+                
+                if sucesso:
+                    device.GoHomeInteli()
+                    time.sleep(1)
+                    processa_fita(pedido['id'], remedio_id, device, contador_sucessos, contador_erros)
+                    device.GoHomeInteli()
+                else:
+                    print(f"Não consegui processar o remédio ID: {remedio_id}")
+                    device.GoHomeInteli()
+                    
+    except KeyError as e:
+        print(f"Erro ao acessar informações do pedido: {e}")
+        print(f"Estrutura do pedido: {pedido}")
+        print("Verifique se o pedido contém as chaves corretas para o modo selecionado.")
+        
+    except Exception as e:
+        print(f"Erro inesperado ao processar pedido: {e}")
+        device.GoHomeInteli()  # Garante que o robô volte para casa em caso de erro
 
 def main():
     """Função principal que controla o robô e processa pedidos."""
@@ -119,6 +163,15 @@ def main():
     # ----- Seleção do modo de operação -----
     modo_operacao = input("Selecione o modo de operação (1 - Manual, 2 - API): ")
     
+    # Definindo o mapeamento fixo de QR codes para ilhas
+    qrcode_para_ilha = {
+        "1": 0,
+        "2": 1,
+        "3": 2,
+        "4": 3,
+        "5": 4
+    }
+    
     if modo_operacao == "1":
         # Modo manual com entrada do usuário
         ilhas_input = input("Digite os números das ilhas separados por vírgula: ")
@@ -130,41 +183,46 @@ def main():
         for ilha_num in fila_ilhas:
             pedido_atual["remedios"].append({"id": len(pedido_atual["remedios"]) + 1, "ilha": ilha_num})
         
-        # Processa o pedido manual
-        processar_pedido(pedido_atual, device, contador_sucessos, contador_erros)
+        # Processa o pedido manual (modo_api=False)
+        processar_pedido(pedido_atual, device, contador_sucessos, contador_erros, modo_api=False)
     else:
-        # Modo API - Verifica periodicamente por novos pedidos
+        # Modo API - Usa o mapeamento fixo definido acima
+        print("Usando mapeamento fixo de QR codes para ilhas:")
+        for qr, ilha in qrcode_para_ilha.items():
+            print(f"  - QR code {qr}: Ilha {ilha}")
+        
+        # Verifica periodicamente por novos pedidos
         while True:
-            pedidos = obter_pedidos()
+            pedido = obter_pedidos()
             
-            if not pedidos:
+            if not pedido:
                 print("Não encontrei nenhum pedido disponível. Vou aguardar...")
                 time.sleep(10)  # Aguarda 10 segundos antes de verificar novamente
                 continue
+                        
+            processar_pedido(pedido, device,  contador_sucessos, contador_erros, 
+                            modo_api=True, qrcode_para_ilha=qrcode_para_ilha)
             
-            # Processa um pedido por vez
-            for pedido_atual in pedidos:
-                processar_pedido(pedido_atual, device, contador_sucessos, contador_erros)
-                
-                # Marca o pedido como concluído na API
-                try:
-                    url = f"https://two025-1a-t12-ec05-g03.onrender.com/pedidos/status/{pedido_atual['id']}"
-                    body = {
-                        "status": 3,
-                    }
-                    requests.patch(url, json=body)
-                except Exception as e:
-                    print(f"Não consegui marcar o pedido como concluído: {e}")
-                
-                # Pergunta ao usuário se deseja continuar ou encerrar
-                continuar = input("Deseja processar o próximo pedido? (s/n): ")
-                if continuar.lower() != 's':
-                    break
+            # Marca o pedido como concluído na API
+            try:
+                url = f"https://two025-1a-t12-ec05-g03.onrender.com/pedidos/status/{pedido['id']}"
+                body = {
+                    "status": 3,
+                }
+                requests.patch(url, json=body)
+            except Exception as e:
+                print(f"Não consegui marcar o pedido como concluído: {e}")
             
-            # Se saiu do loop for por causa do break, também sai do loop while
+            # Pergunta ao usuário se deseja continuar ou encerrar
+            continuar = input("Deseja processar o próximo pedido? (s/n): ")
             if continuar.lower() != 's':
                 break
             
+            # Pergunta se deseja atualizar o mapeamento
+            atualizar_mapeamento = input("Deseja atualizar o mapeamento das ilhas? (s/n): ")
+            if atualizar_mapeamento.lower() == 's':
+                print("Usando mapeamento fixo pré-definido")
+                # Mantém o mesmo mapeamento fixo - não faz nada
 
     # ----- Gera relatório final -----
     total_erros = sum(contador_erros.values())

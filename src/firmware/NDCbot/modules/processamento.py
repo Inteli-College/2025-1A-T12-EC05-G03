@@ -38,6 +38,7 @@ def safe_movej(device, ilha, id_pedido=None, id_remedio=None, contador_erros=Non
 # ----- Função para processar ilha -----
 def processa_ilha(ilha_num, id_pedido, id_remedio, device, contador_erros, contador_sucessos):
     try:
+        print(id_remedio)
         ilha = locais(ilha_num)
 
         # Move para posição de leitura
@@ -71,10 +72,46 @@ def processa_ilha(ilha_num, id_pedido, id_remedio, device, contador_erros, conta
             # Aguarda um tempo para o QR code ser detectado
             print("Aguardando leitura estável do QR code...")
             time.sleep(2)  # Dá tempo para a câmera capturar o QR code
-            
-            # Leitura sincronizada do QR code
-            qrcode_lido = QRCodeV()
-            print(f"QR code lido: '{qrcode_lido}'")
+            qrcode_lido = "n/a"
+            while qrcode_lido == "n/a":
+                device.movej_to(ilha[0]["x"], ilha[0]["y"], 80, ilha[0]["r"], wait=False)
+                qrcode_lido = QRCodeV(id_remedio)
+                print(f"QR code lido: '{qrcode_lido}'")
+                if qrcode_lido != "n/a":
+                    qrcode_lido = "n/a"
+                    break
+
+                device.movej_to(ilha[0]["x"], ilha[0]["y"], 130, ilha[0]["r"], wait=False)
+                qrcode_lido = QRCodeV(id_remedio)
+                print(f"QR code lido: '{qrcode_lido}'")
+                if qrcode_lido != "n/a":
+                    qrcode_lido = "n/a"
+                    break
+
+                device.movej_to(ilha[0]["x"] + 5, ilha[0]["y"], 80, ilha[0]["r"] + 5, wait=False)
+                qrcode_lido = QRCodeV(id_remedio)
+                if qrcode_lido != "n/a":
+                    qrcode_lido = "n/a"
+                    break
+
+                device.movej_to(ilha[0]["x"] - 5, ilha[0]["y"], 80, ilha[0]["r"] - 5, wait=False)
+                qrcode_lido = QRCodeV(id_remedio)
+                if qrcode_lido != "n/a":
+                    qrcode_lido = "n/a"
+                    break
+
+                device.movej_to(ilha[0]["x"] + 5, ilha[0]["y"], 130, ilha[0]["r"] + 5, wait=False)
+                qrcode_lido = QRCodeV(id_remedio)
+                if qrcode_lido != "n/a":
+                    qrcode_lido = "n/a"
+                    break
+
+                device.movej_to(ilha[0]["x"] - 5, ilha[0]["y"], 130, ilha[0]["r"] - 5, wait=False)
+                qrcode_lido = QRCodeV(id_remedio)
+                if qrcode_lido != "n/a":
+                    qrcode_lido = "n/a"
+                    break
+
             
             if qrcode_lido == "n/a" or not qrcode_lido:
                 print(f"Não consegui enxergar o QR-code na ilha {ilha_num}")
@@ -84,10 +121,10 @@ def processa_ilha(ilha_num, id_pedido, id_remedio, device, contador_erros, conta
             
             # Valida o QR code com a API - execução sincronizada
             print(f"Validando o QR code '{qrcode_lido}' com a API para o remédio ID: {id_remedio}...")
-            qrcode_valido = validar_qrcode(id_remedio, qrcode_lido)
-            print(f"Resultado da validação: {'Válido' if qrcode_valido else 'Inválido'}")
+            qrcode_valid = validar_qrcode(id_remedio, qrcode_lido)  # Assuming id_remedio is what you're comparing against
+            print(f"Resultado da validação: {'Válido' if qrcode_procurado else 'Inválido'}")
             
-            if not qrcode_valido:
+            if not qrcode_valid:
                 print(f"O QR code lido não corresponde ao medicamento da ilha {ilha_num}")
                 enviar_log(id_pedido, id_remedio, LOG_QR_NAO_CORRESPONDE)
                 contador_erros[LOG_QR_NAO_CORRESPONDE] += 1
@@ -286,3 +323,121 @@ def processa_fita(id_pedido, id_remedio, device, contador_sucessos, contador_err
         enviar_log(id_pedido, id_remedio, LOG_ERRO_DOBOT)
         contador_erros[LOG_ERRO_DOBOT] += 1
         return False
+
+
+# def mapear_ilhas_qrcodes(device, num_ilhas=2):
+#     """
+#     Função para mapear os QR codes presentes em cada ilha.
+    
+#     Args:
+#         device: Instância do controlador Dobot
+#         num_ilhas: Número de ilhas a serem mapeadas
+        
+#     Returns:
+#         dict: Dicionário mapeando valores de QR code para números de ilha
+#     """
+#     print("\n===== INICIANDO MAPEAMENTO DE ILHAS E QR CODES =====")
+#     qrcode_para_ilha = {}  # Dicionário para armazenar o mapeamento
+#     # Percorre cada ilha e lê seu QR code
+#     for ilha_num in range(num_ilhas):
+#         print(f"\nMapeando ilha {ilha_num}...")
+        
+#         try:
+#             # Obtém posições da ilha
+#             ilha = locais(ilha_num)
+            
+#             # Inicializa a variável que guardará o QR code lido
+#             qrcode_procurado = None
+#             tentativas = 4
+            
+#             # Loop para tentar diferentes posições para leitura do QR code
+#             for i in range(tentativas):
+#                 # Tentativa 1: altura baixa, posição central
+#                 device.movej_to(ilha[0]["x"], ilha[0]["y"], 80, ilha[0]["r"], wait=True)
+#                 time.sleep(0.5)  # Aguarda estabilização
+#                 qrcode_lido = QRCodeV(id_remedio)
+#                 print(f"Tentativa {i+1}.1: QR code lido: '{qrcode_lido}'")
+#                 if qrcode_lido != "n/a" and qrcode_lido != qrcode_anterior:
+#                     qrcode_procurado = qrcode_lido
+#                     break
+                
+#                 # Tentativa 2: altura alta, posição central
+#                 device.movej_to(ilha[0]["x"], ilha[0]["y"], 130, ilha[0]["r"], wait=True)
+#                 time.sleep(0.5)
+#                 qrcode_lido = QRCodeV(id_remedio)
+#                 print(f"Tentativa {i+1}.2: QR code lido: '{qrcode_lido}'")
+#                 if qrcode_lido != "n/a" and qrcode_lido != qrcode_anterior:
+#                     qrcode_procurado = qrcode_lido
+#                     break
+                
+#                 # Tentativa 3: altura baixa, deslocado para direita e rotação +
+#                 device.movej_to(ilha[0]["x"] + 5, ilha[0]["y"], 80, ilha[0]["r"] + 5, wait=True)
+#                 time.sleep(0.5)
+#                 qrcode_lido = QRCodeV(id_remedio)
+#                 print(f"Tentativa {i+1}.3: QR code lido: '{qrcode_lido}'")
+#                 if qrcode_lido != "n/a" and qrcode_lido != qrcode_anterior:
+#                     qrcode_procurado = qrcode_lido
+#                     break
+                
+#                 # Tentativa 4: altura baixa, deslocado para esquerda e rotação -
+#                 device.movej_to(ilha[0]["x"] - 5, ilha[0]["y"], 80, ilha[0]["r"] - 5, wait=True)
+#                 time.sleep(0.5)
+#                 qrcode_lido = QRCodeV(id_remedio)
+#                 print(f"Tentativa {i+1}.4: QR code lido: '{qrcode_lido}'")
+#                 if qrcode_lido != "n/a" and qrcode_lido != qrcode_anterior:
+#                     qrcode_procurado = qrcode_lido
+#                     break
+                
+#                 # Tentativa 5: altura alta, deslocado para direita e rotação +
+#                 device.movej_to(ilha[0]["x"] + 5, ilha[0]["y"], 130, ilha[0]["r"] + 5, wait=True)
+#                 time.sleep(0.5)
+#                 qrcode_lido = QRCodeV(id_remedio)
+#                 print(f"Tentativa {i+1}.5: QR code lido: '{qrcode_lido}'")
+#                 if qrcode_lido != "n/a" and qrcode_lido != qrcode_anterior:
+#                     qrcode_procurado = qrcode_lido
+#                     break
+                
+#                 # Tentativa 6: altura alta, deslocado para esquerda e rotação -
+#                 device.movej_to(ilha[0]["x"] - 5, ilha[0]["y"], 130, ilha[0]["r"] - 5, wait=True)
+#                 time.sleep(0.5)
+#                 qrcode_lido = QRCodeV(id_remedio)
+#                 print(f"Tentativa {i+1}.6: QR code lido: '{qrcode_lido}'")
+#                 if qrcode_lido != "n/a" and qrcode_lido != qrcode_anterior:
+#                     qrcode_procurado = qrcode_lido
+#                     break
+                
+#                 # Tentativa 7: posição original com tempo de espera
+#                 device.movej_to(ilha[0]["x"], ilha[0]["y"], 130, ilha[0]["r"], wait=True)
+#                 time.sleep(1.0)  # Espera mais tempo
+#                 qrcode_lido = QRCodeV(id_remedio)
+#                 print(f"Tentativa {i+1}.7: QR code lido: '{qrcode_lido}'")
+#                 if qrcode_lido != "n/a" and qrcode_lido != qrcode_anterior:
+#                     qrcode_procurado = qrcode_lido
+#                     break
+                
+#                 # Se chegou aqui, tenta novamente com o próximo conjunto de tentativas
+#                 print(f"Conjunto de tentativas {i+1} falhou. Tentando novamente...")
+            
+#             # Verifica se conseguiu ler um QR code válido
+#             if qrcode_procurado:
+#                 print(f"QR code da ilha {ilha_num}: {qrcode_procurado}")
+#                 # Adiciona o mapeamento: valor do QR code -> número da ilha
+#                 qrcode_para_ilha[qrcode_procurado] = ilha_num
+#                 qrcode_procurado = QRCodeV(id_remedio)
+#             else:
+#                 print(f"Não consegui ler o QR code da ilha {ilha_num} após todas as tentativas.")
+                
+#         except Exception as e:
+#             print(f"Erro ao mapear ilha {ilha_num}: {e}")
+        
+#         finally:
+#             # Volta para a posição segura
+#             try:
+#                 device.GoHomeInteli()
+#                 time.sleep(1)
+#             except Exception as e:
+#                 print(f"Erro ao retornar para posição Home: {e}")
+    
+    print("\n===== MAPEAMENTO DE ILHAS CONCLUÍDO =====")
+    print(f"Mapeamento encontrado: {qrcode_para_ilha}")
+    return qrcode_para_ilha
