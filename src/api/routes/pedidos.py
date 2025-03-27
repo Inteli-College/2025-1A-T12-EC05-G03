@@ -113,13 +113,16 @@ def puxar_prox_fila():
         .first()
     )
 
+    if not pedido:
+            return jsonify({'erro': f'Nenhum pedido na fila'}), 404
+    
     pedido.status_pedido = 2
     db.session.commit()
 
     return jsonify({
         "id": pedido.id,
         "lista_remedios": json.loads(pedido.lista_remedios) if isinstance(pedido.lista_remedios, str) else []
-    })
+    }), 200
 
 
 
