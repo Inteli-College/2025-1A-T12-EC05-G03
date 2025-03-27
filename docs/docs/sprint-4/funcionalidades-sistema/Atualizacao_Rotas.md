@@ -68,3 +68,36 @@ Renderiza a página de controle de estoque de medicamentos.
 
 ---
 
+## 🏠 **3. Rotas da Página Inicial (`home.py`)**
+
+&emsp;Rota que busca todos os pedidos e prescrições do dia, classificados por status, para exibição dinâmica na interface da home.
+
+### `GET /home/atualizar`  
+Retorna os dados atualizados do dia atual, organizados em:
+- Prescrições:
+  - `aguardandoAvaliacao`: status 1
+  - `avaliadas`: status diferente de 1
+- Pedidos:
+  - `aguardandoSeparacao`: status 1
+  - `emSeparacao`: status 2
+  - `emRevisao`: status 3
+  - `concluidos`: status 4 ou 5
+
+**Resposta:**
+```json
+{
+  "prescricoes": {
+    "aguardandoAvaliacao": [...],
+    "avaliadas": [...]
+  },
+  "pedidos": {
+    "aguardandoSeparacao": [...],
+    "emSeparacao": [...],
+    "emRevisao": [...],
+    "concluidos": [...]
+  }
+}
+```
+
+---
+
