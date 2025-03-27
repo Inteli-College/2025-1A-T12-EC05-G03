@@ -227,3 +227,24 @@ Deleta uma prescrição pelo ID.
 
 ---
 
+## 💊 **7. Rotas de Remédios (`remedio.py`)**
+
+&emsp;Gerencia o cadastro e listagem de princípios ativos (remédios) no sistema.
+
+### `POST /remedios/cadastrar`  
+Cadastra um novo remédio.  
+🔒 Requer autenticação JWT.  
+**Corpo esperado:**
+```json
+{
+  "principio_ativo": "Paracetamol"
+}
+```
+
+---
+
+### `GET /remedios/listar`  
+Lista todos os remédios cadastrados.
+
+---
+
