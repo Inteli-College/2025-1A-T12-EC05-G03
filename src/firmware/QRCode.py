@@ -1,37 +1,102 @@
-import serial
+"""
+Funções para leitura e validação de códigos QR.
+"""
+
 import requests
+import serial
+import time
 
-def QRCodeV():
+# Variável global para armazenar o último QR code lido
+qr_code = "n/a"
+
+def update_qrcode(novo_code):
+    global qr_code
+    qr_code = novo_code
+
+def QRCodeV(qrcode_procurado):
+    global qr_code
+    
     try:
-        ser = serial.Serial('COM15', 9600, timeout=1)  
+        # Conecta à porta serial
+        with serial.Serial('/dev/ttyACM0', 9600, timeout=2) as ser:
+            ser.reset_input_buffer()
+            
+            # Tenta ler múltiplas vezes
+            tentativas = 3
+            novo_qrcode = qr_code
+            
+            for i in range(tentativas):
+                linha = ser.readline().decode('latin-1').strip()
+                
+                if "qr:" in linha:
+                    parts = linha.split("qr:")
+                    if len(parts) > 1:
+                        valor = parts[1].strip()
+                        if valor.lower() != "n/a":
+                            novo_qrcode = valor
+                            update_qrcode(novo_qrcode)
+                            print(f"🔍 Detectei um QR Code: {novo_qrcode}")
+                            return validar_qrcode(qrcode_procurado, qrcode_lido)
+
+                
+                time.sleep(0.5)
+            
+            # Retorna o valor atual do QR code
+            return qr_code
+
     except serial.SerialException as e:
-        print(f"❌ Erro ao abrir a porta serial: {e}")
-        return  # Sai da função para evitar que o código continue rodando sem conexão
+        print(f"❌ Erro na comunicação serial ao ler QR code: {e}")
+        return qr_code
+    except Exception as e:
+        print(f"❌ Erro inesperado ao ler QR code: {e}")
+        return qr_code
 
-    API_URL = "https://two025-1a-t12-ec05-g03.onrender.com/qrcode/validar"
+def validar_qrcode(qrcode_procurado, qrcode_lido):
+    """    
+    body:
+        qrcode_procurado: O qrcode correto que está sendo procurado
+        qrcode_lido: Conteúdo do código QR a ser validado
+    """
+    try:
+        API_URL = "https://two025-1a-t12-ec05-g03.onrender.com/qrcode/validar"
 
-    print("📡 Sistema pronto! Aguardando QR Codes...")
+        headers = {'Content-Type': 'application/json'}
+        payload = {"qrcode_procurado": qrcode_procurado, "qrcode_lido": qrcode_lido}
+        
+        print(f"Enviando para API: {payload}")
+        
+        response = requests.post(API_URL, json=payload, headers=headers)
 
-    while True:
-        try:
-            qrcode_lido = ser.readline().decode('utf-8').strip()
-            remedio_id = 1
+        print(f"Resposta completa da API: Status={response.status_code}, Body={response.text}")
 
-            if qrcode_lido:
-                print(f"🔍 QR Code detectado: {qrcode_lido}")
-
-                response = requests.get(API_URL, json={"remedio_id": remedio_id,"qrcode_lido": qrcode_lido})
-
-                if response.status_code == 200:
-                    print(f"✅ Resposta do servidor: {response.json()}")
+        if response.status_code == 200:
+            try:
+                resposta_json = response.json()
+                if resposta_json.get('message') == 'QRCode válido' :
+                    print(f"✅ Consegui validar o QR Code com sucesso: {resposta_json}")
+                    return True
                 else:
-                    print(f"❌ Erro na API: {response.status_code} - {response.text}")
-
-        except serial.SerialException as e:
-            print(f"❌ Erro na comunicação serial: {e}")
-            break  # Encerra o loop se houver erro de comunicação
-        except requests.RequestException as e:
-            print(f"❌ Erro na requisição para a API: {e}")
-
-if __name__ == "__main__":
-    QRCodeV()
+                    print(f"❌ Não consegui validar o QR Code, ele não corresponde ao medicamento.")
+                    return False
+            except ValueError as e:
+                print(f"❌ Não consegui interpretar a resposta da API como JSON: {e}")
+                return False
+        elif response.status_code == 404:
+            print(f"❌ Não consegui reconhecer este QR Code")
+            return False
+        elif response.status_code == 405:
+            print(f"❌ Método não permitido (405). A API não aceita requisições POST no endpoint informado.")
+            try:
+                get_response = requests.get(f"{API_URL}?qrcode_procurado={qrcode_procurado}&qrcode_lido={qrcode_lido}")
+                print(f"Tentativa GET: Status={get_response.status_code}, Body={get_response.text}")
+                if get_response.status_code == 200:
+                    return True
+            except Exception as e:
+                print(f"❌ Tentativa com GET também falhou: {e}")
+            return False
+        else:
+            print(f"❌ Tive um problema na comunicação com a API: {response.status_code} - {response.text}")
+            return False
+    except Exception as e:
+        print(f"❌ Tive um problema ao tentar validar o QR Code: {e}")
+        return False

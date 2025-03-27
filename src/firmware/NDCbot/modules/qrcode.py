@@ -55,12 +55,14 @@ def validar_qrcode(qrcode_procurado, qrcode_lido):
     """    
     body:
         qrcode_procurado: O qrcode correto que está sendo procurado
+        qrcode_procurado: O qrcode correto que está sendo procurado
         qrcode_lido: Conteúdo do código QR a ser validado
     """
     try:
         API_URL = "https://two025-1a-t12-ec05-g03.onrender.com/qrcode/validar"
         
         headers = {'Content-Type': 'application/json'}
+        payload = {"qrcode_procurado": qrcode_procurado, "qrcode_lido": qrcode_lido}
         payload = {"qrcode_procurado": qrcode_procurado, "qrcode_lido": qrcode_lido}
         
         print(f"Enviando para API: {payload}")
