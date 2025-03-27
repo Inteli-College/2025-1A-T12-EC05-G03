@@ -179,3 +179,51 @@ Deleta um lote pelo seu ID.
 
 ---
 
+## 📝 **6. Rotas de Prescrições (`prescricoes.py`)**
+
+&emsp;Gerencia prescrições médicas inseridas no sistema, incluindo sua aprovação e vinculação com pedidos.
+
+### `GET /prescricoes/listar`  
+Lista todas as prescrições.  
+🔒 Requer autenticação JWT.
+
+---
+
+### `POST /prescricoes/adicionar`  
+Adiciona uma nova prescrição com lista de remédios (IDs).  
+🔒 Requer autenticação JWT.  
+**Corpo esperado:**
+```json
+{
+  "hc_paciente": "123456",
+  "lista_remedios": [1, 2, 3]
+}
+```
+
+---
+
+### `GET /prescricoes/<prescricao_id>`  
+Retorna os dados detalhados de uma prescrição específica, com os remédios relacionados.  
+🔒 Requer autenticação JWT.
+
+---
+
+### `PUT /prescricoes/aprovar/<prescricao_id>`  
+Aprova a prescrição e cria um pedido associado, utilizando os lotes com validade mais próxima.  
+🔒 Requer autenticação JWT.  
+**Corpo esperado:**
+```json
+{
+  "status_prescricao": 4,
+  "lista_remedios": [1, 2]
+}
+```
+
+---
+
+### `DELETE /prescricoes/deletar/<prescricao_id>`  
+Deleta uma prescrição pelo ID.  
+🔒 Requer autenticação JWT.
+
+---
+
