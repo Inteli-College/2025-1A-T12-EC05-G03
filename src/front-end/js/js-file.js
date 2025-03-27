@@ -149,7 +149,7 @@ const dadosAPI_Atualiza = {};
 
 async function chamar_api_atualiza() {
     try {
-        const response = await fetch('http://127.0.0.1:5000/home/atualizar', {
+        const response = await fetch('https://two025-1a-t12-ec05-g03.onrender.com/home/atualizar', {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
         });
@@ -1073,7 +1073,7 @@ function abrirModalAvaliacao(prescricao) {
 async function pedidoPorIdAPI(id){
     try {
         const token = localStorage.getItem('access_token');
-        const response = await fetch('http://127.0.0.1:5000/pedidos/' + id, {
+        const response = await fetch('https://two025-1a-t12-ec05-g03.onrender.com/pedidos/' + id, {
             method: 'GET',
             headers: { 'Authorization': `Bearer ${token}` },
         });
@@ -1399,7 +1399,7 @@ async function avaliarPrescricao(prescricao) {
 async function revisaoPedidoAPI(id, id_avaliacao){
     try {
         const token = localStorage.getItem('access_token');
-        const response = await fetch('http://127.0.0.1:5000/pedidos/status/' + id, {
+        const response = await fetch('https://two025-1a-t12-ec05-g03.onrender.com/pedidos/status/' + id, {
             method: 'PATCH',
             headers: { 
                 'Authorization': `Bearer ${token}`,
