@@ -1120,7 +1120,7 @@ function abrirModalPedido(pedido) {
                         <div class="remedio-title">${remedio.principio_ativo}</div>
                         <div class="remedio-details">
                             <div class="remedio-detail"><i class="fas fa-pills"></i> ${remedio.dosagem}</div>
-                            <div class="remedio-detail"><i class="fas fa-sort-amount-up"></i> Quantidade: ${remedio.quantidade}</div>
+                            <div class="remedio-detail"><i class="fas fa-sort-amount-up"></i> Quantidade: 1 </div>
                         </div>
                     </div>
                 `;
@@ -1228,12 +1228,14 @@ async function concluirPedido(pedido){
         // Determina o status da aprovação
         const id_status = ids_remedios_aprovados.length === pedido.remedios.length ? 4 : 5;
 
+        console.log("aaaa", pedido.pedido.id)
 
         const resultado = await revisaoPedidoAPI(pedido.pedido.id, id_status)
         if(!resultado){     
             throw new Error("Erro ao revisar o pedido pela API")
         }
-        
+
+        await chamar_api_atualiza();
         // Atualiza a interface
         atualizarContadores();
         carregarDadosMockados();
@@ -1256,7 +1258,7 @@ function abrirModalRevisao(pedido) {
             <div class="remedio-revisao">
                 <div class="remedio-info">
                     <div class="remedio-title">${remedio.principio_ativo} ${remedio.dosagem}</div>
-                    <div class="info-text">Quantidade: ${remedio.quantidade}</div>
+                    <div class="info-text">Quantidade: 1</div>
                 </div>
                 <div class="remedio-check">
                     <label class="checkbox-container">
@@ -1399,7 +1401,7 @@ async function avaliarPrescricao(prescricao) {
 async function revisaoPedidoAPI(id, id_avaliacao){
     try {
         const token = localStorage.getItem('access_token');
-        const response = await fetch('https://two025-1a-t12-ec05-g03.onrender.com/pedidos/status/' + id, {
+        const response = await fetch('https://two025-1a-t12-ec05-g03.onrender.com/pedidos/revisar/' + id, {
             method: 'PATCH',
             headers: { 
                 'Authorization': `Bearer ${token}`,

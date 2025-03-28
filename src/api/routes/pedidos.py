@@ -60,9 +60,29 @@ def listar_por_id(pedido_id):
     }), 200
 
 
-# Alterar Status Pedido
+# Alterar Status Pedido pelo robo
 @pedidos_bp.route('/status/<pedido_id>', methods=['PATCH'])
 def alterar_status(pedido_id):
+    pedido = Pedido.query.get_or_404(pedido_id)
+    data = request.get_json()
+
+    if data['status'] not in [1, 2, 3, 4, 5, 6]:
+        return {
+        "Message": f"O status de número {data['status']} não existe"
+        }, 400
+
+    pedido.status_pedido = data['status']
+    
+    if (data['status'] == 4 or data['status'] == 5 or data['status'] == 6) :
+        pedido.data_finalizacao = datetime.now()
+
+    db.session.commit()
+    return jsonify({'Message': f"Status prescrição atualizado para {data['status']}, com sucesso"}), 200
+
+# Alterar Status Pedido
+@pedidos_bp.route('/revisar/<pedido_id>', methods=['PATCH'])
+@jwt_required()
+def revisar_pedido(pedido_id):
     pedido = Pedido.query.get_or_404(pedido_id)
     data = request.get_json()
 
