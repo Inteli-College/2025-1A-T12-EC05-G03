@@ -149,7 +149,7 @@ const dadosAPI_Atualiza = {};
 
 async function chamar_api_atualiza() {
     try {
-        const response = await fetch('https://two025-1a-t12-ec05-g03.onrender.com/home/atualizar', {
+        const response = await fetch('http://127.0.0.1:5000/home/atualizar', {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
         });
@@ -919,7 +919,7 @@ function adicionarEventListenersModais() {
 async function puxa_prescricao_por_id(id){
     try {
         const token = localStorage.getItem('access_token');
-        const response = await fetch('https://two025-1a-t12-ec05-g03.onrender.com/prescricoes/' + id, {
+        const response = await fetch('http://127.0.0.1:5000/prescricoes/' + id, {
             method: 'GET',
             headers: { 'Authorization': `Bearer ${token}` },
         });
@@ -1073,7 +1073,7 @@ function abrirModalAvaliacao(prescricao) {
 async function pedidoPorIdAPI(id){
     try {
         const token = localStorage.getItem('access_token');
-        const response = await fetch('https://two025-1a-t12-ec05-g03.onrender.com/pedidos/' + id, {
+        const response = await fetch('http://127.0.0.1:5000/pedidos/' + id, {
             method: 'GET',
             headers: { 'Authorization': `Bearer ${token}` },
         });
@@ -1120,7 +1120,7 @@ function abrirModalPedido(pedido) {
                         <div class="remedio-title">${remedio.principio_ativo}</div>
                         <div class="remedio-details">
                             <div class="remedio-detail"><i class="fas fa-pills"></i> ${remedio.dosagem}</div>
-                            <div class="remedio-detail"><i class="fas fa-sort-amount-up"></i> Quantidade: ${remedio.quantidade}</div>
+                            <div class="remedio-detail"><i class="fas fa-sort-amount-up"></i> Quantidade: 1 </div>
                         </div>
                     </div>
                 `;
@@ -1228,12 +1228,14 @@ async function concluirPedido(pedido){
         // Determina o status da aprovação
         const id_status = ids_remedios_aprovados.length === pedido.remedios.length ? 4 : 5;
 
+        console.log("aaaa", pedido.pedido.id)
 
         const resultado = await revisaoPedidoAPI(pedido.pedido.id, id_status)
         if(!resultado){     
             throw new Error("Erro ao revisar o pedido pela API")
         }
         
+        await chamar_api_atualiza();
         // Atualiza a interface
         atualizarContadores();
         carregarDadosMockados();
@@ -1256,7 +1258,7 @@ function abrirModalRevisao(pedido) {
             <div class="remedio-revisao">
                 <div class="remedio-info">
                     <div class="remedio-title">${remedio.principio_ativo} ${remedio.dosagem}</div>
-                    <div class="info-text">Quantidade: ${remedio.quantidade}</div>
+                    <div class="info-text">Quantidade: 1</div>
                 </div>
                 <div class="remedio-check">
                     <label class="checkbox-container">
@@ -1317,7 +1319,7 @@ function buscarPrescricaoPorId(id) {
 async function avaliarPrescricaoAPI(id, remedios_aprovados, id_aprovacao){
     try {
         const token = localStorage.getItem('access_token');
-        const response = await fetch('https://two025-1a-t12-ec05-g03.onrender.com/prescricoes/aprovar/' + id, {
+        const response = await fetch('http://127.0.0.1:5000/prescricoes/aprovar/' + id, {
             method: 'PUT',
             headers: { 
                 'Authorization': `Bearer ${token}`,
@@ -1399,7 +1401,7 @@ async function avaliarPrescricao(prescricao) {
 async function revisaoPedidoAPI(id, id_avaliacao){
     try {
         const token = localStorage.getItem('access_token');
-        const response = await fetch('https://two025-1a-t12-ec05-g03.onrender.com/pedidos/status/' + id, {
+        const response = await fetch('http://127.0.0.1:5000/pedidos/revisar/' + id, {
             method: 'PATCH',
             headers: { 
                 'Authorization': `Bearer ${token}`,
