@@ -114,9 +114,13 @@ def aprovar_prescricao(prescricao_id):
     lotes_utilizados = []
 
     for id_remedio in lista_remedios:
-        lote_usado = Lote.query.filter_by(id_remedio=id_remedio) \
+        lote_usado = Lote.query.filter_by(remedio_id=id_remedio) \
+                     .filter(Lote.quantidade > 0) \
                      .order_by(Lote.data_validade) \
-                     .first()
+                     .first() 
+        if not lote_usado:
+            return jsonify({'error': f'O Remédio com id {id_remedio} não possue mais lote'}), 404
+        
         lote_usado.quantidade -= 1
         lotes_utilizados.append(lote_usado)
 
