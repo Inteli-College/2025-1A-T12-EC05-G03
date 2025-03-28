@@ -112,10 +112,8 @@ def aprovar_prescricao(prescricao_id):
     #     lotes_utilizados.append({'id_remedio': id_remedio, 'lote': lote.id, 'validade': lote.data_validade, 'bin_qrcode' : lote.bin_qrcode})
         
     lotes_utilizados = []
-
     for id_remedio in lista_remedios:
-        lote_usado = Lote.query.filter_by(remedio_id=id_remedio) \
-                     .filter(Lote.quantidade > 0) \
+        lote_usado = Lote.query.filter_by(id_remedio=id_remedio) \
                      .order_by(Lote.data_validade) \
                      .first() 
         if not lote_usado:
