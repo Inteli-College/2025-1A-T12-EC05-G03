@@ -271,15 +271,18 @@ Se forem diferentes, incrementa o estoque do lote vinculado ao `qrcode_procurado
 
 ## 📦 **9. Rotas de Pedidos (`pedidos.py`)**
 
-&emsp;Controla os pedidos gerados a partir da aprovação de prescrições.
+As rotas de pedidos são responsáveis por registrar, consultar, revisar e atualizar o status dos pedidos gerados a partir das prescrições aprovadas, além de manter o controle da fila de separação de medicamentos.
+
+---
 
 ### `GET /pedidos/listar`  
-Lista todos os pedidos registrados.
+Lista todos os pedidos registrados no sistema.  
+**Resposta:** Lista de objetos `Pedido`.
 
 ---
 
 ### `POST /pedidos/adicionar`  
-Adiciona um novo pedido com base em uma prescrição aprovada.  
+Cria um novo pedido com base em uma prescrição aprovada.  
 🔒 Requer autenticação JWT.  
 **Corpo esperado:**
 ```json
@@ -288,35 +291,70 @@ Adiciona um novo pedido com base em uma prescrição aprovada.
   "lista_remedios": ["QR123", "QR456"]
 }
 ```
+**Resposta:**  
+- `201 Created`: Pedido inserido com sucesso.
 
 ---
 
 ### `GET /pedidos/<pedido_id>`  
-Retorna os dados de um pedido específico, com os remédios vinculados.  
-🔒 Requer autenticação JWT.
-
----
-
-### `PATCH /pedidos/status/<pedido_id>`  
-Altera o status de um pedido.  
-Atualiza a data de finalização e quem revisou, caso o status seja de finalização.  
-**Corpo esperado:**
+Retorna os dados de um pedido específico e os remédios relacionados a ele.  
+🔒 Requer autenticação JWT.  
+**Resposta:**  
 ```json
 {
-  "status": 4
+  "pedido": { ... },
+  "remedios": [ ... ]
 }
 ```
 
 ---
 
+### `PATCH /pedidos/status/<pedido_id>`  
+Atualiza o status do pedido. Esta rota é usada pelo robô para atualizar automaticamente o andamento do processo.  
+**Corpo esperado:**
+```json
+{
+  "status": 2
+}
+```
+**Regras:**  
+- Se o status for 4, 5 ou 6, a `data_finalizacao` é registrada.  
+- Não requer autenticação.  
+**Resposta:**  
+- `200 OK`: Status atualizado com sucesso.
+
+---
+
+### `PATCH /pedidos/revisar/<pedido_id>`  
+Atualiza o status do pedido, registrando o usuário responsável pela revisão.  
+🔒 Requer autenticação JWT.  
+**Corpo esperado:**
+```json
+{
+  "status": 5
+}
+```
+**Regras:**  
+- Se o status for 4, 5 ou 6, registra `data_finalizacao` e `id_user_revisao` com base no JWT.  
+**Resposta:**  
+- `200 OK`: Status e revisor atualizados com sucesso.
+
+---
+
 ### `DELETE /pedidos/deletar/<pedido_id>`  
-Deleta um pedido pelo seu ID.  
-🔒 Requer autenticação JWT.
+Deleta um pedido específico pelo seu ID.  
+🔒 Requer autenticação JWT.  
+**Resposta:**  
+- `200 OK`: Pedido deletado com sucesso.
 
 ---
 
 ### `GET /pedidos/fila`  
-Puxa o próximo pedido da fila (status 1), atualizando seu status para 2 (em separação).
+Busca o próximo pedido na fila com status 1 (aguardando separação), e atualiza seu status para 2 (em separação).  
+**Resposta:**  
+- `200 OK`: Retorna o pedido e a lista de QR Codes.  
+- `404 Not Found`: Nenhum pedido na fila.
+
 
 ## Conclusão
 &emsp;A integração entre as rotas da API, a interface web e o robô é essencial para o funcionamento automatizado e seguro do sistema de separação de medicamentos. Cada rota desempenha um papel específico na gestão de usuários, prescrições, pedidos, lotes, logs e validação de QR Codes, garantindo rastreabilidade e eficiência em todo o fluxo. Nesta sprint, a atualização e organização das rotas foi um passo crucial para consolidar a comunicação entre os módulos, corrigir inconsistências e preparar o sistema para novas funcionalidades. Essa padronização contribui diretamente para a escalabilidade, manutenção e confiabilidade da aplicação, tornando o ambiente mais estável e preparado para evoluções futuras.
