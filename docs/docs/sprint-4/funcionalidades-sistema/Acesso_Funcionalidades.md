@@ -126,7 +126,7 @@ custom_edit_url: null
 ### Cadastro de Novos Medicamentos
 
 1. Na tela de Estoque, clique no botão "Cadastrar Medicamento"
-2. Adicione o nome do principio ativo do medicamento
+2. Adicione o nome do princípio ativo do medicamento
 3. Clique em Cadastrar Lote
 4. Preencha os campos obrigatórios:
    - Princípio ativo
