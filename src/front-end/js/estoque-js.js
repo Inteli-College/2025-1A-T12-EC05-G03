@@ -95,10 +95,6 @@ document.addEventListener('DOMContentLoaded', inicializarPagina);
 // Array de lotes (simula a tabela 'lote')
 let lotes = [];
 
-// Contador para gerar novos IDs
-let nextLoteId = 6;
-let nextMedicamentoId = 6;
-
 // Variáveis para armazenar os filtros ativos
 let filtrosAtivos = {
     medicamento: "",
@@ -292,6 +288,7 @@ function abrirModalVisualizarMedicamento(loteId) {
     document.getElementById('viewDataValidade').textContent = dataFormatada;
     document.getElementById('viewFabricante').textContent = lote.fabricante;
     document.getElementById('viewQuantidade').textContent = lote.quantidade;
+    document.getElementById('viewQrcode').textContent = lote.bin_qrcode;
     
     // Exibe o modal
     document.getElementById('modalVisualizarMedicamento').style.display = 'block';
