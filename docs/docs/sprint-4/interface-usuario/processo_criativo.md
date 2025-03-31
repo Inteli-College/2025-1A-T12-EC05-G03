@@ -9,15 +9,6 @@ Documentação do processo criativo e desenvolvimento com dados mockados
 
 ## **Estruturação e Benefícios do Uso de Dados Simulados no Projeto**
 
-<p style={{textAlign: 'center'}}>Logo ndc</p>
-<div style={{margin: 25}}>
-    <div style={{textAlign: 'center'}}>
-        <img src={require("../../../../media/Logos_GuiaDeEstilos/pngslogos/logo_escura_semnome.png").default} style={{width: 800}} alt="Logo do Núcleo de Desenvolvimento Conectado." />
-        <br />
-    </div>
-</div>
-<p style={{textAlign: 'center'}}>Fonte: Os autores (2025)</p>
-
 &emsp;O desenvolvimento do front-end e do estilo do projeto NDC seguiu uma abordagem focada em objetividade e funcionalidade. Desde o início, optamos por um design neutro e cores que remetem à tranquilidade e confiança, características fundamentais para o ambiente hospitalar e profissional. A estruturação inicial do website foi feita com **dados mockados**, garantindo que todas as funcionalidades fossem testadas antes da integração completa com o backend.
 
 ## **Por que Utilizar Dados Mockados?**
