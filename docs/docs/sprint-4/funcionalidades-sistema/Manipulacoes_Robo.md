@@ -20,14 +20,14 @@ custom_edit_url: null
 
 &emsp;Durante a operação, o sistema envia notificações detalhadas sobre cada etapa do processo, incluindo a leitura do QR Code, verificação pelo sensor de distância TCRT5000 e confirmação da coleta do medicamento. Cada ação é registrada em logs que podem ser consultados posteriormente para fins de auditoria ou diagnóstico.
 
-<div style="text-align: center;">
-
-  ![Interface da plataforma web mostrando o painel de controle do robô](../../../../media/PlataformaWeb.png)
-
+<p style={{textAlign: 'center'}}>Figura X: Interface da plataforma web para controle do robô</p>
+<div style={{margin: 25}}>
+    <div style={{textAlign: 'center'}}>
+        <img src={require("../../../../media/PlataformaWeb.png").default} style={{width: 800}} alt="Interface da plataforma web mostrando o painel de controle do robô" />
+        <br />
+    </div>
 </div>
-
-<p style="text-align: center;">Figura X: Interface da plataforma web para controle do robô (2025).</p>
-
+<p style={{textAlign: 'center'}}>Fonte: Os autores (2025)</p>
 
 ### Modo Manual de Operação
 
@@ -41,14 +41,14 @@ custom_edit_url: null
 
 &emsp;O modo manual foi desenvolvido como uma alternativa para cenários específicos, como correções pontuais ou falhas na plataforma online, mantendo sempre os mesmos padrões de segurança do modo automático com a verificação dos QR Codes e leitura do sensor de distância.
 
-<div style="text-align: center;">
-
-  ![Interface do modo manual de operação do robô](../../../../media/tabela_cli.png)
-
+<p style={{textAlign: 'center'}}>Figura X: Interface do modo manual para montagem da fita de medicamentos</p>
+<div style={{margin: 25}}>
+    <div style={{textAlign: 'center'}}>
+        <img src={require("../../../../media/tabela_cli.png").default} style={{width: 800}} alt="Interface do modo manual de operação do robô" />
+        <br />
+    </div>
 </div>
-
-<p style="text-align: center;">Figura x: Interface do modo manual para montagem da fita de medicamentos (2025).</p>
-
+<p style={{textAlign: 'center'}}>Fonte: Os autores (2025)</p>
 
 ## Tratamento de Erros e Segurança
 

@@ -19,14 +19,14 @@ custom_edit_url: null
 2. Na tela de login, insira seu e-mail e senha cadastrados
 3. Clique no botão "Entrar"
 
-<div style="text-align: center;">
-
-  ![Tela de login do sistema](../../../../media/telaLogin.png)
-
+<p style={{textAlign: 'center'}}>Figura X: Tela de login do sistema</p>
+<div style={{margin: 25}}>
+    <div style={{textAlign: 'center'}}>
+        <img src={require("../../../../media/telaLogin.png").default} style={{width: 800}} alt="Tela de login do sistema" />
+        <br />
+    </div>
 </div>
-
-<p style="text-align: center;">Figura X: Tela de login do sistema (2025).</p>
-
+<p style={{textAlign: 'center'}}>Fonte: Os autores (2025)</p>
 
 ## Navegação Principal
 
@@ -64,24 +64,25 @@ custom_edit_url: null
 
 4. Clique em "Confirmar" para finalizar a avaliação
 
-<div style="text-align: center;">
-
-  ![Tela de avaliação de prescrições](../../../../media/PlataformaWeb.png)
-
+<p style={{textAlign: 'center'}}>Figura X: Tela de avaliação de prescrições</p>
+<div style={{margin: 25}}>
+    <div style={{textAlign: 'center'}}>
+        <img src={require("../../../../media/PlataformaWeb.png").default} style={{width: 800}} alt="Tela de avaliação de prescrições" />
+        <br />
+    </div>
 </div>
-
-<p style="text-align: center;">Figura X: Tela de avaliação de prescrições (2025).</p>
-
+<p style={{textAlign: 'center'}}>Fonte: Os autores (2025)</p>
 
 ### Histórico de Prescrições
 
-<div style="text-align: center;">
-
-  ![Tela de histórico de prescrições](../../../../media/telaHistorico.png)
-
+<p style={{textAlign: 'center'}}>Figura X: Tela de histórico de prescrições</p>
+<div style={{margin: 25}}>
+    <div style={{textAlign: 'center'}}>
+        <img src={require("../../../../media/telaHistorico.png").default} style={{width: 800}} alt="Tela de histórico de prescrições" />
+        <br />
+    </div>
 </div>
-
-<p style="text-align: center;">Figura X: Tela de histórico de prescrições (2025).</p>
+<p style={{textAlign: 'center'}}>Fonte: Os autores (2025)</p>
 
 1. Acesse o "Histórico" no painel lateral
 2. Utilize os filtros disponíveis para refinar sua busca:
@@ -115,13 +116,14 @@ custom_edit_url: null
 2. Visualize a lista completa de medicamentos disponíveis
 3. Utilize os filtros ou a barra de pesquisa para localizar medicamentos específicos
 
-<div style="text-align: center;">
-
-  ![Tela de estoque](../../../../media/telaEstoque.png)
-
+<p style={{textAlign: 'center'}}>Figura X: Tela de estoque</p>
+<div style={{margin: 25}}>
+    <div style={{textAlign: 'center'}}>
+        <img src={require("../../../../media/telaEstoque.png").default} style={{width: 800}} alt="Tela de estoque" />
+        <br />
+    </div>
 </div>
-
-<p style="text-align: center;">Figura X: Tela de estoque (2025).</p>
+<p style={{textAlign: 'center'}}>Fonte: Os autores (2025)</p>
 
 ### Cadastro de Novos Medicamentos
 
@@ -174,13 +176,14 @@ custom_edit_url: null
 - **Validade Próxima**: Avisa sobre medicamentos próximos à data de vencimento
 - **Conclusão de Pedidos**: Informa sobre pedidos finalizados com sucesso
 
-<div style="text-align: center;">
-
-  ![Painel de notificações do sistema](../../../../media/telaNotificacoes.png)
-
+<p style={{textAlign: 'center'}}>Figura X: Painel de notificações do sistema</p>
+<div style={{margin: 25}}>
+    <div style={{textAlign: 'center'}}>
+        <img src={require("../../../../media/telaNotificacoes.png").default} style={{width: 800}} alt="Painel de notificações do sistema" />
+        <br />
+    </div>
 </div>
-
-<p style="text-align: center;">Figura X: Painel de notificações do sistema (2025).</p>
+<p style={{textAlign: 'center'}}>Fonte: Os autores (2025)</p>
 
 ## Conclusão
 
