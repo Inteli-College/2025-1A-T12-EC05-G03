@@ -1,0 +1,8 @@
+{
+    "label": "Integração dos Hardwares Periféricos do Sistema",
+    "position": 1,
+    "link": {
+      "type": "generated-index",
+      "description": "Essa seção aborda o processo de integração dos hardwares periféricos ao sistema, detalhando as conexões, protocolos de comunicação e a interação entre os dispositivos para garantir um funcionamento eficiente e sincronizado."
+    }
+  }
