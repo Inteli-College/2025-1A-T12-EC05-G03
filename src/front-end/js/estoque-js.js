@@ -96,10 +96,6 @@ document.addEventListener("DOMContentLoaded", inicializarPagina);
 // Array de lotes (simula a tabela 'lote')
 let lotes = [];
 
-// Contador para gerar novos IDs
-let nextLoteId = 6;
-let nextMedicamentoId = 6;
-
 // Variáveis para armazenar os filtros ativos
 let filtrosAtivos = {
   medicamento: "",
@@ -314,30 +310,29 @@ function setupEventListeners() {
 
 // Função para abrir o modal de visualização de medicamento
 function abrirModalVisualizarMedicamento(loteId) {
-  // Encontra o lote
-  const lote = lotes.find((l) => l.id === loteId);
-  if (!lote) return;
-
-  // Encontra o medicamento correspondente
-  const medicamento = medicamentos.find((med) => med.id === lote.id_remedio);
-  if (!medicamento) return;
-
-  // Formata a data de validade
-  const dataValidade = new Date(lote.data_validade);
-  const dataFormatada = dataValidade.toLocaleDateString("pt-BR");
-
-  // Preenche os campos do modal
-  document.getElementById("medicamentoTitulo").textContent =
-    medicamento.principio_ativo;
-  document.getElementById("viewPrincipioAtivo").textContent =
-    medicamento.principio_ativo;
-  document.getElementById("viewNumLote").textContent = lote.num_lote;
-  document.getElementById("viewDataValidade").textContent = dataFormatada;
-  document.getElementById("viewFabricante").textContent = lote.fabricante;
-  document.getElementById("viewQuantidade").textContent = lote.quantidade;
-
-  // Exibe o modal
-  document.getElementById("modalVisualizarMedicamento").style.display = "block";
+    // Encontra o lote
+    const lote = lotes.find(l => l.id === loteId);
+    if (!lote) return;
+    
+    // Encontra o medicamento correspondente
+    const medicamento = medicamentos.find(med => med.id === lote.id_remedio);
+    if (!medicamento) return;
+    
+    // Formata a data de validade
+    const dataValidade = new Date(lote.data_validade);
+    const dataFormatada = dataValidade.toLocaleDateString('pt-BR');
+    
+    // Preenche os campos do modal
+    document.getElementById('medicamentoTitulo').textContent = medicamento.principio_ativo;
+    document.getElementById('viewPrincipioAtivo').textContent = medicamento.principio_ativo;
+    document.getElementById('viewNumLote').textContent = lote.num_lote;
+    document.getElementById('viewDataValidade').textContent = dataFormatada;
+    document.getElementById('viewFabricante').textContent = lote.fabricante;
+    document.getElementById('viewQuantidade').textContent = lote.quantidade;
+    document.getElementById('viewQrcode').textContent = lote.bin_qrcode;
+    
+    // Exibe o modal
+    document.getElementById('modalVisualizarMedicamento').style.display = 'block';
 }
 
 // Função para cadastrar um novo lote
