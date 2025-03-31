@@ -55,7 +55,7 @@ custom_edit_url: null
 1. Na lista de prescrições pendentes, clique no botão "Avaliar" na prescrição desejada
 2. Revise os detalhes da prescrição, incluindo:
    - Dados do paciente
-   - Medicamentos solicitados (princípio ativo, dosagem, frequência)
+   - Medicamentos solicitados (princípio ativo, dosagem)
    - Médico responsável
 3. Você pode aprovar ou não uma prescrição:
    - **Todos os medicamentos selecionados**: Aprova todos os medicamentos da prescrição
@@ -102,10 +102,8 @@ custom_edit_url: null
 
 ### Iniciando a Separação de Pedidos
 
-1. Na lista de pedidos "Aguardando Separação", clique no botão "Iniciar Separação" no pedido desejado
-2. O sistema enviará o pedido para o robô e atualizará o status para "Em Separação"
-3. Uma notificação será exibida confirmando o início do processo
-
+1. Na lista de pedidos "Aguardando Avaliação", clique no botão "Avaliar prescrição" no pedido desejado
+2. O sistema enviará o pedido para o robô e atualizará o status para "Em Separação" 
 ## Módulo de Estoque
 
 &emsp;Este módulo permite o gerenciamento completo do estoque de medicamentos.
@@ -168,12 +166,9 @@ custom_edit_url: null
 2. Visualize a lista de notificações recentes
 3. Clique em ver histórico completo para ver todas as notificações
 
-### Tipos de Notificações
+### Notificação
 
-- **Novas Prescrições**: Informa sobre a chegada de novas prescrições para avaliação
-- **Estoque Baixo**: Alerta sobre medicamentos com quantidade abaixo do limite mínimo
 - **Validade Próxima**: Avisa sobre medicamentos próximos à data de vencimento
-- **Conclusão de Pedidos**: Informa sobre pedidos finalizados com sucesso
 
 <p style={{textAlign: 'center'}}>Figura X: Painel de notificações do sistema</p>
 <div style={{margin: 25}}>
