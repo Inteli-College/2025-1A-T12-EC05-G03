@@ -128,7 +128,7 @@ custom_edit_url: null
 ### Cadastro de Novos Medicamentos
 
 1. Na tela de Estoque, clique no botão "Cadastrar Medicamento"
-2. Adicione o nome do principio ativo do medicamento
+2. Adicione o nome do princípio ativo do medicamento
 3. Clique em Cadastrar Lote
 4. Preencha os campos obrigatórios:
    - Princípio ativo
@@ -142,10 +142,9 @@ custom_edit_url: null
 ### Remoção de Medicamentos
 
 1. Clique em "Retirar Medicamento"
-1. Na lista de medicamentos, localize o item desejado e lote
-2. Clique no botão "Confirmar"
-3. Confirme a ação na janela de diálogo que será exibida
-
+2. Na lista de medicamentos, localize o item desejado e lote
+3. Clique no botão "Confirmar"
+4. Confirme a ação na janela de diálogo que será exibida
 ## Controle do Robô
 
 &emsp;O sistema permite o controle e monitoramento do robô separador de medicamentos.
