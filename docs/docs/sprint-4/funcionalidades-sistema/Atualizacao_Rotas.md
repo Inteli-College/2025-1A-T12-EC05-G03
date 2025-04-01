@@ -112,7 +112,7 @@ Registra um novo log com informações sobre o pedido, medicamento e tipo de eve
 {
   "id_pedido": 1,
   "id_remedio_em_separacao": 3,
-  "codigo_log": "MEDICAMENTO_VALIDADO"
+  "codigo_log": 1
 }
 ```
 **Resposta:**  
