@@ -57,7 +57,7 @@ json[
     "data_emissao": "2025-04-01",
     "paciente": "Fernando de Pablo Oliveira",
     "medico": "Claret Cecilia de Paiva",
-    "status": "ativa",
+    "status": "2",
     "medicamentos": [1, 2]
   },
 ]
