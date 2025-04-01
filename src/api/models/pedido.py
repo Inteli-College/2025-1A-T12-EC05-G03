@@ -1,4 +1,5 @@
 from .database import db  # Importação relativa
+import json
 
 #Criando a tabela de Pedido
 class Pedido(db.Model):
@@ -22,7 +23,10 @@ class Pedido(db.Model):
         return{
             'id': self.id,
             'id_prescricao': self.id_prescricao,
-            'lista_remedios': self.lista_remedios,
+            'hc_paciente': self.prescricao.paciente.hc,
+            'quarto':self.prescricao.paciente.leito,
+            'paciente': self.prescricao.paciente.nome,
+            'lista_remedios': json.loads(self.lista_remedios) if isinstance(self.lista_remedios, str) else [],
             'status_pedido':self.status_pedido,
             'data_entrada': self.data_entrada,
             'data_finalizacao': self.data_finalizacao,

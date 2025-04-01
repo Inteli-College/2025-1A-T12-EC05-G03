@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask,send_from_directory
 from .routes.prescricoes import prescricoes_bp
 from .routes.pedidos import pedidos_bp
 from .routes.auth import auth_bp
@@ -6,9 +6,13 @@ from .routes.logs import log_bp
 from .routes.remedios import remedios_bp
 from .routes.lotes import lote_bp
 from .routes.rotas_qrcode import qrcode_bp
+from .routes.home import home_bp
+from .routes.front import front_bp
 import os
 from flask_jwt_extended import JWTManager
 from flask_bcrypt import Bcrypt
+from flask_cors import CORS
+
 
 
 from flask_sqlalchemy import SQLAlchemy
@@ -26,11 +30,16 @@ from .models.codigo_log import CodigoLog
 from .models.log import Log
 
 
-app = Flask(__name__)
+app = Flask(__name__, 
+            template_folder='../front-end',  # Diretório onde estão os templates HTML
+            static_folder='../front-end')
+CORS(app)
 
-# # Define o caminho para a pasta `data`
-# BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-# DB_PATH = os.path.join(BASE_DIR, "../data", "database.db")
+# Rota para servir arquivos da pasta media (fora da pasta static)
+@app.route('/media/<path:filename>')
+def media(filename):
+    media_folder = os.path.join(app.root_path, '../../media')  # Caminho para a pasta media
+    return send_from_directory(media_folder, filename)
 
 # Configura o banco de dados para salvar na pasta `data/`
 app.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql://ndcdb_w9zl_user:IYinpUeKcoIJpg1pgjTyz0FIBNoJu2nb@dpg-cv9m763qf0us73c9gpb0-a.oregon-postgres.render.com/ndcdb_w9zl"
@@ -55,6 +64,8 @@ app.register_blueprint(log_bp)
 app.register_blueprint(remedios_bp)
 app.register_blueprint(qrcode_bp)
 app.register_blueprint(lote_bp)
+app.register_blueprint(home_bp)
+app.register_blueprint(front_bp)
 
 
 

@@ -404,6 +404,31 @@ body.menu-expanded .container {
     background-color: #2ad5b0;
     transform: translateY(-2px);
 }
+.btn-visualizar-pedido {
+    background-color: var(--cor-destaque);
+    color: var(--cor-escura);
+    padding: 6px 12px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 14px;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border: none;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+}
+
+.btn-visualizar-pedido i {
+    font-size: 12px;
+}
+
+.btn-visualizar-pedido:hover {
+    background-color: #2ad5b0;
+    transform: translateY(-2px);
+}
 
 /* Painel de notificações */
 .notifications-panel {

@@ -20,3 +20,8 @@ def cadastrar_remedio():
     return jsonify({
         'message': 'Remedio cadastrado com sucesso',
     }), 201
+
+@remedios_bp.route('/listar', methods = ['GET'])
+def listar_remedios():
+    remedios = Remedio.query.all()
+    return jsonify([remedio.as_dict() for remedio in remedios])

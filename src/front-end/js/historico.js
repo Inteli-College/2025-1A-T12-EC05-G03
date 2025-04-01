@@ -34,68 +34,39 @@ const medicamentos = [
 ];
 
 // Array de prescrições (simula a tabela 'prescricao')
-const prescricoes = [
-    {
-        id: 1,
-        hc_paciente: "HC12345",
-        lista_remedios: JSON.stringify([
-            { id_remedio: 1, dosagem: "500mg", frequencia: "8/8h", via: "Oral" },
-            { id_remedio: 3, dosagem: "40 gotas", frequencia: "6/6h", via: "Oral" }
-        ]),
-        status_prescricao: 2,
-        id_user_aprovacao: 1,
-        data_entrada: "2023-11-01T10:30:00",
-        data_avaliacao: "2023-11-01T14:45:00"
-    },
-    {
-        id: 2,
-        hc_paciente: "HC23456",
-        lista_remedios: JSON.stringify([
-            { id_remedio: 2, dosagem: "400mg", frequencia: "12/12h", via: "Oral" },
-            { id_remedio: 5, dosagem: "20mg", frequencia: "1x ao dia", via: "Oral" }
-        ]),
-        status_prescricao: 2,
-        id_user_aprovacao: 2,
-        data_entrada: "2023-11-02T09:15:00",
-        data_avaliacao: "2023-11-02T11:30:00"
-    },
-    {
-        id: 3,
-        hc_paciente: "HC34567",
-        lista_remedios: JSON.stringify([
-            { id_remedio: 4, dosagem: "500mg", frequencia: "8/8h", via: "Oral" }
-        ]),
-        status_prescricao: 1,
-        id_user_aprovacao: null,
-        data_entrada: "2023-11-03T14:20:00",
-        data_avaliacao: null
-    },
-    {
-        id: 4,
-        hc_paciente: "HC45678",
-        lista_remedios: JSON.stringify([
-            { id_remedio: 1, dosagem: "750mg", frequencia: "6/6h", via: "Oral" },
-            { id_remedio: 2, dosagem: "600mg", frequencia: "8/8h", via: "Oral" },
-            { id_remedio: 5, dosagem: "40mg", frequencia: "1x ao dia", via: "Oral" }
-        ]),
-        status_prescricao: 3,
-        id_user_aprovacao: 3,
-        data_entrada: "2023-11-04T08:45:00",
-        data_avaliacao: "2023-11-04T10:15:00"
-    },
-    {
-        id: 5,
-        hc_paciente: "HC56789",
-        lista_remedios: JSON.stringify([
-            { id_remedio: 3, dosagem: "30 gotas", frequencia: "6/6h", via: "Oral" },
-            { id_remedio: 4, dosagem: "250mg", frequencia: "12/12h", via: "Oral" }
-        ]),
-        status_prescricao: 2,
-        id_user_aprovacao: 1,
-        data_entrada: "2023-11-05T16:10:00",
-        data_avaliacao: "2023-11-05T17:40:00"
+const prescricoes = [];
+
+async function atualiza_prescricoes() {
+    try {
+        const token = localStorage.getItem('access_token');
+        if (!token) {
+            throw new Error('Token de autenticação não encontrado');
+        }
+        const response = await fetch('http://127.0.0.1:5000/prescricoes/listar', {
+            method: 'GET',
+            headers: { 
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao atualizar medicamentos');
+        }
+
+        const data = await response.json();
+        console.log('Prescrições disponiveis:', data);
+        
+        // Atribui diretamente como array
+        Object.assign(prescricoes, data); // Armazena os dados na variável
+        
+        return data;
+    } catch (error) {
+        console.error('Erro:', error);
+        alert(error.message);
+        throw error; 
     }
-];
+}
 
 // Variáveis para armazenar os filtros ativos
 let filtrosAtivos = {
@@ -105,19 +76,29 @@ let filtrosAtivos = {
     paciente: ""
 };
 
-// Função para inicializar a página quando o DOM estiver carregado
-document.addEventListener('DOMContentLoaded', function() {
-    // A inicialização da barra lateral agora é controlada por menu.js
+async function inicializarPagina() {
+    try {
+        await Promise.all([
+            atualiza_prescricoes()
+        ]);
+        
+        // Carrega os dados na tabela
+        carregarTabelaHistorico();
+        // Carrega os dados para os filtros
+        carregarOpcoesParaFiltros();
+        // Atualiza as tabelas quando chamado
+        atualizarTabelaComFiltros()
     
-    // Carrega os dados na tabela
-    carregarTabelaHistorico();
-    
-    // Carrega os dados para os filtros
-    carregarOpcoesParaFiltros();
-    
-    // Adiciona listeners para os botões
-    setupEventListeners();
-});
+        // Adiciona listeners para os botões
+        setupEventListeners();
+    } catch (error) {
+        console.error('Erro ao inicializar página:', error);
+        alert('Não foi possível carregar os dados');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', inicializarPagina);
+
 
 // Carrega as opções de filtro
 function carregarOpcoesParaFiltros() {

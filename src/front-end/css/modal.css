@@ -160,7 +160,7 @@
     color: #886A08;
 }
 
-.status-avaliada, .status-concluido {
+.status-avaliada, .status-concluido-com-exito {
     background-color: var(--cor-destaque);
     color: var(--cor-escura);
 }
@@ -173,6 +173,10 @@
 .status-revisao {
     background-color: #B39DDB;
     color: #4527A0;
+}
+.status-concluido-com-erros {
+    background-color: #ff2222;
+    color: #ffffff;
 }
 
 /* Estilos para o modal de avaliação de prescrição */
@@ -278,19 +282,23 @@ textarea.form-control {
     margin-left: 15px;
 }
 
+/* Estilos para checkboxes na avaliação e revisão */
 .checkbox-container {
     display: inline-block;
     position: relative;
     width: 24px;
     height: 24px;
+    cursor: pointer;
 }
 
-.custom-checkbox {
+.avaliacao-checkbox,
+.revisao-checkbox {
     position: absolute;
     opacity: 0;
     cursor: pointer;
-    height: 0;
-    width: 0;
+    height: 24px;
+    width: 24px;
+    z-index: 1; /* Importante: garante que o checkbox seja clicável */
 }
 
 .checkmark {
@@ -302,13 +310,11 @@ textarea.form-control {
     background-color: #eee;
     border-radius: 5px;
     transition: all 0.2s;
+    pointer-events: none; /* Permite cliques passar através do checkmark para o checkbox */
 }
 
-.checkbox-container:hover .checkmark {
-    background-color: #ccc;
-}
-
-.custom-checkbox:checked ~ .checkmark {
+.remedio-avaliacao input:checked ~ .checkmark,
+.remedio-revisao input:checked ~ .checkmark {
     background-color: var(--cor-destaque);
 }
 
@@ -318,7 +324,8 @@ textarea.form-control {
     display: none;
 }
 
-.custom-checkbox:checked ~ .checkmark:after {
+.remedio-avaliacao input:checked ~ .checkmark:after,
+.remedio-revisao input:checked ~ .checkmark:after {
     display: block;
 }
 
@@ -496,6 +503,118 @@ textarea.form-control {
     justify-content: flex-end;
     margin-top: 15px;
     gap: 10px;
+}
+
+/* Estilos para remédios na avaliação */
+.remedios-avaliacao {
+    margin-bottom: 20px;
+}
+
+.remedios-avaliacao h4 {
+    margin-bottom: 15px;
+    font-family: 'Glacial Indifference', Arial, sans-serif;
+    color: var(--cor-escura);
+}
+
+/* Estilos para os itens de medicamentos na avaliação */
+.remedio-avaliacao,
+.remedio-revisao {
+    background-color: white;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Estilos para remédios na revisão */
+.revisao-section {
+    margin-top: 20px;
+}
+
+.revisao-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.revisao-title {
+    font-family: 'Glacial Indifference', Arial, sans-serif;
+    font-size: 18px;
+    color: var(--cor-escura);
+}
+
+.remedios-lista {
+    max-height: 350px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #f9f9f9;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* Mensagem de lista vazia */
+.empty-message {
+    text-align: center;
+    padding: 20px;
+    color: #888;
+}
+
+/* Estilo para mensagens vazias nas listas de medicamentos */
+.remedio-item.empty {
+    text-align: center;
+    color: #777;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    font-style: italic;
+}
+
+/* Estilos para observações */
+.observacoes {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    font-size: 14px;
+    border-left: 3px solid var(--cor-base1);
+}
+
+/* Informações do avaliador */
+.avaliador-info {
+    margin: 5px 0 10px;
+    font-size: 14px;
+    color: var(--cor-escura);
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Melhorias nos labels dos checkboxes */
+.checkbox-container {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+/* Melhorias para tornar clickable a área do checkbox */
+.remedio-check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+    z-index: 5; /* Garante que fique acima de outros elementos */
+}
+
+/* Deixa a interação mais clara ao passar o mouse */
+.remedio-check:hover .checkmark {
+    background-color: #ddd;
+    transform: scale(1.05);
+    box-shadow: 0 0 3px rgba(59, 247, 203, 0.5);
 }
 
 /* Responsive styling */

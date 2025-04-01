@@ -65,6 +65,29 @@ function inicializarModais() {
             fecharModal();
         }
     });
+    
+    // Novos botões para progresso do pedido
+    document.getElementById('btn-enviar-revisao').addEventListener('click', function() {
+        if (pedidoAtual) {
+            document.getElementById('modal-pedido').style.display = 'none';
+            abrirModalRevisao(pedidoAtual);
+        }
+    });
+    
+    document.getElementById('btn-confirmar-revisao').addEventListener('click', function() {
+        // Simulação da confirmação de revisão
+        if (pedidoAtual) {
+            concluirPedido(pedidoAtual.id);
+            fecharModal();
+        }
+    });
+    
+    document.getElementById('btn-concluir-pedido').addEventListener('click', function() {
+        if (pedidoAtual) {
+            concluirPedido(pedidoAtual.id);
+            fecharModal();
+        }
+    });
 }
 
 // Função para adicionar event listeners para abrir modais
@@ -192,8 +215,44 @@ function abrirModalAvaliacao(prescricao) {
         </div>
     `;
     
-    // Limpa o campo de observações
-    document.getElementById('observacoes').value = '';
+    // Adiciona os remédios com checkboxes
+    const avaliacaoForm = document.querySelector('.avaliacao-form');
+    const remediosHTML = prescricao.remedios.map((remedio, index) => `
+        <div class="remedio-avaliacao">
+            <div class="remedio-info">
+                <div class="remedio-title">${remedio.nome} ${remedio.dosagem}</div>
+                <div class="info-text">${remedio.via} - Quantidade: ${remedio.quantidade}</div>
+            </div>
+            <div class="remedio-check">
+                <label class="checkbox-container">
+                    <input type="checkbox" class="avaliacao-checkbox" data-index="${index}" checked>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+    `).join('');
+    
+    // Atualiza o conteúdo do formulário
+    avaliacaoForm.innerHTML = `
+        <div class="remedios-avaliacao">
+            <h4>Medicamentos para Avaliação</h4>
+            <div class="remedios-lista">
+                ${remediosHTML}
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="observacoes">Observações (opcional):</label>
+            <textarea id="observacoes" class="form-control" placeholder="Adicione observações sobre esta prescrição..."></textarea>
+        </div>
+    `;
+    
+    // Adiciona event listeners aos checkboxes para garantir que sejam clicáveis
+    document.querySelectorAll('.avaliacao-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('click', function(e) {
+            e.stopPropagation(); // Evita que o clique se propague para elementos pai
+        });
+    });
     
     // Exibe o modal
     document.getElementById('modal-avaliacao').style.display = 'flex';
@@ -261,6 +320,16 @@ function abrirModalPedido(pedido) {
                     <span class="info-label">Data entrada:</span>
                     <span>${pedido.data_entrada}</span>
                 </div>
+                ${pedido.data_inicio_separacao ? `
+                <div class="info-row">
+                    <span class="info-label">Início separação:</span>
+                    <span>${pedido.data_inicio_separacao}</span>
+                </div>` : ''}
+                ${pedido.data_inicio_revisao ? `
+                <div class="info-row">
+                    <span class="info-label">Início revisão:</span>
+                    <span>${pedido.data_inicio_revisao}</span>
+                </div>` : ''}
                 ${pedido.data_finalizacao ? `
                 <div class="info-row">
                     <span class="info-label">Finalizado em:</span>
@@ -280,12 +349,27 @@ function abrirModalPedido(pedido) {
         </div>
     `;
     
-    // Ajusta o botão de separar para estar disponível apenas para pedidos aguardando separação
+    // Configura os botões de ação com base no status atual
     const btnSeparar = document.getElementById('btn-separar-pedido');
-    if (pedido.status_pedido === 1) {
-        btnSeparar.style.display = 'block';
-    } else {
-        btnSeparar.style.display = 'none';
+    const btnRevisar = document.getElementById('btn-enviar-revisao');
+    const btnConcluir = document.getElementById('btn-concluir-pedido');
+    
+    // Esconde todos os botões inicialmente
+    btnSeparar.style.display = 'none';
+    btnRevisar.style.display = 'none';
+    btnConcluir.style.display = 'none';
+    
+    // Mostra apenas o botão relevante para o status atual
+    switch(pedido.status_pedido) {
+        case 1: // Aguardando Separação
+            btnSeparar.style.display = 'block';
+            break;
+        case 2: // Em Separação
+            btnRevisar.style.display = 'block';
+            break;
+        case 3: // Em Revisão
+            btnConcluir.style.display = 'block';
+            break;
     }
     
     // Exibe o modal
@@ -298,18 +382,12 @@ function abrirModalSeparacao(pedido) {
     const conteudoModal = document.getElementById('separacao-detalhes');
     
     let remediosHTML = '';
-    pedido.remedios.forEach((remedio, index) => {
+    pedido.remedios.forEach((remedio) => {
         remediosHTML += `
             <div class="remedio-separacao">
                 <div class="remedio-info">
                     <div class="remedio-title">${remedio.nome} ${remedio.dosagem}</div>
                     <div class="info-text">${remedio.via} - Quantidade: ${remedio.quantidade}</div>
-                </div>
-                <div class="remedio-check">
-                    <label class="checkbox-container">
-                        <input type="checkbox" class="custom-checkbox" data-index="${index}">
-                        <span class="checkmark"></span>
-                    </label>
                 </div>
             </div>
         `;
@@ -332,13 +410,71 @@ function abrirModalSeparacao(pedido) {
                 ${remediosHTML}
             </div>
             <div class="info-text" style="margin-top: 15px;">
-                <i class="fas fa-info-circle"></i> Marque os itens conforme forem separados
+                <i class="fas fa-info-circle"></i> Confirme quando todos os itens estiverem separados
             </div>
         </div>
     `;
     
     // Exibe o modal
     document.getElementById('modal-separacao').style.display = 'flex';
+}
+
+// Nova função para abrir o modal de revisão
+function abrirModalRevisao(pedido) {
+    pedidoAtual = pedido;
+    
+    // Preenche as informações do pedido no modal de revisão
+    const conteudoModal = document.getElementById('revisao-detalhes');
+    
+    let remediosHTML = '';
+    pedido.remedios.forEach((remedio, index) => {
+        remediosHTML += `
+            <div class="remedio-revisao">
+                <div class="remedio-info">
+                    <div class="remedio-title">${remedio.nome} ${remedio.dosagem}</div>
+                    <div class="info-text">${remedio.via} - Quantidade: ${remedio.quantidade}</div>
+                </div>
+                <div class="remedio-check">
+                    <label class="checkbox-container">
+                        <input type="checkbox" class="revisao-checkbox" data-index="${index}" checked>
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+        `;
+    });
+    
+    conteudoModal.innerHTML = `
+        <div class="paciente-detalhes">
+            <h4>Pedido #${pedido.id} - ${pedido.paciente}</h4>
+            <div class="info-row">
+                <span class="info-label">Quarto:</span>
+                <span>${pedido.quarto}</span>
+            </div>
+        </div>
+        
+        <div class="revisao-section">
+            <div class="revisao-header">
+                <div class="revisao-title">Itens para revisão</div>
+            </div>
+            <div class="remedios-lista">
+                ${remediosHTML}
+            </div>
+            <div class="info-text" style="margin-top: 15px;">
+                <i class="fas fa-info-circle"></i> Marque os itens que foram aprovados na revisão
+            </div>
+        </div>
+    `;
+    
+    // Adiciona event listeners aos checkboxes para garantir que sejam clicáveis
+    document.querySelectorAll('.revisao-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('click', function(e) {
+            e.stopPropagation(); // Evita que o clique se propague para elementos pai
+        });
+    });
+    
+    // Exibe o modal
+    document.getElementById('modal-revisao').style.display = 'flex';
 }
 
 // Função para fechar qualquer modal aberto
@@ -370,6 +506,19 @@ function avaliarPrescricao(idPrescricao) {
         // Move a prescrição para a lista de avaliadas
         const prescricaoAvaliada = dadosMockados.prescricoes.aguardandoAvaliacao.splice(index, 1)[0];
         
+        // Filtra os remédios aprovados
+        const checkboxes = document.querySelectorAll('.avaliacao-checkbox');
+        const remediosAprovados = [];
+        
+        checkboxes.forEach((checkbox, idx) => {
+            if (checkbox.checked) {
+                remediosAprovados.push(prescricaoAvaliada.remedios[idx]);
+            }
+        });
+        
+        // Atualiza a lista de remédios da prescrição
+        prescricaoAvaliada.remedios = remediosAprovados.length > 0 ? remediosAprovados : prescricaoAvaliada.remedios;
+        
         // Adiciona informações de avaliação
         prescricaoAvaliada.status_prescricao = 2; // Avaliada
         prescricaoAvaliada.data_avaliacao = new Date().toLocaleString('pt-BR').replace(',', '');
@@ -392,7 +541,7 @@ function avaliarPrescricao(idPrescricao) {
         carregarDadosMockados();
         
         // Adiciona notificação
-        adicionarNotificacao(`Prescrição de ${prescricaoAvaliada.paciente_nome} foi avaliada`, new Date());
+        adicionarNotificacao(`Prescrição de ${prescricaoAvaliada.paciente_nome} foi avaliada por Dr. Roberto Silva`, new Date());
         
         // Feedback visual
         alert(`Prescrição de ${prescricaoAvaliada.paciente_nome} avaliada com sucesso!`);
@@ -426,17 +575,86 @@ function separarPedido(idPedido) {
     }
 }
 
+// Função para enviar um pedido para revisão
+function enviarParaRevisao(idPedido) {
+    // Busca o pedido na lista em separação
+    const index = dadosMockados.pedidos.emSeparacao.findIndex(p => p.id === idPedido);
+    
+    if (index !== -1) {
+        // Move o pedido para a lista de em revisão
+        const pedidoRevisao = dadosMockados.pedidos.emSeparacao.splice(index, 1)[0];
+        
+        // Atualiza o status
+        pedidoRevisao.status_pedido = 3; // Em Revisão
+        pedidoRevisao.data_inicio_revisao = new Date().toLocaleString('pt-BR').replace(',', '');
+        
+        dadosMockados.pedidos.emRevisao.push(pedidoRevisao);
+        
+        // Atualiza a interface
+        atualizarContadores();
+        carregarDadosMockados();
+        
+        // Adiciona notificação
+        adicionarNotificacao(`Pedido #${pedidoRevisao.id} enviado para revisão`, new Date());
+        
+        // Feedback visual
+        alert(`Pedido #${pedidoRevisao.id} enviado para revisão com sucesso!`);
+    }
+}
+
+// Função para concluir um pedido
+function concluirPedido(idPedido) {
+    // Busca o pedido na lista em revisão
+    const index = dadosMockados.pedidos.emRevisao.findIndex(p => p.id === idPedido);
+    
+    if (index !== -1) {
+        // Move o pedido para a lista de concluídos
+        const pedidoConcluido = dadosMockados.pedidos.emRevisao.splice(index, 1)[0];
+        
+        // Filtra os remédios aprovados
+        const checkboxes = document.querySelectorAll('.revisao-checkbox');
+        const remediosAprovados = [];
+        
+        checkboxes.forEach((checkbox, idx) => {
+            if (checkbox.checked) {
+                remediosAprovados.push(pedidoConcluido.remedios[idx]);
+            }
+        });
+        
+        // Atualiza a lista de remédios do pedido
+        pedidoConcluido.remedios = remediosAprovados.length > 0 ? remediosAprovados : pedidoConcluido.remedios;
+        
+        // Atualiza o status
+        pedidoConcluido.status_pedido = 4; // Concluído
+        pedidoConcluido.data_finalizacao = new Date().toLocaleString('pt-BR').replace(',', '');
+        pedidoConcluido.id_user_revisao = 2; // ID do usuário atual (mockado)
+        pedidoConcluido.user_nome = "Farmacêutico Pedro Santos"; // Nome do usuário atual (mockado)
+        
+        dadosMockados.pedidos.concluidos.push(pedidoConcluido);
+        
+        // Atualiza a interface
+        atualizarContadores();
+        carregarDadosMockados();
+        
+        // Adiciona notificação
+        adicionarNotificacao(`Pedido #${pedidoConcluido.id} concluído por Farmacêutico Pedro Santos`, new Date());
+        
+        // Feedback visual
+        alert(`Pedido #${pedidoConcluido.id} concluído com sucesso!`);
+    }
+}
+
 // Função para adicionar um novo pedido a partir de uma prescrição avaliada
 function adicionarPedidoDePrescricao(prescricao) {
     // Verifica se já não existe um pedido para esta prescrição
     const pedidoExistente = encontrarPedidoPorPrescricao(prescricao.id);
     
-    if (!pedidoExistente) {
+    if (!pedidoExistente && prescricao.remedios.length > 0) {
         // Gera um novo ID para o pedido (simulando uma sequência)
         const novoId = Math.max(...Object.values(dadosMockados.pedidos)
             .flatMap(lista => lista.map(p => p.id)), 0) + 1;
         
-        // Cria o novo pedido
+        // Cria o novo pedido com todos os medicamentos aprovados
         const novoPedido = {
             id: novoId,
             id_prescricao: prescricao.id,
@@ -444,7 +662,7 @@ function adicionarPedidoDePrescricao(prescricao) {
             hc_paciente: prescricao.hc_paciente,
             quarto: "Quarto " + Math.floor(Math.random() * 500 + 100), // Quarto aleatório para simulação
             data_entrada: new Date().toLocaleString('pt-BR').replace(',', ''),
-            remedios: prescricao.remedios,
+            remedios: [...prescricao.remedios], // Copia todos os medicamentos aprovados
             status_pedido: 1 // Aguardando Separação
         };
         
@@ -453,7 +671,11 @@ function adicionarPedidoDePrescricao(prescricao) {
         
         // Adiciona notificação
         adicionarNotificacao(`Novo pedido #${novoPedido.id} criado para ${novoPedido.paciente}`, new Date());
+        
+        return novoPedido;
     }
+    
+    return null;
 }
 
 // Função para encontrar um pedido por prescrição

@@ -9,8 +9,8 @@
     <!-- Importando ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Estilos CSS -->
-    <link rel="stylesheet" href="css/css-file.css">
-    <link rel="stylesheet" href="css/estoque-css.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/css-file.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estoque-css.css') }}">
 </head>
 <body>
     <!-- Barra lateral de navegação -->
@@ -19,15 +19,15 @@
             <i class="fas fa-bars"></i>
         </div>
         <div class="menu-items">
-            <a href="home-page.html" class="menu-item">
+            <a href="/home" class="menu-item">
                 <i class="fas fa-home"></i>
                 <span class="menu-text">Home</span>
             </a>
-            <a href="estoque.html" class="menu-item active">
+            <a href="/estoque" class="menu-item">
                 <i class="fas fa-pills"></i>
                 <span class="menu-text">Estoque</span>
             </a>
-            <a href="historico.html" class="menu-item">
+            <a href="/historico" class="menu-item active">
                 <i class="fas fa-search"></i>
                 <span class="menu-text">Histórico</span>
             </a>
@@ -45,7 +45,7 @@
                 <div class="action-buttons">
                     <button class="btn btn-cadastrar" id="btnCadastrarLote">Cadastrar Lote</button>
                     <button class="btn btn-cadastrar" id="btnCadastrarMedicamento">Cadastrar Medicamento</button>
-                    <button class="btn btn-retirar" id="btnRetirarMedicamento">Retirar Medicamento</button>
+                    <button class="btn btn-retirar" id="btnRetirarMedicamento">Excluir Lote</button>
                 </div>
                 
                 <!-- Barra de pesquisa e filtros -->
@@ -108,6 +108,10 @@
                         <label for="quantidadeLote">Quantidade:</label>
                         <input type="number" id="quantidadeLote" min="1" required>
                     </div>
+                    <div class="form-group">
+                        <label for="bin_qrcode">QRCode:</label>
+                        <input type="text" id="bin_qrcode" required>
+                    </div>
                     <div class="form-buttons">
                         <button type="button" class="btn btn-cancelar" id="cancelarCadastroLote">Cancelar</button>
                         <button type="submit" class="btn btn-confirmar">Confirmar</button>
@@ -160,10 +164,6 @@
                             <!-- Opções serão inseridas via JavaScript -->
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="quantidadeRetirar">Quantidade:</label>
-                        <input type="number" id="quantidadeRetirar" min="1" required>
-                    </div>
                     <div class="form-buttons">
                         <button type="button" class="btn btn-cancelar" id="cancelarRetiradaMedicamento">Cancelar</button>
                         <button type="submit" class="btn btn-confirmar">Confirmar</button>
@@ -192,6 +192,7 @@
                         <p><strong>Data de Validade:</strong> <span id="viewDataValidade"></span></p>
                         <p><strong>Fabricante:</strong> <span id="viewFabricante"></span></p>
                         <p><strong>Quantidade:</strong> <span id="viewQuantidade"></span></p>
+                        <p><strong>QrCode:</strong> <span id="viewQrcode"></span></p>
                     </div>
                 </div>
             </div>
@@ -259,7 +260,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="js/menu.js"></script>
-    <script src="js/estoque-js.js"></script>
+    <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/estoque-js.js') }}"></script>
 </body>
 </html>

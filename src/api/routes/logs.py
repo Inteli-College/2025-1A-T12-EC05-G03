@@ -11,7 +11,7 @@ def cadastrar_log():
 
     newLog = Log(
         id_pedido = data['id_pedido'],
-        id_remedio_em_separacao = data['id_remedio_em_separacao'],
+        id_remedio_em_separacao = int(data['id_remedio_em_separacao']),
         codigo_log = data['codigo_log'],
         hora_log = datetime.now()
     )

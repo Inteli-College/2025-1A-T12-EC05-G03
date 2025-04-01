@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tela de Login</title>
     <!-- Importação do arquivo CSS externo -->
-    <link rel="stylesheet" href="css/styles-login.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles-login.css') }}">
     <!-- configuração garante que o navegador sempre carregue a versão mais recente do site, evitando que o desenvolvedor veja uma versão antiga por conta do cache. -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 </head>
 <body>
     <!-- Container da logo -->
-    <div class="logo-container">
-        <img src="../../media/Logos_GuiaDeEstilos/svgs logos/logo_escura_COMnome.svg" alt="Logo NDC" class="logo">
+    <div class="logo-container"> 
+        <img src="{{ url_for('media', filename='Logos_GuiaDeEstilos/svgs logos/logo_escura_COMnome.svg') }}" alt="Logo NDC" class="logo">
     </div>
     
     <!-- Container principal do login -->
@@ -55,7 +55,7 @@
         const btnCadastro = document.getElementById('btnCadastro');
         
         // Função para simular o login
-        function simularLogin(event) {
+        function login(event) {
             // Previne comportamento padrão do form
             event.preventDefault();
             
@@ -65,11 +65,24 @@
             
             // Validação básica
             if (email && senha) {
-                // Normalmente aqui você faria uma requisição para o backend
-                // Como é mockado, apenas logamos no console e mostramos um alerta
-                console.log('Tentativa de login:', { email });
-                alert('Login simulado com sucesso! Em uma versão final, você seria redirecionado.');
-                
+                fetch('https://two025-1a-t12-ec05-g03.onrender.com/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, senha })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.access_token) {  
+                        localStorage.setItem('access_token', data.access_token);  // Armazena o token no localStorage
+                        window.location.href = "/home";  // Redireciona para a rota /home após o login
+                    } else {
+                        alert(data.error || "Erro desconhecido");
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    alert('Erro na requisição. Tente novamente.');
+                });                
                 // Limpa o formulário após "login"
                 loginForm.reset();
             } else {
@@ -80,11 +93,11 @@
         // Função para redirecionar para a página de cadastro
         function redirecionarParaCadastro() {
             console.log('Redirecionando para página de cadastro...');
-            window.location.href = "cadastro.html";
+            window.location.href = "/cadastro";  // Redireciona para a rota /cadastro
         }
         
         // Adiciona event listeners
-        loginForm.addEventListener('submit', simularLogin);
+        loginForm.addEventListener('submit', login);
         btnCadastro.addEventListener('click', redirecionarParaCadastro);
     </script>
 </body>
