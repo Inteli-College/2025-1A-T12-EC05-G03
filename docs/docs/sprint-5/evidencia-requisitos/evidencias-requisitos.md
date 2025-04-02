@@ -45,7 +45,7 @@ custom_edit_url: null
 | **RNF05** | Compatibilidade com plataformas diversas | O sistema funciona em ambientes Windows e Linux, com suporte a navegadores como Chrome e Edge. |
 | **RNF06** | Atualizações sem interromper operação | A arquitetura permite alterações nos scripts sem afetar o funcionamento global do sistema. |
 | **RNF07** | Integridade e rastreabilidade de dados | Todos os eventos são registrados em arquivos de log, garantindo rastreabilidade total do histórico de montagem. |
-| **RNF08** | Operação em ambiente hospitalar | Não foi possível testar a solução em ambiente hospitalar |
+| **RNF08** | Operação em ambiente hospitalar | Não foi possível testar a solução em ambiente hospitalar. |
 | **RNF09** | Resposta inferior a 2s em ações críticas | A validação de medicamentos e comandos robóticos são processados com tempo de resposta inferior a 2 segundos. |
 
 ## Conclusão
