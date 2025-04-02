@@ -9,7 +9,9 @@ custom_edit_url: null
 
 &emsp;Durante o desenvolvimento do sistema automatizado de separação e montagem da Fita de Medicamentos para o Hospital de Clínicas da UNICAMP, um dos principais pilares foi garantir que todos os requisitos funcionais e não funcionais previamente definidos fossem contemplados de forma prática e mensurável. Esta documentação tem como objetivo apresentar, de maneira clara e objetiva, as **evidências de que tais requisitos foram considerados, implementados e validados** na entrega da solução desenvolvida.
 
-&emsp;O alinhamento entre requisitos e entregas é essencial para assegurar não apenas o sucesso técnico do projeto, mas também a sua aplicabilidade real no ambiente hospitalar, especialmente considerando os aspectos críticos de **segurança, rastreabilidade, eficiência operacional e integração com processos médicos**.
+&emsp;O alinhamento entre requisitos e entregas é essencial para assegurar não apenas o sucesso técnico do projeto, mas também a sua aplicabilidade real no ambiente hospitalar, especialmente considerando os aspectos críticos de **segurança, rastreabilidade, eficiência operacional e integração com processos médicos**. 
+
+&emsp;Dessa forma, após a realização dos testes de usabilidade, foi possível avaliar na prática a eficácia da nossa solução em atender aos requisitos definidos. A partir desses testes, coletamos evidências que nos ajudou a chegar nas seguintes conclusões:
 
 
 ## Requisitos Funcionais
@@ -43,7 +45,7 @@ custom_edit_url: null
 | **RNF05** | Compatibilidade com plataformas diversas | O sistema funciona em ambientes Windows e Linux, com suporte a navegadores como Chrome e Edge. |
 | **RNF06** | Atualizações sem interromper operação | A arquitetura permite alterações nos scripts sem afetar o funcionamento global do sistema. |
 | **RNF07** | Integridade e rastreabilidade de dados | Todos os eventos são registrados em arquivos de log, garantindo rastreabilidade total do histórico de montagem. |
-| **RNF08** | Operação em ambiente hospitalar | A solução foi testada em ambiente com restrição de espaço e simula condições compatíveis com o hospital. |
+| **RNF08** | Operação em ambiente hospitalar | Não foi possível testar a solução em ambiente hospitalar |
 | **RNF09** | Resposta inferior a 2s em ações críticas | A validação de medicamentos e comandos robóticos são processados com tempo de resposta inferior a 2 segundos. |
 
 ## Conclusão
