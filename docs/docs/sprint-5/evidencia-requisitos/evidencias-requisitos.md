@@ -46,4 +46,10 @@ custom_edit_url: null
 | **RNF08** | Operação em ambiente hospitalar | A solução foi testada em ambiente com restrição de espaço e simula condições compatíveis com o hospital. |
 | **RNF09** | Resposta inferior a 2s em ações críticas | A validação de medicamentos e comandos robóticos são processados com tempo de resposta inferior a 2 segundos. |
 
+## Conclusão
 
+&emsp;A aderência aos requisitos definidos no início do projeto foi fundamental para garantir que a solução desenvolvida não apenas funcionasse tecnicamente, mas atendesse de forma eficaz às necessidades reais do ambiente hospitalar. 
+
+&emsp;Os requisitos funcionais asseguraram que o sistema oferecesse automatização segura, rastreável e validada da montagem das fitas, enquanto os requisitos não funcionais garantiram desempenho, confiabilidade, segurança e adaptabilidade em contexto médico real.
+
+&emsp;Essas evidências demonstram que a solução entregue está em conformidade com o escopo planejado e preparada para evoluir rumo à integração total no fluxo hospitalar, promovendo eficiência, economia de tempo e maior segurança no tratamento dos pacientes.
