@@ -32,3 +32,18 @@ custom_edit_url: null
 | **RF14** | Relatórios sobre precisão e eficiência | O time extraiu manualmente informações dos logs para avaliar taxa de acertos, falhas e tempo médio de montagem, mas não desenvolveu relatórios automáticos. |
 
 
+## Requisitos Não Funcionais
+
+| **RNF#** | **Descrição** | **Evidência de Atendimento** |
+|---------|---------------|------------------------------|
+| **RNF01** | Alta disponibilidade (< 0,1% downtime) | A solução operou de forma estável e contínua durante os testes, sem travamentos ou falhas. |
+| **RNF02** | Processamento eficiente de prescrições | A montagem completa de uma fita ocorre em menos de 1 minuto, validando a eficiência esperada. |
+| **RNF03** | Interface intuitiva e acessível | A interface fornece comandos simples e mensagens claras ao operador; o desenvolvimento de uma interface gráfica está em planejamento. |
+| **RNF04** | Segurança e conformidade (LGPD/HIPAA) | A aplicação é executada localmente, sem exposição externa. Há planejamento para autenticação e controle de acessos em versões futuras. |
+| **RNF05** | Compatibilidade com plataformas diversas | O sistema funciona em ambientes Windows e Linux, com suporte a navegadores como Chrome e Edge. |
+| **RNF06** | Atualizações sem interromper operação | A arquitetura permite alterações nos scripts sem afetar o funcionamento global do sistema. |
+| **RNF07** | Integridade e rastreabilidade de dados | Todos os eventos são registrados em arquivos de log, garantindo rastreabilidade total do histórico de montagem. |
+| **RNF08** | Operação em ambiente hospitalar | A solução foi testada em ambiente com restrição de espaço e simula condições compatíveis com o hospital. |
+| **RNF09** | Resposta inferior a 2s em ações críticas | A validação de medicamentos e comandos robóticos são processados com tempo de resposta inferior a 2 segundos. |
+
+
