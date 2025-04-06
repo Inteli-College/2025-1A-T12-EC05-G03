@@ -79,43 +79,13 @@ def aprovar_prescricao(prescricao_id):
         prescricao.id_aprovador = get_jwt_identity()
         db.session.commit()
         return jsonify({'message': 'Prescrição atualizada para status 4'}), 200
-
-    # # Busca todos os remédios da prescrição em uma única query
-    # lotes_que_possuem_o_remedio = Lote.query.filter(Lote.id.in_(lista_remedios)).all()
-    # remedios_dict = {remedio.id: remedio for remedio in remedios}
-
-    # # Lista para armazenar os lotes selecionados
-    # lotes_utilizados = []
-
-    # for id_remedio in lista_remedios:
-    #     remedio = remedios_dict.get(id_remedio)
-
-    #     # Verifica se o remédio existe
-    #     if not remedio:
-    #         return jsonify({'erro': f'Remédio ID {id_remedio} não existe'}), 400
-
-    #     # Verifica se há estoque
-    #     if remedio.quantidade <= 0:
-    #         return jsonify({'erro': f'Remédio ID {id_remedio} não possui estoque'}), 400
-
-    #     # Busca o lote mais próximo de vencer para esse remédio
-    #     lote = Lote.query.filter(
-    #         Lote.id_remedio == id_remedio,
-    #         Lote.data_validade > datetime.utcnow()
-    #     ).order_by(Lote.data_validade.asc()).first()
-
-    #     if not lote:
-    #         return jsonify({'erro': f'Nenhum lote válido encontrado para o remédio {id_remedio}'}), 400
-
-    #     # Reduz a quantidade no lote e adiciona ao registro de lotes utilizados
-    #     lote.quantidade -= 1
-    #     lotes_utilizados.append({'id_remedio': id_remedio, 'lote': lote.id, 'validade': lote.data_validade, 'bin_qrcode' : lote.bin_qrcode})
         
     lotes_utilizados = []
     for id_remedio in lista_remedios:
         lote_usado = Lote.query.filter_by(id_remedio=id_remedio) \
-                     .order_by(Lote.data_validade) \
-                     .first() 
+                       .filter(Lote.quantidade > 0) \
+                       .order_by(Lote.data_validade) \
+                       .first()
         if not lote_usado:
             return jsonify({'error': f'O Remédio com id {id_remedio} não possue mais lote'}), 404
         
