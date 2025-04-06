@@ -355,7 +355,6 @@ function cadastrarLote(event) {
 
   // Cria o novo lote
   const novoLote = {
-    id: nextLoteId++,
     num_lote: numLote,
     data_validade: dataValidade,
     fabricante: fabricante,
@@ -403,17 +402,28 @@ function cadastrarLote(event) {
     }),
   })
     .then((response) => {
+      if (response.status === 404) {
+        return response.json().then((data) => {
+          throw new Error("Data de validade inválida");        
+        });
+      }
+      if (!response.ok) {
+        return response.json().then((data) => {
+          throw new Error(data.error || "Erro desconhecido");
+        });
+      }
       alert("Medicamento cadastrado com sucesso");
-      // Redireciona para a página de estoque
       setTimeout(function () {
         window.location.href = "/estoque";
       }, 500);
-      return response.json(); // Continuar com o processamento normal da resposta se não for 422
+  
+      return response.json();
     })
     .catch((error) => {
       console.error("Erro:", error);
-      alert(error);
+      alert(`Erro: ${error.message}`);
     });
+  
 }
 
 // Função para cadastrar um novo medicamento
