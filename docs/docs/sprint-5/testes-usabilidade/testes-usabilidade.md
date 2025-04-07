@@ -9,26 +9,26 @@ custom_edit_url: null
 
 ## 🧭 Introdução
 
-No dia 27 de março de 2025, realizamos um teste de usabilidade com a nossa solução para montagem automatizada da Fita de Medicamentos, desenvolvida para o Hospital de Clínicas da UNICAMP. O objetivo foi entender como as pessoas interagem com o sistema, o que funciona bem e o que pode ser melhorado. Ao longo da atividade, observamos atentamente as reações e feedbacks dos participantes para avaliar a clareza, fluidez e segurança da experiência.
+&emsp;No dia 27 de março de 2025, realizamos um teste de usabilidade com a nossa solução para montagem automatizada da Fita de Medicamentos, desenvolvida para o Hospital de Clínicas da UNICAMP. O objetivo foi entender como as pessoas interagem com o sistema, o que funciona bem e o que pode ser melhorado. Ao longo da atividade, observamos atentamente as reações e feedbacks dos participantes para avaliar a clareza, fluidez e segurança da experiência.
 
 ## 🔎 Contexto dos Testes
 
-Os testes aconteceram entre 14h e 18h, durante e após a aula de **Testes de Usuários e Testes de Usabilidade**, no Ateliê 10 e no LAB do Inteli. A aplicação da atividade foi acompanhada pelo professor **Guilherme Henrique de Oliveira Cestari** e realizada com membros da turma e convidados. Cada pessoa foi orientada a seguir o fluxo completo da solução, desde o início da montagem da fita até o momento da entrega do medicamento.
+&emsp;Os testes aconteceram entre 14h e 18h, durante e após a aula de **Testes de Usuários e Testes de Usabilidade**, no Ateliê 10 e no LAB do Inteli. A aplicação da atividade foi acompanhada pelo professor **Guilherme Henrique de Oliveira Cestari** e realizada com membros da turma e convidados. Cada pessoa foi orientada a seguir o fluxo completo da solução, desde o início da montagem da fita até o momento da entrega do medicamento.
 
-Durante a preparação do teste, **os requisitos funcionais e não funcionais do projeto serviram como referência direta para estruturar os passos a serem avaliados**. Cada etapa testada foi escolhida com o objetivo de **validar, na prática, se o sistema estava atendendo às funcionalidades previstas**, como a criação de medicamentos, leitura de QR Code, movimentação do robô e registro dos processos. Essa abordagem garantiu que o momento de testagem funcionasse também como uma forma de evidência da entrega dos requisitos.
+&emsp;Durante a preparação do teste, **os requisitos funcionais e não funcionais do projeto serviram como referência direta para estruturar os passos a serem avaliados**. Cada etapa testada foi escolhida com o objetivo de **validar, na prática, se o sistema estava atendendo às funcionalidades previstas**, como a criação de medicamentos, leitura de QR Code, movimentação do robô e registro dos processos. Essa abordagem garantiu que o momento de testagem funcionasse também como uma forma de evidência da entrega dos requisitos.
 
 ## 🧪 Metodologia
-Os testes foram conduzidos com uma abordagem observacional e participativa, utilizando como base os requisitos definidos no início do projeto. Cada participante realizou um conjunto de tarefas guiadas, simulando o uso real da solução no ambiente hospitalar. A equipe responsável observou cada interação, registrando o desempenho dos usuários, o tempo de execução e suas reações durante o processo. Ao final de cada teste, foi aplicado um questionário com perguntas abertas para captar percepções sobre clareza, confiança, compreensão e facilidade de uso.
+&emsp;Os testes foram conduzidos com uma abordagem observacional e participativa, utilizando como base os requisitos definidos no início do projeto. Cada participante realizou um conjunto de tarefas guiadas, simulando o uso real da solução no ambiente hospitalar. A equipe responsável observou cada interação, registrando o desempenho dos usuários, o tempo de execução e suas reações durante o processo. Ao final de cada teste, foi aplicado um questionário com perguntas abertas para captar percepções sobre clareza, confiança, compreensão e facilidade de uso.
 
-Essa metodologia permitiu avaliar tanto a funcionalidade técnica quanto a experiência do usuário, garantindo uma visão completa do desempenho da solução sob uso realista.
+&emsp;Essa metodologia permitiu avaliar tanto a funcionalidade técnica quanto a experiência do usuário, garantindo uma visão completa do desempenho da solução sob uso realista.
 
 ## 👥 Perfil do Público
 
-O público participante foi formado por integrantes do **corpo discente e docente do Inteli**, incluindo pessoas com diferentes níveis de familiaridade com a solução, o que permitiu uma análise mais rica e realista da experiência.
+&emsp;O público participante foi formado por integrantes do **corpo discente e docente do Inteli**, incluindo pessoas com diferentes níveis de familiaridade com a solução, o que permitiu uma análise mais rica e realista da experiência.
 
 **Participantes dos testes:**
 - Murilo Couto  
-- André Goboi  
+- André Godoi  
 - Mariana de Paula  
 - Laura Rodrigues  
 
@@ -111,19 +111,19 @@ O público participante foi formado por integrantes do **corpo discente e docent
 - Repetir os testes após as melhorias visuais, para comparar a evolução da experiência.
 - Avaliar a solução com **usuários que nunca tiveram contato com a tecnologia**, testando a acessibilidade e aprendizado da interface.
 
-## 🎥 Teste com o Professor (André Goboi)
+## 🎥 Teste com o Professor (André Godoi)
 
-Durante os testes realizados com os usuários, gravamos um vídeo completo da execução do processo com o professor **André Goboi**. A gravação mostra o fluxo completo da solução — desde a criação da prescrição até o momento em que o robô coleta e posiciona o medicamento corretamente.
+&emsp;Durante os testes realizados, foi possível registrar em vídeo **a etapa final do processo de montagem da Fita de Medicamentos**, conduzida com o professor **André Godoi**. O trecho capturado demonstra o momento em que uma prescrição é aprovada e o robô inicia automaticamente a coleta e a entrega do medicamento correspondente.
 
-Esse vídeo representa uma evidência prática de que a solução funciona de ponta a ponta e pode ser usado como material de apoio, demonstração ou treinamento.
+&emsp;Apesar de não termos documentado todas as etapas em vídeo, essa gravação reforça de forma visual e prática que o sistema responde corretamente aos comandos e é capaz de realizar, de forma autônoma e precisa, as ações previstas após a validação médica. O material pode ser utilizado como evidência funcional e como apoio para apresentação da solução.
 
-🔗 **Acesse o vídeo aqui:** [inserir link do vídeo no Drive/YouTube]
+🔗 **Acesse o vídeo aqui:** [Vídeo - Testando Etapa Final com André Godoi](https://drive.google.com/file/d/1HyCYsyUse4y5mHrZxYKszLepPJGYlk-m/view?usp=sharing)
 
 ## ✅ Conclusão
 
-Os testes de usabilidade permitiram validar, com clareza e segurança, que nossa solução está no caminho certo. Mais do que confirmar o funcionamento técnico, essa atividade nos deu a chance de enxergar **a experiência do ponto de vista do usuário**. Utilizando os requisitos como guia, estruturamos as avaliações e conseguimos comprovar que as funcionalidades principais foram entregues com sucesso.
+&emsp;Os testes de usabilidade permitiram validar, com clareza e segurança, que nossa solução está no caminho certo. Mais do que confirmar o funcionamento técnico, essa atividade nos deu a chance de enxergar **a experiência do ponto de vista do usuário**. Utilizando os requisitos como guia, estruturamos as avaliações e conseguimos comprovar que as funcionalidades principais foram entregues com sucesso.
 
-O envolvimento de diferentes perfis nos testes — incluindo alunos e professor — contribuiu com percepções valiosas sobre acessibilidade, clareza e confiança. A partir desses feedbacks, já temos um caminho claro para evoluir a solução, torná-la mais acessível e continuar desenvolvendo com foco no uso real em ambientes hospitalares.
+&emsp;O envolvimento de diferentes perfis nos testes — incluindo alunos e professor — contribuiu com percepções valiosas sobre acessibilidade, clareza e confiança. A partir desses feedbacks, já temos um caminho claro para evoluir a solução, torná-la mais acessível e continuar desenvolvendo com foco no uso real em ambientes hospitalares.
 
 ---
 
