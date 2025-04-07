@@ -32,3 +32,18 @@ O público participante foi formado por integrantes do **corpo discente e docent
 - Mariana de Paula  
 - Laura Rodrigues  
 
+## 🧷 Parâmetros de Aplicação
+
+- Cada participante passou por todas as etapas do processo de montagem da fita, com acompanhamento da equipe.
+- Observamos o tempo de execução, a reação durante cada etapa e os comentários espontâneos.
+- Ao final, fizemos perguntas abertas sobre como cada um se sentiu usando a solução.
+
+## 🎯 Focos de Avaliação
+
+- Facilidade de compreensão do processo  
+- Clareza das informações apresentadas  
+- Segurança percebida durante o uso  
+- Tempo e fluidez da execução  
+- Satisfação geral com a experiência  
+
+
