@@ -56,7 +56,7 @@ def listar_por_id(prescricao_id):
 
     return jsonify({
         "prescricao": prescricao.as_front(),
-        "remedios": [remedio.as_dict() for remedio in remedios]  # Corrigido para singular
+        "remedios": [remedio.as_dict() for remedio in remedios]  
     }), 200
 
 
@@ -71,12 +71,17 @@ def aprovar_prescricao(prescricao_id):
     # Verifica se foi enviada uma nova lista de remédios na requisição
     lista_remedios = data.get('lista_remedios', [])
 
-    # Atualiza o status da prescrição
+    # Busca o usuário que está logado
     prescricao.status_prescricao = data['status_prescricao']
+    email = get_jwt_identity()
+    user = User.query.filter_by(email=email).first()
+    if not user:
+        return jsonify({"error": 'Usuário deslogado, logue novamente para conseguir aprovar a prescricao'}), 404
 
+    # Atualiza o status da prescrição
     if prescricao.status_prescricao == 4:
         prescricao.data_avaliacao = datetime.now()
-        prescricao.id_aprovador = get_jwt_identity()
+        prescricao.id_user_aprovacao = user.id
         db.session.commit()
         return jsonify({'message': 'Prescrição atualizada para status 4'}), 200
         
@@ -104,7 +109,8 @@ def aprovar_prescricao(prescricao_id):
 
     # Atualiza a data de avaliação e o aprovador
     prescricao.data_avaliacao = datetime.now()
-    prescricao.id_aprovador = get_jwt_identity()
+    prescricao.id_user_aprovacao = user.id
+
 
     # Salva todas as alterações no banco
     db.session.commit()
