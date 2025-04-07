@@ -46,4 +46,20 @@ O público participante foi formado por integrantes do **corpo discente e docent
 - Tempo e fluidez da execução  
 - Satisfação geral com a experiência  
 
+## 📋 Tabela de Etapas e Avaliação dos Participantes
+
+| Etapa Avaliada                      | Murilo | André | Mariana | Laura |
+|-------------------------------------|--------|--------|---------|--------|
+| Criação de um medicamento           | 5      | 4      | 5       | 4      |
+| Criação de um lote para o remédio   | 5      | 4      | 5       | 4      |
+| Criação de uma prescrição           | 5      | 5      | 4       | 4      |
+| Edição da prescrição                | 5      | 4      | 4       | 3      |
+| Aprovação da prescrição             | 5      | 5      | 4       | 4      |
+| O robô coletou o remédio correto?   | 4      | 5      | 5       | 4      |
+| O robô colocou no lugar correto?    | 5      | 5      | 5       | 5      |
+| Tempo e fluidez do processo         | 5      | 5      | 5       | 4      |
+| Clareza das mensagens               | 4      | 4      | 3       | 3      |
+| Facilidade de uso geral             | 5      | 5      | 4       | 4      |
+
+> Notas de 1 (ruim) a 5 (excelente).
 
