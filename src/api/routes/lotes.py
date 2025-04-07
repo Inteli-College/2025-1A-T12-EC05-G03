@@ -13,7 +13,11 @@ lote_bp = Blueprint('lotes', __name__, url_prefix='/lotes')
 def cadastrar_lote():
     data = request.get_json()
 
-    validade = datetime.strptime(data['data_validade'], "%Y-%m-%d")
+    validade = datetime.strptime(data['data_validade'], "%Y-%m-%d").date()
+    data_atual = datetime.now().date()
+
+    if validade <= data_atual:
+        return jsonify({'error': 'Data de validade inválida'}), 404
 
     newLote = Lote(
         num_lote = data['num_lote'],
