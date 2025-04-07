@@ -63,3 +63,23 @@ O público participante foi formado por integrantes do **corpo discente e docent
 
 > Notas de 1 (ruim) a 5 (excelente).
 
+## 💬 Perguntas e Respostas dos Participantes
+
+**🗨️ Como foi a experiência geral com o sistema?**  
+- *Murilo:* “Seria algo que eu veria funcionando em hospital, parece confiável.”  
+- *André:* “Achei o processo muito direto, funcionou bem.”  
+- *Mariana:* “Gostei, mas algumas mensagens poderiam ser mais claras.”  
+- *Laura:* “Consegui entender tudo, mas no começo fiquei um pouco perdida.”
+
+**🗨️ Alguma parte do processo foi confusa?**  
+- *Murilo:* “Só fiquei em dúvida uma vez sobre a ordem das etapas.”  
+- *Mariana:* “Na parte de editar a prescrição, poderia avisar melhor quando está certo.”  
+- *Laura:* “As mensagens são meio técnicas, talvez faltem instruções visuais.”
+- *André:* “As mensagens da interface poderiam ser mais técnicas.” 
+
+**🗨️ Você confiaria nessa solução em um ambiente hospitalar?**  
+- *Murilo:* “Sim, principalmente pela precisão do robô.”  
+- *Mariana:* “Com alguns ajustes na interface, com certeza.”  
+- *Laura:* “Sim, parece seguro.”
+- *André:* “Sim, após refinamento.” 
+
