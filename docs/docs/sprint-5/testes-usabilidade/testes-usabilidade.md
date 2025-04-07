@@ -83,3 +83,11 @@ O público participante foi formado por integrantes do **corpo discente e docent
 - *Laura:* “Sim, parece seguro.”
 - *André:* “Sim, após refinamento.” 
 
+## 🚧 Problemas Detectados e Resultados Obtidos
+
+- **Mensagens pouco acessíveis:** Usuários menos familiarizados sentiram dificuldade para interpretar os textos da interface.
+- **Falta de orientação visual:** Algumas etapas poderiam ser melhor guiadas com sinais ou instruções mais claras.
+- **Feedback pouco evidente:** A confirmação de leitura ou erro não está destacada, o que gerou insegurança em alguns momentos.
+- **Boa aceitação geral:** Todos os participantes consideraram a solução prática e com potencial real de uso hospitalar.
+- **Execução eficiente:** A montagem foi considerada rápida e objetiva por todos, com média abaixo de 1 minuto por fita.
+
