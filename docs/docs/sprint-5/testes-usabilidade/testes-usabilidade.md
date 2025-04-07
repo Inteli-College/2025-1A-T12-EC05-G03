@@ -91,3 +91,23 @@ O público participante foi formado por integrantes do **corpo discente e docent
 - **Boa aceitação geral:** Todos os participantes consideraram a solução prática e com potencial real de uso hospitalar.
 - **Execução eficiente:** A montagem foi considerada rápida e objetiva por todos, com média abaixo de 1 minuto por fita.
 
+## 🔜 Próximos Passos
+
+### 💻 Melhorias na Interface
+
+- Desenvolver um **painel visual** que indique o progresso da montagem, os dados lidos e o status atual.
+- **Simplificar os textos** apresentados ao usuário, com linguagem acessível e objetiva.
+- Adicionar **instruções básicas visuais** no início do processo para orientar os usuários passo a passo.
+
+### 🧠 Aprimoramento Técnico
+
+- Criar **alertas visuais ou sonoros** para confirmar ações como leitura válida de QR Code e finalização de montagem.
+- Organizar os **logs de operação em resumos por etapa**, facilitando a compreensão dos resultados por qualquer usuário.
+- Incluir **validações mais visíveis** durante edições de prescrição ou etapas manuais, com mensagens positivas quando tudo estiver correto.
+
+### 🔁 Testes Adicionais
+
+- Aplicar novos testes com **profissionais da saúde**, simulando um uso real do sistema hospitalar.
+- Repetir os testes após as melhorias visuais, para comparar a evolução da experiência.
+- Avaliar a solução com **usuários que nunca tiveram contato com a tecnologia**, testando a acessibilidade e aprendizado da interface.
+
