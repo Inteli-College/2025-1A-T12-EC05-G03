@@ -124,3 +124,9 @@ Esse vídeo representa uma evidência prática de que a solução funciona de po
 Os testes de usabilidade permitiram validar, com clareza e segurança, que nossa solução está no caminho certo. Mais do que confirmar o funcionamento técnico, essa atividade nos deu a chance de enxergar **a experiência do ponto de vista do usuário**. Utilizando os requisitos como guia, estruturamos as avaliações e conseguimos comprovar que as funcionalidades principais foram entregues com sucesso.
 
 O envolvimento de diferentes perfis nos testes — incluindo alunos e professor — contribuiu com percepções valiosas sobre acessibilidade, clareza e confiança. A partir desses feedbacks, já temos um caminho claro para evoluir a solução, torná-la mais acessível e continuar desenvolvendo com foco no uso real em ambientes hospitalares.
+
+---
+
+## Bibliografia
+- FERREIRA, Kátia Gomes; DE CURSO, Monografia de Final; DA SILVA, Clarindo Isaías Pereira. Teste de usabilidade. Monografia de Final de Curso: Especialização em Informática, Universidade de Minas Gerais. Belo Horizonte, Brasil, 2002.
+- GRESSE VON WANGENHEIM, Christiane et al. Sure: uma proposta de questionário e escala para avaliar a usabilidade de aplicações para smartphones pós-teste de usabilidade. 2014.
