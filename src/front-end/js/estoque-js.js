@@ -25,9 +25,6 @@ async function atualiza_remedios() {
     // Atribui diretamente como array
     Object.assign(medicamentos, data); // Armazena os dados na variável
 
-    // Chama a função para carregar selects após atualizar
-    carregarMedicamentosSelect();
-
     return data;
   } catch (error) {
     console.error("Erro:", error);
@@ -36,7 +33,6 @@ async function atualiza_remedios() {
   }
 }
 
-const medicamentos = [];
 
 async function atualiza_lotes() {
   try {
@@ -65,10 +61,6 @@ async function atualiza_lotes() {
     // Atribui diretamente como array
     Object.assign(lotes, data); // Armazena os dados na variável
 
-    // Atualiza a tabela e filtros após carregar os lotes
-    atualizarTabelaComFiltros();
-    carregarOpcoesParaFiltros();
-
     return data;
   } catch (error) {
     console.error("Erro:", error);
@@ -81,10 +73,11 @@ async function inicializarPagina() {
   try {
     await Promise.all([atualiza_remedios(), atualiza_lotes()]);
 
-    carregarTabelaEstoque();
     carregarMedicamentosSelect();
     carregarOpcoesParaFiltros();
     setupEventListeners();
+    atualizarTabelaComFiltros();
+    carregarOpcoesParaFiltros();
   } catch (error) {
     console.error("Erro ao inicializar página:", error);
     alert("Não foi possível carregar os dados");
@@ -94,6 +87,7 @@ async function inicializarPagina() {
 document.addEventListener("DOMContentLoaded", inicializarPagina);
 
 // Array de lotes (simula a tabela 'lote')
+const medicamentos = [];
 let lotes = [];
 
 // Variáveis para armazenar os filtros ativos
@@ -105,11 +99,6 @@ let filtrosAtivos = {
   mostrarVencidos: false,
   proximosVencer: false,
 };
-
-// Carrega a tabela de estoque com os dados mockados
-function carregarTabelaEstoque() {
-  atualiza_lotes();
-}
 
 // Carrega os medicamentos nos selects dos formulários
 function carregarMedicamentosSelect() {
@@ -325,6 +314,7 @@ function abrirModalVisualizarMedicamento(loteId) {
     // Preenche os campos do modal
     document.getElementById('medicamentoTitulo').textContent = medicamento.principio_ativo;
     document.getElementById('viewPrincipioAtivo').textContent = medicamento.principio_ativo;
+    document.getElementById('viewDosagem').textContent = medicamento.dosagem_em_mg
     document.getElementById('viewNumLote').textContent = lote.num_lote;
     document.getElementById('viewDataValidade').textContent = dataFormatada;
     document.getElementById('viewFabricante').textContent = lote.fabricante;
@@ -433,9 +423,11 @@ function cadastrarMedicamento(event) {
 
   // Captura valores dos campos
   const principio_ativo = document.getElementById("principioAtivo").value;
+  const dosagem_em_mg = document.getElementById("dosagem_em_mg").value;
+
 
   // Validação básica
-  if (!principio_ativo) {
+  if (!principio_ativo || !dosagem_em_mg) {
     alert(
       "Por favor, antes de prosseguirmos, precisamos que você forneça o principio ativo do remédio!"
     );
@@ -452,7 +444,7 @@ function cadastrarMedicamento(event) {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ principio_ativo }),
+    body: JSON.stringify({ principio_ativo, dosagem_em_mg}),
   })
     .then((response) => {
       alert("Medicamento cadastrado com sucesso");
@@ -513,7 +505,10 @@ function retirarMedicamento(event) {
   })
     .then((response) => {
       alert("Medicamento excluído com sucesso");
-      return response.json(); // Continuar com o processamento normal da resposta se não for 422
+      setTimeout(function () {
+        window.location.href = "/estoque";
+      }, 500);
+      return response.json();
     })
     .catch((error) => {
       console.error("Erro:", error);
@@ -551,7 +546,7 @@ function aplicarFiltros(event) {
 }
 
 // Função para limpar todos os filtros
-function limparFiltros() {
+async function limparFiltros() {
   // Resetar formulário
   document.getElementById("formFiltros").reset();
 
@@ -566,7 +561,7 @@ function limparFiltros() {
   };
 
   // Atualizar a tabela mostrando todos os lotes
-  atualiza_lotes();
+  inicializarPagina()
 
   // Atualiza a aparência do botão de filtros
   atualizarEstadoBotaoFiltros();
@@ -704,6 +699,7 @@ function atualizarTabelaEstoque(lotesList) {
             <td>${
               medicamento ? medicamento.principio_ativo : "Desconhecido"
             }</td>
+            <td>${medicamento.dosagem_em_mg}</td>
             <td>${lote.num_lote}</td>
             <td>${lote.quantidade}</td>
             <td>

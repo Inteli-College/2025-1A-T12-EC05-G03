@@ -34,5 +34,6 @@ class Lote(db.Model):
             'id': self.id,
             'id_remedio': self.id_remedio,
             'quantidade': self.quantidade,
-            'principio_ativo': self.remedio_lote.principio_ativo
+            'principio_ativo': self.remedio_lote.principio_ativo,
+            'dosagem_em_mg': self.remedio_lote.dosagem_em_mg
         }

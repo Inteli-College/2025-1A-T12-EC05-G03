@@ -9,6 +9,7 @@ class Remedio(db.Model):
     # Definindo as colunas
     id = db.Column(db.Integer, nullable = False, primary_key=True)
     principio_ativo = db.Column(db.String(255), nullable=False)
+    dosagem_em_mg = db.Column(db.Integer, nullable= False)
     
 
     # Função para transformar em json
@@ -16,4 +17,5 @@ class Remedio(db.Model):
         return {
             'id': self.id,
             'principio_ativo': self.principio_ativo,
+            'dosagem_em_mg': self.dosagem_em_mg
         }
