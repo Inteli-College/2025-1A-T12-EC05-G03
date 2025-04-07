@@ -111,3 +111,12 @@ O público participante foi formado por integrantes do **corpo discente e docent
 - Repetir os testes após as melhorias visuais, para comparar a evolução da experiência.
 - Avaliar a solução com **usuários que nunca tiveram contato com a tecnologia**, testando a acessibilidade e aprendizado da interface.
 
+## 🎥 Teste com o Professor (André Goboi)
+
+Durante os testes realizados com os usuários, gravamos um vídeo completo da execução do processo com o professor **André Goboi**. A gravação mostra o fluxo completo da solução — desde a criação da prescrição até o momento em que o robô coleta e posiciona o medicamento corretamente.
+
+Esse vídeo representa uma evidência prática de que a solução funciona de ponta a ponta e pode ser usado como material de apoio, demonstração ou treinamento.
+
+🔗 **Acesse o vídeo aqui:** [inserir link do vídeo no Drive/YouTube]
+
+
