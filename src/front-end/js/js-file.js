@@ -440,7 +440,7 @@ function carregarPrescricoesAvaliadas() {
             prescricao.remedios.map(remedio => 
                 `<div class="remedio-item">
                     <span class="info-text">${remedio.nome}</span>
-                    <span class="info-text">${remedio.dosagem}</span>
+                    <span class="info-text">${remedio.dosagem_em_mg}</span>
                     <span class="info-text">${remedio.via}</span>
                     <span class="info-text">Qtd: ${remedio.quantidade}</span>
                 </div>`
@@ -946,7 +946,6 @@ function abrirModalPrescricao(prescricao) {
             prescricaoAtual = data;
 
             const statusPrescricao = obterNomeStatus(prescricaoAtual.prescricao.status_prescricao, 'prescricao');
-            console.log(prescricaoAtual.prescricao.status_prescrica)
             const statusClass = prescricaoAtual.prescricao.status_prescricao === 1 ? 'status-aguardando' : 'status-avaliada';
             let remediosHTML = '';
             prescricaoAtual.remedios.forEach(remedio => {
@@ -954,7 +953,7 @@ function abrirModalPrescricao(prescricao) {
                     <div class="remedio-card">
                         <div class="remedio-title">${remedio.principio_ativo}</div>
                         <div class="remedio-details">
-                            <div class="remedio-detail"><i class="fas fa-pills"></i> ${remedio.dosagem}</div>
+                            <div class="remedio-detail"><i class="fas fa-pills"></i> ${remedio.dosagem_em_mg} mg</div>
                             <div class="remedio-detail"><i class="fas fa-sort-amount-up"></i> Quantidade: ${remedio.quantidade}</div>
                         </div>
                     </div>
@@ -1044,7 +1043,7 @@ function abrirModalAvaliacao(prescricao) {
     const remediosHTML = prescricao.remedios.map((remedio, index) => `
         <div class="remedio-avaliacao">
             <div class="remedio-info">
-                <div class="remedio-title">${remedio.principio_ativo} - ${remedio.dosagem}</div>
+                <div class="remedio-title">${remedio.principio_ativo} - ${remedio.dosagem_em_mg} mg</div>
                 <div class="info-text">Quantidade: ${remedio.quantidade}</div>
             </div>
             <div class="remedio-check">
@@ -1119,7 +1118,7 @@ function abrirModalPedido(pedido) {
                     <div class="remedio-card">
                         <div class="remedio-title">${remedio.principio_ativo}</div>
                         <div class="remedio-details">
-                            <div class="remedio-detail"><i class="fas fa-pills"></i> ${remedio.dosagem}</div>
+                            <div class="remedio-detail"><i class="fas fa-pills"></i> ${remedio.dosagem_em_mg} mg</div>
                             <div class="remedio-detail"><i class="fas fa-sort-amount-up"></i> Quantidade: 1 </div>
                         </div>
                     </div>
@@ -1257,7 +1256,7 @@ function abrirModalRevisao(pedido) {
         remediosHTML += `
             <div class="remedio-revisao">
                 <div class="remedio-info">
-                    <div class="remedio-title">${remedio.principio_ativo} ${remedio.dosagem}</div>
+                    <div class="remedio-title">${remedio.principio_ativo} ${remedio.dosagem_em_mg} mg</div>
                     <div class="info-text">Quantidade: 1</div>
                 </div>
                 <div class="remedio-check">
