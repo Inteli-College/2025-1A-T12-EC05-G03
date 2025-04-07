@@ -17,4 +17,18 @@ Os testes aconteceram entre 14h e 18h, durante e após a aula de **Testes de Usu
 
 Durante a preparação do teste, **os requisitos funcionais e não funcionais do projeto serviram como referência direta para estruturar os passos a serem avaliados**. Cada etapa testada foi escolhida com o objetivo de **validar, na prática, se o sistema estava atendendo às funcionalidades previstas**, como a criação de medicamentos, leitura de QR Code, movimentação do robô e registro dos processos. Essa abordagem garantiu que o momento de testagem funcionasse também como uma forma de evidência da entrega dos requisitos.
 
+## 🧪 Metodologia
+Os testes foram conduzidos com uma abordagem observacional e participativa, utilizando como base os requisitos definidos no início do projeto. Cada participante realizou um conjunto de tarefas guiadas, simulando o uso real da solução no ambiente hospitalar. A equipe responsável observou cada interação, registrando o desempenho dos usuários, o tempo de execução e suas reações durante o processo. Ao final de cada teste, foi aplicado um questionário com perguntas abertas para captar percepções sobre clareza, confiança, compreensão e facilidade de uso.
+
+Essa metodologia permitiu avaliar tanto a funcionalidade técnica quanto a experiência do usuário, garantindo uma visão completa do desempenho da solução sob uso realista.
+
+## 👥 Perfil do Público
+
+O público participante foi formado por integrantes do **corpo discente e docente do Inteli**, incluindo pessoas com diferentes níveis de familiaridade com a solução, o que permitiu uma análise mais rica e realista da experiência.
+
+**Participantes dos testes:**
+- Murilo Couto  
+- André Goboi  
+- Mariana de Paula  
+- Laura Rodrigues  
 
