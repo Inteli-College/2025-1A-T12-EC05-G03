@@ -119,4 +119,8 @@ Esse vídeo representa uma evidência prática de que a solução funciona de po
 
 🔗 **Acesse o vídeo aqui:** [inserir link do vídeo no Drive/YouTube]
 
+## ✅ Conclusão
 
+Os testes de usabilidade permitiram validar, com clareza e segurança, que nossa solução está no caminho certo. Mais do que confirmar o funcionamento técnico, essa atividade nos deu a chance de enxergar **a experiência do ponto de vista do usuário**. Utilizando os requisitos como guia, estruturamos as avaliações e conseguimos comprovar que as funcionalidades principais foram entregues com sucesso.
+
+O envolvimento de diferentes perfis nos testes — incluindo alunos e professor — contribuiu com percepções valiosas sobre acessibilidade, clareza e confiança. A partir desses feedbacks, já temos um caminho claro para evoluir a solução, torná-la mais acessível e continuar desenvolvendo com foco no uso real em ambientes hospitalares.
