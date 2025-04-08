@@ -1,27 +1,261 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecionando...</title>
-    <!-- Meta tag de redirecionamento para a página de login -->
-    <meta http-equiv="refresh" content="0; URL='login.html'" />
+    <title>NDC System - Automação Farmacêutica Hospitalar</title>
+    <!-- Importação das fontes -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS para animações de scroll -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
     <!-- Importação do arquivo CSS externo -->
-    <link rel="stylesheet" href="css/styles-login.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <!-- configuração garante que o navegador sempre carregue a versão mais recente do site, evitando que o desenvolvedor veja uma versão antiga por conta do cache. -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    
 </head>
-<body class="redirect-body">
-    <!-- Animação de carregamento simples -->
-    <div class="loader"></div>
-    
-    <!-- Mensagem de redirecionamento -->
-    <p class="redirect-message">Redirecionando para a página de login...</p>
-    
-    <!-- Script alternativo caso o meta refresh não funcione -->
-    <script>
-        // Redireciona para a página de login após um breve atraso
-        setTimeout(function() {
-            window.location.href = "login.html";
-        }, 500); // Meio segundo de atraso como fallback
-    </script>
+<body>
+    <header class="header-blur">
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo-img-container">
+                    <img src="{{ url_for('media', filename='Logos_GuiaDeEstilos/svgs logos/logo_escura_COMnome.svg') }}" alt="Logo NDC" class="logo-img">
+                </div>
+                <span class="logo-text">NDC SYSTEM</span>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="#quem-somos">Quem Somos</a></li>
+                    <li><a href="#features">Recursos</a></li>
+                    <li><a href="#comparison">Comparativo</a></li>
+                    <li><a href="#team">Nossa Equipe</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="btn-header">
+                    <a href="/login" class="btn-link">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Entrar
+                    </a>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-image-container">
+                <img src="../../media/farmaceutica.png" alt="Profissionais de saúde" class="hero-image">
+            </div>
+            <div class="hero-content" data-aos="fade-up">
+                <h1 class="hero-title">NDC<br>SYSTEM</h1>
+                <div class="hero-dots">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+                <p class="hero-subtitle">Reimaginando a farmácia hospitalar através da automação de precisão.</p>
+                <button class="btn-primary">
+                    <a href="/login" class="btn-link">
+                        <i class="fas fa-sign-in-alt"></i>
+                    Entrar no sistema
+                    </a>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quem Somos Section -->
+    <section id="quem-somos" data-aos="fade-up">
+        <div class="quem-somos-container">
+            <div class="quem-somos-content">
+                <h2 class="section-title left-aligned">Quem somos?</h2>
+                <p class="section-text left-aligned">
+                    Modernizamos os serviços farmacêuticos hospitalares através de um sistema de automação para a separação e montagem da "Fita de medicamentos" destinada aos pacientes internados no Hospital de Clínicas da Unicamp. O projeto é uma iniciativa acadêmica desenvolvida por estudantes do Instituto de Tecnologia e Liderança (INTELI) como parte do módulo de Automação Industrial.
+                </p>
+                <div class="buttons-container">
+                    <a href="https://hc.unicamp.br/" target="_blank" class="btn-primary">
+                        <i class="fas fa-hospital"></i>
+                        Conheça o HC da Unicamp
+                    </a>
+                    <a href="https://www.inteli.edu.br/" target="_blank" class="btn-secondary">
+                        <i class="fas fa-graduation-cap"></i>
+                        Conheça o Inteli
+                    </a>
+                </div>
+            </div>
+            <div class="quem-somos-image-container">
+                <img src="../../media/remedios.png" alt="Remédios" class="quem-somos-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section" data-aos="fade-up">
+        <h2 class="section-title">Este projeto integra</h2>
+        <div class="features-container">
+            <div class="feature-box" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-robot feature-icon"></i>
+                <h3 class="feature-title">Manipuladores robóticos</h3>
+                <p class="feature-text">Sistemas robóticos de precisão que automatizam a separação e montagem de medicamentos com alta acurácia.</p>
+            </div>
+            <div class="feature-box" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-microchip feature-icon"></i>
+                <h3 class="feature-title">Sensores inteligentes</h3>
+                <p class="feature-text">Tecnologia avançada de sensores que garantem verificação e validação em cada etapa do processo.</p>
+            </div>
+            <div class="feature-box" data-aos="fade-up" data-aos-delay="300">
+                <i class="fas fa-cogs feature-icon"></i>
+                <h3 class="feature-title">Sistema digital de controle</h3>
+                <p class="feature-text">Plataforma integrada que gerencia todo o fluxo de trabalho, garantindo precisão, segurança e rastreabilidade.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section id="comparison" data-aos="fade-up">
+        <h2 class="section-title">Comparativo de eficiência</h2>
+        <div class="comparison-container">
+            <div class="comparison-box" data-aos="fade-right">
+                <h3 class="comparison-title">
+                    <i class="fas fa-exclamation-triangle comparison-icon traditional"></i>
+                    O Processo Tradicional
+                </h3>
+                <ul class="comparison-list">
+                    <li class="comparison-item">
+                        <i class="fas fa-times comparison-item-icon"></i>
+                        <span>Alto consumo de tempo dos profissionais de farmácia</span>
+                    </li>
+                    <li class="comparison-item">
+                        <i class="fas fa-times comparison-item-icon"></i>
+                        <span>Risco de erros humanos na seleção e dosagem</span>
+                    </li>
+                    <li class="comparison-item">
+                        <i class="fas fa-times comparison-item-icon"></i>
+                        <span>Possibilidade de duplicidade na dispensação</span>
+                    </li>
+                    <li class="comparison-item">
+                        <i class="fas fa-times comparison-item-icon"></i>
+                        <span>Dificuldade na rastreabilidade dos medicamentos</span>
+                    </li>
+                    <li class="comparison-item">
+                        <i class="fas fa-times comparison-item-icon"></i>
+                        <span>Sobrecarga da equipe em períodos de alta demanda</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="comparison-box" data-aos="fade-left">
+                <h3 class="comparison-title">
+                    <i class="fas fa-robot comparison-icon solution"></i>
+                    Com nossa solução
+                </h3>
+                <ul class="comparison-list">
+                    <li class="comparison-item">
+                        <i class="fas fa-check comparison-item-icon"></i>
+                        <span><strong>Robótica Avançada:</strong> Um protótipo de manipuladores robóticos que demonstra como a seleção dos medicamentos poderia ser realizada conforme protocolos pré-definidos.</span>
+                    </li>
+                    <li class="comparison-item">
+                        <i class="fas fa-check comparison-item-icon"></i>
+                        <span><strong>Verificação Inteligente:</strong> Implementação conceitual de sensores que validariam cada etapa do processo, garantindo a dispensação correta.</span>
+                    </li>
+                    <li class="comparison-item">
+                        <i class="fas fa-check comparison-item-icon"></i>
+                        <span><strong>Montagem Automatizada:</strong> Proposta de sistema que montaria automaticamente os kits de medicamentos específicos para cada unidade hospitalar.</span>
+                    </li>
+                    <li class="comparison-item">
+                        <i class="fas fa-check comparison-item-icon"></i>
+                        <span><strong>Rastreabilidade Total:</strong> Conceito de identificação digital para cada medicamento, permitindo o acompanhamento completo desde a separação até a administração.</span>
+                    </li>
+                    <li class="comparison-item">
+                        <i class="fas fa-check comparison-item-icon"></i>
+                        <span><strong>Transparência no Processo:</strong> Nosso sistema proporcionaria total visibilidade de todas as etapas da separação e dispensação de medicamentos, garantindo auditoria contínua e governança no processo.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="team-section" data-aos="fade-up">
+        <h2 class="section-title">Nossa Equipe</h2>
+        <div class="team-container">
+            <a href="https://www.linkedin.com/in/cec%C3%ADlia-galv%C3%A3o/" target="_blank" class="team-member" data-aos="fade-up" data-aos-delay="100">
+                <div class="team-photo">
+                    <img src="../../media/Cecilia_Beatriz_Melo_Galvão.jpg" alt="Cecília Beatriz Melo Galvão">
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name">Cecília Beatriz Melo Galvão</h3>
+                </div>
+            </a>
+            <a href="https://www.linkedin.com/in/cecilslico/" target="_blank" class="team-member" data-aos="fade-up" data-aos-delay="200">
+                <div class="team-photo">
+                    <img src="../../media/Cecília_Lima_Coelho.jpg" alt="Cecília Lima Coelho">
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name">Cecília Lima Coelho</h3>
+                </div>
+            </a>
+            <a href="https://www.linkedin.com/in/fernando-soares-oliveira/" target="_blank" class="team-member" data-aos="fade-up" data-aos-delay="300">
+                <div class="team-photo">
+                    <img src="../../media/Fernando_Soares_de_Oliveira.jpg" alt="Fernando Soares de Oliveira">
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name">Fernando Soares de Oliveira</h3>
+                </div>
+            </a>
+            <a href="https://www.linkedin.com/in/ian-pereira-simao/" target="_blank" class="team-member" data-aos="fade-up" data-aos-delay="400">
+                <div class="team-photo">
+                    <img src="../../media/Ian_Pereira_Simão.jpg" alt="Ian Pereira">
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name">Ian Pereira Simão</h3>
+                </div>
+            </a>
+            <a href="https://www.linkedin.com/in/luizapetenazzi/" target="_blank" class="team-member" data-aos="fade-up" data-aos-delay="500">
+                <div class="team-photo">
+                    <img src="../../media/Luiza_Faria_Petenazzi.jpg" alt="Luiza Faria Petenazzi">
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name">Luiza Faria Petenazzi</h3>
+                </div>
+            </a>
+            <a href="https://www.linkedin.com/in/miguelclaret/" target="_blank" class="team-member" data-aos="fade-up" data-aos-delay="600">
+                <div class="team-photo">
+                    <img src="../../media/Miguel_da_Silva_Claret.jpg" alt="Miguel da Silva Claret">
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name">Miguel da Silva Claret</h3>
+                </div>
+            </a>
+            <a href="https://www.linkedin.com/in/pabloazevedo/" target="_blank" class="team-member" data-aos="fade-up" data-aos-delay="700">
+                <div class="team-photo">
+                    <img src="../../media/Pablo_de_Azevedo.jpg" alt="Pablo de Azevedo">
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name">Pablo de Azevedo</h3>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">NDC SYSTEM</div>
+        <p class="footer-text">
+            Um projeto conceitual de automação para a farmácia hospitalar, desenvolvido por estudantes do Instituto de Tecnologia e Liderança (INTELI).
+        </p>
+        <p class="copyright">© 2025 NDC System. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Back to top button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </body>
 </html>

@@ -10,7 +10,7 @@ front_bp = Blueprint('front', __name__, url_prefix='/')
 
 @front_bp.route('/', methods=['GET'])
 def padrao():
-    return render_template('login.html')
+    return render_template('index.html')
 @front_bp.route('/login', methods=['GET'])
 def login_page():
     return render_template('login.html')
