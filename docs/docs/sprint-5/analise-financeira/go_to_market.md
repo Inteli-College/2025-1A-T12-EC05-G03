@@ -51,6 +51,24 @@ custom_edit_url: null
 - Modelo de preço flexível (CAPEX ou OPEX)
 - Validação em caso real no Hospital de Clínicas da Unicamp
 
+## 4. Estratégia de Preço
+
+### 4.1 Modelos de Comercialização
+
+| Modelo | Descrição | Público-Alvo |
+|--------|-----------|--------------|
+| Aquisição Completa | Cliente adquire toda a solução (CAPEX) | Hospitais privados com capital disponível |
+| Locação | Pagamento mensal pelo uso (OPEX) | Hospitais públicos, menor orçamento |
+| Híbrido | Hardware em CAPEX, software em assinatura | Redes hospitalares em expansão |
+
+### 4.2 Exemplos de Precificação
+
+| Porte do Hospital | Configuração | Preço Aquisição | Assinatura Mensal (48 meses) |
+|-------------------|--------------|-----------------|------------------------------|
+| Pequeno (até 150 leitos) | 2 robôs | R$ 2,4 milhões | R$ 65.000/mês |
+| Médio (150-300 leitos) | 4 robôs | R$ 4,2 milhões | R$ 108.000/mês |
+| Grande (300+ leitos) | 6 robôs | R$ 5,9 milhões | R$ 145.000/mês |
+
 
 ## 6. Projeção de Vendas e ROI
 
