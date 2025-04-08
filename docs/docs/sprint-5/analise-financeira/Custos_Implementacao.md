@@ -69,3 +69,39 @@ Média de economia por robô (excluindo o primeiro): 20%
 | **Fluxo Acumulado** | (1.470.000) | (2.876.000) | (3.804.000) | (3.782.500) | |
 
 *Nota: Economia operacional considera redução de erros, otimização de pessoal e outros benefícios realizados progressivamente.
+
+## 7. Conclusão e Recomendações
+
+### 7.1 Conclusões Principais
+
+&emsp;A análise detalhada do escalonamento do projeto de automação da separação de medicamentos ao longo de 12 meses demonstra vantagens significativas em relação à implementação única. Entre os principais benefícios destacam-se:
+
+1. **Viabilidade financeira aprimorada**: A diluição do investimento de R$ 4,86 milhões em quatro fases trimestrais reduz a pressão sobre o fluxo de caixa e melhora os indicadores financeiros do projeto.
+
+2. **Economias de escala progressivas**: A implementação escalonada permite capturar economias crescentes, com reduções de até 25% no custo unitário de robôs nas fases finais.
+
+3. **Redução significativa de riscos**: O modelo faseado permite validar o conceito, identificar problemas e realizar ajustes antes do comprometimento total de recursos.
+
+4. **Antecipação de benefícios**: Os ganhos operacionais começam a ser obtidos já a partir do primeiro trimestre, melhorando o retorno sobre investimento.
+
+5. **Adaptação organizacional gradual**: A curva de aprendizado da equipe é distribuída ao longo do tempo, facilitando a adoção tecnológica e cultural.
+
+### 7.2 Recomendações
+
+&emsp;Com base na análise apresentada, recomenda-se:
+
+1. **Adotar o modelo de implementação escalonada em quatro fases trimestrais**, conforme detalhado neste documento.
+
+2. **Estabelecer marcos de decisão (gates) ao final de cada fase**, com critérios claros para prosseguir ou ajustar o planejamento da fase seguinte.
+
+3. **Negociar contratos com fornecedores que garantam economias de escala progressivas**, com cláusulas de desconto por volume pré-acordadas.
+
+4. **Implementar um sistema de monitoramento de benefícios desde a Fase 1**, para quantificar ganhos e justificar o investimento nas fases seguintes.
+
+5. **Desenvolver um plano de contingência para cada fase**, prevendo alternativas para os principais riscos identificados.
+
+6. **Priorizar a transferência de conhecimento e documentação em cada etapa**, garantindo que a equipe interna absorva a tecnologia progressivamente.
+
+&emsp;O escalonamento do projeto em 12 meses representa não apenas uma estratégia financeira prudente, mas também uma abordagem operacional mais robusta, que maximiza as chances de sucesso da implementação da automação da separação de medicamentos no Hospital de Clínicas da Unicamp.
+
+&emsp;A economia total estimada de aproximadamente 20% nos custos de aquisição de equipamentos, aliada à antecipação de benefícios operacionais, resulta em um modelo de implementação que equilibra investimentos, riscos e retornos de forma otimizada.
