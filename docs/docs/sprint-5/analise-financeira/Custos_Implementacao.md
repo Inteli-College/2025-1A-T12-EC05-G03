@@ -7,7 +7,29 @@ custom_edit_url: null
 
 #### Custos de implementação em escala
 
-Analisa os custos previstos para implementação do projeto em escala no período de 12 meses, incluindo desenvolvimento, infraestrutura, operação, manutenção e escalabilidade.
+## 1. Introdução
+
+&emsp;Este documento apresenta um plano estratégico para o escalonamento do projeto de automação da separação de medicamentos ao longo de 12 meses. Partindo da análise financeira já realizada, esta proposta visa estabelecer um cronograma viável de implementação que maximize o retorno sobre investimento e minimize riscos operacionais.
+
+&emsp;A implementação escalonada permite não apenas diluir o investimento inicial ao longo do tempo, mas também possibilita a validação gradual da tecnologia, a identificação precoce de gargalos operacionais e o treinamento progressivo da equipe. Além disso, há benefícios significativos na redução de custos através de economias de escala na produção em alta quantidade.
+
+### 1.1 Objetivos do Escalonamento
+
+- Distribuir o investimento de capital (CAPEX) em fases gerenciáveis ao longo de 12 meses
+- Maximizar as economias de escala na aquisição de equipamentos e tecnologias
+- Permitir validação técnica e operacional em cada etapa antes de avançar para a próxima
+- Otimizar o fluxo de caixa e melhorar indicadores financeiros do projeto
+- Facilitar a adaptação organizacional e treinamento progressivo da equipe
+
+### 1.2 Premissas Econômicas
+
+- Economia de escala em compras de volume: 10-20% de desconto para aquisições por lote
+- Custo de capital: 12% ao ano
+- Inflação projetada: 4,5% ao ano
+- Variação cambial estimada (R$/US$): +/- 8% em 12 meses
+- Ciclo médio de pagamento a fornecedores: 60 dias
+- Economias operacionais começam a ser realizadas a partir da conclusão de cada fase
+
 
 ## 3. Análise Financeira do Escalonamento
 
