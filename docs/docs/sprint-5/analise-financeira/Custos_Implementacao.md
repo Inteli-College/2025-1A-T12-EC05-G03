@@ -30,6 +30,119 @@ custom_edit_url: null
 - Ciclo médio de pagamento a fornecedores: 60 dias
 - Economias operacionais começam a ser realizadas a partir da conclusão de cada fase
 
+## 2. Faseamento do Projeto
+
+&emsp;O escalonamento será estruturado em quatro fases trimestrais, cada uma com objetivos, investimentos e entregas específicas:
+
+### 2.1 Fase 1: Fundação e Piloto (Meses 1-3)
+
+**Objetivo**: Estabelecer a infraestrutura básica e implementar um sistema piloto com um robô.
+
+**Principais atividades**:
+- Adequação física do espaço operacional (30% da área total)
+- Implementação da infraestrutura básica (elétrica, rede, refrigeração)
+- Aquisição e instalação do primeiro robô e sistemas de controle
+- Desenvolvimento do software básico e integração com sistemas hospitalares
+- Treinamento inicial da equipe técnica e operacional
+- Validação do conceito em escala reduzida
+
+**Investimento estimado para Fase 1**:
+
+| Categoria | Valor Base (R$) | Fator de Escala | Valor Ajustado (R$) |
+|-----------|-----------------|-----------------|---------------------|
+| Infraestrutura física | 250.000 | 1,2 (premium inicial) | 300.000 |
+| Primeiro robô completo | 600.000 | 1,1 (sem economia) | 660.000 |
+| Software e integração | 150.000 | 1,0 (desenvolvimento base) | 150.000 |
+| Recursos humanos | 200.000 | 1,2 (curva de aprendizado) | 240.000 |
+| **Total Fase 1** | | | **1.350.000** |
+
+**Indicadores de desempenho da Fase 1**:
+- Tempo de processamento de medicamentos com sistema piloto
+- Taxa de erro na separação
+- Tempo médio de setup e configuração
+- Taxa de ociosidade do robô
+
+### 2.2 Fase 2: Expansão Inicial (Meses 4-6)
+
+**Objetivo**: Expandir o sistema para 3 robôs e aumentar a capacidade operacional para 40% do volume total.
+
+**Principais atividades**:
+- Adequação física adicional (30% da área total)
+- Aquisição e integração de 2 robôs adicionais
+- Desenvolvimento de funcionalidades avançadas de software
+- Otimização de processos com base nas lições da Fase 1
+- Expansão das interfaces com sistemas hospitalares
+- Treinamento de equipe operacional adicional
+
+**Investimento estimado para Fase 2**:
+
+| Categoria | Valor Base (R$) | Fator de Escala | Valor Ajustado (R$) |
+|-----------|-----------------|-----------------|---------------------|
+| Infraestrutura física | 200.000 | 0,9 (economia de experiência) | 180.000 |
+| Segundo e terceiro robôs | 1.200.000 | 0,85 (economia em par) | 1.020.000 |
+| Software e integração | 120.000 | 0,8 (reaproveitamento) | 96.000 |
+| Recursos humanos | 180.000 | 1,0 (equipe normalizada) | 180.000 |
+| **Total Fase 2** | | | **1.476.000** |
+
+**Economias realizadas na Fase 2**:
+- 15% de desconto na aquisição de robôs múltiplos
+- 20% de economia em custo de integração por reaproveitamento
+- 10% de economia em infraestrutura por otimização de espaço
+
+### 2.3 Fase 3: Expansão Principal (Meses 7-9)
+
+**Objetivo**: Atingir 70% da capacidade operacional com 5 robôs em funcionamento.
+
+**Principais atividades**:
+- Conclusão da adequação física (40% restantes da área)
+- Aquisição e integração de 2 robôs adicionais
+- Implementação de funções avançadas (IA para predição de demanda)
+- Otimização do fluxo de trabalho e ganhos de eficiência
+- Integração completa com ERP e sistemas de gestão hospitalar
+- Treinamento da equipe completa
+
+**Investimento estimado para Fase 3**:
+
+| Categoria | Valor Base (R$) | Fator de Escala | Valor Ajustado (R$) |
+|-----------|-----------------|-----------------|---------------------|
+| Infraestrutura física | 180.000 | 0,85 (economia de escala) | 153.000 |
+| Quarto e quinto robôs | 1.200.000 | 0,80 (economia em par) | 960.000 |
+| Software e integração | 100.000 | 0,70 (alta reutilização) | 70.000 |
+| Recursos humanos | 150.000 | 0,90 (eficiência de gestão) | 135.000 |
+| **Total Fase 3** | | | **1.318.000** |
+
+**Economias realizadas na Fase 3**:
+- 20% de desconto na aquisição de robôs múltiplos
+- 30% de economia em custo de integração por padronização
+- 15% de economia em infraestrutura por otimização de processos
+
+### 2.4 Fase 4: Finalização e Otimização (Meses 10-12)
+
+**Objetivo**: Completar a implementação com 6 robôs e atingir 100% da capacidade operacional, com foco em otimização e refinamento.
+
+**Principais atividades**:
+- Aquisição e integração do sexto robô
+- Refinamento de todos os processos com base em dados operacionais
+- Implementação de dashboards avançados de monitoramento
+- Análise de desempenho e otimização final do sistema
+- Elaboração de documentação completa e procedimentos operacionais
+- Treinamento avançado e certificação da equipe
+
+**Investimento estimado para Fase 4**:
+
+| Categoria | Valor Base (R$) | Fator de Escala | Valor Ajustado (R$) |
+|-----------|-----------------|-----------------|---------------------|
+| Ajustes finais de infraestrutura | 100.000 | 0,80 (refinamentos finais) | 80.000 |
+| Sexto robô | 600.000 | 0,75 (máxima economia) | 450.000 |
+| Software avançado e BI | 120.000 | 0,65 (alta maturidade) | 78.000 |
+| Recursos humanos | 130.000 | 0,85 (equipe experiente) | 110.500 |
+| **Total Fase 4** | | | **718.500** |
+
+**Economias realizadas na Fase 4**:
+- 25% de desconto na aquisição do último robô (máximo volume)
+- 35% de economia em software por alta maturidade do sistema
+- Redução de 15% em custos de recursos humanos por eficiência operacional
+
 
 ## 3. Análise Financeira do Escalonamento
 
