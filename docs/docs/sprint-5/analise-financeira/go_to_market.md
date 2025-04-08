@@ -31,6 +31,26 @@ custom_edit_url: null
 | Tier 3: Hospitais Públicos de Grande Porte | Mais de 200 leitos | 500 | Médio (5-10%) |
 | Tier 4: Hospitais Privados Independentes | Médio e grande porte | 400 | Médio-Baixo (3-5%) |
 
+## 3. Proposta de Valor
+
+### 3.1 Principais Benefícios para o Cliente
+
+1. **Redução de erros de medicação**: Diminuição de 85% nos erros
+2. **Aumento de produtividade**: Capacidade 3x maior com o mesmo espaço
+3. **Rastreabilidade completa**: 100% dos medicamentos rastreados
+4. **Redução de custos operacionais**: Economia de 35-40% em 3 anos
+5. **Segurança do paciente aprimorada**: Menos eventos adversos
+
+**GRÁFICO 2**
+
+### 3.2 Diferenciadores Competitivos
+
+- Desenvolvimento nacional adaptado à realidade brasileira
+- Implementação escalonada e modular
+- Suporte técnico local com tempo de resposta rápido
+- Modelo de preço flexível (CAPEX ou OPEX)
+- Validação em caso real no Hospital de Clínicas da Unicamp
+
 
 ## 6. Projeção de Vendas e ROI
 
