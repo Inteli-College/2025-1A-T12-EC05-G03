@@ -197,3 +197,28 @@ custom_edit_url: null
 #### 6.1.5 Coluna: Tipo de Gasto
 &emsp;Classifica cada linha conforme seu impacto contábil e estratégico, usando os conceitos de CAPEX, OPEX e Despesa.
 
+## 8. Fórmula de Precificação com Lucro Desejado
+
+&emsp;Para determinar o preço de venda (PV) que garanta:
+- Pagamento de todos os custos (diretos, indiretos e despesas)
+- Cobertura da carga tributária
+- Lucro líquido de 20% sobre a receita total (e não apenas sobre o custo)
+
+### 8.1 Variáveis
+- **C_total**: Custo total (CAPEX, OPEX, Despesas + Impostos e encargos)
+- **Lucro_desejado**: Margem de lucro desejada sobre o preço final (20% = 0.20)
+- **PV**: Preço de venda final com margem de lucro incluída
+
+### 8.2 Fórmula Clássica da Precificação com Lucro
+**PV = C_total / (1 - Lucro_desejado)**
+
+### 8.3 Exemplo com Números
+&emsp;Se os custos totais do projeto (C_total) forem de R$ 3.000.000, e você deseja um lucro de 20%, temos:
+- PV = 3.000.000 / (1 - 0.20)
+- PV = 3.000.000 / 0.80
+- PV = R$ 3.750.000
+
+**Preço de venda final sugerido: R$ 3.750.000**
+
+&emsp;Esse valor cobre todos os custos e ainda entrega um lucro de R$ 750.000, o que representa 20% sobre a receita total.
+
