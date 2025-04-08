@@ -332,6 +332,64 @@ custom_edit_url: null
 #### 6.1.5 Coluna: Tipo de Gasto
 &emsp;Classifica cada linha conforme seu impacto contábil e estratégico, usando os conceitos de CAPEX, OPEX e Despesa.
 
+## 7. Impostos e Obrigações Fiscais
+
+### 7.1 Tabela de Impostos e Obrigações Fiscais
+
+| Imposto / Encargo | Categoria | Descrição | Base de Cálculo ou Alíquota |
+|-------------------|-----------|-----------|----------------------------|
+| Imposto de Importação (II) | Impostos sobre Aquisições | Incide sobre produtos importados. Aumenta o custo de equipamentos estrangeiros. | 0% a 20% sobre o valor CIF |
+| IPI | Impostos sobre Aquisições | Aplica-se a produtos industrializados (nacionais ou importados). | 5% a 15% sobre o valor do produto |
+| ICMS | Impostos sobre Aquisições | Imposto estadual sobre circulação de mercadorias e bens. | 7% a 18%, conforme o estado |
+| PIS/COFINS | Impostos sobre Aquisições | Contribuições sociais sobre receita e aquisições. | 0,65% a 9,25%, conforme regime tributário |
+| ISS | Impostos sobre Serviços | Imposto municipal sobre prestação de serviços (manutenção, instalação etc). | 2% a 5% sobre o valor do serviço |
+| IRPJ (Imposto de Renda PJ) | Impostos sobre Serviços | Imposto federal sobre o lucro da empresa. | 15% sobre lucro real + 10% adicional |
+| CSLL (Contribuição Social sobre Lucro) | Impostos sobre Serviços | Imposto federal que complementa o IRPJ. | 9% sobre o lucro líquido ajustado |
+| INSS Patronal | Obrigações Trabalhistas | Contribuição obrigatória da empresa à Previdência Social. | 20% sobre a folha salarial |
+| FGTS | Obrigações Trabalhistas | Depósito obrigatório na conta do trabalhador. | 8% sobre salário bruto |
+| Contribuições sindicais | Obrigações Trabalhistas | Valores definidos em convenções coletivas ou acordos sindicais. | Valor fixo ou percentual variável |
+| Provisões: Férias e 13º salário | Obrigações Trabalhistas | Encargos trabalhistas obrigatórios ao final de cada ano. | 21,5% da folha (13,33% + 8,33%) |
+
+### 7.2 Simulação de Carga Tributária Anual
+
+| Tributo / Encargo | Base de Cálculo (R$) | Alíquota (%) | Valor Estimado (R$) |
+|-------------------|----------------------|--------------|---------------------|
+| Imposto de Importação (II) | 2.000.000,00 | 10,00% | 200.000,00 |
+| IPI | 2.000.000,00 | 10,00% | 200.000,00 |
+| ICMS | 2.000.000,00 | 12,00% | 240.000,00 |
+| PIS/COFINS | 2.000.000,00 | 3,65% | 73.000,00 |
+| ISS | 500.000,00 | 4,00% | 20.000,00 |
+| IRPJ (anual) | 750.000,00 | 15,00% | 112.500,00 |
+| CSLL (anual) | 750.000,00 | 9,00% | 67.500,00 |
+| INSS Patronal (anual) | 3.000.000,00 | 20,00% | 600.000,00 |
+| FGTS (anual) | 3.000.000,00 | 8,00% | 240.000,00 |
+| Férias + 13º + 1/3 (anual) | 3.000.000,00 | 21,50% | 645.000,00 |
+
+### 7.3 Análise da Carga Tributária
+
+&emsp;A simulação acima foi baseada nos seguintes valores:
+- Investimentos em equipamentos e softwares (CAPEX): R$ 2.000.000
+- Serviços contratados (instalação, integração, suporte): R$ 500.000
+- Folha de pagamento anual estimada: R$ 3.000.000
+
+#### 7.3.1 Impostos sobre Aquisições
+&emsp;II, IPI, ICMS e PIS/COFINS são encargos que aumentam o custo efetivo dos equipamentos importados ou industrializados no Brasil. Juntos, esses tributos adicionam aproximadamente R$ 713.000,00 sobre os R$ 2 milhões em aquisições.
+
+#### 7.3.2 Impostos sobre Serviços
+&emsp;O ISS incide sobre os serviços técnicos contratados, como instalação e configuração. Já o IRPJ e CSLL incidem sobre o lucro, e foram simulados com base em uma margem de lucro de 30% sobre a operação.
+
+#### 7.3.3 Obrigações Trabalhistas
+&emsp;INSS Patronal, FGTS, Férias e 13º compõem o bloco mais pesado da carga fiscal trabalhista. A soma desses encargos representa R$ 1.485.000,00 ao ano, o que corresponde a praticamente 50% adicional sobre a folha bruta anual.
+
+### 7.4 Interpretações e Recomendações
+
+- A carga tributária total estimada ultrapassa R$ 2,8 milhões ao ano, sendo:
+  - ~25% corresponde a impostos diretos sobre compra e serviço
+  - ~50% a encargos trabalhistas fixos
+- A empresa deve se planejar para reservar pelo menos 40% do orçamento de folha e CAPEX para encargos e tributos
+- Estratégias de incentivo fiscal (como regimes especiais de importação ou crédito de ICMS) podem reduzir significativamente essa carga
+- É recomendável manter um fundo de provisão tributária mensal e contar com apoio contábil especializado
+
 ## 8. Fórmula de Precificação com Lucro Desejado
 
 &emsp;Para determinar o preço de venda (PV) que garanta:
