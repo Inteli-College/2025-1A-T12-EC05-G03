@@ -23,10 +23,14 @@ def home_page():
 def cadastro_page():
     return render_template('cadastro.html')
 
-@front_bp.route('/historico', methods=['GET'])
+@front_bp.route('/historico-prescricao', methods=['GET'])
 def historico_page():
     return render_template('historico.html')
 
 @front_bp.route('/estoque', methods=['GET'])
 def estoque_page():
     return render_template('estoque.html')
+
+@front_bp.route('/historico-log', methods=['GET'])
+def historico_log():
+    return render_template('historico-logs.html')
