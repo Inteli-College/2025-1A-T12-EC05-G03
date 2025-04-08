@@ -133,7 +133,16 @@ custom_edit_url: null
 
 ### 6.1 Projeção de Vendas (5 anos)
 
-**GRÁFICO 4**
+<p style={{textAlign: 'center'}}>Figura X - Projeção de Crescimento em 5 Anos</p>
+
+<div style={{margin: 25}}>
+    <div style={{textAlign: 'center'}}>
+        <img src={require("../../../../media/g4.png").default} style={{width: 800}} alt="Projeção de Crescimento em 5 Anos" />
+        <br />
+    </div>
+</div>
+
+<p style={{textAlign: 'center'}}>Fonte: Os autores (2025)</p>
 
 | Ano | Unidades Vendidas | Receita Estimada | Market Share |
 |-----|-------------------|-------------------|--------------|
@@ -160,7 +169,16 @@ custom_edit_url: null
 | **ROI em 5 anos** | **166%** |
 | **Payback** | **23 meses** |
 
-**GRÁFICO 5**
+<p style={{textAlign: 'center'}}>Figura X - Análise de ROI</p>
+
+<div style={{margin: 25}}>
+    <div style={{textAlign: 'center'}}>
+        <img src={require("../../../../media/g5.png").default} style={{width: 800}} alt="Análise de ROI" />
+        <br />
+    </div>
+</div>
+
+<p style={{textAlign: 'center'}}>Fonte: Os autores (2025)</p>
 
 ## 7. Análise de Payback Detalhada
 
@@ -184,7 +202,16 @@ custom_edit_url: null
 - **ROI em 5 anos**: 166%
 - **TIR (Taxa Interna de Retorno)**: 32,7%
 
-**GRÁFICO 6**
+<p style={{textAlign: 'center'}}>Figura X - Análise de PayBack</p>
+
+<div style={{margin: 25}}>
+    <div style={{textAlign: 'center'}}>
+        <img src={require("../../../../media/g6.png").default} style={{width: 800}} alt="Análise de PayBack" />
+        <br />
+    </div>
+</div>
+
+<p style={{textAlign: 'center'}}>Fonte: Os autores (2025)</p>
 
 ### 7.2 Comparativo de ROI por Porte de Hospital
 
@@ -249,3 +276,15 @@ Os principais fatores críticos para o sucesso incluem:
 3. **Excelência na implementação**: Garantir que cada cliente seja um caso de sucesso
 4. **Flexibilidade comercial**: Adaptar modelos de preço às diferentes realidades financeiras
 5. **Desenvolvimento contínuo**: Evoluir o produto com base no feedback do mercado
+
+---
+## Bibliografia
+- ABIMO – Associação Brasileira da Indústria de Dispositivos Médicos. Relatório setorial da indústria de dispositivos médicos. São Paulo: ABIMO, 2022. Disponível em: https://abimo.org.br. Acesso em: 08 abr. 2025.
+- BRASIL. Ministério da Saúde. Cadastro Nacional de Estabelecimentos de Saúde (CNES). Brasília, 2024. Disponível em: https://cnes.datasus.gov.br. Acesso em: 08 abr. 2025.
+- FIPE. Fundação Instituto de Pesquisas Econômicas. Impacto econômico da automação em hospitais brasileiros. São Paulo: FIPE, 2023.
+- FROES, César. Como construir um plano Go to Market. São Paulo: Editora Gente, 2021.
+- IQVIA. Estudo sobre adoção de tecnologias emergentes na saúde hospitalar. São Paulo: IQVIA Brasil, 2023. Disponível em: https://www.iqvia.com. Acesso em: 08 abr. 2025.
+- PORTER, Michael E. Vantagem competitiva: criando e sustentando um desempenho superior. 15. ed. Rio de Janeiro: Elsevier, 2019.
+- RIBEIRO, João Paulo; OLIVEIRA, Bruna Martins de. Tecnologia hospitalar: inovação e eficiência na gestão da saúde. Revista Brasileira de Inovação em Saúde, v. 12, n. 3, p. 45–59, 2022.
+- ROBBINS, Stephen P.; COULTER, Mary. Administração. 14. ed. São Paulo: Pearson, 2020.
+- SOUZA, Renato R. de. Análise de viabilidade econômica de projetos hospitalares com foco em automação. Dissertação (Mestrado em Engenharia Biomédica) – Universidade Federal de Pernambuco, Recife, 2023.

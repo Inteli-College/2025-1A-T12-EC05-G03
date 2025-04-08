@@ -11,7 +11,7 @@ custom_edit_url: null
 
 &emsp;O alinhamento entre requisitos e entregas é essencial para assegurar não apenas o sucesso técnico do projeto, mas também a sua aplicabilidade real no ambiente hospitalar, especialmente considerando os aspectos críticos de **segurança, rastreabilidade, eficiência operacional e integração com processos médicos**. 
 
-&emsp;Dessa forma, após a realização dos testes de usabilidade, foi possível avaliar na prática a eficácia da nossa solução em atender aos requisitos definidos. A partir desses testes, coletamos evidências que nos ajudou a chegar nas seguintes conclusões:
+&emsp;Dessa forma, após a realização dos testes de usabilidade, foi possível avaliar na prática a eficácia da nossa solução em atender aos requisitos definidos. A partir desses testes, coletamos evidências que nos ajudaram a chegar nas seguintes conclusões:
 
 
 ## Requisitos Funcionais
