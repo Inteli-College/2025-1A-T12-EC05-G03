@@ -69,6 +69,38 @@ custom_edit_url: null
 | Médio (150-300 leitos) | 4 robôs | R$ 4,2 milhões | R$ 108.000/mês |
 | Grande (300+ leitos) | 6 robôs | R$ 5,9 milhões | R$ 145.000/mês |
 
+## 5. Estratégia de Geração e Conversão de Leads
+
+### 5.1 Funil de Vendas
+
+**GRÁFICO 3**
+
+| Etapa | Número | Taxa de Conversão |
+|-------|--------|-------------------|
+| Conscientização | 1000+ contatos | - |
+| Interesse | 300 leads qualificados | 30% |
+| Consideração | 120 demonstrações | 40% |
+| Avaliação | 60 propostas | 50% |
+| Decisão | 24 vendas | 40% |
+
+### 5.2 Táticas de Geração de Leads
+
+| Fase | Táticas Principais | Meta de Conversão |
+|------|-------------------|-------------------|
+| Conscientização | • Congressos hospitalares<br>• Publicações técnicas<br>• Webinars educativos | N/A |
+| Interesse | • Estudo de caso Unicamp<br>• Calculadora de ROI online<br>• Vídeos demonstrativos | 30% |
+| Consideração | • Demonstrações virtuais<br>• Visitas técnicas<br>• Workshop com cliente | 40% |
+| Avaliação | • Proposta técnica detalhada<br>• Estudo de viabilidade<br>• ROI personalizado | 50% |
+| Decisão | • Negociação final<br>• Plano de implementação<br>• Condições comerciais | 40% |
+
+### 5.3 Ciclo de Vendas Projetado
+
+- **Ciclo médio total**: 9 meses (da conscientização à decisão)
+- **Tempo em cada fase**:
+  - Conscientização → Interesse: 2-3 meses
+  - Interesse → Consideração: 1-2 meses
+  - Consideração → Avaliação: 2-3 meses
+  - Avaliação → Decisão: 1-2 meses
 
 ## 6. Projeção de Vendas e ROI
 
