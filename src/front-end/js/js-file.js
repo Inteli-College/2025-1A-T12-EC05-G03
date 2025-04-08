@@ -596,7 +596,7 @@ function carregarResumoNotificacoes() {
     notificacoesList.innerHTML = '';
     
     // Mostra apenas as 4 notificações mais recentes
-    const notificacoesRecentes = dadosMockados.notificacoes.slice(0, 4);
+    const notificacoesRecentes = dadosAPI_Atualiza.notificacoes.slice(0, 4);
     
     // Se não houver notificações, exibe uma mensagem
     if (notificacoesRecentes.length === 0) {
@@ -614,23 +614,16 @@ function carregarResumoNotificacoes() {
         const itemNotificacao = document.createElement('div');
         itemNotificacao.className = 'notification-item';
         
-        // Se for uma notificação nova (menos de 1 hora), adiciona a classe 'new'
-        const dataNotificacao = new Date(notificacao.data.replace(/(\d+)\/(\d+)\/(\d+)\s+(\d+):(\d+)/, '$3-$2-$1T$4:$5:00'));
-        const agora = new Date();
-        if ((agora - dataNotificacao) < 3600000) { // Menos de 1 hora (em ms)
-            itemNotificacao.classList.add('new');
-        }
         
         itemNotificacao.innerHTML = `
             <p><strong>${notificacao.mensagem}</strong></p>
-            <small class="notification-date">${notificacao.data}</small>
         `;
         
         notificacoesList.appendChild(itemNotificacao);
     });
     
     // Adiciona o botão "Ver mais" se houver mais de 4 notificações
-    if (dadosMockados.notificacoes.length > 4) {
+    if (dadosAPI_Atualiza.notificacoes.length > 4) {
         const btnVerMais = document.createElement('button');
         btnVerMais.className = 'btn-ver-mais';
         btnVerMais.textContent = 'Ver histórico completo';
@@ -651,7 +644,7 @@ function carregarTodasNotificacoes() {
     notificacoesList.innerHTML = '';
     
     // Se não houver notificações, exibe uma mensagem
-    if (dadosMockados.notificacoes.length === 0) {
+    if (dadosAPI_Atualiza.notificacoes.length === 0) {
         notificacoesList.innerHTML = `
             <div class="notification-empty">
                 <i class="fas fa-bell-slash"></i>
@@ -662,20 +655,13 @@ function carregarTodasNotificacoes() {
     }
     
     // Adiciona todas as notificações
-    dadosMockados.notificacoes.forEach(notificacao => {
+    dadosAPI_Atualiza.notificacoes.forEach(notificacao => {
         const itemNotificacao = document.createElement('div');
         itemNotificacao.className = 'notification-item';
         
-        // Se for uma notificação nova (menos de 1 hora), adiciona a classe 'new'
-        const dataNotificacao = new Date(notificacao.data.replace(/(\d+)\/(\d+)\/(\d+)\s+(\d+):(\d+)/, '$3-$2-$1T$4:$5:00'));
-        const agora = new Date();
-        if ((agora - dataNotificacao) < 3600000) { // Menos de 1 hora (em ms)
-            itemNotificacao.classList.add('new');
-        }
-        
+
         itemNotificacao.innerHTML = `
             <p><strong>${notificacao.mensagem}</strong></p>
-            <small class="notification-date">${notificacao.data}</small>
         `;
         
         notificacoesList.appendChild(itemNotificacao);
@@ -693,48 +679,15 @@ function carregarTodasNotificacoes() {
     notificacoesList.appendChild(btnVerMais);
 }
 
-// Função para adicionar uma nova notificação
-function adicionarNotificacao(mensagem, data) {
-    // Gera um novo ID para a notificação
-    const novoId = Math.max(...dadosMockados.notificacoes.map(n => n.id), 0) + 1;
-    
-    // Formata a data
-    const dataFormatada = data.toLocaleString('pt-BR').replace(',', '');
-    
-    // Cria a nova notificação
-    const novaNotificacao = {
-        id: novoId,
-        mensagem: mensagem,
-        data: dataFormatada
-    };
-    
-    // Adiciona ao início da lista de notificações
-    dadosMockados.notificacoes.unshift(novaNotificacao);
-    
-    // Limita o número de notificações a 20 para não sobrecarregar a interface
-    if (dadosMockados.notificacoes.length > 20) {
-        dadosMockados.notificacoes.pop();
-    }
-    
-    // Atualiza a exibição das notificações
-    if (document.querySelector('.notifications-panel').classList.contains('expanded')) {
-        carregarTodasNotificacoes();
-    } else {
-        carregarResumoNotificacoes();
-    }
-}
 
 // Função para abrir o modal de histórico de notificações
 function abrirModalNotificacoes() {
     const conteudoModal = document.getElementById('notificacoes-historico');
-    
-    // Agrupa notificações por data
-    const notificacoesPorData = agruparNotificacoesPorData(dadosMockados.notificacoes);
-    
+    const notificacoes = dadosAPI_Atualiza.notificacoes;
+
     let html = '<div class="notificacoes-lista">';
     
-    // Se não houver notificações, exibe uma mensagem
-    if (Object.keys(notificacoesPorData).length === 0) {
+    if (!notificacoes || notificacoes.length === 0) {
         html += `
             <div class="notification-empty">
                 <i class="fas fa-bell-slash"></i>
@@ -742,53 +695,22 @@ function abrirModalNotificacoes() {
             </div>
         `;
     } else {
-        // Para cada data, exibe as notificações
-        Object.keys(notificacoesPorData).sort().reverse().forEach(data => {
+        notificacoes.reverse().forEach(notificacao => {
             html += `
-                <div class="notificacao-dia">
-                    <h4 class="notificacao-data-header">${formatarData(data)}</h4>
+                <div class="notification-item-2">
+                    <p><strong>${notificacao.mensagem}</strong></p>
+                </div>
             `;
-            
-            notificacoesPorData[data].forEach(notificacao => {
-                const horario = notificacao.data.split(' ')[1];
-                html += `
-                    <div class="notification-item">
-                        <p><strong>${notificacao.mensagem}</strong></p>
-                        <small class="notification-date">${horario}</small>
-                    </div>
-                `;
-            });
-            
-            html += '</div>';
         });
     }
-    
+
     html += '</div>';
-    
     conteudoModal.innerHTML = html;
-    
+
     // Exibe o modal
     document.getElementById('modal-notificacoes').style.display = 'flex';
 }
 
-// Função para agrupar notificações por data
-function agruparNotificacoesPorData(notificacoes) {
-    const grupos = {};
-    
-    notificacoes.forEach(notificacao => {
-        // Pega apenas a parte da data (sem o horário)
-        const dataCompleta = notificacao.data;
-        const data = dataCompleta.split(' ')[0];
-        
-        if (!grupos[data]) {
-            grupos[data] = [];
-        }
-        
-        grupos[data].push(notificacao);
-    });
-    
-    return grupos;
-}
 
 // Função para formatar a data
 function formatarData(dataStr) {
@@ -1445,8 +1367,6 @@ function adicionarPedidoDePrescricao(prescricao) {
         // Adiciona à lista de pedidos aguardando separação
         dadosMockados.pedidos.aguardandoSeparacao.push(novoPedido);
         
-        // Adiciona notificação
-        adicionarNotificacao(`Novo pedido #${novoPedido.id} criado para ${novoPedido.paciente}`, new Date());
     }
 }
 
