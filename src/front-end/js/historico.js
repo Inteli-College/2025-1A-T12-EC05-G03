@@ -42,7 +42,7 @@ async function atualiza_prescricoes() {
         if (!token) {
             throw new Error('Token de autenticação não encontrado');
         }
-        const response = await fetch('http://127.0.0.1:5000/prescricoes/listar', {
+        const response = await fetch('https://two025-1a-t12-ec05-g03.onrender.com/prescricoes/listar', {
             method: 'GET',
             headers: { 
                 'Authorization': `Bearer ${token}`,
@@ -324,7 +324,7 @@ function atualizarTabelaHistorico(prescricoesList) {
 async function puxa_prescricao_por_id(id){
     try {
         const token = localStorage.getItem('access_token');
-        const response = await fetch('http://127.0.0.1:5000/prescricoes/' + id, {
+        const response = await fetch('https://two025-1a-t12-ec05-g03.onrender.com/prescricoes/' + id, {
             method: 'GET',
             headers: { 'Authorization': `Bearer ${token}` },
         });

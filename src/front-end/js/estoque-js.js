@@ -5,7 +5,7 @@ async function atualiza_remedios() {
       throw new Error("Token de autenticação não encontrado");
     }
     const response = await fetch(
-      "http://127.0.0.1:5000/remedios/listar",
+      "https://two025-1a-t12-ec05-g03.onrender.com/remedios/listar",
       {
         method: "GET",
         headers: {
@@ -41,7 +41,7 @@ async function atualiza_lotes() {
       throw new Error("Token de autenticação não encontrado");
     }
     const response = await fetch(
-      "http://127.0.0.1:5000/lotes/listar",
+      "https://two025-1a-t12-ec05-g03.onrender.com/lotes/listar",
       {
         method: "GET",
         headers: {
@@ -376,7 +376,7 @@ function cadastrarLote(event) {
     throw new Error("Token de autenticação não encontrado");
   }
 
-  fetch("http://127.0.0.1:5000/lotes/cadastrar", {
+  fetch("https://two025-1a-t12-ec05-g03.onrender.com/lotes/cadastrar", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -438,7 +438,7 @@ function cadastrarMedicamento(event) {
     throw new Error("Token de autenticação não encontrado");
   }
 
-  fetch("http://127.0.0.1:5000/remedios/cadastrar", {
+  fetch("https://two025-1a-t12-ec05-g03.onrender.com/remedios/cadastrar", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -499,7 +499,7 @@ function retirarMedicamento(event) {
   }
   console.log({ loteId });
 
-  fetch("http://127.0.0.1:5000/lotes/deletar/" + loteId, {
+  fetch("https://two025-1a-t12-ec05-g03.onrender.com/lotes/deletar/" + loteId, {
     method: "DELETE",
     headers: { Authorization: `Bearer ${token}` },
   })
