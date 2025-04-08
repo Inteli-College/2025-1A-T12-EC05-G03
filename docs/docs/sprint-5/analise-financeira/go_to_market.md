@@ -108,3 +108,13 @@ Diagnóstico → Desenho → Implantação → Ativação → Otimização
 | Uptime do sistema | > 99,9% |
 
 **GRÁFICO 9**
+
+## 9. Plano de Ação para o Primeiro Ano
+
+| Trimestre | Objetivos | Ações Chave |
+|-----------|-----------|-------------|
+| Q1 | • Lançamento oficial<br>• 2 vendas iniciais | • Evento de lançamento<br>• Abordagem direta a hospitais universitários |
+| Q2 | • 2 vendas<br>• Primeiros cases | • Webinars de resultados iniciais<br>• Participação na Feira Hospitalar |
+| Q3 | • 2 vendas<br>• Expansão regional | • Eventos regionais<br>• Parcerias com integradores |
+| Q4 | • 2 vendas<br>• Análise do ano | • Campanha de fim de ano<br>• Planejamento do próximo ano |
+
