@@ -486,3 +486,33 @@ custom_edit_url: null
 &emsp;O projeto de automação da separação de medicamentos representa não apenas um avanço tecnológico para o Hospital de Clínicas da Unicamp, mas também uma inovação com potencial de transformar a gestão da farmácia hospitalar no cenário brasileiro. Apesar do investimento substancial, os ganhos em eficiência, segurança e qualidade assistencial justificam a implementação, especialmente quando considerada a médio e longo prazo.
 
 &emsp;A redução estimada de 40% no tempo de montagem da "Fita de medicamentos", aliada à minimização dos erros de medicação e ao melhor controle de estoque, pode resultar em economias operacionais significativas que, ao longo do tempo, compensarão o investimento inicial e gerarão valor sustentável para a instituição.
+
+## Referências
+
+ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. **NBR 6023:2018 – Informação e documentação – Referências – Elaboração.** Rio de Janeiro: ABNT, 2018.
+
+AGÊNCIA NACIONAL DE ENERGIA ELÉTRICA (ANEEL). **Banco de Informações de Geração – Tarifas de energia elétrica.** Disponível em: https://www.aneel.gov.br. Acesso em: mar. 2025.
+
+BANCO NACIONAL DE DESENVOLVIMENTO ECONÔMICO E SOCIAL (BNDES). **Cartilha de apoio à formação de preço de venda para micro e pequenas empresas.** Rio de Janeiro: BNDES, 2021.
+
+BRASIL. **Receita Federal.** Impostos Federais: IRPJ, CSLL, IPI, PIS/COFINS, INSS Patronal. Disponível em: https://www.gov.br/receitafederal. Acesso em: mar. 2025.
+
+CONFEDERAÇÃO NACIONAL DA INDÚSTRIA (CNI). **Estudo técnico sobre custos industriais no Brasil.** Brasília: CNI, 2022.
+
+FIESP – Federação das Indústrias do Estado de São Paulo. **Custo-Brasil: Impacto tributário e trabalhista na indústria.** São Paulo: FIESP, 2023. Disponível em: https://www.fiesp.com.br. Acesso em: mar. 2025.
+
+IBGE – Instituto Brasileiro de Geografia e Estatística. **Salários Médios da Indústria Brasileira.** Disponível em: https://www.ibge.gov.br. Acesso em: mar. 2025.
+
+INDICADORES ECONÔMICOS – SALÁRIO.COM.BR. **Salários médios por função: engenheiro de produção, técnico de manutenção e operador industrial.** Disponível em: https://www.salario.com.br. Acesso em: mar. 2025.
+
+INVESTE SP. **Guia de custos industriais no Estado de São Paulo.** São Paulo: Governo do Estado de SP, 2022. Disponível em: https://www.investe.sp.gov.br. Acesso em: mar. 2025.
+
+PORTAL CONTÁBEIS. **Carga tributária no Brasil por regime de lucro real e presumido.** Disponível em: https://www.contabeis.com.br. Acesso em: mar. 2025.
+
+PORTAL TRIBUTÁRIO. **Tabela de alíquotas dos principais tributos: ICMS, IPI, ISS, PIS/COFINS.** Disponível em: https://www.portaltributario.com.br. Acesso em: mar. 2025.
+
+RAIS – Relação Anual de Informações Sociais. **Dados de mercado de trabalho formal.** Ministério do Trabalho. Disponível em: https://www.gov.br/trabalho. Acesso em: mar. 2025.
+
+ROBÔ INDUSTRIAL – PREÇOS E MODELOS. **Guia de custos de robôs industriais e CLPs.** Automação Industrial Brasil. Disponível em: https://www.automacaobrasil.com.br. Acesso em: mar. 2025.
+
+SEBRAE. **Formação do preço de venda: orientações e modelos.** São Paulo: SEBRAE, 2022. Disponível em: https://www.sebrae.com.br. Acesso em: mar. 2025.
