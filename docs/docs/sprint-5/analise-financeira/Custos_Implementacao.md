@@ -205,6 +205,33 @@ Média de economia por robô (excluindo o primeiro): 20%
 
 *Nota: Economia operacional considera redução de erros, otimização de pessoal e outros benefícios realizados progressivamente.
 
+## 5. Benefícios do Escalonamento
+
+### 5.1 Benefícios Financeiros
+
+- **Diluição do investimento inicial**: O capital é distribuído ao longo de 12 meses, melhorando indicadores financeiros como ROCE (Return on Capital Employed).
+- **Antecipação de benefícios**: Os ganhos operacionais começam a ser captados já a partir da Fase 1, antes da conclusão total do projeto.
+- **Economia de escala progressiva**: À medida que o volume aumenta, os custos unitários de aquisição diminuem.
+- **Redução do custo de capital**: Menor necessidade de capital de terceiros, reduzindo despesas financeiras.
+- **Melhor gestão de fluxo de caixa**: Picos de desembolso reduzidos em quase 70% em comparação com a implementação única.
+
+### 5.2 Benefícios Operacionais
+
+- **Curva de aprendizado**: A equipe ganha experiência progressivamente, reduzindo riscos em fases posteriores.
+- **Validação por etapas**: Problemas técnicos são identificados e corrigidos antes da expansão completa.
+- **Adaptação organizacional**: Processos hospitalares são ajustados gradualmente, minimizando impactos.
+- **Melhoria contínua**: Cada fase incorpora lições aprendidas das anteriores, otimizando o resultado final.
+- **Flexibilidade para mudanças**: Possibilidade de ajustar especificações e funcionalidades ao longo do projeto.
+
+### 5.3 Benefícios Estratégicos
+
+- **Redução de riscos de implementação**: Falhas afetam apenas parte do sistema, não o todo.
+- **Opção de expansão modular**: O hospital pode decidir expandir ou pausar com base em resultados intermediários.
+- **Demonstração de resultados**: Evidências de sucesso iniciais facilitam aprovação de fases subsequentes.
+- **Benchmarks internos**: Cada fase estabelece parâmetros de desempenho para as seguintes.
+- **Adaptação a mudanças de mercado**: Flexibilidade para incorporar novas tecnologias que surjam durante o período de implementação.
+
+
 ## 7. Conclusão e Recomendações
 
 ### 7.1 Conclusões Principais
