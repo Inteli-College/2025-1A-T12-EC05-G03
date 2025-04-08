@@ -3,9 +3,26 @@ sidebar_position: 1
 custom_edit_url: null
 ---
 
-# Custo do protótipo
+# Análise Financeira - Projeto de Automação da Separação de Medicamentos
 
-#### Custo do protótipo
+## 1. Introdução ao Projeto
+
+&emsp;Este documento apresenta uma análise financeira detalhada para o projeto de automação da separação de medicamentos desenvolvido para o Hospital de Clínicas da Unicamp. Embora o protótipo atual seja implementado com tecnologias educacionais como Arduino Uno, Raspberry Pi, Dobot e periféricos acessíveis (leitor QR Code e sensor de distância), esta análise financeira contempla uma projeção em escala industrial, alinhada com as expectativas do módulo de automação industrial.
+
+### 1.1 Contextualização do Projeto
+
+&emsp;O projeto visa automatizar o processo de separação e montagem da "Fita de medicamentos" para pacientes internados no Hospital de Clínicas da Unicamp. Atualmente, este processo é realizado manualmente, o que demanda tempo considerável da equipe e apresenta riscos significativos como erros de separação e duplicidade, comprometendo tanto a segurança do paciente quanto a eficiência operacional da farmácia hospitalar.
+
+### 1.2 Benefícios Esperados
+
+&emsp;A solução proposta integra manipuladores robóticos, sensores inteligentes e um sistema digital de controle para otimizar a eficiência, reduzir erros e aumentar a segurança na entrega de medicamentos. Os benefícios esperados incluem:
+
+- Redução de até 40% no tempo de montagem da "Fita de medicamentos"
+- Diminuição significativa dos erros na separação
+- Melhor rastreamento e gestão do estoque em tempo real
+- Redução de desperdícios e aumento da produtividade da equipe
+
+
 
 ## 3. Da Escala Educacional para a Industrial
 
