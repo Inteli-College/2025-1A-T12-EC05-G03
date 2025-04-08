@@ -490,7 +490,7 @@ section {
     margin-top: 0.2rem;
 }
 
-/* Equipe */
+/* Equipe - CSS corrigido e otimizado */
 .team-container {
     display: flex;
     flex-wrap: wrap;
@@ -510,6 +510,8 @@ section {
     cursor: pointer;
     position: relative;
     text-decoration: none;
+    display: flex;
+    flex-direction: column;
 }
 
 .team-member:hover {
@@ -517,47 +519,46 @@ section {
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
-.team-member:hover::before {
-    opacity: 1;
-}
-
-.team-member::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--cor-base1);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: 15px;
-    z-index: 1;
-}
-
+/* Ajuste para as fotos da equipe */
 .team-photo {
     width: 100%;
     height: 250px;
-    object-fit: cover;
+    overflow: hidden;
     position: relative;
-    z-index: 2;
-    background-color: #eee;
+    border-radius: 15px 15px 0 0;
+}
+
+.team-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center; /* Isso faz com que a imagem seja alinhada ao topo */
+}
+
+.team-photo i {
+    font-size: 3rem;
+    color: #aaa;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #aaa;
-    font-size: 3rem;
+    background-color: #eee;
 }
 
 .team-info {
     padding: 1.5rem;
     text-align: center;
-    position: relative;
-    z-index: 2;
-    transition: color 0.3s ease;
+    background-color: white;
+    transition: all 0.3s ease;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .team-member:hover .team-info {
+    background-color: var(--cor-base1);
     color: white;
 }
 
