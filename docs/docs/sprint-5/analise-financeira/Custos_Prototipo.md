@@ -254,6 +254,34 @@ custom_edit_url: null
 - Relatórios e análises de desempenho
 - Gestão de inventário de peças de reposição
 
+## 5. Estimativas de Custos e Valores
+
+### 5.1 Custos Administrativos
+&emsp;Os custos administrativos englobam despesas com gestão, contabilidade, recursos humanos e outros serviços de suporte. Estimativa inicial: entre R$ 10.000 a R$ 30.000 mensais, dependendo do porte da operação.
+
+### 5.2 Aluguel de Fábrica
+&emsp;O valor do aluguel de um galpão industrial depende da localização, tamanho e infraestrutura. Em São Paulo, uma regra comum é que o aluguel mensal represente entre 0,5% a 1% do valor de mercado do imóvel. Para um galpão avaliado em R$ 1.000.000, o aluguel mensal seria entre R$ 5.000 a R$ 10.000.
+
+### 5.3 Equipamentos
+- **Controlador Lógico Programável (CLP)**: Modelos básicos a partir de R$ 1.499, modelos mais avançados até R$ 7.749.
+- **Robô Industrial**: Entre US$ 80.000 a US$ 100.000 (R$ 400.000 a R$ 500.000 considerando taxa de câmbio de R$ 5,00/US$). Robôs usados a partir de R$ 20.000.
+- **Sensores Industriais**: Kits de 10 unidades de sensores indutivos por R$ 287,90.
+
+### 5.4 Utilidades
+- **Água**: Custo médio para indústrias no Brasil aproximadamente R$ 5,75 por metro cúbico (m³).
+- **Energia Elétrica**: Custo médio para o setor industrial cerca de R$ 329 por megawatt-hora (MWh), equivalente a R$ 0,329 por quilowatt-hora (kWh).
+
+### 5.5 Manutenção
+&emsp;Os custos de manutenção preventiva representam cerca de 5% a 10% do valor de reposição dos equipamentos anualmente. Para um equipamento avaliado em R$ 500.000, isso equivale a R$ 25.000 a R$ 50.000 por ano.
+
+### 5.6 Garantias
+&emsp;A garantia legal para equipamentos industriais é prevista pelo Código de Defesa do Consumidor, cobrindo defeitos de fabricação por um período determinado. É possível negociar garantias contratuais adicionais com os fornecedores.
+
+### 5.7 Salários dos Funcionários
+- **Engenheiro de Produção**: Salário médio de R$ 7.634,88 mensais.
+- **Técnico de Manutenção Industrial**: Salário médio de R$ 4.291,66 mensais.
+- **Operadores de Máquina**: Salário médio de R$ 2.500 a R$ 3.500 mensais, dependendo da região e experiência.
+
 ## 6. Tabela de Análise Financeira - Automação da Fita de Medicamentos (Escala Industrial)
 
 | Item | Categoria | Descrição | Estimativa de Custo | Tipo de Gasto |
