@@ -7,7 +7,9 @@ custom_edit_url: null
 
 #### Plano Go-to-Market
 
-Oferece uma análise comparativa entre os custos do protótipo e os custos projetados para implementação em escala, destacando diferenças, proporções e justificativas para variações significativas.
+## 1. Sumário Executivo
+
+&emsp;Este plano Go-to-Market apresenta a estratégia para comercializar nossa solução de automação para separação de medicamentos, inicialmente desenvolvida para o Hospital de Clínicas da Unicamp. A análise financeira demonstra um payback estimado em 24 meses e um ROI projetado de 166% em 5 anos para as instituições adotantes, tornando a proposta altamente atrativa para o mercado hospitalar brasileiro.
 
 ## 6. Projeção de Vendas e ROI
 
