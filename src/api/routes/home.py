@@ -4,7 +4,7 @@ from ..models.pedido import Pedido
 from ..models.remedio import Remedio
 from ..models.database import db
 from ..models.lote import Lote
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 from sqlalchemy.sql import func
 import json
 
@@ -72,7 +72,17 @@ def atualizar_pedidos_home():
     )
 
     prox_validade = listar_remedio_proximos_a_validade()
-    lotes_acabando = listar_remedio_proximos_a_validade()
+    lotes_acabando = listar_lotes_com_baixa_quantidade()
+
+    notificacoes = []
+
+    for n in prox_validade:
+        msg = gerar_notificacao(1, n)
+        notificacoes.append(msg)
+
+    for n in lotes_acabando:
+        msg = gerar_notificacao(2, n)
+        notificacoes.append(msg)
 
     return jsonify({
         "prescricoes":{
@@ -85,27 +95,35 @@ def atualizar_pedidos_home():
             "emRevisao": [revisao.as_dict() for revisao in pedidos_em_revisao],
             "concluidos": [concluido.as_dict() for concluido in pedidos_concluidos],
         },
-        "notificacoes":{
-            "validade": [lote.as_listar_pedido() for lote in prox_validade] if prox_validade else [],
-            "lotes_acabando": [lote.as_listar_pedido() for lote in lotes_acabando] if lotes_acabando else []
-        }
+        "notificacoes": notificacoes if notificacoes else []
     }), 200
 
 def listar_remedio_proximos_a_validade():
 
-    data_limite = date.today() + timedelta(days=7)
+    data_limite = date.today() + timedelta(days=14)
 
     prox_validade = db.session.query(Lote).filter(
         Lote.data_validade.between(date.today(), data_limite)
-    ).all()
+    )
        
-    return prox_validade
+    return [p.as_listar_pedido() for p in prox_validade]
 
 def listar_lotes_com_baixa_quantidade():
 
     lotes_acabando = db.session.query(Lote).filter(
         Lote.quantidade <= 10
-    ).all()
+    )
 
-    return lotes_acabando
+    return [p.as_listar_pedido() for p in lotes_acabando]
 
+def gerar_notificacao(tipo, lote):
+    if tipo == 1:
+        data_hoje = date.today()
+        data_validade = lote['data_validade']
+
+        diferenca = (data_validade - data_hoje).days
+
+        return {"mensagem": f"Faltam {diferenca} dias para vencer {lote['principio_ativo']}, lote {lote['num_lote']}"}
+    
+    if tipo == 2:
+        return { "mensagem": f"Faltam {lote['quantidade']} unidades para acabar {lote['principio_ativo']}, lote {lote['num_lote']}" }
