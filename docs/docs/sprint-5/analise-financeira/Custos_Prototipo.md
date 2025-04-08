@@ -114,3 +114,36 @@ custom_edit_url: null
 - Demonstrações para potenciais clientes
 - Viagens e representação comercial
 
+### 4.4 Impostos e Obrigações Fiscais
+
+#### 4.4.1 Impostos sobre Aquisições
+- Imposto de Importação (II) para equipamentos importados
+- IPI (Imposto sobre Produtos Industrializados)
+- ICMS (Imposto sobre Circulação de Mercadorias e Serviços)
+- PIS/COFINS
+
+#### 4.4.2 Impostos sobre Serviços
+- ISS (Imposto Sobre Serviços)
+- IRPJ (Imposto de Renda Pessoa Jurídica)
+- CSLL (Contribuição Social sobre o Lucro Líquido)
+
+#### 4.4.3 Obrigações Trabalhistas
+- INSS Patronal
+- FGTS
+- Contribuições sindicais
+- Provisões para férias e 13º salário
+
+### 4.5 Custos de Operação Contínua
+
+#### 4.5.1 Suporte e Manutenção
+- Equipe de suporte técnico continuado
+- Atualizações de software e sistema
+- Substituição de componentes conforme ciclo de vida
+- Calibrações e certificações periódicas
+
+#### 4.5.2 Operação Diária
+- Equipe de operação do sistema
+- Monitoramento de performance
+- Relatórios e análises de desempenho
+- Gestão de inventário de peças de reposição
+
