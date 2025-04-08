@@ -11,6 +11,27 @@ custom_edit_url: null
 
 &emsp;Este plano Go-to-Market apresenta a estratégia para comercializar nossa solução de automação para separação de medicamentos, inicialmente desenvolvida para o Hospital de Clínicas da Unicamp. A análise financeira demonstra um payback estimado em 24 meses e um ROI projetado de 166% em 5 anos para as instituições adotantes, tornando a proposta altamente atrativa para o mercado hospitalar brasileiro.
 
+## 2. Análise de Mercado
+
+### 2.1 Tamanho do Mercado Potencial
+
+- Total de hospitais no Brasil: 6.600 (públicos e privados)
+- Mercado-alvo inicial: 1.750 instituições
+  - 1.300 hospitais de grande porte (mais de 150 leitos)
+  - 450 hospitais universitários e de ensino
+
+### 2.2 Segmentação do Mercado
+
+**GRÁFICO 1**
+
+| Segmento | Descrição | Tamanho | Potencial de Conversão |
+|----------|-----------|---------|------------------------|
+| Tier 1: Hospitais Universitários | Foco em pesquisa e inovação | 450 | Alto (15-20%) |
+| Tier 2: Grandes Redes Hospitalares Privadas | Múltiplas unidades | 800 | Médio-Alto (10-15%) |
+| Tier 3: Hospitais Públicos de Grande Porte | Mais de 200 leitos | 500 | Médio (5-10%) |
+| Tier 4: Hospitais Privados Independentes | Médio e grande porte | 400 | Médio-Baixo (3-5%) |
+
+
 ## 6. Projeção de Vendas e ROI
 
 ### 6.1 Projeção de Vendas (5 anos)
