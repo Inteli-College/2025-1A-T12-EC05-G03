@@ -53,21 +53,7 @@ def listar_por_id_remedio(id_remedio):
 
     return jsonify([log.as_dict() for log in lotes_id]),200
 
-@lote_bp.route('/proximos-validade', methods = ['GET'])
-def listar_remedio_proximos_a_validade():
 
-    data_limite = date.today() + timedelta(days=7)
-
-    prox_validade = db.session.query(Lote).filter(
-        Lote.data_validade.between(date.today(), data_limite)
-    ).all()
-
-    if not prox_validade:
-        return jsonify({
-            'Message': 'Não foi encontrado nenhum lote que está para vencer'
-        }), 404 
-    
-    return jsonify([lote.as_dict() for lote in prox_validade])
 
 
 

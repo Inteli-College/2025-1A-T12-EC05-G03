@@ -3,7 +3,8 @@ from ..models.prescricao import Prescricao
 from ..models.pedido import Pedido
 from ..models.remedio import Remedio
 from ..models.database import db
-from datetime import date
+from ..models.lote import Lote
+from datetime import date, timedelta
 from sqlalchemy.sql import func
 import json
 
@@ -70,6 +71,9 @@ def atualizar_pedidos_home():
         )
     )
 
+    prox_validade = listar_remedio_proximos_a_validade()
+    lotes_acabando = listar_remedio_proximos_a_validade()
+
     return jsonify({
         "prescricoes":{
             "aguardandoAvaliacao":[aguardando.as_front() for aguardando in prescricoes_aguardando],
@@ -80,16 +84,28 @@ def atualizar_pedidos_home():
             "emSeparacao": [separacao.as_dict() for separacao in pedidos_em_separacao],
             "emRevisao": [revisao.as_dict() for revisao in pedidos_em_revisao],
             "concluidos": [concluido.as_dict() for concluido in pedidos_concluidos],
+        },
+        "notificacoes":{
+            "validade": [lote.as_listar_pedido() for lote in prox_validade] if prox_validade else [],
+            "lotes_acabando": [lote.as_listar_pedido() for lote in lotes_acabando] if lotes_acabando else []
         }
     }), 200
 
-    # return jsonify({
-    #     "Prescricoes aguardando avaliacao": [aguardando.as_dict() for aguardando in prescricoes_aguardando],
-    #     "Prescricoes avaliadas": [avaliadas.as_dict() for avaliadas in prescricoes_avaliadas],
-    #     "Aguardando Separacao": [aguardando.as_dict() for aguardando in pedidos_aguardando_separacao],
-    #     "Em Separação": [separacao.as_dict() for separacao in pedidos_em_separacao],
-    #     "Em Revisão": [revisao.as_dict() for revisao in pedidos_em_revisao],
-    #     "Concluído": [concluido.as_dict() for concluido in pedidos_concluidos],
-    # }), 200
+def listar_remedio_proximos_a_validade():
 
+    data_limite = date.today() + timedelta(days=7)
+
+    prox_validade = db.session.query(Lote).filter(
+        Lote.data_validade.between(date.today(), data_limite)
+    ).all()
+       
+    return prox_validade
+
+def listar_lotes_com_baixa_quantidade():
+
+    lotes_acabando = db.session.query(Lote).filter(
+        Lote.quantidade <= 10
+    ).all()
+
+    return lotes_acabando
 
