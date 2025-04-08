@@ -114,11 +114,11 @@ custom_edit_url: null
 
 | Fase | Táticas Principais | Meta de Conversão |
 |------|-------------------|-------------------|
-| Conscientização | • Congressos hospitalares<br>• Publicações técnicas<br>• Webinars educativos | N/A |
-| Interesse | • Estudo de caso Unicamp<br>• Calculadora de ROI online<br>• Vídeos demonstrativos | 30% |
-| Consideração | • Demonstrações virtuais<br>• Visitas técnicas<br>• Workshop com cliente | 40% |
-| Avaliação | • Proposta técnica detalhada<br>• Estudo de viabilidade<br>• ROI personalizado | 50% |
-| Decisão | • Negociação final<br>• Plano de implementação<br>• Condições comerciais | 40% |
+| Conscientização | • Congressos hospitalares<br></br>• Publicações técnicas<br></br>• Webinars educativos | N/A |
+| Interesse | • Estudo de caso Unicamp<br></br>• Calculadora de ROI online<br></br>• Vídeos demonstrativos | 30% |
+| Consideração | • Demonstrações virtuais<br></br>• Visitas técnicas<br></br>• Workshop com cliente | 40% |
+| Avaliação | • Proposta técnica detalhada<br></br>• Estudo de viabilidade<br></br>• ROI personalizado | 50% |
+| Decisão | • Negociação final<br></br>• Plano de implementação<br></br>• Condições comerciais | 40% |
 
 ### 5.3 Ciclo de Vendas Projetado
 
@@ -233,10 +233,10 @@ Diagnóstico → Desenho → Implantação → Ativação → Otimização
 
 | Trimestre | Objetivos | Ações Chave |
 |-----------|-----------|-------------|
-| Q1 | • Lançamento oficial<br>• 2 vendas iniciais | • Evento de lançamento<br>• Abordagem direta a hospitais universitários |
-| Q2 | • 2 vendas<br>• Primeiros cases | • Webinars de resultados iniciais<br>• Participação na Feira Hospitalar |
-| Q3 | • 2 vendas<br>• Expansão regional | • Eventos regionais<br>• Parcerias com integradores |
-| Q4 | • 2 vendas<br>• Análise do ano | • Campanha de fim de ano<br>• Planejamento do próximo ano |
+| Q1 | • Lançamento oficial<br></br>• 2 vendas iniciais | • Evento de lançamento<br></br>• Abordagem direta a hospitais universitários |
+| Q2 | • 2 vendas<br></br>• Primeiros cases | • Webinars de resultados iniciais<br></br>• Participação na Feira Hospitalar |
+| Q3 | • 2 vendas<br></br>• Expansão regional | • Eventos regionais<br></br>• Parcerias com integradores |
+| Q4 | • 2 vendas<br></br>• Análise do ano | • Campanha de fim de ano<br></br>• Planejamento do próximo ano |
 
 ## 10. Conclusão
 
