@@ -231,6 +231,16 @@ Média de economia por robô (excluindo o primeiro): 20%
 - **Benchmarks internos**: Cada fase estabelece parâmetros de desempenho para as seguintes.
 - **Adaptação a mudanças de mercado**: Flexibilidade para incorporar novas tecnologias que surjam durante o período de implementação.
 
+## 6. Mitigação de Riscos no Escalonamento
+
+| Risco | Probabilidade | Impacto | Estratégia de Mitigação |
+|-------|--------------|---------|-------------------------|
+| Variação cambial | Média | Alto | Contratos com fornecedores em reais ou proteção via hedge cambial |
+| Incompatibilidade entre fases | Baixa | Alto | Arquitetura modular com interfaces padronizadas e bem documentadas |
+| Obsolescência tecnológica | Média | Médio | Cláusulas contratuais de atualização tecnológica com fornecedores |
+| Resistência organizacional | Alta | Médio | Programa estruturado de gestão de mudanças e comunicação |
+| Atrasos entre fases | Média | Médio | Buffers de tempo entre fases e marcos de decisão go/no-go |
+| Dependência de fornecedores | Alta | Alto | Diversificação de fornecedores e estoque estratégico |
 
 ## 7. Conclusão e Recomendações
 
