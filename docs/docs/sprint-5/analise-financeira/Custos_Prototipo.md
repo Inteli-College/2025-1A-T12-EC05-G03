@@ -22,7 +22,97 @@ custom_edit_url: null
 - Melhor rastreamento e gestão do estoque em tempo real
 - Redução de desperdícios e aumento da produtividade da equipe
 
+## 2. Conceitos Financeiros Fundamentais
 
+### 2.1 Custo
+
+**Definição**: São os gastos diretamente relacionados à produção de bens ou à prestação de serviços.
+
+**Exemplos no contexto do projeto**:
+- Custo dos componentes robóticos e sensores
+- Custo dos sistemas de controle e software
+- Mão de obra técnica diretamente envolvida na implementação
+- Materiais consumíveis durante a instalação e testes
+
+### 2.2 Custo Indireto
+
+**Definição**: São gastos que não estão diretamente ligados à produção, mas são necessários para o funcionamento da operação.
+
+**Exemplos no contexto do projeto**:
+- Energia elétrica consumida pelos equipamentos
+- Manutenção preventiva dos sistemas
+- Treinamento da equipe
+- Depreciação dos equipamentos ao longo do tempo
+- Custos com infraestrutura de TI para suporte do sistema
+
+### 2.3 Despesa
+
+**Definição**: São gastos não relacionados diretamente à produção, mas necessários para a operação administrativa e comercial.
+
+**Exemplos no contexto do projeto**:
+- Salários da equipe administrativa do projeto
+- Marketing e comunicação das mudanças de processo
+- Contratos de suporte técnico
+- Despesas com documentação e certificações
+- Consultorias especializadas
+
+### 2.4 Imposto
+
+**Definição**: São tributos obrigatórios cobrados pelo governo sobre produtos, serviços, propriedades e transações financeiras.
+
+**Exemplos no contexto do projeto**:
+- Imposto sobre importação de componentes robóticos (II)
+- Imposto sobre Produtos Industrializados (IPI)
+- Imposto sobre Circulação de Mercadorias e Serviços (ICMS)
+- PIS/COFINS sobre aquisição de equipamentos
+- Imposto de Renda sobre o serviço prestado
+
+### 2.5 CAPEX (Capital Expenditure)
+
+**Definição**: CAPEX refere-se aos gastos de capital ou investimentos em bens físicos, como equipamentos, propriedades ou infraestrutura, que serão utilizados por um longo período. São considerados investimentos que geram valor para a empresa ao longo do tempo e geralmente são contabilizados como ativos no balanço patrimonial, sendo depreciados ao longo de sua vida útil.
+
+**Características principais**:
+- Representam investimentos de longo prazo
+- São capitalizados no balanço patrimonial como ativos
+- Sofrem depreciação ao longo do tempo
+- Normalmente requerem aprovação orçamentária específica
+- Tendem a ser investimentos pontuais de maior valor
+
+**Exemplos de CAPEX no projeto**:
+- Aquisição dos robôs industriais
+- Compra de sistemas de visão computacional
+- Investimento em servidores e infraestrutura de TI
+- Aquisição de esteiras e sistemas de classificação
+- Renovação ou adequação do espaço físico
+
+### 2.6 OPEX (Operational Expenditure)
+
+**Definição**: OPEX refere-se aos gastos operacionais necessários para o funcionamento diário do negócio. São despesas recorrentes que afetam diretamente o resultado do exercício e são contabilizadas como despesas na demonstração de resultados, não sendo capitalizadas ou depreciadas.
+
+**Características principais**:
+- Representam custos do dia a dia
+- São contabilizados como despesas no período em que ocorrem
+- Afetam diretamente o lucro do período
+- Tendem a ser recorrentes e previsíveis
+- Geralmente são geridos dentro do orçamento operacional
+
+**Exemplos de OPEX no projeto**:
+- Salários da equipe de operação
+- Consumo de energia elétrica e água
+- Custos de manutenção dos equipamentos
+- Licenças de software (na modalidade de assinatura)
+- Treinamentos periódicos
+- Custos de suporte técnico
+- Aluguel de instalações
+
+### 2.7 Relação entre CAPEX e OPEX no Projeto
+
+&emsp;No contexto do projeto de automação da farmácia hospitalar, é essencial equilibrar os investimentos de capital (CAPEX) com os custos operacionais (OPEX). Algumas considerações importantes:
+
+- **Transformação de CAPEX em OPEX**: Atualmente, muitas soluções tecnológicas estão migrando do modelo de compra (CAPEX) para o modelo de serviço (OPEX), como no caso de softwares que passaram de licenças perpétuas para assinaturas.
+- **Análise de Trade-off**: Em alguns casos, pode ser mais vantajoso aumentar o CAPEX inicial para reduzir o OPEX futuro. Por exemplo, investir em equipamentos mais robustos e de maior qualidade pode reduzir custos de manutenção a longo prazo.
+- **Impactos contábeis e fiscais**: CAPEX e OPEX têm tratamentos contábeis e fiscais diferentes, o que pode impactar o fluxo de caixa e o resultado financeiro do projeto.
+- **Planejamento orçamentário**: O CAPEX geralmente requer aprovações específicas e planejamento antecipado, enquanto o OPEX tende a ser gerido dentro do orçamento operacional regular.
 
 ## 3. Da Escala Educacional para a Industrial
 
