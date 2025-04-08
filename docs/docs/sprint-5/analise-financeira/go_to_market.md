@@ -22,7 +22,16 @@ custom_edit_url: null
 
 ### 2.2 Segmentação do Mercado
 
-**GRÁFICO 1**
+<p style={{textAlign: 'center'}}>Figura X - Gráfico de Segmentação de Mercado</p>
+
+<div style={{margin: 25}}>
+    <div style={{textAlign: 'center'}}>
+        <img src={require("../../../../media/g1.png").default} style={{width: 800}} alt="Gráfico de Segmentação de Mercado" />
+        <br />
+    </div>
+</div>
+
+<p style={{textAlign: 'center'}}>Fonte: Os autores (2025)</p>
 
 | Segmento | Descrição | Tamanho | Potencial de Conversão |
 |----------|-----------|---------|------------------------|
@@ -41,7 +50,16 @@ custom_edit_url: null
 4. **Redução de custos operacionais**: Economia de 35-40% em 3 anos
 5. **Segurança do paciente aprimorada**: Menos eventos adversos
 
-**GRÁFICO 2**
+<p style={{textAlign: 'center'}}>Figura X - Benefícios da Automação</p>
+
+<div style={{margin: 25}}>
+    <div style={{textAlign: 'center'}}>
+        <img src={require("../../../../media/g2.png").default} style={{width: 800}} alt="Benefícios da Automação" />
+        <br />
+    </div>
+</div>
+
+<p style={{textAlign: 'center'}}>Fonte: Os autores (2025)</p>
 
 ### 3.2 Diferenciadores Competitivos
 
@@ -73,7 +91,16 @@ custom_edit_url: null
 
 ### 5.1 Funil de Vendas
 
-**GRÁFICO 3**
+<p style={{textAlign: 'center'}}>Figura X - Funil de Vendas</p>
+
+<div style={{margin: 25}}>
+    <div style={{textAlign: 'center'}}>
+        <img src={require("../../../../media/g3.png").default} style={{width: 800}} alt="Funil de Vendas" />
+        <br />
+    </div>
+</div>
+
+<p style={{textAlign: 'center'}}>Fonte: Os autores (2025)</p>
 
 | Etapa | Número | Taxa de Conversão |
 |-------|--------|-------------------|
