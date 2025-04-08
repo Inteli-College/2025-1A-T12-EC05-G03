@@ -58,44 +58,65 @@ function initSidebar() {
         iconElement.style.pointerEvents = 'none'; // Evita problemas de propagação
     }
     
-    // Verifica qual página está ativa baseada na URL atual
+    // Marca o item de menu ativo com base na URL atual
+    setActiveMenuItem();
+}
+
+// Função para definir o item de menu ativo
+function setActiveMenuItem() {
+    // Obtém o caminho da URL atual
     const urlAtual = window.location.pathname;
-    const menuItems = document.querySelectorAll('.menu-item');
-    
     console.log("URL atual: " + urlAtual);
     
+    // Remove a classe 'active' de todos os itens do menu
+    const menuItems = document.querySelectorAll('.menu-item');
     menuItems.forEach(item => {
-        // Remove a classe 'active' de todos
         item.classList.remove('active');
-        
-        // Adiciona a classe 'active' no item correspondente à página atual
-        const hrefItem = item.getAttribute('href');
-        if (hrefItem) {
-            // Extrai apenas o nome do arquivo (ex: de "/home-page.html" para "home-page.html")
-            const nomeArquivo = hrefItem.split('/').pop();
-            
-            console.log("Verificando link: " + nomeArquivo);
-            
-            // Verifica se o arquivo da URL atual contém o nome do arquivo do link
-            if (urlAtual.includes(nomeArquivo)) {
-                item.classList.add('active');
-                console.log("Item ativo: " + nomeArquivo);
-            }
-            
-            // Caso especial para a página inicial (index.html ou /)
-            if ((urlAtual === '/' || urlAtual.endsWith('index.html') || urlAtual.endsWith('/')) && 
-                (hrefItem.includes('index.html') || hrefItem === './' || hrefItem === '/')) {
-                item.classList.add('active');
-                console.log("Item da página inicial ativo");
-            }
-        }
     });
+    
+    // Determina qual página está ativa
+    let paginaAtiva = '';
+    
+    // Verifica se estamos na página inicial
+    if (urlAtual === '/' || urlAtual.endsWith('index.html')) {
+        paginaAtiva = 'home';
+    } 
+    // Verifica outras páginas
+    else if (urlAtual.includes('historico-prescricao')) {
+        paginaAtiva = 'historico-prescricao';
+    }
+    else if (urlAtual.includes('historico-log')) {
+        paginaAtiva = 'historico-log';
+    }
+    else if (urlAtual.includes('historico')) {
+        paginaAtiva = 'historico';
+    }
+    else if (urlAtual.includes('estoque')) {
+        paginaAtiva = 'estoque';
+    }
+    else {
+        // Extrai o nome da página da URL (remove barras e extensão .html)
+        const match = urlAtual.match(/\/([^\/]+)(?:\.html)?$/);
+        if (match && match[1]) {
+            paginaAtiva = match[1];
+        }
+    }
+    
+    console.log("Página ativa identificada: " + paginaAtiva);
+    
+    // Adiciona a classe 'active' ao item de menu correspondente
+    if (paginaAtiva) {
+        const activeItem = document.querySelector(`.menu-item[data-page="${paginaAtiva}"]`);
+        if (activeItem) {
+            activeItem.classList.add('active');
+            console.log("Item de menu ativado: " + paginaAtiva);
+        } else {
+            console.log("Item de menu não encontrado para: " + paginaAtiva);
+        }
+    }
 }
 
 // Inicializar imediatamente
-initSidebar();
-
-// Garantir que o menu é inicializado quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', initSidebar);
 
 // Garantir que o menu continua funcionando mesmo após a página carregar completamente
@@ -109,4 +130,7 @@ window.addEventListener('load', function() {
         // Tornar visualmente mais clicável
         menuToggle.style.cursor = 'pointer';
     }
+    
+    // Verificar novamente o item ativo (caso a URL tenha mudado)
+    setActiveMenuItem();
 });

@@ -20,3 +20,12 @@ class Log(db.Model):
             'id_pedido': self.id_pedido,
             'id_remedio_em_separacao': self.id_remedio_em_separacao
         }
+    
+    def as_front(self):
+        return{
+            'id': self.id,
+            'id_pedido': self.id_pedido,
+            'id_remedio': self.id_remedio_em_separacao,
+            'descricao': self.log.descricao,
+            'hora': self.hora_log
+        }
