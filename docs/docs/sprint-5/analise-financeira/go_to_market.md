@@ -39,3 +39,51 @@ Oferece uma análise comparativa entre os custos do protótipo e os custos proje
 | **Total Economia Anual** | **R$ 2.660.000** |
 | **ROI em 5 anos** | **166%** |
 | **Payback** | **23 meses** |
+
+**GRÁFICO 5**
+
+## 7. Análise de Payback Detalhada
+
+### 7.1 Fluxo de Caixa para o Cliente
+
+| Mês | Investimento Acumulado (R$) | Economia Acumulada (R$) | Fluxo Líquido (R$) |
+|-----|--------------------------|----------------------|---------------------|
+| 0 | -5.000.000 | 0 | -5.000.000 |
+| 6 | -5.000.000 | 1.330.000 | -3.670.000 |
+| 12 | -5.000.000 | 2.660.000 | -2.340.000 |
+| 18 | -5.000.000 | 3.990.000 | -1.010.000 |
+| 23 | -5.000.000 | 5.098.333 | 98.333 |
+| 24 | -5.000.000 | 5.320.000 | 320.000 |
+| 36 | -5.000.000 | 7.980.000 | 2.980.000 |
+| 48 | -5.000.000 | 10.640.000 | 5.640.000 |
+| 60 | -5.000.000 | 13.300.000 | 8.300.000 |
+
+**Principais indicadores financeiros**:
+- **Payback**: 23 meses
+- **ROI em 3 anos**: 59,6%
+- **ROI em 5 anos**: 166%
+- **TIR (Taxa Interna de Retorno)**: 32,7%
+
+**GRÁFICO 6**
+
+### 7.2 Comparativo de ROI por Porte de Hospital
+
+| Porte do Hospital | Investimento (R$) | Economia Anual (R$) | Payback (meses) | ROI em 5 anos |
+|-------------------|-------------------|---------------------|----------------|--------------|
+| Pequeno (até 150 leitos) | 2.900.000 | 1.320.000 | 26 | 127% |
+| Médio (150-300 leitos) | 5.000.000 | 2.660.000 | 23 | 166% |
+| Grande (300+ leitos) | 7.200.000 | 4.100.000 | 21 | 185% |
+
+**GRÁFICO 7**
+
+### 7.3 Fontes de Economia para o Cliente
+
+**GRÁFICO 8**
+
+| Fonte de Economia | Contribuição (%) | Valor Anual (R$) |
+|-------------------|------------------|------------------|
+| Redução de eventos adversos | 27% | 720.000 |
+| Eficiência de mão de obra | 36% | 950.000 |
+| Redução de desperdício | 20% | 540.000 |
+| Otimização de estoque | 17% | 450.000 |
+| **Total** | **100%** | **2.660.000** |
