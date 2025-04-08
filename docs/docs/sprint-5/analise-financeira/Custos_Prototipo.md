@@ -222,3 +222,41 @@ custom_edit_url: null
 
 &emsp;Esse valor cobre todos os custos e ainda entrega um lucro de R$ 750.000, o que representa 20% sobre a receita total.
 
+## 9. Custo de um Robô Individual para o Sistema
+
+&emsp;Para uma compreensão mais granular dos custos envolvidos no projeto, é relevante analisar o investimento necessário para a aquisição e implementação de um único robô industrial compatível com as necessidades da automação da separação de medicamentos.
+
+### 9.1 Composição do Custo de um Robô Individual
+
+| Componente | Descrição | Custo Estimado (R$) |
+|------------|-----------|---------------------|
+| Braço robótico colaborativo | Robô industrial com 6 graus de liberdade, capacidade de carga de 5kg e precisão de ±0.1mm | R$ 350.000 - R$ 450.000 |
+| Sistema de visão | Câmera industrial de alta resolução com iluminação e software de processamento de imagem | R$ 35.000 - R$ 50.000 |
+| Garra específica | Garra customizada para manipulação segura de medicamentos | R$ 20.000 - R$ 30.000 |
+| Controlador | Unidade de controle, incluindo hardware e software básico | R$ 40.000 - R$ 60.000 |
+| Sensores adicionais | Sensores de força, proximidade e segurança | R$ 15.000 - R$ 25.000 |
+| Integração | Serviços de instalação, programação e integração com o sistema | R$ 30.000 - R$ 45.000 |
+| Treinamento | Capacitação específica para operação e manutenção básica | R$ 10.000 - R$ 15.000 |
+| **Total para um robô completo** | **Solução individual pronta para operação** | **R$ 500.000 - R$ 675.000** |
+
+### 9.2 Custos Operacionais Anuais por Robô
+
+| Item | Valor Anual Estimado (R$) |
+|------|---------------------------|
+| Manutenção preventiva | R$ 25.000 - R$ 35.000 |
+| Energia elétrica | R$ 5.000 - R$ 8.000 |
+| Peças de reposição | R$ 15.000 - R$ 25.000 |
+| Atualizações de software | R$ 10.000 - R$ 15.000 |
+| **Total OPEX anual por robô** | **R$ 55.000 - R$ 83.000** |
+
+### 9.3 Considerações sobre o Custo Individual
+
+&emsp;É importante ressaltar que a aquisição de múltiplos robôs geralmente resulta em economias de escala, tanto no valor de aquisição quanto nos custos de manutenção. Para um projeto com 4-6 robôs, pode-se esperar:
+
+- Desconto de 10-15% no valor unitário para aquisições em lote
+- Redução de 20-25% nos custos de integração por unidade
+- Compartilhamento de recursos de manutenção e treinamento
+- Otimização do estoque de peças de reposição
+
+&emsp;Dessa forma, o custo total por robô quando implementado em escala tende a ser cerca de 15-20% menor que o custo de aquisição individual, o que deve ser considerado no planejamento financeiro do projeto completo.
+
