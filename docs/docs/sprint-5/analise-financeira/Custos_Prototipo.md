@@ -3,11 +3,11 @@ sidebar_position: 1
 custom_edit_url: null
 ---
 
-# Análise Financeira - Projeto de Automação da Separação de Medicamentos
+# Análise Financeira Industrial
 
-## 1. Introdução ao Projeto
+## 1. Introdução ao Projeto de Automação da Separação de Medicamentos
 
-&emsp;Este documento apresenta uma análise financeira detalhada para o projeto de automação da separação de medicamentos desenvolvido para o Hospital de Clínicas da Unicamp. Embora o protótipo atual seja implementado com tecnologias educacionais como Arduino Uno, Raspberry Pi, Dobot e periféricos acessíveis (leitor QR Code e sensor de distância), esta análise financeira contempla uma projeção em escala industrial, alinhada com as expectativas do módulo de automação industrial.
+&emsp;Este documento apresenta uma análise financeira detalhada para o projeto de automação da separação de medicamentos desenvolvido para o Hospital de Clínicas da Unicamp. Embora o protótipo atual seja implementado com tecnologias educacionais como Arduino Nano, Raspberry Pi, Dobot e periféricos acessíveis (leitor QR Code e sensor de distância), **esta análise financeira contempla uma projeção em escala industrial, alinhada com as expectativas do módulo de automação industrial.**
 
 ### 1.1 Contextualização do Projeto
 
@@ -23,6 +23,12 @@ custom_edit_url: null
 - Redução de desperdícios e aumento da produtividade da equipe
 
 ## 2. Conceitos Financeiros Fundamentais
+
+&emsp;A compreensão adequada dos conceitos financeiros é essencial para a análise e tomada de decisão em projetos de automação e inovação tecnológica. Esta seção apresenta os fundamentos financeiros que serão utilizados como referência ao longo de toda a documentação, fornecendo uma base comum de conhecimento para todas as partes envolvidas no projeto.
+
+&emsp;Os conceitos aqui apresentados – desde a distinção entre custos e despesas até a compreensão da diferença entre CAPEX e OPEX – serão constantemente referenciados nas análises econômicas, projeções financeiras e estudos de viabilidade apresentados em momentos subsequentes. Esta terminologia padronizada permitirá uma comunicação mais eficiente entre as equipes técnicas, administrativas e financeiras, além de facilitar a interpretação dos dados e resultados expostos ao longo do documento.
+
+&emsp;Ao dominar estes fundamentos, os leitores estarão melhor preparados para compreender as implicações financeiras das decisões técnicas e operacionais, bem como para avaliar o real impacto econômico das soluções propostas para a automação da farmácia hospitalar.
 
 ### 2.1 Custo
 
@@ -116,7 +122,7 @@ custom_edit_url: null
 
 ## 3. Da Escala Educacional para a Industrial
 
-&emsp;É importante destacar que, embora o protótipo educacional utilize componentes como Arduino Uno, Raspberry Pi e Dobot, a implementação em escala industrial requereria equipamentos mais robustos, como:
+&emsp;É importante destacar que, embora o protótipo educacional utilize componentes como Arduino Nano, Raspberry Pi e Dobot, a implementação em escala industrial requereria equipamentos mais robustos, como:
 
 - Robôs industriais com maior capacidade de carga, precisão e durabilidade
 - Sistemas de visão computacional mais avançados para identificação de medicamentos
