@@ -19,7 +19,7 @@ prescricoes_bp = Blueprint('prescricoes', __name__, url_prefix='/prescricoes')
 @jwt_required()
 def listar_prescricoes():
     prescrioes = Prescricao.query.all()
-    return jsonify([prescricao.as_dict() for prescricao in prescrioes])
+    return jsonify([prescricao.as_front() for prescricao in prescrioes])
 
 # Adicionar uma prescrição nova
 @prescricoes_bp.route('/adicionar', methods=['POST'])

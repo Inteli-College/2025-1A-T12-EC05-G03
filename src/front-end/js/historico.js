@@ -270,9 +270,6 @@ function atualizarTabelaHistorico(prescricoesList) {
     
     // Para cada prescrição, adiciona uma linha na tabela
     prescricoesList.forEach(prescricao => {
-        // Encontra o paciente correspondente
-        const paciente = pacientes.find(p => p.hc === prescricao.hc_paciente);
-        
         // Encontra o status correspondente
         const status = statusPrescricao.find(s => s.id === prescricao.status_prescricao);
         
@@ -299,7 +296,7 @@ function atualizarTabelaHistorico(prescricoesList) {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${prescricao.id}</td>
-            <td>${paciente ? paciente.nome : 'Desconhecido'}</td>
+            <td>${prescricao.paciente_nome ? prescricao.paciente_nome : 'Desconhecido'}</td>
             <td>${prescricao.hc_paciente}</td>
             <td>${dataFormatada}</td>
             <td><span class="status-tag ${statusClass}">${status ? status.status_prescricao : 'Desconhecido'}</span></td>
@@ -323,72 +320,89 @@ function atualizarTabelaHistorico(prescricoesList) {
     });
 }
 
+
+async function puxa_prescricao_por_id(id){
+    try {
+        const token = localStorage.getItem('access_token');
+        const response = await fetch('http://127.0.0.1:5000/prescricoes/' + id, {
+            method: 'GET',
+            headers: { 'Authorization': `Bearer ${token}` },
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao puxar a prescrição');
+        }
+
+        const data = await response.json();
+        console.log('Dados recebidos:', data);
+        return data;
+    } catch (error) {
+        console.error('Erro:', error);
+        alert(error.message);
+        throw error; 
+    }
+}
+
 // Função para abrir o modal de detalhes da prescrição
 function abrirModalDetalhesPrescricao(prescricaoId) {
-    // Encontra a prescrição
-    const prescricao = prescricoes.find(p => p.id === prescricaoId);
-    if (!prescricao) return;
-    
-    // Encontra o paciente correspondente
-    const paciente = pacientes.find(p => p.hc === prescricao.hc_paciente);
-    
-    // Encontra o status correspondente
-    const status = statusPrescricao.find(s => s.id === prescricao.status_prescricao);
-    
-    // Encontra o usuário revisor (se houver)
-    const usuario = prescricao.id_user_aprovacao ? 
-                    usuarios.find(u => u.id === prescricao.id_user_aprovacao) : 
-                    null;
-    
-    // Formata as datas
-    const dataEntrada = prescricao.data_entrada ? new Date(prescricao.data_entrada) : null;
-    const dataEntradaFormatada = dataEntrada ? 
-                               dataEntrada.toLocaleDateString('pt-BR') + ' ' + 
-                               dataEntrada.toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'}) : 
-                               'Não registrada';
-    
-    const dataAvaliacao = prescricao.data_avaliacao ? new Date(prescricao.data_avaliacao) : null;
-    const dataAvaliacaoFormatada = dataAvaliacao ? 
-                                dataAvaliacao.toLocaleDateString('pt-BR') + ' ' + 
-                                dataAvaliacao.toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'}) : 
-                                'Não avaliada';
-    
-    // Preenche os dados no modal
-    document.getElementById('prescricao-id').textContent = prescricao.id;
-    document.getElementById('prescricao-status').textContent = status ? status.status_prescricao : 'Desconhecido';
-    document.getElementById('prescricao-data-entrada').textContent = dataEntradaFormatada;
-    document.getElementById('prescricao-data-avaliacao').textContent = dataAvaliacaoFormatada;
-    document.getElementById('paciente-nome').textContent = paciente ? paciente.nome : 'Desconhecido';
-    document.getElementById('paciente-hc').textContent = prescricao.hc_paciente;
-    document.getElementById('usuario-nome').textContent = usuario ? usuario.nome : 'Não avaliado';
-    
-    // Preenche a tabela de medicamentos
-    const medicamentosTableBody = document.getElementById('medicamentosTableBody');
-    medicamentosTableBody.innerHTML = ''; // Limpa a tabela
-    
-    // Processa a lista de remédios (JSON)
-    const listaRemedios = JSON.parse(prescricao.lista_remedios);
-    
-    // Para cada remédio na lista, adiciona uma linha na tabela
-    listaRemedios.forEach(remedio => {
-        // Encontra o medicamento correspondente
-        const medicamento = medicamentos.find(m => m.id === remedio.id_remedio);
+    puxa_prescricao_por_id(prescricaoId)
+    .then(data => {
+        prescricao = data.prescricao;
+        // Encontra o status correspondente
+        const status = statusPrescricao.find(s => s.id === prescricao.status_prescricao);
         
-        // Cria a nova linha da tabela
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${medicamento ? medicamento.principio_ativo : 'Desconhecido'}</td>
-            <td>${remedio.dosagem}</td>
-            <td>${remedio.frequencia}</td>
-            <td>${remedio.via}</td>
-        `;
+        // Encontra o usuário revisor (se houver)
+        const usuario = prescricao.user_nome
         
-        medicamentosTableBody.appendChild(row);
-    });
-    
-    // Exibe o modal
-    document.getElementById('modalDetalhesPrescricao').style.display = 'block';
+        // Formata as datas
+        const dataEntrada = prescricao.data_entrada ? new Date(prescricao.data_entrada) : null;
+        const dataEntradaFormatada = dataEntrada ? 
+                                dataEntrada.toLocaleDateString('pt-BR') + ' ' + 
+                                dataEntrada.toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'}) : 
+                                'Não registrada';
+        
+        const dataAvaliacao = prescricao.data_avaliacao ? new Date(prescricao.data_avaliacao) : null;
+        const dataAvaliacaoFormatada = dataAvaliacao ? 
+                                    dataAvaliacao.toLocaleDateString('pt-BR') + ' ' + 
+                                    dataAvaliacao.toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'}) : 
+                                    'Não avaliada';
+        
+        // Preenche os dados no modal
+        document.getElementById('prescricao-id').textContent = prescricao.id;
+        document.getElementById('prescricao-status').textContent = status ? status.status_prescricao : 'Desconhecido';
+        document.getElementById('prescricao-data-entrada').textContent = dataEntradaFormatada;
+        document.getElementById('prescricao-data-avaliacao').textContent = dataAvaliacaoFormatada;
+        document.getElementById('paciente-nome').textContent = prescricao.paciente_nome ? prescricao.paciente_nome : 'Desconhecido';
+        document.getElementById('paciente-hc').textContent = prescricao.hc_paciente;
+        document.getElementById('usuario-nome').textContent = usuario ? usuario : 'Não avaliado';
+        
+        // Preenche a tabela de medicamentos
+        const medicamentosTableBody = document.getElementById('medicamentosTableBody');
+        medicamentosTableBody.innerHTML = ''; // Limpa a tabela
+        
+        // Processa a lista de remédios (JSON)
+        const listaRemedios = data.remedios
+        
+        // Para cada remédio na lista, adiciona uma linha na tabela
+        listaRemedios.forEach(remedio => {
+            
+            // Cria a nova linha da tabela
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${remedio.principio_ativo ? remedio.principio_ativo : 'Desconhecido'}</td>
+                <td>${remedio.dosagem_em_mg} mg</td>
+            `;
+            
+            medicamentosTableBody.appendChild(row);
+        });
+        
+        // Exibe o modal
+        document.getElementById('modalDetalhesPrescricao').style.display = 'block';
+        
+        
+    })
 }
+
 
 // Função para buscar prescrições
 function buscarPrescricoes(termo) {
