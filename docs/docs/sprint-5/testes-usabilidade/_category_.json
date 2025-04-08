@@ -1,0 +1,8 @@
+{
+    "label": "Testes de Usabilidade",
+    "position": 2,
+    "link": {
+      "type": "generated-index",
+      "description": "Essa seção possui como objetivo apresentar os testes de usabilidade realizados no projeto, com o intuito de garantir que o sistema seja fácil de usar e atenda às necessidades dos usuários. Os testes de usabilidade são uma parte importante do processo de desenvolvimento de software, pois ajudam a identificar problemas de usabilidade e a melhorar a experiência do usuário."
+    }
+  }
