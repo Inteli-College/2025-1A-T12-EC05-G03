@@ -74,3 +74,43 @@ custom_edit_url: null
 - Depreciação de hardware e infraestrutura
 - Depreciação de melhorias em instalações
 
+### 4.3 Despesas (gastos administrativos e operacionais)
+
+#### 4.3.1 Recursos Humanos
+
+**Equipe de Desenvolvimento (estimativa inicial: 12-15 pessoas)**
+- 1 Gerente de Projeto
+- 2-3 Engenheiros de Automação Industrial
+- 2-3 Desenvolvedores de Software
+- 1-2 Especialistas em Integração de Sistemas
+- 2 Farmacêuticos Especialistas (consultores de processo)
+- 1-2 Técnicos de Validação
+- 2 Técnicos de Manutenção
+- 1 Especialista em Qualidade e Regulamentação
+
+**Equipe de Operação (estimativa pós-implementação: 6-8 pessoas)**
+- 1 Supervisor de Operações
+- 2-3 Técnicos de Operação
+- 1-2 Técnicos de Manutenção
+- 1 Farmacêutico Responsável
+- 1 Analista de Qualidade
+
+#### 4.3.2 Instalações
+- Aluguel de fábrica/espaço para desenvolvimento (aproximadamente 500-800 m²)
+- Adequação do espaço físico (instalações elétricas, pisos técnicos)
+- Segurança e controle de acesso
+- Climatização e controles ambientais
+
+#### 4.3.3 Administrativo
+- Seguros (equipamentos, responsabilidade civil, etc.)
+- Garantias estendidas para equipamentos críticos
+- Custos de certificação (ISO, BPF, etc.)
+- Material de escritório e suprimentos gerais
+- Serviços de limpeza e manutenção predial
+
+#### 4.3.4 Marketing e Comercial
+- Material de divulgação do sistema
+- Participação em feiras e eventos da área hospitalar
+- Demonstrações para potenciais clientes
+- Viagens e representação comercial
+
