@@ -49,3 +49,28 @@ custom_edit_url: null
 - Peças de reposição iniciais
 - Suprimentos para validação do sistema
 
+### 4.2 Custos Indiretos
+
+#### 4.2.1 Energia e Utilidades
+- Consumo de energia elétrica dos equipamentos
+- Sistemas de refrigeração para servidores e equipamentos
+- Água utilizada em processos de limpeza e manutenção
+- Sistemas UPS e geradores de backup
+
+#### 4.2.2 Manutenção
+- Manutenção preventiva programada
+- Aparo financeiro para manutenções corretivas
+- Contratos de serviço para equipamentos críticos
+- Calibração periódica de sensores e sistemas
+
+#### 4.2.3 Treinamento
+- Capacitação inicial da equipe técnica
+- Treinamento de operadores
+- Treinamento de equipe de suporte de primeiro nível
+- Atualização de conhecimentos e certificações
+
+#### 4.2.4 Depreciação
+- Depreciação dos equipamentos robóticos
+- Depreciação de hardware e infraestrutura
+- Depreciação de melhorias em instalações
+
