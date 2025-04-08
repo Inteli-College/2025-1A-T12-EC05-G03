@@ -111,6 +111,11 @@ header {
     width: 100%;
 }
 
+.btn-link{
+    text-decoration: none;
+    color: inherit;
+}
+
 .btn-header {
     background-color: var(--cor-destaque);
     color: var(--cor-escura);
@@ -231,6 +236,7 @@ header {
     position: relative;
     overflow: hidden;
     text-decoration: none;
+    color: inherit;
 }
 
 .btn-primary:hover {
@@ -651,6 +657,13 @@ footer {
 .back-to-top:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Mantém os estilos ao passar o mouse, sem adicionar sublinhado */
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-header:hover {
+    text-decoration: none;
 }
 
 /* Animações */
