@@ -2,52 +2,37 @@
 // Quando integrado com o back-end, estas variáveis serão substituídas por chamadas à API
 
 // Array de logs (simula a tabela 'logs')
-const logs = [
-    { 
-        id: 1, 
-        id_pedido: 101, 
-        id_remedio: 201, 
-        descricao: "Medicamento adicionado ao pedido", 
-        hora: "2023-05-10T08:30:45" 
-    },
-    { 
-        id: 2, 
-        id_pedido: 102, 
-        id_remedio: 203, 
-        descricao: "Quantidade do medicamento alterada de 2 para 3 unidades", 
-        hora: "2023-05-10T09:15:22" 
-    },
-    { 
-        id: 3, 
-        id_pedido: 101, 
-        id_remedio: 205, 
-        descricao: "Medicamento removido do pedido", 
-        hora: "2023-05-10T10:05:18" 
-    },
-    { 
-        id: 4, 
-        id_pedido: 103, 
-        id_remedio: 202, 
-        descricao: "Pedido finalizado com sucesso", 
-        hora: "2023-05-11T14:22:37" 
-    },
-    { 
-        id: 5, 
-        id_pedido: 104, 
-        id_remedio: 204, 
-        descricao: "Medicamento em falta no estoque", 
-        hora: "2023-05-11T16:45:12" 
-    }
-];
+const logs = [];
 
-// Array de medicamentos (simula a tabela 'remedio')
-const medicamentos = [
-    { id: 201, principio_ativo: "Paracetamol" },
-    { id: 202, principio_ativo: "Ibuprofeno" },
-    { id: 203, principio_ativo: "Dipirona" },
-    { id: 204, principio_ativo: "Amoxicilina" },
-    { id: 205, principio_ativo: "Omeprazol" }
-];
+async function atualizar_logs() {
+    try {
+        const token = localStorage.getItem('access_token');
+        if (!token) {
+            throw new Error('Token de autenticação não encontrado');
+        }
+        const response = await fetch('http://127.0.0.1:5000/logs/listar', {
+            method: 'GET',
+            headers: { 
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao atualizar logs');
+        }
+
+        const data = await response.json();        
+        // Atribui diretamente como array
+        Object.assign(logs, data); // Armazena os dados na variável
+        
+        return data;
+    } catch (error) {
+        console.error('Erro:', error);
+        alert(error.message);
+        throw error; 
+    }
+}
 
 // Variáveis para armazenar os filtros ativos
 let filtrosAtivos = {
@@ -58,8 +43,11 @@ let filtrosAtivos = {
 };
 
 // Função para inicializar a página
-function inicializarPagina() {
+async function inicializarPagina() {
     try {
+        await Promise.all([
+            atualizar_logs()
+        ]);
         // Carrega os dados na tabela
         carregarTabelaLogs();
         
@@ -69,6 +57,7 @@ function inicializarPagina() {
         console.error('Erro ao inicializar página:', error);
         alert('Não foi possível carregar os dados');
     }
+    
 }
 
 // Executa quando o DOM estiver carregado
@@ -271,9 +260,6 @@ function abrirModalDetalhesLog(logId) {
     const log = logs.find(l => l.id === logId);
     if (!log) return;
     
-    // Encontra o medicamento correspondente
-    const medicamento = medicamentos.find(m => m.id === log.id_remedio);
-    
     // Formata a data e hora
     const dataHora = new Date(log.hora);
     const dataHoraFormatada = dataHora.toLocaleDateString('pt-BR') + ' ' + 
@@ -282,7 +268,7 @@ function abrirModalDetalhesLog(logId) {
     // Preenche os dados no modal
     document.getElementById('log-id').textContent = log.id;
     document.getElementById('log-id-pedido').textContent = log.id_pedido;
-    document.getElementById('log-id-remedio').textContent = `${log.id_remedio} - ${medicamento ? medicamento.principio_ativo : 'Desconhecido'}`;
+    document.getElementById('log-id-remedio').textContent = `${log.id_remedio}`;
     document.getElementById('log-hora').textContent = dataHoraFormatada;
     document.getElementById('log-descricao').textContent = log.descricao;
     
@@ -347,33 +333,3 @@ function buscarLogs(termo) {
     atualizarTabelaLogs(logsFiltrados);
 }
 
-// Função para buscar logs do servidor (simulada)
-async function buscarLogsDoServidor() {
-    try {
-        // Simulação de uma chamada à API
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve(logs);
-            }, 500);
-        });
-    } catch (error) {
-        console.error('Erro ao buscar logs:', error);
-        throw error;
-    }
-}
-
-// Função para atualizar logs (simulada)
-async function atualizarLogs() {
-    try {
-        const logsAtualizados = await buscarLogsDoServidor();
-        // Atualiza a variável global
-        Object.assign(logs, logsAtualizados);
-        // Atualiza a tabela
-        carregarTabelaLogs();
-        return logsAtualizados;
-    } catch (error) {
-        console.error('Erro ao atualizar logs:', error);
-        alert('Não foi possível atualizar os logs');
-        throw error;
-    }
-}
