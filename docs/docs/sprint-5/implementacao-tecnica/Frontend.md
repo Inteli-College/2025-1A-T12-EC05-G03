@@ -324,7 +324,3 @@ O arquivo HTML principal foi modificado para:
 A implementação do guia de usuário interativo representa uma melhoria significativa na experiência de uso do Sistema de Gerenciamento de Remédios. Oferecendo orientações contextuais no primeiro acesso e mantendo um botão de ajuda permanentemente disponível, o sistema torna-se mais acessível e intuitivo para novos usuários, ao mesmo tempo que oferece suporte contínuo para usuários experientes.
 
 Este tipo de assistência interativa é especialmente importante em sistemas críticos como gerenciamento de medicamentos, onde erros podem ter consequências sérias. O guia não apenas acelera o aprendizado, mas também ajuda a prevenir erros operacionais, aumentando a confiabilidade geral do sistema.
-
-A arquitetura modular adotada (separando CSS, JavaScript e HTML) facilita a manutenção e eventuais atualizações no guia, permitindo que ele evolua junto com o restante da aplicação. A responsividade implementada no design garante que o guia funcione adequadamente em diferentes dispositivos e tamanhos de tela.
-
-Como desenvolvimentos futuros, pode-se considerar a ampliação do guia para incluir instruções mais detalhadas sobre processos específicos, como avaliação de prescrições ou gerenciamento de estoque, potencialmente com tutoriais em vídeo ou simulações interativas.
