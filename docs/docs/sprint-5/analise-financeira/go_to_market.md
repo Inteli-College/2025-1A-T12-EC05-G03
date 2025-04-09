@@ -221,11 +221,29 @@ custom_edit_url: null
 | Médio (150-300 leitos) | 5.000.000 | 2.660.000 | 23 | 166% |
 | Grande (300+ leitos) | 7.200.000 | 4.100.000 | 21 | 185% |
 
-**GRÁFICO 7**
+<p style={{textAlign: 'center'}}>Figura X - Comparativo de ROI por Porte de Hospital</p>
+
+<div style={{margin: 25}}>
+    <div style={{textAlign: 'center'}}>
+        <img src={require("../../../../media/g7.png").default} style={{width: 800}} alt="Comparativo de ROI por Porte de Hospital" />
+        <br />
+    </div>
+</div>
+
+<p style={{textAlign: 'center'}}>Fonte: Os autores (2025)</p>
 
 ### 7.3 Fontes de Economia para o Cliente
 
-**GRÁFICO 8**
+<p style={{textAlign: 'center'}}>Figura X - Fontes de Economia na Automação da Separação de Medicamentos</p>
+
+<div style={{margin: 25}}>
+    <div style={{textAlign: 'center'}}>
+        <img src={require("../../../../media/g8.png").default} style={{width: 800}} alt="Fontes de Economia na Automação da Separação de Medicamentos" />
+        <br />
+    </div>
+</div>
+
+<p style={{textAlign: 'center'}}>Fonte: Os autores (2025)</p>
 
 | Fonte de Economia | Contribuição (%) | Valor Anual (R$) |
 |-------------------|------------------|------------------|
@@ -253,8 +271,6 @@ Diagnóstico → Desenho → Implantação → Ativação → Otimização
 | Tempo médio de implementação | < 6 meses |
 | Satisfação do cliente | > 90% |
 | Uptime do sistema | > 99,9% |
-
-**GRÁFICO 9**
 
 ## 9. Plano de Ação para o Primeiro Ano
 
