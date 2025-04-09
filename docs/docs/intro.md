@@ -31,7 +31,7 @@ Um sistema funcional que automatize a separação de medicamentos de um protocol
 - Sprint 2: [Link da Apresentação](https://www.canva.com/design/DAGgZXDpnJo/H_BVvWNGdlx9V_MuODG8EQ/view?utm_content=DAGgZXDpnJo&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h0b99fa84d8)
 - Sprint 3: [Link da Apresentação](https://www.canva.com/design/DAGhna8EyMM/cdSP6l4h41KGb7HqSlnYAQ/view?utm_content=DAGhna8EyMM&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h6873c4aae7)
 - Sprint 4: [Link da Apresentação](https://www.canva.com/design/DAGi29ye5IE/UwrrdWbeqkzWXBrxsyYqdw/view?utm_content=DAGi29ye5IE&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=heb07d0a66e)
-- Sprint 5:
+- Sprint 5: [Link da Apresentação](https://www.canva.com/design/DAGj9n81ElE/kuCOXCfn9GcIijAufHigcg/view?utm_content=DAGj9n81ElE&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h252732a3f0)
 
 ## Integrantes da equipe
 
