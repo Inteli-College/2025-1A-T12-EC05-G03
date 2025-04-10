@@ -7,8 +7,16 @@ slug: /
 # Apresentação
 
 ## O Projeto
-Automação da separação de medicamentos para melhorar eficiência e segurança no processo de
-Farmácia.
+<div style={{ display: "flex", justifyContent: "center", marginTop: "2rem", marginBottom: "2rem" }}>
+    <iframe width="700" height="340" 
+     src="https://www.youtube.com/embed/khbtYsOoS_E?si=osDUtth3-N_AllEe" title="YouTube video player" frameborder="0" 
+     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen 
+    ></iframe>
+
+</div>
+
+Vídeo de apresentação do projeto NDC BOT & NDC SYSTEM, um sistema de automação da farmácia hospitalar. 
 
 ## Empresa parceira
 Hospital de Clínicas da Unicamp - Núcleo Farmácia.
@@ -24,20 +32,6 @@ Desenvolver e implementar um sistema automatizado de separação e montagem da �
 
 ## A Solução
 Um sistema funcional que automatize a separação de medicamentos de um protocolo pré-definido, com validação por sensores e montagem de kits básicos para a UTI, apresentando rastreamento dos medicamentos e relatório de atividades.
-
-Ademais, segue o vídeo de apresentação da nossa solução.
-
-<div style={{ display: "flex", justifyContent: "center", marginTop: "2rem", marginBottom: "2rem" }}>
-    <iframe width="800" height="555" 
-     src="https://www.youtube.com/embed/khbtYsOoS_E?si=osDUtth3-N_AllEe" title="YouTube video player" frameborder="0" 
-     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen 
-    ></iframe>
-
-</div>
-
-
-
 
 ## Apresentações da Sprint Review
 
