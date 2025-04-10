@@ -153,15 +153,7 @@ Isso iniciará o Docusaurus localmente no seu computador, permitindo visualizar 
 
 ### 💊 Sistema — NDC System
 
-1. Caso ainda não tenha clonado o repositório, clone-o na pasta de sua preferência.
-```bash
-git clone https://github.com/Inteli-College/2025-1A-T12-EC05-G03.git
-```
-2. Acesse a pasta `src`, depois `front-end`.
-```bash
-cd src
-```   
-3. Abra o arquivo `.html` desejado utilizando o Live Server ou outro serviço equivalente para visualizar o sistema em funcionamento.
+Para saber mais sobre como executar o nosso sistema, [clique aqui!](https://inteli-college.github.io/2025-1A-T12-EC05-G03/sprint-5/implementacao-tecnica/Setup )
 
 
 ## 🗃 Histórico de lançamentos
