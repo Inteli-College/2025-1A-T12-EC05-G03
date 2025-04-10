@@ -3,8 +3,6 @@ sidebar_position: 1
 custom_edit_url: null
 ---
 
-## Documento técnico que descreve em detalhes a arquitetura atual do sistema, incluindo diagramas, componentes principais, padrões de design utilizados, e como os diferentes módulos se comunicam entre si.
-
 # Arquitetura do Sistema
 
 ## Diagrama de Blocos
@@ -31,7 +29,7 @@ custom_edit_url: null
 O sistema conta com duas principais entradas de dados:
 
 - **API**: Responsável por integrar o sistema hospitalar (HC) ao nosso backend, permitindo a importação das prescrições realizadas por médicos.
-- **Front-end**: Interface utilizada pelos farmacêuticos para revisar e aprovar prescrições, garantindo maior controle e segurança no processo.
+- **Front-end**: Interface utilizada pelos farmacêuticos para revisar, aprovar prescrições, realizar o controle de estoque dos remédios, assim garantindo maior controle e segurança no processo.
 
 Ambas as entradas se juntam no back-end, onde é realizada a validação e o processamento das informações recebidas.
 
@@ -40,6 +38,7 @@ Ambas as entradas se juntam no back-end, onde é realizada a validação e o pro
 O back-end atua como núcleo lógico do sistema, sendo responsável por:
 
 - Controlar e processar prescrições provenientes da API e do front-end;
+- Realizar controle de estoque de remédios;
 - Realizar transações com o banco de dados, armazenando e atualizando informações relevantes;
 - Enviar comandos ao robô para que este execute a separação física dos medicamentos conforme as prescrições aprovadas.
 
@@ -49,6 +48,7 @@ O banco de dados centraliza as informações necessárias para o funcionamento d
 
 - Prescrições pendentes e aprovadas;
 - Registros das fitas de medicamentos organizadas;
+- Registros do estoque de remédios;
 - Informações de pacientes para rastreabilidade e histórico.
 
 #### Robô
@@ -56,8 +56,6 @@ O banco de dados centraliza as informações necessárias para o funcionamento d
 O robô utilizado é o **Magician Lite**, conectado via USB ao servidor. Após a aprovação da prescrição pelo farmacêutico, o sistema envia os comandos necessários ao robô, que realiza a separação dos medicamentos de forma automatizada e precisa, garantindo a conformidade com os dados processados.
 
 Esse fluxo, já testado e validado, reforça a eficiência e a segurança do sistema na gestão de medicamentos destinados às UTIs hospitalares.
-
----
 
 ## Referência
 
