@@ -136,6 +136,10 @@ Na raiz do projeto, você vai encontrar pastas e arquivos que são como os "orga
 
 ### 🐱‍🐉 Documentação — Docusaurus
 
+Você pode acessar o nosso repositório via web por [aqui](https://inteli-college.github.io/2025-1A-T12-EC05-G03/)
+
+#### Caso queira rodar localmente:
+
 1. Clone o repositório na pasta de sua preferência.
 ```bash
 git clone https://github.com/Inteli-College/2025-1A-T12-EC05-G03.git
