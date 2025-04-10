@@ -8,7 +8,8 @@
 
 ## 👥 Grupo 3 - NDC
 <p align="center">
-  <a href= "https://www.inteli.edu.br/"><img src="media/Logos_GuiaDeEstilos/pngslogos/logo_escura_COMnome.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0" width=20% height=40%></a>
+  <img src="media/Logos_GuiaDeEstilos/pngslogos/logo_escura_COMnome.png#gh-dark-mode-only" alt="Logo Dark" width="300">
+  <img src="media/Logos_GuiaDeEstilos/pngslogos/logo_escura_COMnome.png#gh-light-mode-only" alt="Logo Clara" width="300">
 </p>
 
 
