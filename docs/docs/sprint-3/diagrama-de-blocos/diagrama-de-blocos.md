@@ -13,7 +13,7 @@ custom_edit_url: null
 ## Grupos e Elementos do Sistema  
 &emsp;O sistema é dividido em diferentes grupos, cada um contendo elementos específicos que desempenham funções essenciais na solução. Abaixo, detalhamos cada grupo e seus principais componentes:  
 
-<p style={{textAlign: 'center'}}>Figura X: Imagem dos grupos do diagrama de blocos</p>
+<p style={{textAlign: 'center'}}>Figura 1: Imagem dos grupos do diagrama de blocos</p>
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
         <img src={require("../../../../media/diagramablocos1.png").default} style={{width: 800}} alt="Imagem dos grupos do diagrama de blocos" />
@@ -48,7 +48,7 @@ custom_edit_url: null
 
 &emsp;O diagrama de blocos abaixo ilustra todas essas interações de forma clara. 
 
-<p style={{textAlign: 'center'}}>Figura X: Imagem do diagrama geral</p>
+<p style={{textAlign: 'center'}}>Figura 2: Imagem do diagrama geral</p>
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
         <img src={require("../../../../media/diagramablocos2.png").default} style={{width: 800}} alt="Imagem do diagrama de blocos geral da solução" />
@@ -59,7 +59,7 @@ custom_edit_url: null
 
 &emsp;O diagrama específico dos periféricos também está disponível para detalhamento das interações periféricas. 
 
-<p style={{textAlign: 'center'}}>Figura X: Imagem do diagrama diagrama dos periféricos</p>
+<p style={{textAlign: 'center'}}>Figura 3: Imagem do diagrama diagrama dos periféricos</p>
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
         <img src={require("../../../../media/diagramablocos3.png").default} style={{width: 800}} alt="Imagem do diagrama dos periféricos da solução" />

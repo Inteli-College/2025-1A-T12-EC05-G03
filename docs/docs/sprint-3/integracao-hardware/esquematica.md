@@ -8,12 +8,12 @@ custom_edit_url: null
 ##### Esquemático dos Periféricos
 
 ## Introdução
-Este documento descreve a conexão e funcionalidade dos periféricos utilizados no projeto, incluindo um **Arduino Nano**, um **sensor TCRT5000** e um **scanner MH-ET LIVE**. O objetivo é detalhar as conexões e os papéis de cada componente na implementação do sistema.
+&emsp;Este documento descreve a conexão e funcionalidade dos periféricos utilizados no projeto, incluindo um **Arduino Nano**, um **sensor TCRT5000** e um **scanner MH-ET LIVE**. O objetivo é detalhar as conexões e os papéis de cada componente na implementação do sistema.
 
 ---
 ## Imagem da esquematica
 
-<p style={{textAlign: 'center'}}>Figura X - Esquematico dos periféricos</p>
+<p style={{textAlign: 'center'}}>Figura 1 - Esquematico dos periféricos</p>
 
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
@@ -76,4 +76,4 @@ Este documento descreve a conexão e funcionalidade dos periféricos utilizados 
 ---
 
 ## Considerações Finais
-Este documento descreveu as conexões e funcionamento dos principais periféricos do sistema. A correta ligação dos componentes garante um funcionamento confiável do circuito.
+&emsp;Este documento descreveu as conexões e funcionamento dos principais periféricos do sistema. A correta ligação dos componentes garante um funcionamento confiável do circuito.

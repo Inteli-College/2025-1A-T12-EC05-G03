@@ -8,9 +8,9 @@ custom_edit_url: null
 
 ## Conceito
 
-&nbsp;&nbsp;&nbsp;&nbsp;Os stakeholders podem ser traduzidos como "Partes Interessadas" e fazer o mapeamento dessas partes é essencial para que se possa compreender tanto seu impacto como a forma que são impactados pelo projeto como um todo e em suas diferentes fases. Existe uma variedade de pessoas interessadas, em diferentes níveis, no projeto e nos resultados do desenvolvimento. Conseguir mapeá-las e identificar seus interesses permite facilitar o alcance dos objetivos do projeto. Essa análise visa classificar os stakeholders com base em sua influência e interesse no projeto.
+&emsp;Os stakeholders podem ser traduzidos como "Partes Interessadas" e fazer o mapeamento dessas partes é essencial para que se possa compreender tanto seu impacto como a forma que são impactados pelo projeto como um todo e em suas diferentes fases. Existe uma variedade de pessoas interessadas, em diferentes níveis, no projeto e nos resultados do desenvolvimento. Conseguir mapeá-las e identificar seus interesses permite facilitar o alcance dos objetivos do projeto. Essa análise visa classificar os stakeholders com base em sua influência e interesse no projeto.
 
-<p style={{textAlign: 'center'}}>Figura - Análise de stakeholder</p>
+<p style={{textAlign: 'center'}}>Figura 1 - Análise de stakeholder</p>
 <div style={{margin: 25}}>
    <div style={{textAlign: 'center'}}>
        <img src={require("../../../../media/analise-stakeholder.png").default} style={{width: 800}} alt="Matriz de interesse e influência" />

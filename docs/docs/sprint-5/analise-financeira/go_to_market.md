@@ -22,7 +22,7 @@ custom_edit_url: null
 
 ### 2.2 Segmentação do Mercado
 
-<p style={{textAlign: 'center'}}>Figura X - Gráfico de Segmentação de Mercado</p>
+<p style={{textAlign: 'center'}}>Figura 1 - Gráfico de Segmentação de Mercado</p>
 
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
@@ -50,7 +50,7 @@ custom_edit_url: null
 4. **Redução de custos operacionais**: Economia de 35-40% em 3 anos
 5. **Segurança do paciente aprimorada**: Menos eventos adversos
 
-<p style={{textAlign: 'center'}}>Figura X - Benefícios da Automação</p>
+<p style={{textAlign: 'center'}}>Figura 2 - Benefícios da Automação</p>
 
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
@@ -91,7 +91,7 @@ custom_edit_url: null
 
 ### 5.1 Funil de Vendas
 
-<p style={{textAlign: 'center'}}>Figura X - Funil de Vendas</p>
+<p style={{textAlign: 'center'}}>Figura 3 - Funil de Vendas</p>
 
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
@@ -133,7 +133,7 @@ custom_edit_url: null
 
 ### 6.1 Projeção de Vendas (5 anos)
 
-<p style={{textAlign: 'center'}}>Figura X - Projeção de Crescimento em 5 Anos</p>
+<p style={{textAlign: 'center'}}>Figura 4 - Projeção de Crescimento em 5 Anos</p>
 
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
@@ -169,7 +169,7 @@ custom_edit_url: null
 | **ROI em 5 anos** | **166%** |
 | **Payback** | **23 meses** |
 
-<p style={{textAlign: 'center'}}>Figura X - Análise de ROI</p>
+<p style={{textAlign: 'center'}}>Figura 5 - Análise de ROI</p>
 
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
@@ -202,7 +202,7 @@ custom_edit_url: null
 - **ROI em 5 anos**: 166%
 - **TIR (Taxa Interna de Retorno)**: 32,7%
 
-<p style={{textAlign: 'center'}}>Figura X - Análise de PayBack</p>
+<p style={{textAlign: 'center'}}>Figura 6 - Análise de PayBack</p>
 
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
@@ -221,7 +221,7 @@ custom_edit_url: null
 | Médio (150-300 leitos) | 5.000.000 | 2.660.000 | 23 | 166% |
 | Grande (300+ leitos) | 7.200.000 | 4.100.000 | 21 | 185% |
 
-<p style={{textAlign: 'center'}}>Figura X - Comparativo de ROI por Porte de Hospital</p>
+<p style={{textAlign: 'center'}}>Figura 7 - Comparativo de ROI por Porte de Hospital</p>
 
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
@@ -234,7 +234,7 @@ custom_edit_url: null
 
 ### 7.3 Fontes de Economia para o Cliente
 
-<p style={{textAlign: 'center'}}>Figura X - Fontes de Economia na Automação da Separação de Medicamentos</p>
+<p style={{textAlign: 'center'}}>Figura 8 - Fontes de Economia na Automação da Separação de Medicamentos</p>
 
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>

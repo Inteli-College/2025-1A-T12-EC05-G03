@@ -5,11 +5,11 @@ custom_edit_url: null
 
 # Elementos Selecionados Para Montagem
 
-Este documento detalha como o usuário visualiza e interage com os elementos selecionados no sistema de gerenciamento de medicamentos para farmácia hospitalar.
+&emsp;Este documento detalha como o usuário visualiza e interage com os elementos selecionados no sistema de gerenciamento de medicamentos para farmácia hospitalar.
 
 ## Menu de Navegação
 
-O sistema utiliza um menu lateral retrátil (sidebar) que permite ao usuário navegar entre as principais seções do sistema.
+&emsp;O sistema utiliza um menu lateral retrátil (sidebar) que permite ao usuário navegar entre as principais seções do sistema.
 
 <p style={{textAlign: 'center'}}>Figura 1 - Menu de Navegação</p>
 <div style={{margin: 25}}>
@@ -34,7 +34,7 @@ O sistema utiliza um menu lateral retrátil (sidebar) que permite ao usuário na
 
 ## Seleção de Prescrições
 
-Na página inicial (Home), o usuário pode selecionar entre visualizar prescrições aguardando avaliação ou já avaliadas.
+&emsp;Na página inicial (Home), o usuário pode selecionar entre visualizar prescrições aguardando avaliação ou já avaliadas.
 
 <p style={{textAlign: 'center'}}>Figura 2 - Seleção de Categorias de Prescrições</p>
 <div style={{margin: 25}}>
@@ -61,11 +61,11 @@ Na página inicial (Home), o usuário pode selecionar entre visualizar prescriç
 - Atualização automática da lista conforme a seleção
 - Indicação clara do tipo de prescrição sendo visualizada
 
-A seleção de uma categoria carrega dinamicamente a lista de prescrições correspondentes na interface, permitindo que o usuário visualize apenas o conjunto relevante de dados.
+&emsp;A seleção de uma categoria carrega dinamicamente a lista de prescrições correspondentes na interface, permitindo que o usuário visualize apenas o conjunto relevante de dados.
 
 ### Seleção de Prescrição Individual
 
-Para cada prescrição listada, o usuário pode selecioná-la para visualização detalhada ou avaliação.
+&emsp;Para cada prescrição listada, o usuário pode selecioná-la para visualização detalhada ou avaliação.
 
 <p style={{textAlign: 'center'}}>Figura 4 - Seleção de Prescrição Individual</p>
 <div style={{margin: 25}}>
@@ -81,11 +81,11 @@ Para cada prescrição listada, o usuário pode selecioná-la para visualizaçã
 - Botão "Avaliar" para prescrições pendentes
 - Botão "Visualizar" para prescrições já avaliadas
 
-Ao selecionar uma prescrição individual, o sistema abre um modal que exibe suas informações detalhadas e permite ações específicas dependendo do status da prescrição.
+&emsp;Ao selecionar uma prescrição individual, o sistema abre um modal que exibe suas informações detalhadas e permite ações específicas dependendo do status da prescrição.
 
 ## Seleção de Medicamentos para Avaliação
 
-No processo de avaliação de prescrições, o farmacêutico pode selecionar quais medicamentos serão aprovados ou rejeitados.
+&emsp;No processo de avaliação de prescrições, o farmacêutico pode selecionar quais medicamentos serão aprovados ou rejeitados.
 
 <p style={{textAlign: 'center'}}>Figura 5 - Seleção de Medicamentos na Avaliação</p>
 <div style={{margin: 25}}>
@@ -111,11 +111,11 @@ No processo de avaliação de prescrições, o farmacêutico pode selecionar qua
   - Alguns selecionados: Aprovação Parcial (status 3)
   - Nenhum selecionado: Reprovada (status 4)
 
-A interface facilita a análise farmacêutica, permitindo que o profissional avalie cada item individualmente e confirme sua decisão através de um processo claro e intuitivo.
+&emsp;A interface facilita a análise farmacêutica, permitindo que o profissional avalie cada item individualmente e confirme sua decisão através de um processo claro e intuitivo.
 
 ## Filtros e Seleção de Visualização
 
-O sistema oferece diversos filtros para selecionar e personalizar a visualização dos dados em diferentes módulos.
+&emsp;O sistema oferece diversos filtros para selecionar e personalizar a visualização dos dados em diferentes módulos.
 
 ### Filtros no Estoque
 
@@ -195,7 +195,7 @@ O sistema oferece diversos filtros para selecionar e personalizar a visualizaç�
 
 ## Seleção de Itens para Pedidos
 
-Durante o processo de revisão de pedidos, o farmacêutico pode selecionar quais itens foram corretamente separados.
+&emsp;Durante o processo de revisão de pedidos, o farmacêutico pode selecionar quais itens foram corretamente separados.
 
 <p style={{textAlign: 'center'}}>Figura 9 - Seleção de Itens na Revisão de Pedidos</p>
 <div style={{margin: 25}}>
@@ -221,11 +221,11 @@ Durante o processo de revisão de pedidos, o farmacêutico pode selecionar quais
   - Itens faltando/incorretos: Concluído com erros (status 5)
 - Registro do usuário que realizou a revisão
 
-Esta interface permite uma revisão eficiente dos pedidos antes de sua dispensação final, garantindo a segurança do processo.
+&emsp;Esta interface permite uma revisão eficiente dos pedidos antes de sua dispensação final, garantindo a segurança do processo.
 
 ## Visualização de Detalhes
 
-O sistema oferece visualizações detalhadas para diversos elementos.
+&emsp;O sistema oferece visualizações detalhadas para diversos elementos.
 
 ### Visualização de Detalhes de Medicamento
 
@@ -308,7 +308,7 @@ O sistema oferece visualizações detalhadas para diversos elementos.
 
 ## Conclusão
 
-A abordagem adotada para visualização e seleção de elementos no sistema de gerenciamento de medicamentos destaca-se pela consistência, clareza e eficiência, proporcionando uma experiência de usuário otimizada para o ambiente de farmácia hospitalar.
+&emsp;A abordagem adotada para visualização e seleção de elementos no sistema de gerenciamento de medicamentos destaca-se pela consistência, clareza e eficiência, proporcionando uma experiência de usuário otimizada para o ambiente de farmácia hospitalar.
 
 ### Pontos de destaque da interface:
 
@@ -322,4 +322,4 @@ A abordagem adotada para visualização e seleção de elementos no sistema de g
 
 5. **Suporte à decisão**: Os elementos selecionáveis e as visualizações detalhadas fornecem todas as informações necessárias para tomada de decisão segura pelos farmacêuticos e técnicos, contribuindo para a redução de erros no fluxo de medicamentos.
 
-A combinação desses elementos proporciona uma experiência fluida para os usuários, permitindo que farmacêuticos e técnicos naveguem eficientemente entre diferentes tarefas, visualizem informações críticas e realizem ações com segurança e confiabilidade. A estrutura visual claramente definida contribui significativamente para a eficiência operacional e para a segurança do paciente, garantindo que os medicamentos sejam gerenciados, avaliados e dispensados de forma precisa e controlada.
+&emsp;A combinação desses elementos proporciona uma experiência fluida para os usuários, permitindo que farmacêuticos e técnicos naveguem eficientemente entre diferentes tarefas, visualizem informações críticas e realizem ações com segurança e confiabilidade. A estrutura visual claramente definida contribui significativamente para a eficiência operacional e para a segurança do paciente, garantindo que os medicamentos sejam gerenciados, avaliados e dispensados de forma precisa e controlada.

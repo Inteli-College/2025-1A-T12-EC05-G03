@@ -9,7 +9,7 @@ custom_edit_url: null
 
 &emsp;Este documento apresenta uma análise financeira detalhada para o projeto de automação da separação de medicamentos desenvolvido para o Hospital de Clínicas da Unicamp. Embora o protótipo atual seja implementado com tecnologias educacionais como Arduino Nano, Raspberry Pi, Dobot e periféricos acessíveis (leitor QR Code e sensor de distância), **esta análise financeira contempla uma projeção em escala industrial, alinhada com as expectativas do módulo de automação industrial.**
 
-Ademais, é importante pontuar que aqui consideramos parâmetros da cidade de São Paulo, como infraestrutura, carga tributária e salários médios. Para facilitar a navegação e dar maior clareza à leitura, **destacamos a seguir os valores-chave desta análise financeira** e indicamos onde cada um é desenvolvido com maior profundidade:
+&emsp;Ademais, é importante pontuar que aqui consideramos parâmetros da cidade de São Paulo, como infraestrutura, carga tributária e salários médios. Para facilitar a navegação e dar maior clareza à leitura, **destacamos a seguir os valores-chave desta análise financeira** e indicamos onde cada um é desenvolvido com maior profundidade:
 
 | Item                          | Faixa de Valor (R$)        | Natureza do Gasto       | Seção Detalhada                                                                 |
 |------------------------------|----------------------------|--------------------------|----------------------------------------------------------------------------------|

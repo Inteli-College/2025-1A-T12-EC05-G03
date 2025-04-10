@@ -5,12 +5,12 @@ custom_edit_url: null
 
 # Funcionalidades Implementadas
 
-Este documento detalha as principais funcionalidades implementadas no sistema de gerenciamento de medicamentos para farmácia hospitalar.
+&emsp;Este documento detalha as principais funcionalidades implementadas no sistema de gerenciamento de medicamentos para farmácia hospitalar.
 
 ## Autenticação e Cadastro
 
 ### Login
-O sistema possui uma tela de login que permite que apenas usuários autorizados acessem o sistema. Os usuários precisam informar e-mail e senha para autenticação.
+&emsp;O sistema possui uma tela de login que permite que apenas usuários autorizados acessem o sistema. Os usuários precisam informar e-mail e senha para autenticação.
 
 <p style={{textAlign: 'center'}}>Figura 1 - Tela de Login</p>
 <div style={{margin: 25}}>
@@ -27,7 +27,7 @@ O sistema possui uma tela de login que permite que apenas usuários autorizados 
 - Redirecionamento para a página de cadastro
 
 ### Cadastro
-A tela de cadastro permite que novos usuários se registrem no sistema.
+&emsp;A tela de cadastro permite que novos usuários se registrem no sistema.
 
 <p style={{textAlign: 'center'}}>Figura 2 - Tela de Cadastro</p>
 <div style={{margin: 25}}>
@@ -47,7 +47,7 @@ A tela de cadastro permite que novos usuários se registrem no sistema.
 
 ## Página Inicial (Home)
 
-A página inicial serve como dashboard principal do sistema, exibindo informações importantes e resumos de atividades que requerem atenção.
+&emsp;A página inicial serve como dashboard principal do sistema, exibindo informações importantes e resumos de atividades que requerem atenção.
 
 <p style={{textAlign: 'center'}}>Figura 3 - Página Inicial (Home)</p>
 <div style={{margin: 25}}>
@@ -72,7 +72,7 @@ A página inicial serve como dashboard principal do sistema, exibindo informaç�
 - Tabela detalhada de pedidos
 
 ### Modal de Avaliação de Prescrição
-Permite ao farmacêutico avaliar medicamentos prescritos.
+&emsp;Permite ao farmacêutico avaliar medicamentos prescritos.
 
 <p style={{textAlign: 'center'}}>Figura 4 - Modal de Avaliação de Prescrição</p>
 <div style={{margin: 25}}>
@@ -90,7 +90,7 @@ Permite ao farmacêutico avaliar medicamentos prescritos.
 - Geração automática de pedido após avaliação
 
 ### Modal de Revisão de Pedido
-Permite a revisão final dos pedidos antes da dispensação.
+&emsp;Permite a revisão final dos pedidos antes da dispensação.
 
 <p style={{textAlign: 'center'}}>Figura 5 - Modal de Revisão de Pedido</p>
 <div style={{margin: 25}}>
@@ -108,7 +108,7 @@ Permite a revisão final dos pedidos antes da dispensação.
 
 ## Gerenciamento de Estoque
 
-A página de estoque oferece funcionalidades completas para gerenciamento do inventário de medicamentos.
+&emsp;A página de estoque oferece funcionalidades completas para gerenciamento do inventário de medicamentos.
 
 <p style={{textAlign: 'center'}}>Figura 6 - Página de Estoque</p>
 <div style={{margin: 25}}>
@@ -174,7 +174,7 @@ A página de estoque oferece funcionalidades completas para gerenciamento do inv
 
 ## Histórico de Prescrições
 
-A página de histórico permite consultar todas as prescrições processadas no sistema.
+&emsp;A página de histórico permite consultar todas as prescrições processadas no sistema.
 
 <p style={{textAlign: 'center'}}>Figura 9 - Página de Histórico</p>
 <div style={{margin: 25}}>
@@ -223,7 +223,7 @@ A página de histórico permite consultar todas as prescrições processadas no 
 
 ## Notificações
 
-O sistema dispõe de um sistema de notificações para manter os usuários informados sobre eventos importantes.
+&emsp;O sistema dispõe de um sistema de notificações para manter os usuários informados sobre eventos importantes.
 
 <p style={{textAlign: 'center'}}>Figura 12 - Painel de Notificações</p>
 <div style={{margin: 25}}>
@@ -255,7 +255,7 @@ O sistema dispõe de um sistema de notificações para manter os usuários infor
 <p style={{textAlign: 'center'}}>Fonte: Os autores (2025)</p>
 
 ### Tipos de Notificações
-O sistema gera notificações automáticas para diversos eventos:
+&emsp;O sistema gera notificações automáticas para diversos eventos:
 - Novas prescrições aguardando avaliação
 - Prescrições avaliadas
 - Novos pedidos criados
@@ -264,12 +264,12 @@ O sistema gera notificações automáticas para diversos eventos:
 
 ## Conclusão
 
-O sistema de gerenciamento de medicamentos apresenta uma interface completa, intuitiva e funcional para atender às necessidades específicas do ambiente de farmácia hospitalar. As funcionalidades implementadas cobrem o ciclo completo de processos relacionados ao fluxo de medicamentos:
+&emsp;O sistema de gerenciamento de medicamentos apresenta uma interface completa, intuitiva e funcional para atender às necessidades específicas do ambiente de farmácia hospitalar. As funcionalidades implementadas cobrem o ciclo completo de processos relacionados ao fluxo de medicamentos:
 
 1. **Ciclo do medicamento**: Desde o cadastro no estoque até a dispensação para o paciente, com controle de lotes e validade
 2. **Ciclo da prescrição**: Da entrada da prescrição no sistema, passando pela avaliação farmacêutica, até a geração do pedido
 3. **Ciclo do pedido**: Da criação automática, passando pela separação e revisão, até a conclusão e dispensação
 
-O sistema apresenta um equilíbrio entre simplicidade de uso e robustez funcional, permitindo que os usuários gerenciem eficientemente o estoque de medicamentos e as prescrições médicas. A interface e os fluxos de trabalho bem definidos contribuem para a segurança do processo de dispensação de medicamentos, reduzindo riscos de erros e aumentando a produtividade da equipe de farmácia.
+&emsp;O sistema apresenta um equilíbrio entre simplicidade de uso e robustez funcional, permitindo que os usuários gerenciem eficientemente o estoque de medicamentos e as prescrições médicas. A interface e os fluxos de trabalho bem definidos contribuem para a segurança do processo de dispensação de medicamentos, reduzindo riscos de erros e aumentando a produtividade da equipe de farmácia.
 
-As notificações em tempo real e o sistema de histórico permitem acompanhamento constante das atividades, enquanto os controles de acesso garantem que apenas usuários autorizados possam realizar operações específicas. Essa combinação de funcionalidades torna o sistema uma ferramenta essencial para a gestão moderna de farmácias hospitalares, atendendo às exigências regulatórias e às melhores práticas do setor.
+&emsp;As notificações em tempo real e o sistema de histórico permitem acompanhamento constante das atividades, enquanto os controles de acesso garantem que apenas usuários autorizados possam realizar operações específicas. Essa combinação de funcionalidades torna o sistema uma ferramenta essencial para a gestão moderna de farmácias hospitalares, atendendo às exigências regulatórias e às melhores práticas do setor.
