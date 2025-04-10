@@ -20,7 +20,7 @@ custom_edit_url: null
 
 &emsp;Durante a operação, o sistema envia notificações detalhadas sobre cada etapa do processo, incluindo a leitura do QR Code, verificação pelo sensor de distância TCRT5000 e confirmação da coleta do medicamento. Cada ação é registrada em logs que podem ser consultados posteriormente para fins de auditoria ou diagnóstico.
 
-<p style={{textAlign: 'center'}}>Figura X: Interface da plataforma web para controle do robô</p>
+<p style={{textAlign: 'center'}}>Figura 1: Interface da plataforma web para controle do robô</p>
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
         <img src={require("../../../../media/PlataformaWeb.png").default} style={{width: 800}} alt="Interface da plataforma web mostrando o painel de controle do robô" />
@@ -41,7 +41,7 @@ custom_edit_url: null
 
 &emsp;O modo manual foi desenvolvido como uma alternativa para cenários específicos, como correções pontuais ou falhas na plataforma online, mantendo sempre os mesmos padrões de segurança do modo automático com a verificação dos QR Codes e leitura do sensor de distância.
 
-<p style={{textAlign: 'center'}}>Figura X: Interface do modo manual para montagem da fita de medicamentos</p>
+<p style={{textAlign: 'center'}}>Figura 2: Interface do modo manual para montagem da fita de medicamentos</p>
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
         <img src={require("../../../../media/tabela_cli.png").default} style={{width: 800}} alt="Interface do modo manual de operação do robô" />

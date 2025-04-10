@@ -12,7 +12,7 @@ custom_edit_url: null
 
 ## Value Proposition Canva
 
-<p style={{textAlign: 'center'}}>Figura X - Value proposition canva</p>
+<p style={{textAlign: 'center'}}>Figura 1 - Value proposition canva</p>
 
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
