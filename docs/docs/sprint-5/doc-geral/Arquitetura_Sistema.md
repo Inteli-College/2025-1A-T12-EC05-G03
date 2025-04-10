@@ -11,7 +11,7 @@ custom_edit_url: null
 
 &nbsp;&nbsp;&nbsp;&nbsp; O diagrama de blocos a seguir apresenta de forma clara e objetiva a organização do sistema, destacando as conexões entre os módulos essenciais e facilitando a visualização do fluxo de informações ao longo do processo de prescrição e dispensação de medicamentos:
 
-<p style={{textAlign: 'center'}}>Figura X - Diagrama de Blocos da Arquitetura</p>
+<p style={{textAlign: 'center'}}>Figura 1 - Diagrama de Blocos da Arquitetura</p>
 
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
