@@ -4,6 +4,8 @@
 
 </div>
 
+## 🎥 [Acesse o vídeo da nossa solução aqui!](https://youtu.be/khbtYsOoS_E)
+
 ## 👥 Grupo 3 - NDC
 <p align="center">
   <a href= "https://www.inteli.edu.br/"><img src="media/Logos_GuiaDeEstilos/pngslogos/logo_escura_COMnome.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0" width=20% height=40%></a>
@@ -78,11 +80,6 @@
 ## 📜 Descrição
 
 A solução proposta é o desenvolvimento de um sistema automatizado utilizando um braço mecânico e sensores para otimizar a separação e montagem das “Fitas de medicamentos” no Hospital de Clínicas da Unicamp. O sistema realizará a seleção precisa de medicamentos com base em prescrições eletrônicas, validando cada item por meio de leitura de código de barras, peso e volume, além de integrar-se ao estoque hospitalar para atualizações em tempo real. A proposta visa garantir maior segurança aos pacientes, reduzir erros humanos e aumentar a eficiência operacional, substituindo processos manuais por automação e proporcionando controle desde a dispensação até a entrega dos kits medicamentosos.
-
-
-Veja um pouco mais sobre a nossa solução:
-(COLOCAR VÍDEO)
-
 
 ## 📁 Estrutura de Pastas
 
