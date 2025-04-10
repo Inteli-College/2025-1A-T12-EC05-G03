@@ -114,16 +114,6 @@ Garante alinhamento total entre o sistema automatizado e os registros oficiais d
 
 ---
 
-### 8. Alinhar nossas rotas de API com os padrões do hospital
-
-&emsp;Atualmente, as rotas estão estruturadas segundo boas práticas, mas ainda precisam ser adaptadas ao padrão técnico da infraestrutura do HC.
-
-**Impacto:**  
-Minimiza retrabalho durante a integração final e assegura que nossa solução se encaixe perfeitamente na arquitetura já existente no hospital.
-
-
----
-
 ## Conclusão
 
 &emsp;Durante as 5 sprints realizadas, conseguimos transformar um desafio real da operação hospitalar em uma solução funcional, capaz de automatizar a montagem das fitas de medicamentos de forma mais eficiente e segura, atendendo aos principais objetivos definidos no início da parceria. <br/>
