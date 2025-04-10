@@ -19,43 +19,43 @@
     <tr>
       <td align="center">
         <a href="https://www.linkedin.com/in/fernando-soares-oliveira/">
-          <img src="media/NDCers/FernandoNDC.png" style="border-radius: 10%; width: 200px; alt="Fernando Oliveira"/><br>
+          <img src="media/NDCers/FernandoNDC.png" style="border-radius: 10%; width: 150px; alt="Fernando Oliveira"/><br>
           <sub><b>Fernando Oliveira</b></sub>
         </a>
       </td>
       <td align="center">
         <a href="https://www.linkedin.com/in/cecilslico/">
-          <img src="media/NDCers/CecíliaNDC.png" style="border-radius: 10%; width: 200px; alt="Cecília Coelho"/><br>
+          <img src="media/NDCers/CecíliaNDC.png" style="border-radius: 10%; width: 150px; alt="Cecília Coelho"/><br>
           <sub><b>Cecília Coelho</b></sub>
         </a>
       </td>
       <td align="center">
         <a href="https://www.linkedin.com/in/ceciliagalvaoo/">
-          <img src="media/NDCers/GalvaoNDC.png" style="border-radius: 10%; width: 200px;" alt="Cecília Galvão"/><br>
+          <img src="media/NDCers/GalvaoNDC.png" style="border-radius: 10%; width: 150px;" alt="Cecília Galvão"/><br>
           <sub><b>Cecília Galvão</b></sub>
         </a>
       </td>
       <td align="center">
         <a href="https://www.linkedin.com/in/ian-pereira-simao/">
-          <img src="media/NDCers/IanNDC.png" style="border-radius: 10%; width: 200px;" alt="Ian Simão"/><br>
+          <img src="media/NDCers/IanNDC.png" style="border-radius: 10%; width: 150px;" alt="Ian Simão"/><br>
           <sub><b>Ian Simão</b></sub>
         </a>
       </td>
       <td align="center">
         <a href="https://www.linkedin.com/in/luizapetenazzi/">
-          <img src="media/NDCers/LuizaNDC.png" style="border-radius: 10%; width: 200px;" alt="Luiza Petenazzi"/><br>
+          <img src="media/NDCers/LuizaNDC.png" style="border-radius: 10%; width: 150px;" alt="Luiza Petenazzi"/><br>
           <sub><b>Luiza Petenazzi</b></sub>
         </a>
       </td>
       <td align="center">
         <a href="https://www.linkedin.com/in/miguelclaret/">
-          <img src="media/NDCers/MiguelNDC.png" style="border-radius: 10%; width: 200px;" alt="Miguel Claret"/><br>
+          <img src="media/NDCers/MiguelNDC.png" style="border-radius: 10%; width: 150px;" alt="Miguel Claret"/><br>
           <sub><b>Miguel Claret</b></sub>
         </a>
       </td>
       <td align="center">
         <a href="https://www.linkedin.com/in/pabloazevedo/">
-          <img src="media/NDCers/PabloNDC.png" style="border-radius: 10%; width: 200px;" alt="Pablo Azevedo"/><br>
+          <img src="media/NDCers/PabloNDC.png" style="border-radius: 10%; width: 150px;" alt="Pablo Azevedo"/><br>
           <sub><b>Pablo Azevedo</b></sub>
         </a>
       </td>
