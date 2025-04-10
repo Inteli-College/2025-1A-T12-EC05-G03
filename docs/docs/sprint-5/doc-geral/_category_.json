@@ -1,0 +1,8 @@
+{
+    "label": "Documentação Geral",
+    "position": 1,
+    "link": {
+      "type": "generated-index",
+      "description": "Contém documentos fundamentais que oferecem uma visão abrangente do projeto, incluindo sua arquitetura, requisitos atendidos, desafios enfrentados e planejamento futuro."
+    }
+  }

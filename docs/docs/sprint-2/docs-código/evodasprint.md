@@ -22,7 +22,7 @@ custom_edit_url: null
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Para compreender o funcionamento do robô e suas limitações, foi utilizado um código que permitia seu controle por meio das teclas do teclado. A partir dessa abordagem, os membros do grupo realizaram testes para avaliar as capacidades do robô.
 
-<p style={{textAlign: 'center'}}>Figura X: Imagem do código de controle pelo teclado</p>
+<p style={{textAlign: 'center'}}>Figura 1: Imagem do código de controle pelo teclado</p>
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
         <img src={require("../../../../media/codigo/codeteclado.png").default} style={{width: 800}} alt="Imagem para mostrar o código usado" />
@@ -35,7 +35,7 @@ custom_edit_url: null
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Para monitorar a posição do robô e analisar seus deslocamentos, foi utilizado um código que permite a conexão com o dispositivo e o registro de suas coordenadas ao longo do tempo. A partir dessa abordagem, os membros do grupo puderam acompanhar as variações na posição do robô e armazenar os dados para futuras análises.
 
-<p style={{textAlign: 'center'}}>Figura X: Imagem do código do pandas+pydobot</p>
+<p style={{textAlign: 'center'}}>Figura 2: Imagem do código do pandas+pydobot</p>
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
         <img src={require("../../../../media/codigo/codeposi.png").default} style={{width: 800}} alt="Imagem para mostrar o código usado" />

@@ -11,7 +11,7 @@ custom_edit_url: null
 <br />
 
 
-<p style={{textAlign: 'center'}}>Figura X - Matriz de Risco</p>
+<p style={{textAlign: 'center'}}>Figura 1 - Matriz de Risco</p>
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
         <img src={require("../../../../media/riscos.png").default} style={{width: 800}} alt="Diagrama de blocos" />

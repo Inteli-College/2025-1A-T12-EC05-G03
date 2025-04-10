@@ -1,0 +1,8 @@
+{
+    "label": "Testes e Validação",
+    "position": 2,
+    "link": {
+      "type": "generated-index",
+      "description": "Contém documentação relacionada aos testes realizados para garantir a qualidade e usabilidade do sistema."
+    }
+  }

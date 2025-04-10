@@ -13,7 +13,7 @@ custom_edit_url: null
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Abaixo está descrita a persona que representa os farmacêuticos no nosso contexto de projeto:
 
-<p style={{textAlign: 'center'}}>Figura X: Persona Ismael Gonçalves - Farmacêutico</p>
+<p style={{textAlign: 'center'}}>Figura 1: Persona Ismael Gonçalves - Farmacêutico</p>
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
         <img src={require("../../../../media/personas/ismaelgoncalves_persona.png").default} style={{width: 800}} alt="Imagem informativa de Ismael e suas informações dispostas nas colunas." />
@@ -32,7 +32,7 @@ Esta tabela resume os principais pontos relacionados às atividades, necessidade
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Abaixo está descrita a persona que representa a técnica de farmácia. 
 
-<p style={{textAlign: 'center'}}>Figura X: Persona Clara Boia - Ténica</p>
+<p style={{textAlign: 'center'}}>Figura 2: Persona Clara Boia - Ténica</p>
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
         <img src={require("../../../../media/personas/claraboia_persona.png").default} style={{width: 800}} alt="Imagem informativa de Clara e suas informações dispostas nas colunas." />

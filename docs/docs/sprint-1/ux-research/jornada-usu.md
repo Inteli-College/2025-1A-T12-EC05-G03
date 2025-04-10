@@ -17,7 +17,7 @@ custom_edit_url: null
 
 ## Informações Gerais de Ismael
 
-<p style={{textAlign: 'center'}}>Figura X: Jornada do usuário de Ismael Gonçalves - Farmacêutico</p>
+<p style={{textAlign: 'center'}}>Figura 1: Jornada do usuário de Ismael Gonçalves - Farmacêutico</p>
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
         <img src={require("../../../../media/personas/IsmaelGoncalves_Jornada.png").default} style={{width: 800}} alt="Imagem informativa de Ismael e suas informações dispostas nas colunas." />
@@ -59,7 +59,7 @@ custom_edit_url: null
 
 ## Informações Gerais de Clara
 
-<p style={{textAlign: 'center'}}>Figura X: Jornada do usuário de Ismael Gonçalves - Farmacêutico</p>
+<p style={{textAlign: 'center'}}>Figura 2: Jornada do usuário de Ismael Gonçalves - Farmacêutico</p>
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
         <img src={require("../../../../media/personas/ClaraBoia_Jornada.png").default} style={{width: 800}} alt="Imagem informativa de Clara e suas informações dispostas nas colunas." />

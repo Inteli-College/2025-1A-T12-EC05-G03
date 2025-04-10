@@ -9,7 +9,7 @@ custom_edit_url: null
 &nbsp;&nbsp;&nbsp;&nbsp; Os diagramas de bloco são representações gráficas que mostram o funcionamento de um sistema ou processo por meio de blocos conectados por linhas, sem detalhar componentes individuais<sup>[1](#foot1)</sup>. A ideia principal é simplificar a compreensão do funcionamento do sistema da nossa automatização, nesse contexto, segue o nosso diagrama de blocos:
 
 
-<p style={{textAlign: 'center'}}>Figura X - Diagrama de Blocos da Arquitetura</p>
+<p style={{textAlign: 'center'}}>Figura 1 - Diagrama de Blocos da Arquitetura</p>
 
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>

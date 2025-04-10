@@ -12,6 +12,7 @@ def cadastrar_remedio():
 
     newRemedio = Remedio(
         principio_ativo = data['principio_ativo'],
+        dosagem_em_mg = data['dosagem_em_mg']
     )
 
     db.session.add(newRemedio)

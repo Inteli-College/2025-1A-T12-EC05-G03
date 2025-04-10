@@ -3,7 +3,8 @@ from ..models.prescricao import Prescricao
 from ..models.pedido import Pedido
 from ..models.remedio import Remedio
 from ..models.database import db
-from datetime import date
+from ..models.lote import Lote
+from datetime import date, timedelta, datetime
 from sqlalchemy.sql import func
 import json
 
@@ -70,6 +71,19 @@ def atualizar_pedidos_home():
         )
     )
 
+    prox_validade = listar_remedio_proximos_a_validade()
+    lotes_acabando = listar_lotes_com_baixa_quantidade()
+
+    notificacoes = []
+
+    for n in prox_validade:
+        msg = gerar_notificacao(1, n)
+        notificacoes.append(msg)
+
+    for n in lotes_acabando:
+        msg = gerar_notificacao(2, n)
+        notificacoes.append(msg)
+
     return jsonify({
         "prescricoes":{
             "aguardandoAvaliacao":[aguardando.as_front() for aguardando in prescricoes_aguardando],
@@ -80,16 +94,36 @@ def atualizar_pedidos_home():
             "emSeparacao": [separacao.as_dict() for separacao in pedidos_em_separacao],
             "emRevisao": [revisao.as_dict() for revisao in pedidos_em_revisao],
             "concluidos": [concluido.as_dict() for concluido in pedidos_concluidos],
-        }
+        },
+        "notificacoes": notificacoes if notificacoes else []
     }), 200
 
-    # return jsonify({
-    #     "Prescricoes aguardando avaliacao": [aguardando.as_dict() for aguardando in prescricoes_aguardando],
-    #     "Prescricoes avaliadas": [avaliadas.as_dict() for avaliadas in prescricoes_avaliadas],
-    #     "Aguardando Separacao": [aguardando.as_dict() for aguardando in pedidos_aguardando_separacao],
-    #     "Em Separação": [separacao.as_dict() for separacao in pedidos_em_separacao],
-    #     "Em Revisão": [revisao.as_dict() for revisao in pedidos_em_revisao],
-    #     "Concluído": [concluido.as_dict() for concluido in pedidos_concluidos],
-    # }), 200
+def listar_remedio_proximos_a_validade():
 
+    data_limite = date.today() + timedelta(days=14)
 
+    prox_validade = db.session.query(Lote).filter(
+        Lote.data_validade.between(date.today(), data_limite)
+    )
+       
+    return [p.as_listar_pedido() for p in prox_validade]
+
+def listar_lotes_com_baixa_quantidade():
+
+    lotes_acabando = db.session.query(Lote).filter(
+        Lote.quantidade <= 10
+    )
+
+    return [p.as_listar_pedido() for p in lotes_acabando]
+
+def gerar_notificacao(tipo, lote):
+    if tipo == 1:
+        data_hoje = date.today()
+        data_validade = lote['data_validade']
+
+        diferenca = (data_validade - data_hoje).days
+
+        return {"mensagem": f"Faltam {diferenca} dias para vencer {lote['principio_ativo']}, lote {lote['num_lote']}"}
+    
+    if tipo == 2:
+        return { "mensagem": f"Faltam {lote['quantidade']} unidades para acabar {lote['principio_ativo']}, lote {lote['num_lote']}" }

@@ -19,7 +19,7 @@ custom_edit_url: null
 2. Na tela de login, insira seu e-mail e senha cadastrados
 3. Clique no botão "Entrar"
 
-<p style={{textAlign: 'center'}}>Figura X: Tela de login do sistema</p>
+<p style={{textAlign: 'center'}}>Figura 1: Tela de login do sistema</p>
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
         <img src={require("../../../../media/telaLogin.png").default} style={{width: 800}} alt="Tela de login do sistema" />
@@ -64,7 +64,7 @@ custom_edit_url: null
 
 4. Clique em "Confirmar" para finalizar a avaliação
 
-<p style={{textAlign: 'center'}}>Figura X: Tela de avaliação de prescrições</p>
+<p style={{textAlign: 'center'}}>Figura 2: Tela de avaliação de prescrições</p>
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
         <img src={require("../../../../media/PlataformaWeb.png").default} style={{width: 800}} alt="Tela de avaliação de prescrições" />
@@ -75,7 +75,7 @@ custom_edit_url: null
 
 ### Histórico de Prescrições
 
-<p style={{textAlign: 'center'}}>Figura X: Tela de histórico de prescrições</p>
+<p style={{textAlign: 'center'}}>Figura 3: Tela de histórico de prescrições</p>
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
         <img src={require("../../../../media/telaHistorico.png").default} style={{width: 800}} alt="Tela de histórico de prescrições" />
@@ -114,7 +114,7 @@ custom_edit_url: null
 2. Visualize a lista completa de medicamentos disponíveis
 3. Utilize os filtros ou a barra de pesquisa para localizar medicamentos específicos
 
-<p style={{textAlign: 'center'}}>Figura X: Tela de estoque</p>
+<p style={{textAlign: 'center'}}>Figura 4: Tela de estoque</p>
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
         <img src={require("../../../../media/telaEstoque.png").default} style={{width: 800}} alt="Tela de estoque" />
@@ -170,7 +170,7 @@ custom_edit_url: null
 
 - **Validade Próxima**: Avisa sobre medicamentos próximos à data de vencimento
 
-<p style={{textAlign: 'center'}}>Figura X: Painel de notificações do sistema</p>
+<p style={{textAlign: 'center'}}>Figura 5: Painel de notificações do sistema</p>
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
         <img src={require("../../../../media/telaNotificacoes.png").default} style={{width: 800}} alt="Painel de notificações do sistema" />

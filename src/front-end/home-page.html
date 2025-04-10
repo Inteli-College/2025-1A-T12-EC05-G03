@@ -12,6 +12,11 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/modal.css') }}"
     />
+    <!-- Adicionando o CSS do guia do usuário -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/guia-usuario.css') }}"
+    />
     <!-- Importando as fontes -->
     <link
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"
@@ -30,17 +35,21 @@
         <i class="fas fa-bars"></i>
       </div>
       <div class="menu-items">
-        <a href="/home" class="menu-item">
+        <a href="/home" class="menu-item" data-page="home">
           <i class="fas fa-home"></i>
           <span class="menu-text">Home</span>
         </a>
-        <a href="/estoque" class="menu-item">
+        <a href="/estoque" class="menu-item" data-page="estoque">
           <i class="fas fa-pills"></i>
           <span class="menu-text">Estoque</span>
         </a>
-        <a href="/historico" class="menu-item active">
+        <a href="/historico-prescricao" class="menu-item" data-page="historico">
           <i class="fas fa-search"></i>
           <span class="menu-text">Histórico</span>
+        </a>
+        <a href="/historico-log" class="menu-item" data-page="historico-log">
+          <i class="fas fa-history"></i>
+          <span class="menu-text">Logs</span>
         </a>
       </div>
     </div>
@@ -301,9 +310,51 @@
       </div>
     </div>
 
+    <!-- Modal do Guia do Usuário -->
+    <div class="modal-overlay" id="modal-guia-usuario">
+      <div class="modal">
+        <div class="modal-header">
+          <h3 class="modal-title">Guia do Usuário</h3>
+          <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body" id="guia-usuario-conteudo">
+          <h4>Bem-vindo ao Sistema de Gerenciamento de Remédios</h4>
+          <p>Selecione uma opção para iniciar o guia específico:</p>
+          
+          <div class="guia-opcoes-container">
+            <div class="guia-opcao" data-guia="completo">
+              <i class="fas fa-book"></i>
+              <span>Guia completo</span>
+            </div>
+            <div class="guia-opcao" data-guia="menu">
+              <i class="fas fa-bars"></i>
+              <span>Menu de navegação</span>
+            </div>
+            <div class="guia-opcao" data-guia="prescricoes">
+              <i class="fas fa-prescription"></i>
+              <span>Prescrições</span>
+            </div>
+            <div class="guia-opcao" data-guia="pedidos">
+              <i class="fas fa-shipping-fast"></i>
+              <span>Pedidos</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="btn-group">
+            <button class="btn-modal btn-secondary modal-close-btn">
+              Fechar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Scripts -->
     <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
     <script src="{{ url_for('static', filename='js/js-file.js') }}"></script>
     <script src="{{ url_for('static', filename='js/modal.js') }}"></script>
+    <!-- Adicionando o JavaScript do guia do usuário -->
+    <script src="{{ url_for('static', filename='js/guia-usuario.js') }}"></script>
   </body>
 </html>

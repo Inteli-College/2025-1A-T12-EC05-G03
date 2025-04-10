@@ -45,7 +45,7 @@ custom_edit_url: null
 
 - **Banner impresso com a biblioteca Pyfiglet**
 
-<p style={{textAlign: 'center'}}>Figura X - Banner NDC - Impresso com Pyfiglet</p>
+<p style={{textAlign: 'center'}}>Figura 1 - Banner NDC - Impresso com Pyfiglet</p>
 
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
@@ -58,7 +58,7 @@ custom_edit_url: null
 
 - **Tabela com as opções de entrada**
 
-<p style={{textAlign: 'center'}}>Figura X - Tabela do CLI com suas opções</p>
+<p style={{textAlign: 'center'}}>Figura 2 - Tabela do CLI com suas opções</p>
 
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
@@ -71,7 +71,7 @@ custom_edit_url: null
 
 - **Aparência geral do CLI**
 
-<p style={{textAlign: 'center'}}>Figura X - Banner NDC - Aparência geral do CLI</p>
+<p style={{textAlign: 'center'}}>Figura 3 - Banner NDC - Aparência geral do CLI</p>
 
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
@@ -84,7 +84,7 @@ custom_edit_url: null
 
 - **Informações**
 
-<p style={{textAlign: 'center'}}>Figura X - Informações gerais sobre o uso do CLI</p>
+<p style={{textAlign: 'center'}}>Figura 4 - Informações gerais sobre o uso do CLI</p>
 
 <div style={{margin: 25}}>
     <div style={{textAlign: 'center'}}>
