@@ -8,7 +8,7 @@
 
 ## 👥 Grupo 3 - NDC
 <p align="center">
-  <img src="media/Logos_GuiaDeEstilos/pngslogos/logo_escura_COMnome.png#gh-dark-mode-only" alt="Logo Dark" width="300">
+  <img src="media/Logos_GuiaDeEstilos/pngslogos/logo_clara_COMnome.png.png#gh-dark-mode-only" alt="Logo Dark" width="300">
   <img src="media/Logos_GuiaDeEstilos/pngslogos/logo_escura_COMnome.png#gh-light-mode-only" alt="Logo Clara" width="300">
 </p>
 
