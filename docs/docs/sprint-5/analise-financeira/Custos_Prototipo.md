@@ -9,6 +9,22 @@ custom_edit_url: null
 
 &emsp;Este documento apresenta uma análise financeira detalhada para o projeto de automação da separação de medicamentos desenvolvido para o Hospital de Clínicas da Unicamp. Embora o protótipo atual seja implementado com tecnologias educacionais como Arduino Nano, Raspberry Pi, Dobot e periféricos acessíveis (leitor QR Code e sensor de distância), **esta análise financeira contempla uma projeção em escala industrial, alinhada com as expectativas do módulo de automação industrial.**
 
+Ademais, é importante pontuar que aqui consideramos parâmetros da cidade de São Paulo, como infraestrutura, carga tributária e salários médios. Para facilitar a navegação e dar maior clareza à leitura, **destacamos a seguir os valores-chave desta análise financeira** e indicamos onde cada um é desenvolvido com maior profundidade:
+
+| Item                          | Faixa de Valor (R$)        | Natureza do Gasto       | Seção Detalhada                                                                 |
+|------------------------------|----------------------------|--------------------------|----------------------------------------------------------------------------------|
+| **CAPEX**                    | R$ 1.394.000 a R$ 2.413.000 | Pontual (Investimento Único) | [Seção 7 – Equipamentos e Infraestrutura](#7-tabela-de-análise-financeira---automação-da-fita-de-medicamentos-escala-industrial) |
+| **OPEX**                     | R$ 302.000 a R$ 656.000     | Recorrente (Anual)       | [Seção 7 – Operação Contínua](#7-tabela-de-análise-financeira---automação-da-fita-de-medicamentos-escala-industrial) |
+| **Despesas Operacionais**    | R$ 2.920.000 a R$ 4.310.000 | Recorrente (Anual)       | [Seção 7 – Recursos Humanos e Administração](#7-tabela-de-análise-financeira---automação-da-fita-de-medicamentos-escala-industrial) |
+| **Impostos e Encargos**      | R$ 2.398.000 (valor fixo)   | Recorrente (Anual)       | [Seção 8.2 – Simulação de Carga Tributária](#82-simulação-de-carga-tributária-anual) |
+| **Custo Total (C_total)**    | R$ 7.014.000 a R$ 9.777.000 | -                        | Calculado a partir de CAPEX + OPEX + Despesas + Impostos |
+| **Lucro (20%)**              | R$1.753.500 a R$3.44.250 | -                        | [Seção 9 – Precificação com Lucro](#9-fórmula-de-precificação-com-lucro-desejado) |
+| **Valor Total com Lucro (PV)** | **R$ R$ 8.767.500 a R$ 12.221.250** | -                  | [Seção 9.3 – Exemplo com Números](#93-exemplo-com-números) |
+
+> **Nota:** O valor do custo de produção de um robô está dentro de **CAPEX**, variando de R$ 500.000 a R$ 675.000 (para mais informações, acessar a seção [Seção 6. Custo de um Robô Individual para o Sistema](#6-custo-de-um-robô-para-o-sistema)).
+
+&emsp;Essa estrutura visa garantir uma **visualização rápida e objetiva dos principais resultados**, além de tornar a navegação mais fluida para leitores técnicos, acadêmicos ou investidores.
+
 ### 1.1 Contextualização do Projeto
 
 &emsp;O projeto visa automatizar o processo de separação e montagem da "Fita de medicamentos" para pacientes internados no Hospital de Clínicas da Unicamp. Atualmente, este processo é realizado manualmente, o que demanda tempo considerável da equipe e apresenta riscos significativos como erros de separação e duplicidade, comprometendo tanto a segurança do paciente quanto a eficiência operacional da farmácia hospitalar.
@@ -132,12 +148,10 @@ custom_edit_url: null
 
 ## 4. Investimentos e Custos para Implementação Industrial
 
-### 4.1 Custos Diretos (relacionados diretamente à produção)
+### 4.1 Custos Diretos 
 
 #### 4.1.1 Equipamentos e Hardware
-- Robôs industriais de precisão: 4-6 unidades
-- Sistemas de visão computacional industrial
-- Sensores RFID/código de barras de alta performance
+- Robôs de automatização de medicamentos (nossa solução)
 - Esteiras transportadoras e sistemas de classificação
 - Gabinetes de armazenamento automatizados
 - Computadores e servidores industriais
@@ -145,8 +159,6 @@ custom_edit_url: null
 
 #### 4.1.2 Software e Integração
 - Sistema de gerenciamento de armazém (WMS)
-- Software de controle de robôs
-- Software de integração com sistema hospitalar
 - Licenças de software especializado
 - Desenvolvimento de APIs e integrações customizadas
 
@@ -187,7 +199,7 @@ custom_edit_url: null
 - Depreciação de hardware e infraestrutura
 - Depreciação de melhorias em instalações
 
-### 4.3 Despesas (gastos administrativos e operacionais)
+### 4.3 Despesas 
 
 #### 4.3.1 Recursos Humanos
 
@@ -269,9 +281,7 @@ custom_edit_url: null
 &emsp;O valor do aluguel de um galpão industrial depende da localização, tamanho e infraestrutura. Em São Paulo, uma regra comum é que o aluguel mensal represente entre 0,5% a 1% do valor de mercado do imóvel. Para um galpão avaliado em R$ 1.000.000, o aluguel mensal seria entre R$ 5.000 a R$ 10.000.
 
 ### 5.3 Equipamentos
-- **Controlador Lógico Programável (CLP)**: Modelos básicos a partir de R$ 1.499, modelos mais avançados até R$ 7.749.
-- **Robô Industrial**: Entre US$ 80.000 a US$ 100.000 (R$ 400.000 a R$ 500.000 considerando taxa de câmbio de R$ 5,00/US$). Robôs usados a partir de R$ 20.000.
-- **Sensores Industriais**: Kits de 10 unidades de sensores indutivos por R$ 287,90.
+- **Robô se Separação de Medicamentos**: Apresenta um custo médio R$ 500.000 entre R$ 675.000, podendo ser visto essa análise mais pra frente na [Seção 6 – Custo de um Robô Individual para o Sistema](#6-custo-de-um-robô-individual-para-o-sistema)
 
 ### 5.4 Utilidades
 - **Água**: Custo médio para indústrias no Brasil aproximadamente R$ 5,75 por metro cúbico (m³).
@@ -288,14 +298,49 @@ custom_edit_url: null
 - **Técnico de Manutenção Industrial**: Salário médio de R$ 4.291,66 mensais.
 - **Operadores de Máquina**: Salário médio de R$ 2.500 a R$ 3.500 mensais, dependendo da região e experiência.
 
-## 6. Tabela de Análise Financeira - Automação da Fita de Medicamentos (Escala Industrial)
+## 6. Custo de um Robô Individual para o Sistema
+
+&emsp;Para uma compreensão mais granular dos custos envolvidos no projeto, é relevante analisar o investimento necessário para a aquisição e implementação de um único robô industrial compatível com as necessidades da automação da separação de medicamentos.
+
+### 6.1 Composição do Custo de um Robô Individual
+
+| Componente | Descrição | Custo Estimado (R$) |
+|------------|-----------|---------------------|
+| Braço robótico colaborativo | Robô industrial com 6 graus de liberdade, capacidade de carga de 5kg e precisão de ±0.1mm | R$ 350.000 - R$ 450.000 |
+| Sistema de visão | Câmera industrial de alta resolução com iluminação e software de processamento de imagem | R$ 35.000 - R$ 50.000 |
+| Garra específica | Garra customizada para manipulação segura de medicamentos | R$ 20.000 - R$ 30.000 |
+| Controlador | Unidade de controle, incluindo hardware e software básico | R$ 40.000 - R$ 60.000 |
+| Sensores adicionais | Sensores de força, proximidade e segurança | R$ 15.000 - R$ 25.000 |
+| Integração | Serviços de instalação, programação e integração com o sistema | R$ 30.000 - R$ 45.000 |
+| Treinamento | Capacitação específica para operação e manutenção básica | R$ 10.000 - R$ 15.000 |
+| **Total para um robô completo** | **Solução individual pronta para operação** | **R$ 500.000 - R$ 675.000** |
+
+### 6.2 Custos Operacionais Anuais por Robô
+
+| Item | Valor Anual Estimado (R$) |
+|------|---------------------------|
+| Manutenção preventiva | R$ 25.000 - R$ 35.000 |
+| Energia elétrica | R$ 5.000 - R$ 8.000 |
+| Peças de reposição | R$ 15.000 - R$ 25.000 |
+| Atualizações de software | R$ 10.000 - R$ 15.000 |
+| **Total OPEX anual por robô** | **R$ 55.000 - R$ 83.000** |
+
+### 6.3 Considerações sobre o Custo Individual
+
+&emsp;É importante ressaltar que a aquisição de múltiplos robôs geralmente resulta em economias de escala, tanto no valor de aquisição quanto nos custos de manutenção. Para um projeto com 4-6 robôs, pode-se esperar:
+
+- Desconto de 10-15% no valor unitário para aquisições em lote
+- Redução de 20-25% nos custos de integração por unidade
+- Compartilhamento de recursos de manutenção e treinamento
+- Otimização do estoque de peças de reposição
+
+&emsp;Dessa forma, o custo total por robô quando implementado em escala tende a ser cerca de 15-20% menor que o custo de aquisição individual, o que deve ser considerado no planejamento financeiro do projeto completo.
+
+## 7. Tabela de Análise Financeira - Automação da Fita de Medicamentos (Escala Industrial)
 
 | Item | Categoria | Descrição | Estimativa de Custo | Tipo de Gasto |
 |------|-----------|-----------|----------------------|----------------|
-| Robôs industriais de precisão (4-6 unidades) | Equipamentos e Hardware | Robôs colaborativos ou cartesianos para montagem automatizada | R$ 1.600.000 a R$ 3.000.000 | CAPEX |
-| Sistemas de visão computacional industrial | Equipamentos e Hardware | Câmeras, iluminação e software de visão | R$ 150.000 a R$ 300.000 | CAPEX |
-| Sensores RFID/código de barras | Equipamentos e Hardware | Leitores industriais e antenas para validação de medicamentos | R$ 30.000 a R$ 50.000 | CAPEX |
-| Esteiras e classificação | Equipamentos e Hardware | Esteiras automatizadas com motores e guias | R$ 80.000 a R$ 150.000 | CAPEX |
+| Robô industrial completo | Equipamentos e Hardware | Solução robótica individual com braço colaborativo, visão, garra, sensores, controlador, integração e treinamento | R$ 500.000 a R$ 675.000 | CAPEX |
 | Gabinetes automatizados | Equipamentos e Hardware | Armazenamento inteligente de medicamentos | R$ 100.000 a R$ 200.000 | CAPEX |
 | Computadores e servidores industriais | Equipamentos e Hardware | Controle de processos e processamento de dados | R$ 50.000 a R$ 120.000 | CAPEX |
 | Sistema de backup e redundância | Equipamentos e Hardware | UPS, geradores e sistemas RAID | R$ 40.000 a R$ 70.000 | CAPEX |
@@ -319,28 +364,28 @@ custom_edit_url: null
 | Suporte técnico e atualizações | Operação Contínua | Equipe técnica, software e substituições | R$ 100.000 a R$ 200.000/ano | OPEX |
 | Gestão e análise de dados | Operação Contínua | Equipe de análise, relatórios e dashboards | R$ 60.000 a R$ 100.000/ano | OPEX |
 
-### 6.1 Documentação da Tabela de Análise Financeira
+### 7.1 Documentação da Tabela de Análise Financeira
 
 &emsp;A tabela foi estruturada para organizar, justificar e estimar os principais investimentos e custos envolvidos na implementação da solução em escala industrial.
 
-#### 6.1.1 Coluna: Item
+#### 7.1.1 Coluna: Item
 &emsp;Esta coluna lista de forma objetiva cada elemento específico da solução, permitindo entender com clareza o que está sendo adquirido ou mantido, servindo como base para organização orçamentária e criação de planos de aquisição por fases (curto, médio e longo prazo).
 
-#### 6.1.2 Coluna: Categoria
+#### 7.1.2 Coluna: Categoria
 &emsp;Agrupa os itens por áreas de investimento ou funcionalidade, facilitando a gestão segmentada do orçamento por tipo de demanda (tecnológica, humana, estrutural).
 
-#### 6.1.3 Coluna: Descrição
+#### 7.1.3 Coluna: Descrição
 &emsp;Oferece uma explicação resumida da função e relevância de cada item dentro da solução, justificando sua presença na lista de investimentos ou custos.
 
-#### 6.1.4 Coluna: Estimativa de Custo
+#### 7.1.4 Coluna: Estimativa de Custo
 &emsp;Apresenta uma faixa de preço realista com base em pesquisa de mercado (valores atualizados para São Paulo – capital, 2025). Os valores são apresentados como intervalo (mínimo e máximo) por item ou por período (mensal ou anual).
 
-#### 6.1.5 Coluna: Tipo de Gasto
+#### 7.1.5 Coluna: Tipo de Gasto
 &emsp;Classifica cada linha conforme seu impacto contábil e estratégico, usando os conceitos de CAPEX, OPEX e Despesa.
 
-## 7. Impostos e Obrigações Fiscais
+## 8. Impostos e Obrigações Fiscais
 
-### 7.1 Tabela de Impostos e Obrigações Fiscais
+### 8.1 Tabela de Impostos e Obrigações Fiscais
 
 | Imposto / Encargo | Categoria | Descrição | Base de Cálculo ou Alíquota |
 |-------------------|-----------|-----------|----------------------------|
@@ -356,7 +401,7 @@ custom_edit_url: null
 | Contribuições sindicais | Obrigações Trabalhistas | Valores definidos em convenções coletivas ou acordos sindicais. | Valor fixo ou percentual variável |
 | Provisões: Férias e 13º salário | Obrigações Trabalhistas | Encargos trabalhistas obrigatórios ao final de cada ano. | 21,5% da folha (13,33% + 8,33%) |
 
-### 7.2 Simulação de Carga Tributária Anual
+### 8.2 Simulação de Carga Tributária Anual
 
 | Tributo / Encargo | Base de Cálculo (R$) | Alíquota (%) | Valor Estimado (R$) |
 |-------------------|----------------------|--------------|---------------------|
@@ -371,23 +416,23 @@ custom_edit_url: null
 | FGTS (anual) | 3.000.000,00 | 8,00% | 240.000,00 |
 | Férias + 13º + 1/3 (anual) | 3.000.000,00 | 21,50% | 645.000,00 |
 
-### 7.3 Análise da Carga Tributária
+### 8.3 Análise da Carga Tributária
 
 &emsp;A simulação acima foi baseada nos seguintes valores:
 - Investimentos em equipamentos e softwares (CAPEX): R$ 2.000.000
 - Serviços contratados (instalação, integração, suporte): R$ 500.000
 - Folha de pagamento anual estimada: R$ 3.000.000
 
-#### 7.3.1 Impostos sobre Aquisições
+#### 8.3.1 Impostos sobre Aquisições
 &emsp;II, IPI, ICMS e PIS/COFINS são encargos que aumentam o custo efetivo dos equipamentos importados ou industrializados no Brasil. Juntos, esses tributos adicionam aproximadamente R$ 713.000,00 sobre os R$ 2 milhões em aquisições.
 
-#### 7.3.2 Impostos sobre Serviços
+#### 8.3.2 Impostos sobre Serviços
 &emsp;O ISS incide sobre os serviços técnicos contratados, como instalação e configuração. Já o IRPJ e CSLL incidem sobre o lucro, e foram simulados com base em uma margem de lucro de 30% sobre a operação.
 
-#### 7.3.3 Obrigações Trabalhistas
+#### 8.3.3 Obrigações Trabalhistas
 &emsp;INSS Patronal, FGTS, Férias e 13º compõem o bloco mais pesado da carga fiscal trabalhista. A soma desses encargos representa R$ 1.485.000,00 ao ano, o que corresponde a praticamente 50% adicional sobre a folha bruta anual.
 
-### 7.4 Interpretações e Recomendações
+### 8.4 Interpretações e Recomendações
 
 - A carga tributária total estimada ultrapassa R$ 2,8 milhões ao ano, sendo:
   - ~25% corresponde a impostos diretos sobre compra e serviço
@@ -396,22 +441,22 @@ custom_edit_url: null
 - Estratégias de incentivo fiscal (como regimes especiais de importação ou crédito de ICMS) podem reduzir significativamente essa carga
 - É recomendável manter um fundo de provisão tributária mensal e contar com apoio contábil especializado
 
-## 8. Fórmula de Precificação com Lucro Desejado
+## 9. Fórmula de Precificação com Lucro Desejado
 
 &emsp;Para determinar o preço de venda (PV) que garanta:
 - Pagamento de todos os custos (diretos, indiretos e despesas)
 - Cobertura da carga tributária
 - Lucro líquido de 20% sobre a receita total (e não apenas sobre o custo)
 
-### 8.1 Variáveis
+### 9.1 Variáveis
 - **C_total**: Custo total (CAPEX, OPEX, Despesas + Impostos e encargos)
 - **Lucro_desejado**: Margem de lucro desejada sobre o preço final (20% = 0.20)
 - **PV**: Preço de venda final com margem de lucro incluída
 
-### 8.2 Fórmula Clássica da Precificação com Lucro
+### 9.2 Fórmula Clássica da Precificação com Lucro
 **PV = C_total / (1 - Lucro_desejado)**
 
-### 8.3 Exemplo com Números
+### 9.3 Exemplo com Números
 &emsp;Se os custos totais do projeto (C_total) forem de R$ 3.000.000, e você deseja um lucro de 20%, temos:
 - PV = 3.000.000 / (1 - 0.20)
 - PV = 3.000.000 / 0.80
@@ -420,44 +465,6 @@ custom_edit_url: null
 **Preço de venda final sugerido: R$ 3.750.000**
 
 &emsp;Esse valor cobre todos os custos e ainda entrega um lucro de R$ 750.000, o que representa 20% sobre a receita total.
-
-## 9. Custo de um Robô Individual para o Sistema
-
-&emsp;Para uma compreensão mais granular dos custos envolvidos no projeto, é relevante analisar o investimento necessário para a aquisição e implementação de um único robô industrial compatível com as necessidades da automação da separação de medicamentos.
-
-### 9.1 Composição do Custo de um Robô Individual
-
-| Componente | Descrição | Custo Estimado (R$) |
-|------------|-----------|---------------------|
-| Braço robótico colaborativo | Robô industrial com 6 graus de liberdade, capacidade de carga de 5kg e precisão de ±0.1mm | R$ 350.000 - R$ 450.000 |
-| Sistema de visão | Câmera industrial de alta resolução com iluminação e software de processamento de imagem | R$ 35.000 - R$ 50.000 |
-| Garra específica | Garra customizada para manipulação segura de medicamentos | R$ 20.000 - R$ 30.000 |
-| Controlador | Unidade de controle, incluindo hardware e software básico | R$ 40.000 - R$ 60.000 |
-| Sensores adicionais | Sensores de força, proximidade e segurança | R$ 15.000 - R$ 25.000 |
-| Integração | Serviços de instalação, programação e integração com o sistema | R$ 30.000 - R$ 45.000 |
-| Treinamento | Capacitação específica para operação e manutenção básica | R$ 10.000 - R$ 15.000 |
-| **Total para um robô completo** | **Solução individual pronta para operação** | **R$ 500.000 - R$ 675.000** |
-
-### 9.2 Custos Operacionais Anuais por Robô
-
-| Item | Valor Anual Estimado (R$) |
-|------|---------------------------|
-| Manutenção preventiva | R$ 25.000 - R$ 35.000 |
-| Energia elétrica | R$ 5.000 - R$ 8.000 |
-| Peças de reposição | R$ 15.000 - R$ 25.000 |
-| Atualizações de software | R$ 10.000 - R$ 15.000 |
-| **Total OPEX anual por robô** | **R$ 55.000 - R$ 83.000** |
-
-### 9.3 Considerações sobre o Custo Individual
-
-&emsp;É importante ressaltar que a aquisição de múltiplos robôs geralmente resulta em economias de escala, tanto no valor de aquisição quanto nos custos de manutenção. Para um projeto com 4-6 robôs, pode-se esperar:
-
-- Desconto de 10-15% no valor unitário para aquisições em lote
-- Redução de 20-25% nos custos de integração por unidade
-- Compartilhamento de recursos de manutenção e treinamento
-- Otimização do estoque de peças de reposição
-
-&emsp;Dessa forma, o custo total por robô quando implementado em escala tende a ser cerca de 15-20% menor que o custo de aquisição individual, o que deve ser considerado no planejamento financeiro do projeto completo.
 
 ## 10. Conclusão
 
